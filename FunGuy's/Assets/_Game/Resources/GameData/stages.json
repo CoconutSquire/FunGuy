@@ -1,55 +1,393 @@
 {
+  "schemaVersion": 1,
   "stages": [
     {
       "id": "s_1_1",
-      "name": "Meadow Edge",
-      "recommendedPower": 200,
+      "name": "Pantry Threshold",
+      "order": 1,
+      "description": "Learn the board. Protect your damage dealer and watch automatic basics.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": false,
+      "recommendedPower": 0,
       "waves": [
-        [{ "enemyId": "e_sporeling", "level": 1 }, { "enemyId": "e_sporeling", "level": 1 }],
-        [{ "enemyId": "e_sporeling", "level": 1 }, { "enemyId": "e_sporeling", "level": 2 }, { "enemyId": "e_sporeling", "level": 1 }]
+        {
+          "enemies": [
+            {
+              "enemyId": "e_sporeling",
+              "level": 1,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 1,
+              "slotId": "front_3"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_sporeling",
+              "level": 1,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 1,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 1,
+              "slotId": "rear_2"
+            }
+          ]
+        }
       ],
-      "rewards": { "gold": 50, "spores": 10, "accountXp": 5 }
+      "rewards": {
+        "gold": 50,
+        "spores": 10,
+        "accountXp": 5
+      }
     },
     {
       "id": "s_1_2",
-      "name": "Rotwood Path",
-      "recommendedPower": 260,
+      "name": "The Spoon Line",
+      "order": 2,
+      "description": "The Pan Guard shields and taunts. Queue signatures to break through.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": false,
+      "recommendedPower": 0,
       "waves": [
-        [{ "enemyId": "e_rot_thrall", "level": 2 }, { "enemyId": "e_sporeling", "level": 2 }],
-        [{ "enemyId": "e_rot_thrall", "level": 2 }, { "enemyId": "e_sporeling", "level": 2 }, { "enemyId": "e_sporeling", "level": 3 }]
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 1,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 2,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 2,
+              "slotId": "rear_4"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 2,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 2,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 2,
+              "slotId": "rear_4"
+            }
+          ]
+        }
       ],
-      "rewards": { "gold": 65, "spores": 12, "accountXp": 6 }
+      "rewards": {
+        "gold": 150,
+        "spores": 12,
+        "accountXp": 6
+      }
     },
     {
       "id": "s_1_3",
-      "name": "Cinder Drift",
-      "recommendedPower": 320,
+      "name": "Spore Cupboard",
+      "order": 3,
+      "description": "Poison threatens longer fights. Bring healing and use first-clear gold to upgrade.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": false,
+      "recommendedPower": 0,
       "waves": [
-        [{ "enemyId": "e_ashen_spore", "level": 3 }, { "enemyId": "e_sporeling", "level": 3 }],
-        [{ "enemyId": "e_ashen_spore", "level": 3 }, { "enemyId": "e_rot_thrall", "level": 3 }, { "enemyId": "e_ashen_spore", "level": 3 }]
+        {
+          "enemies": [
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 2,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "rear_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 3,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "middle_4"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "rear_4"
+            }
+          ]
+        }
       ],
-      "rewards": { "gold": 80, "spores": 15, "accountXp": 7 }
+      "rewards": {
+        "gold": 200,
+        "spores": 15,
+        "accountXp": 7
+      }
     },
     {
       "id": "s_1_4",
-      "name": "Molded Crossing",
-      "recommendedPower": 380,
+      "name": "Cold Cellar",
+      "order": 4,
+      "description": "Slow delays your turns. Change biomes, formation or signature timing.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": false,
+      "recommendedPower": 0,
       "waves": [
-        [{ "enemyId": "e_rot_thrall", "level": 4 }, { "enemyId": "e_ashen_spore", "level": 4 }],
-        [{ "enemyId": "e_rot_thrall", "level": 4 }, { "enemyId": "e_sporeling", "level": 4 }, { "enemyId": "e_ashen_spore", "level": 4 }]
+        {
+          "enemies": [
+            {
+              "enemyId": "e_frost_keeper",
+              "level": 3,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "rear_4"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 3,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "e_frost_keeper",
+              "level": 4,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "e_frost_keeper",
+              "level": 3,
+              "slotId": "rear_4"
+            }
+          ]
+        }
       ],
-      "rewards": { "gold": 95, "spores": 18, "accountXp": 8 }
+      "rewards": {
+        "gold": 250,
+        "spores": 18,
+        "accountXp": 8
+      }
     },
     {
       "id": "s_1_5",
-      "name": "Rotbound Gate",
-      "recommendedPower": 450,
+      "name": "The Simmering Kitchen",
+      "order": 5,
+      "description": "Ashen Cooks burn the whole team. A shield or well-timed heal keeps the line standing.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": false,
+      "recommendedPower": 0,
       "waves": [
-        [{ "enemyId": "e_rot_thrall", "level": 5 }, { "enemyId": "e_rot_thrall", "level": 5 }],
-        [{ "enemyId": "e_ashen_spore", "level": 5 }, { "enemyId": "e_sporeling", "level": 5 }, { "enemyId": "e_ashen_spore", "level": 5 }],
-        [{ "enemyId": "e_rot_thrall", "level": 6 }]
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 4,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 3,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 3,
+              "slotId": "rear_4"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 4,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 4,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 4,
+              "slotId": "rear_2"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 4,
+              "slotId": "rear_4"
+            }
+          ]
+        }
       ],
-      "rewards": { "gold": 120, "spores": 22, "accountXp": 10 }
+      "rewards": {
+        "gold": 300,
+        "spores": 22,
+        "accountXp": 9
+      }
+    },
+    {
+      "id": "s_1_6",
+      "name": "Before the Boil",
+      "order": 6,
+      "description": "Build a balanced team and prepare upgrades before facing the keeper.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": false,
+      "recommendedPower": 0,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 4,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "e_frost_keeper",
+              "level": 4,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 4,
+              "slotId": "rear_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 5,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_frost_keeper",
+              "level": 4,
+              "slotId": "middle_4"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 4,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 5,
+              "slotId": "rear_3"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 400,
+        "spores": 25,
+        "accountXp": 10
+      }
+    },
+    {
+      "id": "s_1_7",
+      "name": "The Cauldron Keeper",
+      "order": 7,
+      "description": "Boss: Boil Over burns the team; pressure raises ATK every third turn. Break the shield and sustain your fighters.",
+      "encounterVersion": "kitchen-slice-v1",
+      "boss": true,
+      "recommendedPower": 0,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "e_rot_thrall",
+              "level": 4,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 4,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 4,
+              "slotId": "rear_4"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "e_kitchen_overseer",
+              "level": 1,
+              "slotId": "front_2"
+            },
+            {
+              "enemyId": "e_sporeling",
+              "level": 3,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "e_ashen_spore",
+              "level": 3,
+              "slotId": "rear_4"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 600,
+        "spores": 30,
+        "accountXp": 11
+      }
     }
   ]
 }

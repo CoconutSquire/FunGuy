@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEngine;
 
 public class GameData {
+  public StatRulesCatalog StatRules { get; private set; }
+  public LevelProgressionRules LevelRules { get; private set; }
   public Dictionary<string, CharacterDef> Characters = new();
   public Dictionary<string, EnemyDef> Enemies = new();
   public Dictionary<string, SkillDef> Skills = new();
@@ -16,16 +18,23 @@ public class GameData {
     var stfile = JsonLoader.LoadFromResources<StagesFile>("GameData/stages");
     var bfile = JsonLoader.LoadFromResources<BannersFile>("GameData/banners");
 
+    var statRules = new StatRulesCatalog(JsonLoader.LoadFromResources<StatRulesFile>("GameData/stat_rules"));
+    var levelRules = new LevelProgressionRules(JsonLoader.LoadFromResources<LevelProgressionFile>("GameData/level_progression"));
+    GameDataValidator.Validate(cfile, sfile, stfile, bfile, statRules);
+
     NormalizeCharacters(cfile.characters);
     NormalizeEnemies(cfile.enemies);
     NormalizeSkills(sfile.skills);
     NormalizeBanners(bfile.banners);
 
+    StatRules = statRules;
+    LevelRules = levelRules;
     Characters = cfile.characters.ToDictionary(x => x.id, x => x);
     Enemies    = cfile.enemies.ToDictionary(x => x.id, x => x);
     Skills     = sfile.skills.ToDictionary(x => x.id, x => x);
     Stages     = stfile.stages.ToDictionary(x => x.id, x => x);
     Banners    = bfile.banners.ToDictionary(x => x.id, x => x);
+    _ = new CombatExampleCatalog(this); // Validate executable reference content without adding it to summon pools.
   }
 
   public IReadOnlyList<RateEntry> GetSortedRates(BannerDef banner) {
@@ -40,6 +49,7 @@ public class GameData {
     if (characters == null) return;
 
     foreach (var c in characters) {
+      if (!string.IsNullOrEmpty(c.statProfileId) || !string.IsNullOrEmpty(c.statModel)) continue; // Authored content is explicit and validated.
       if (c.baseStats == null) c.baseStats = new StatBlock();
       if (c.growth == null) c.growth = new StatGrowth();
       if (c.skills == null) c.skills = new SkillRefs();

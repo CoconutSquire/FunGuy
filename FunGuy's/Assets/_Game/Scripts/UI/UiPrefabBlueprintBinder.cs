@@ -30,6 +30,7 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
     private int _boundCount;
     private int _wiredButtonCount;
     private readonly List<string> _missing = new();
+    private readonly Dictionary<Button, UnityEngine.Events.UnityAction> _listeners = new();
 
     private void Awake()
     {
@@ -48,7 +49,9 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
         BindBattle();
         BindTutorial();
         BindSummonReveal();
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         BindDebugPanels();
+#endif
         BindTeamSlots();
         if (autoWireButtons) AutoWireButtonEvents();
 
@@ -128,6 +131,7 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
     {
         var controller = FindFirst<BattleSceneController>();
         if (controller == null) return;
+        if (controller.View != null) return; // Authored battle view is explicitly bound once.
 
         BindField(controller, "battleResultLabel",
             "Lbl_BattleResult", "BattleResultLabel", "Text_BattleResult");
@@ -178,6 +182,7 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
             "Btn_RevealNext", "RevealNextButton", "Button_RevealNext");
     }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     private void BindDebugPanels()
     {
         var debug = FindFirst<DebugProgressionController>();
@@ -194,6 +199,8 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
                 "Lbl_SmokeOutput", "SmokeOutputLabel", "Text_SmokeOutput");
         }
     }
+
+#endif
 
     private void BindTeamSlots()
     {
@@ -239,7 +246,10 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
 
             var localTarget = target;
             var localMethod = method;
-            button.onClick.AddListener(() => localMethod.Invoke(localTarget, null));
+            if (_listeners.TryGetValue(button, out var previous)) button.onClick.RemoveListener(previous);
+            UnityEngine.Events.UnityAction listener = () => localMethod.Invoke(localTarget, null);
+            _listeners[button] = listener;
+            button.onClick.AddListener(listener);
             return true;
         }
 

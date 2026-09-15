@@ -44,13 +44,16 @@ public class BannerHistoryEntry {
 
 [Serializable]
 public class PlayerSave {
-  public int version = 2;
+  public int version = 5;
   public string createdUtc;
   public string lastSavedUtc;
 
   public int gold;
   public int spores;
   public int accountLevel;
+  public int accountXp;
+  public List<string> clearedStages = new();
+  public bool tutorialBattleRewardClaimed;
   public int sporeEssence;
   public int coreFragments;
   public int primeSpores;
@@ -61,6 +64,7 @@ public class PlayerSave {
 
   public List<OwnedUnit> units = new();
   public List<string> activeTeam = new(); // list of charIds
+  public List<FormationPlacement> formation = new(); // Positions for activeTeam members; removed units leave holes.
   public List<StringIntEntry> bannerPity = new();
   public List<StringBoolEntry> bannerFeaturedGuarantee = new();
   public List<BannerHistoryEntry> bannerHistory = new();

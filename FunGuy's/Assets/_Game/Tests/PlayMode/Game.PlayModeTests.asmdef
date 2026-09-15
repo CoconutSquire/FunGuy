@@ -1,0 +1,7 @@
+{
+  "name": "Game.PlayModeTests",
+  "references": ["Game.Runtime", "Unity.InputSystem", "Unity.TextMeshPro"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}

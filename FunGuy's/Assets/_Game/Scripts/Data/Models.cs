@@ -20,6 +20,9 @@ using System.Collections.Generic;
 [Serializable] public class SkillRefs { public string basic; public string ult; }
 
 [Serializable] public class CharacterDef {
+  public string statModel; // class-growth-v1: authored bases with canonical class growth/evolution.
+  public string kitVersion;
+  public string statProfileId; // Empty retains legacy content; otherwise a stat-sheet-v1 reference.
   public string id;
   public string name;
   public int rarity;
@@ -33,6 +36,7 @@ using System.Collections.Generic;
   public StatBlock baseStats;
   public StatGrowth growth;
   public SkillRefs skills;
+  public List<PassiveDef> passives = new();
 }
 
 [Serializable] public class EnemyDef {
@@ -42,7 +46,9 @@ using System.Collections.Generic;
   public string classArchetype;
   public string role;
   public StatBlock baseStats;
+  public StatGrowth growth;
   public SkillRefs skills;
+  public List<PassiveDef> passives = new();
 }
 
 [Serializable] public class EffectDef {
@@ -52,9 +58,25 @@ using System.Collections.Generic;
   public float chance;     // 0..1
   public int duration;     // turns
   public float potency;    // e.g. dot % of maxHP, regen %, thorns % of incoming
+  public string target; // Optional per-effect target override.
+  public string stat; // ATK/POT/MaxHP/TargetMaxHP.
+  public float ignoreDefense;
+  public bool ignoreShield;
+  public bool sureHit;
+  public int slot = -1;
+}
+
+[Serializable] public class PassiveDef {
+  public string description;
+  public string id;
+  public string trigger;
+  public string target;
+  public int every = 1;
+  public List<EffectDef> effects = new();
 }
 
 [Serializable] public class SkillDef {
+  public string description;
   public string id;
   public string name;
   public string target;    // EnemyFront, AllEnemies, AllAllies, RandomEnemy2, Self
@@ -64,12 +86,17 @@ using System.Collections.Generic;
 }
 
 [Serializable] public class RewardDef { public int gold; public int spores; public int accountXp; }
-[Serializable] public class WaveUnit { public string enemyId; public int level; }
+[Serializable] public class WaveUnit { public string enemyId; public int level; public string slotId; }
+[Serializable] public class WaveDef { public List<WaveUnit> enemies; }
 [Serializable] public class StageDef {
+  public string description;
+  public string encounterVersion;
+  public bool boss;
   public string id;
   public string name;
+  public int order;
   public int recommendedPower;
-  public List<List<WaveUnit>> waves; // waves[w] = list of enemy units in that wave
+  public List<WaveDef> waves;
   public RewardDef rewards;
 }
 
@@ -101,5 +128,5 @@ using System.Collections.Generic;
 
 [Serializable] public class CharactersFile { public List<CharacterDef> characters; public List<EnemyDef> enemies; }
 [Serializable] public class SkillsFile { public List<SkillDef> skills; }
-[Serializable] public class StagesFile { public List<StageDef> stages; }
+[Serializable] public class StagesFile { public int schemaVersion; public List<StageDef> stages; }
 [Serializable] public class BannersFile { public List<BannerDef> banners; }

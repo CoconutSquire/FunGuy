@@ -4,121 +4,558 @@
       "id": "c_puffmage_orbi",
       "name": "Puffmage Orbi",
       "rarity": 3,
-      "role": "DPS",
-      "element": "Nature",
-      "baseStats": { "hp": 120, "atk": 26, "def": 10, "spd": 100 },
-      "growth": { "hp": 10, "atk": 2.2, "def": 0.8, "spd": 0.1 },
-      "skills": { "basic": "atk_basic", "ult": "ult_sporeburst" }
+      "role": "AoE",
+      "baseStats": {
+        "hp": 90,
+        "atk": 120,
+        "def": 70,
+        "spd": 110,
+        "pot": 110
+      },
+      "skills": {
+        "basic": "puffmage_orbi_basic",
+        "ult": "puffmage_orbi_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Mage",
+      "biome": "Biome-less",
+      "rarityTier": "R",
+      "passives": [
+        {
+          "id": "orbi_fresh_spores",
+          "description": "Gain 20 energy at battle start.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "Energy",
+              "potency": 20
+            }
+          ]
+        }
+      ],
+      "bst": 500
     },
     {
       "id": "c_barkrot_thane",
       "name": "Barkrot Thane",
       "rarity": 4,
-      "role": "Tank",
-      "element": "Rot",
-      "baseStats": { "hp": 190, "atk": 18, "def": 18, "spd": 92 },
-      "growth": { "hp": 16, "atk": 1.6, "def": 1.6, "spd": 0.08 },
-      "skills": { "basic": "atk_basic", "ult": "ult_rotguard" }
+      "role": "Taunt",
+      "baseStats": {
+        "hp": 190,
+        "atk": 70,
+        "def": 160,
+        "spd": 70,
+        "pot": 110
+      },
+      "skills": {
+        "basic": "barkrot_thane_basic",
+        "ult": "barkrot_thane_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Tank",
+      "biome": "Decay",
+      "rarityTier": "SR",
+      "passives": [
+        {
+          "id": "thane_sapping_bark",
+          "description": "When hit, attempt to lower the attacker’s ATK by 5% for 1 turn.",
+          "trigger": "DamageTaken",
+          "target": "Attacker",
+          "every": 1,
+          "effects": [
+            {
+              "type": "ApplyStatus",
+              "status": "ATKDown",
+              "potency": 0.05,
+              "duration": 1,
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_mosswhisper_luma",
       "name": "Mosswhisper Luma",
       "rarity": 4,
-      "role": "Healer",
-      "element": "Nature",
-      "baseStats": { "hp": 150, "atk": 16, "def": 12, "spd": 98 },
-      "growth": { "hp": 12, "atk": 1.2, "def": 1.0, "spd": 0.10 },
-      "skills": { "basic": "atk_basic", "ult": "ult_mendglow" }
+      "role": "Medic",
+      "baseStats": {
+        "hp": 120,
+        "atk": 80,
+        "def": 120,
+        "spd": 120,
+        "pot": 160
+      },
+      "skills": {
+        "basic": "mosswhisper_luma_basic",
+        "ult": "mosswhisper_luma_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Support",
+      "biome": "Forest",
+      "rarityTier": "SR",
+      "passives": [
+        {
+          "id": "luma_renewal",
+          "description": "Every third turn, cleanse one debuff from the lowest-HP ally.",
+          "trigger": "TurnStart",
+          "target": "LowestHpAlly",
+          "every": 3,
+          "effects": [
+            {
+              "type": "Cleanse",
+              "potency": 1
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_shroomblade_rowan",
       "name": "Shroomblade Rowan",
       "rarity": 6,
-      "role": "DPS",
-      "element": "Nature",
-      "baseStats": { "hp": 145, "atk": 34, "def": 12, "spd": 104 },
-      "growth": { "hp": 12, "atk": 2.8, "def": 1.0, "spd": 0.12 },
-      "skills": { "basic": "atk_basic", "ult": "ult_sporeburst" }
+      "role": "Duelist",
+      "baseStats": {
+        "hp": 90,
+        "atk": 180,
+        "def": 90,
+        "spd": 150,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "shroomblade_rowan_basic",
+        "ult": "shroomblade_rowan_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "DPS",
+      "biome": "Forest",
+      "rarityTier": "UR",
+      "passives": [
+        {
+          "id": "rowan_second_wind",
+          "description": "Every third turn, heal self for 8% max HP.",
+          "trigger": "TurnStart",
+          "target": "Self",
+          "every": 3,
+          "effects": [
+            {
+              "type": "Heal",
+              "stat": "MaxHP",
+              "scale": 0.08
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_mirelord_gloomrot",
       "name": "Mirelord Gloomrot",
       "rarity": 5,
-      "role": "Tank",
-      "element": "Rot",
-      "baseStats": { "hp": 220, "atk": 22, "def": 22, "spd": 90 },
-      "growth": { "hp": 18, "atk": 1.8, "def": 1.9, "spd": 0.07 },
-      "skills": { "basic": "atk_basic", "ult": "ult_rotguard" }
+      "role": "Saboteur",
+      "baseStats": {
+        "hp": 160,
+        "atk": 90,
+        "def": 145,
+        "spd": 90,
+        "pot": 115
+      },
+      "skills": {
+        "basic": "mirelord_gloomrot_basic",
+        "ult": "mirelord_gloomrot_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Tank",
+      "biome": "Decay",
+      "rarityTier": "SR",
+      "passives": [
+        {
+          "id": "gloomrot_mire_skin",
+          "description": "Begin battle with a shield equal to 15% max HP.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "Shield",
+              "stat": "MaxHP",
+              "scale": 0.15
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_frostcap_serin",
       "name": "Frostcap Serin",
       "rarity": 4,
-      "role": "Controller",
-      "element": "Frost",
-      "baseStats": { "hp": 140, "atk": 22, "def": 12, "spd": 102 },
-      "growth": { "hp": 11, "atk": 2.0, "def": 1.0, "spd": 0.12 },
-      "skills": { "basic": "atk_basic", "ult": "ult_freeze" }
+      "role": "CC",
+      "baseStats": {
+        "hp": 100,
+        "atk": 100,
+        "def": 100,
+        "spd": 150,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "frostcap_serin_basic",
+        "ult": "frostcap_serin_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Tactician",
+      "biome": "Tundra",
+      "rarityTier": "SR",
+      "passives": [
+        {
+          "id": "serin_cold_read",
+          "description": "Gain 25 energy at battle start.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "Energy",
+              "potency": 25
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_glacierstalk_bronn",
       "name": "Glacierstalk Bronn",
       "rarity": 4,
-      "role": "Tank",
-      "element": "Frost",
-      "baseStats": { "hp": 200, "atk": 18, "def": 20, "spd": 90 },
-      "growth": { "hp": 17, "atk": 1.6, "def": 1.8, "spd": 0.06 },
-      "skills": { "basic": "atk_basic", "ult": "ult_rotguard" }
+      "role": "Cover",
+      "baseStats": {
+        "hp": 175,
+        "atk": 80,
+        "def": 170,
+        "spd": 70,
+        "pot": 105
+      },
+      "skills": {
+        "basic": "glacierstalk_bronn_basic",
+        "ult": "glacierstalk_bronn_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Tank",
+      "biome": "Tundra",
+      "rarityTier": "SR",
+      "passives": [
+        {
+          "id": "bronn_intercept",
+          "description": "Intercept the first damaging hit on an adjacent ally in each action.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "ApplyStatus",
+              "status": "Cover",
+              "potency": 0.5,
+              "duration": -1,
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_embercap_rugo",
       "name": "Embercap Rugo",
       "rarity": 4,
-      "role": "DPS",
-      "element": "Ember",
-      "baseStats": { "hp": 135, "atk": 30, "def": 11, "spd": 101 },
-      "growth": { "hp": 11, "atk": 2.5, "def": 0.9, "spd": 0.10 },
-      "skills": { "basic": "atk_basic", "ult": "ult_burn" }
+      "role": "Nuker",
+      "baseStats": {
+        "hp": 90,
+        "atk": 180,
+        "def": 90,
+        "spd": 150,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "embercap_rugo_basic",
+        "ult": "embercap_rugo_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "DPS",
+      "biome": "Wetlands",
+      "rarityTier": "SR",
+      "passives": [
+        {
+          "id": "rugo_hot_start",
+          "description": "Gain 15% ATK for the first 2 owner turns.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "ApplyStatus",
+              "status": "ATKUp",
+              "potency": 0.15,
+              "duration": 2,
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "bst": 600
     },
     {
       "id": "c_ashmote_kira",
       "name": "Ashmote Kira",
       "rarity": 3,
-      "role": "Support",
-      "element": "Ember",
-      "baseStats": { "hp": 130, "atk": 18, "def": 12, "spd": 99 },
-      "growth": { "hp": 10, "atk": 1.5, "def": 1.0, "spd": 0.10 },
-      "skills": { "basic": "atk_basic", "ult": "ult_mendglow" }
+      "role": "Buffer",
+      "baseStats": {
+        "hp": 100,
+        "atk": 70,
+        "def": 90,
+        "spd": 100,
+        "pot": 140
+      },
+      "skills": {
+        "basic": "ashmote_kira_basic",
+        "ult": "ashmote_kira_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Support",
+      "biome": "Biome-less",
+      "rarityTier": "R",
+      "passives": [
+        {
+          "id": "kira_embers",
+          "description": "Every third turn, grant the lowest-HP ally 15 energy.",
+          "trigger": "TurnStart",
+          "target": "LowestHpAlly",
+          "every": 3,
+          "effects": [
+            {
+              "type": "Energy",
+              "potency": 15
+            }
+          ]
+        }
+      ],
+      "bst": 500
     },
     {
       "id": "c_starspore_zenith",
       "name": "Starspore Zenith",
       "rarity": 6,
-      "role": "DPS",
-      "element": "Astral",
-      "baseStats": { "hp": 170, "atk": 42, "def": 14, "spd": 106 },
-      "growth": { "hp": 14, "atk": 3.2, "def": 1.1, "spd": 0.14 },
-      "skills": { "basic": "atk_basic", "ult": "ult_sporeburst" }
+      "role": "Stalker",
+      "baseStats": {
+        "hp": 75,
+        "atk": 155,
+        "def": 80,
+        "spd": 170,
+        "pot": 95
+      },
+      "skills": {
+        "basic": "starspore_zenith_basic",
+        "ult": "starspore_zenith_signature"
+      },
+      "statModel": "class-growth-v1",
+      "kitVersion": "slice-roster-v1",
+      "classArchetype": "Assassin",
+      "biome": "Kitchen",
+      "rarityTier": "UR",
+      "passives": [
+        {
+          "id": "zenith_dusk",
+          "description": "Begin battle in Stealth for 1 owner turn.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "ApplyStatus",
+              "status": "Stealth",
+              "potency": 0,
+              "duration": 1,
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "bst": 575
     }
   ],
   "enemies": [
     {
       "id": "e_sporeling",
-      "name": "Sporeling",
-      "baseStats": { "hp": 80, "atk": 16, "def": 8, "spd": 95 },
-      "skills": { "basic": "atk_basic", "ult": "atk_basic" }
+      "name": "Pantry Sporeling",
+      "biome": "Kitchen",
+      "classArchetype": "Enemy",
+      "role": "Enemy",
+      "baseStats": {
+        "hp": 145,
+        "atk": 14,
+        "spd": 80,
+        "pot": 20,
+        "def": 35
+      },
+      "growth": {
+        "hp": 45,
+        "atk": 7,
+        "spd": 0,
+        "pot": 7,
+        "def": 8
+      },
+      "skills": {
+        "basic": "atk_basic",
+        "ult": "enemy_spore_cloud"
+      },
+      "passives": []
     },
     {
       "id": "e_rot_thrall",
-      "name": "Rotbound Thrall",
-      "baseStats": { "hp": 120, "atk": 18, "def": 12, "spd": 90 },
-      "skills": { "basic": "atk_basic", "ult": "ult_rotguard" }
+      "name": "Rotbound Pan Guard",
+      "biome": "Decay",
+      "classArchetype": "Enemy",
+      "role": "Enemy",
+      "baseStats": {
+        "hp": 230,
+        "atk": 22,
+        "spd": 75,
+        "pot": 30,
+        "def": 80
+      },
+      "growth": {
+        "hp": 45,
+        "atk": 7,
+        "spd": 0,
+        "pot": 7,
+        "def": 8
+      },
+      "skills": {
+        "basic": "atk_basic",
+        "ult": "enemy_pan_guard"
+      },
+      "passives": []
     },
     {
       "id": "e_ashen_spore",
-      "name": "Ashen Spore",
-      "baseStats": { "hp": 95, "atk": 20, "def": 9, "spd": 100 },
-      "skills": { "basic": "atk_basic", "ult": "ult_burn" }
+      "name": "Ashen Cook",
+      "biome": "Wetlands",
+      "classArchetype": "Enemy",
+      "role": "Enemy",
+      "baseStats": {
+        "hp": 180,
+        "atk": 25,
+        "spd": 100,
+        "pot": 40,
+        "def": 40
+      },
+      "growth": {
+        "hp": 45,
+        "atk": 7,
+        "spd": 0,
+        "pot": 7,
+        "def": 8
+      },
+      "skills": {
+        "basic": "atk_basic",
+        "ult": "enemy_simmer"
+      },
+      "passives": []
+    },
+    {
+      "id": "e_frost_keeper",
+      "name": "Cold-Cellar Keeper",
+      "biome": "Tundra",
+      "classArchetype": "Enemy",
+      "role": "Enemy",
+      "baseStats": {
+        "hp": 200,
+        "atk": 25,
+        "spd": 95,
+        "pot": 50,
+        "def": 60
+      },
+      "growth": {
+        "hp": 45,
+        "atk": 7,
+        "spd": 0,
+        "pot": 7,
+        "def": 8
+      },
+      "skills": {
+        "basic": "atk_basic",
+        "ult": "enemy_cold_storage"
+      },
+      "passives": []
+    },
+    {
+      "id": "e_kitchen_overseer",
+      "name": "The Cauldron Keeper",
+      "biome": "Kitchen",
+      "classArchetype": "Enemy",
+      "role": "Enemy",
+      "baseStats": {
+        "hp": 3300,
+        "atk": 140,
+        "spd": 110,
+        "pot": 140,
+        "def": 230
+      },
+      "growth": {
+        "hp": 45,
+        "atk": 7,
+        "spd": 0,
+        "pot": 7,
+        "def": 8
+      },
+      "skills": {
+        "basic": "atk_basic",
+        "ult": "boss_boil_over"
+      },
+      "passives": [
+        {
+          "id": "keeper_pressure",
+          "description": "Every third turn, gain 10% ATK for 2 turns.",
+          "trigger": "TurnStart",
+          "target": "Self",
+          "every": 3,
+          "effects": [
+            {
+              "type": "ApplyStatus",
+              "status": "ATKUp",
+              "potency": 0.1,
+              "duration": 2,
+              "chance": 1
+            }
+          ]
+        },
+        {
+          "id": "keeper_lid",
+          "description": "Start battle with a shield equal to 10% max HP.",
+          "trigger": "BattleStart",
+          "target": "Self",
+          "every": 1,
+          "effects": [
+            {
+              "type": "Shield",
+              "stat": "MaxHP",
+              "scale": 0.1
+            }
+          ]
+        }
+      ]
     }
   ]
 }

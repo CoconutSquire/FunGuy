@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +62,8 @@ public class GameplaySmokeTestController : MonoBehaviour
             if (stage.waves == null || stage.waves.Count == 0) return false;
             foreach (var wave in stage.waves)
             {
-                if (wave == null || wave.Count == 0) return false;
-                if (wave.Any(wu => !Game.Data.Enemies.ContainsKey(wu.enemyId))) return false;
+                if (wave?.enemies == null || wave.enemies.Count == 0) return false;
+                if (wave.enemies.Any(wu => !Game.Data.Enemies.ContainsKey(wu.enemyId))) return false;
             }
         }
 
@@ -95,12 +96,12 @@ public class GameplaySmokeTestController : MonoBehaviour
 
         var p1 = new List<CombatUnit>
         {
-            ToCombat(chars[0], TeamSide.Player, level: 10),
-            ToCombat(chars[1], TeamSide.Player, level: 10),
+            CombatUnitFactory.Create(chars[0], 10, TeamSide.Player, rules: Game.Data.StatRules),
+            CombatUnitFactory.Create(chars[1], 10, TeamSide.Player, rules: Game.Data.StatRules),
         };
 
-        var e1 = stage.waves[0]
-            .Select(wu => Game.Data.Enemies.TryGetValue(wu.enemyId, out var e) ? ToCombat(e, TeamSide.Enemy, wu.level) : null)
+        var e1 = stage.waves[0].enemies
+            .Select(wu => Game.Data.Enemies.TryGetValue(wu.enemyId, out var e) ? CombatUnitFactory.Create(e, wu, TeamSide.Enemy) : null)
             .Where(u => u != null)
             .ToList();
         if (e1.Count == 0) return false;
@@ -159,58 +160,6 @@ public class GameplaySmokeTestController : MonoBehaviour
         };
     }
 
-    private CombatUnit ToCombat(CharacterDef def, TeamSide side, int level)
-    {
-        int lvl = Mathf.Max(1, level);
-        int maxHp = Mathf.Max(1, Mathf.RoundToInt(def.baseStats.hp + (def.growth.hp * (lvl - 1))));
-        return new CombatUnit
-        {
-            side = side,
-            id = def.id,
-            name = def.name,
-            level = lvl,
-            biome = def.biome,
-            classArchetype = def.classArchetype,
-            role = def.role,
-            maxHp = maxHp,
-            hp = maxHp,
-            atk = Mathf.Max(1, Mathf.RoundToInt(def.baseStats.atk + (def.growth.atk * (lvl - 1)))),
-            def = Mathf.Max(1, Mathf.RoundToInt(def.baseStats.def + (def.growth.def * (lvl - 1)))),
-            spd = Mathf.Max(1, Mathf.RoundToInt(def.baseStats.spd + (def.growth.spd * (lvl - 1)))),
-            pot = Mathf.Max(1, Mathf.RoundToInt(def.baseStats.pot + (def.growth.pot * (lvl - 1)))),
-            basicSkillId = def.skills?.basic,
-            ultSkillId = def.skills?.ult,
-            maxEnergy = 100,
-            statuses = new List<StatusInstance>(),
-        };
-    }
-
-    private CombatUnit ToCombat(EnemyDef def, TeamSide side, int level)
-    {
-        int lvl = Mathf.Max(1, level);
-        int maxHp = Mathf.Max(1, def.baseStats.hp + ((lvl - 1) * 10));
-        return new CombatUnit
-        {
-            side = side,
-            id = def.id,
-            name = def.name,
-            level = lvl,
-            biome = def.biome,
-            classArchetype = def.classArchetype,
-            role = def.role,
-            maxHp = maxHp,
-            hp = maxHp,
-            atk = Mathf.Max(1, def.baseStats.atk + ((lvl - 1) * 2)),
-            def = Mathf.Max(1, def.baseStats.def + ((lvl - 1) * 2)),
-            spd = Mathf.Max(1, def.baseStats.spd + ((lvl - 1) * 1)),
-            pot = Mathf.Max(1, def.baseStats.pot + ((lvl - 1) * 1)),
-            basicSkillId = def.skills?.basic,
-            ultSkillId = def.skills?.ult,
-            maxEnergy = 100,
-            statuses = new List<StatusInstance>(),
-        };
-    }
-
     private CombatUnit CloneUnit(CombatUnit src)
     {
         return new CombatUnit
@@ -219,6 +168,7 @@ public class GameplaySmokeTestController : MonoBehaviour
             id = src.id,
             name = src.name,
             level = src.level,
+            formationSlot = src.formationSlot,
             biome = src.biome,
             classArchetype = src.classArchetype,
             role = src.role,
@@ -252,3 +202,5 @@ public class GameplaySmokeTestController : MonoBehaviour
         Game.Data.LoadAll();
     }
 }
+
+#endif

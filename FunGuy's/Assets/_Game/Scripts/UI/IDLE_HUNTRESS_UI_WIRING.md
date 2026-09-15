@@ -1,6 +1,8 @@
 # Idle Huntress-Style UI Wiring Guide
 
-This project now has code-ready UI controllers and skinning scripts for a portrait-card anime style.
+Milestone 0 update: runtime-generated scenes are a temporary presentation adapter. `RuntimeSceneUiBootstrap` now explicitly initializes `SummonRevealController` and `TutorialOverlay` after creating their controls. A persistent root `TutorialManager` attaches to a fresh overlay in each gameplay scene. If authoring replacement prefabs, preserve those explicit initialization contracts rather than relying on `Awake` to find fields assigned later. Repeated binder calls replace their own button listeners. Debug/QA controller types exist only in Editor/development builds. See the repository-root `BUILD_GUIDE.md` for the current architecture; the layouts below remain reference material for the later prefab milestone.
+
+Step-3 update: the game now uses a landscape safe-area surface. Battle uses the serialized BattleScreen/BattleFighter resource prefabs, while LandscapeMenuLayout adapts generated menus and tutorial overlays. See repository-root BATTLE_PRESENTATION.md for the current authoring workflow. Older menu skin names are implementation history, not a portrait product requirement.
 
 ## 1) Home Scene
 
@@ -21,6 +23,8 @@ This project now has code-ready UI controllers and skinning scripts for a portra
   - Team -> `OnTeamPressed`
   - Battle -> `OnBattlePressed`
   - Options -> `OnOptionsPressed`
+
+Step 4 binds HomeMenuController.OpenCampaign to CampaignPanelController.Open. Home's existing Btn_Battle is labeled Campaign and opens this picker; explicit picker listeners select only application-unlocked stages and set Game.SelectedStageId before Battle loads. The in-memory cursor survives Team navigation but is not a new progression claim/save field. Do not add generic reward/currency handlers to stage cards. Stage descriptions, boss marker, wave counts and cleared-practice labels come from current content/state.
 
 ## 2) Summon Scene
 
@@ -63,8 +67,14 @@ This project now has code-ready UI controllers and skinning scripts for a portra
   - `TeamRosterSlotBinder` (optional quick-select button grid)
 
 ### `TeamMenuController` bindings
+
+Selection and placement actions call `Game.Team` (`ITeamService`); the controller must not mutate or persist the saved team itself. Fighter capacity comes from that interface; board space count comes from FormationRules.SlotCount. The runtime board has twelve selectable hexes (three depths/four staggered lanes), five paged roster buttons and Previous/Next. Long names wrap inside each hex; roster ordering uses the same ordinal ID tie-break as autofill. Authored prefabs and richer roster details remain later work.
+
+Call `ConfigureFormation` with twelve buttons/labels in numeric slot order and the Remove selected fighter button. It owns those button listeners. Apply HexBoardVisual to each cell Image and keep labels within its solid center. Call `TeamRosterSlotBinder.ConfigurePaging` with Previous, Next and the page label. A selected board slot plus roster click assigns/replaces; two board clicks swap/move. Re-selecting the same slot cancels. Without board selection, roster clicks retain membership-toggle behavior. Keep listeners on these generated controls owned by their explicit binder to avoid duplicate actions. The battle prefab separately renders both mirrored boards through BattleScreenView.CellPosition and immutable event snapshots.
+
 - `teamStatusLabel` -> active team summary
-- `rosterLabel` -> multiline owned roster list
+- `rosterLabel` -> formation targeting guidance (paged buttons display the owned roster)
+- Team's persistent `hintLabel` belongs to TeamMenuController; pass null as TutorialSpotlightController's hint for this screen so it cannot clear placement/error instructions after onboarding. Tutorial step text remains in the overlay.
 - `hintLabel` -> tactical hint line
 - Button hooks:
   - Auto Fill -> `AutoFillTeam`
@@ -73,6 +83,9 @@ This project now has code-ready UI controllers and skinning scripts for a portra
   - Back -> `OnBackPressed`
 
 ### Optional unit cards
+
+Step 4 adds `Btn_Upgrades` → `UpgradePanelController.Open`, created and bound explicitly by `UpgradePanelView.Create` inside the existing Team safe-area root. Its modal owns fighter paging/selection, current/next stat labels, the cost button and close callback; closing refreshes Team roster labels. Use IUpgradeService for all previews and purchases. Do not wire an additional generic handler or mutate gold/level in a prefab callback. Team cards now display acquisition tier and owned level; the workshop separately shows evolution stars. See root LEVEL_PROGRESSION.md for transaction and persistence semantics.
+
 - Each card button can call:
   - add: `AddUnitToTeam(string charId)`
   - remove: `RemoveUnitFromTeam(string charId)`
@@ -87,23 +100,9 @@ This project now has code-ready UI controllers and skinning scripts for a portra
 
 ## 4) Battle Scene
 
-### Root setup
-- `Canvas/BattleRoot`
-- `BattleRoot` add:
-  - `UiPrefabBlueprintBinder` (optional)
-  - `IdleHuntressSkin` (`tone = Battle`)
-  - `BattleSceneController`
+RuntimeSceneUiBootstrap instantiates `Resources/Presentation/BattleScreen.prefab` as Canvas/BattleRoot and calls BattleSceneController.Configure(BattleScreenView). Do not add UiPrefabBlueprintBinder or separately bind those buttons: Configure owns listeners. BattleScreenView's serialized fields reference all labels, fighter prefab/layer, signature cards, result and inspector panels. BattleFighterView binds portrait, HP/energy bars and state labels; the custom Graphic types require CanvasRenderer.
 
-### `BattleSceneController` bindings
-- `battleResultLabel` -> result line
-- `stageInfoLabel` -> stage name/rewards
-- `teamPreviewLabel` -> selected team summary
-- Button hooks:
-  - Run Battle -> `OnRunBattlePressed`
-  - Retry -> `OnRetryPressed`
-  - Next Stage -> `OnNextStagePressed`
-  - Team -> `OnGoTeamPressed`
-  - Back -> `OnBackPressed`
+The controller connects Start, Retry, Next stage, Home/Team, signature queue/cancel, Auto, Pause, Speed, Finish on Auto, inspection and reduced motion. It consumes CampaignSession events rather than running a synchronous simulation or modifying the wallet. Rebuild the default prefabs explicitly with `tools/Invoke-Unity.ps1 -Task Presentation`; edit Assets/Editor/PresentationAssets.cs for durable generator changes. See BATTLE_PRESENTATION.md for playback, lifecycle and replacement boundaries.
 
 ## 4.1) Debug / QA Scene (Recommended)
 
@@ -147,10 +146,7 @@ Create a lightweight debug panel scene or embed in `Options`.
   - `Lbl_TeamStatus`
   - `Lbl_Roster`
   - `Lbl_Hint`
-- Battle:
-  - `Lbl_BattleResult`
-  - `Lbl_StageInfo`
-  - `Lbl_TeamPreview`
+- Battle uses serialized BattleScreenView references rather than these naming aliases.
 - Tutorial overlay:
   - `TutorialOverlayRoot`
   - `Lbl_TutorialMessage`

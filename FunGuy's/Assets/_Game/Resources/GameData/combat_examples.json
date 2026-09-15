@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "rulesVersion": "battle-actions-v2",
+  "skills": [
+    { "id": "example_basic", "name": "Basic Attack", "target": "EnemyFront", "effects": [{ "type": "Damage", "scale": 1 }] },
+    { "id": "example_sunlight", "name": "Sunlight Barrier", "target": "SelfAndLowestHpAlly", "cooldown": 3, "energyCost": 100,
+      "effects": [{ "type": "Shield", "stat": "MaxHP", "scale": 0.2 }] },
+    { "id": "example_glaze", "name": "Impenetrable Glaze", "target": "Self", "cooldown": 2, "energyCost": 100,
+      "effects": [{ "type": "ApplyStatus", "status": "Taunt", "chance": 1, "duration": 1 },
+        { "type": "ApplyStatus", "status": "DEFUp", "potency": 0.5, "chance": 1, "duration": 1 }] },
+    { "id": "example_restoration", "name": "Nature's Restoration", "target": "LowestHpAlly", "cooldown": 4, "energyCost": 100,
+      "effects": [{ "type": "Energy", "potency": 25 }] },
+    { "id": "example_ice_wall", "name": "Ice Wall", "target": "AllyFrontRow", "cooldown": 4, "energyCost": 100,
+      "effects": [{ "type": "Shield", "stat": "MaxHP", "scale": 0.2 }] },
+    { "id": "example_platter", "name": "Gourmet Platter", "target": "Self", "cooldown": 3, "energyCost": 100,
+      "effects": [{ "type": "ApplyStatus", "status": "Taunt", "chance": 1, "duration": 1 },
+        { "type": "Heal", "stat": "MaxHP", "scale": 0.25 }] }
+  ],
+  "characters": [
+    { "id": "example_golden", "statProfileId": "sheet_01", "name": "Golden Chanterelle", "rarityTier": "SR", "biome": "Forest", "classArchetype": "Tank", "role": "Wall",
+      "skills": { "basic": "example_basic", "ult": "example_sunlight" },
+      "passives": [{ "id": "gilded_bash", "trigger": "DamageDealt", "target": "Self", "every": 1,
+        "effects": [{ "type": "Shield", "stat": "MaxHP", "scale": 0.1 }] }] },
+    { "id": "example_porcelain", "statProfileId": "sheet_05", "name": "Porcelain Guard", "rarityTier": "SR", "biome": "Forest", "classArchetype": "Tank", "role": "Taunt",
+      "skills": { "basic": "example_basic", "ult": "example_glaze" },
+      "passives": [{ "id": "clay_layers", "trigger": "BattleStart", "target": "Self", "every": 1,
+        "effects": [{ "type": "ApplyStatus", "status": "RedirectReduction", "potency": 0.2, "chance": 1, "duration": -1 }] }] },
+    { "id": "example_peat", "statProfileId": "sheet_14", "name": "Peat-Moss Shaman", "rarityTier": "SR", "biome": "Wetlands", "classArchetype": "Tank", "role": "Battery",
+      "skills": { "basic": "example_basic", "ult": "example_restoration" },
+      "passives": [{ "id": "ritual_staff", "trigger": "EnergyGranted", "target": "Self", "every": 1,
+        "effects": [{ "type": "Shield", "stat": "GrantedEnergy", "scale": 1 }] }] },
+    { "id": "example_snow", "statProfileId": "sheet_32", "name": "Snow-Bank Hermit", "rarityTier": "SR", "biome": "Tundra", "classArchetype": "Tank", "role": "Cover",
+      "skills": { "basic": "example_basic", "ult": "example_ice_wall" },
+      "passives": [{ "id": "frozen_shield", "trigger": "BattleStart", "target": "Self", "every": 1,
+        "effects": [{ "type": "ApplyStatus", "status": "Cover", "potency": 1, "chance": 1, "duration": -1 }] }] },
+    { "id": "example_oyster", "statProfileId": "sheet_42", "name": "Grey Oyster", "rarityTier": "SR", "biome": "Kitchen", "classArchetype": "Tank", "role": "Taunt",
+      "skills": { "basic": "example_basic", "ult": "example_platter" },
+      "passives": [{ "id": "shell_up", "trigger": "TurnStart", "target": "Self", "every": 2,
+        "effects": [{ "type": "Shield", "stat": "MaxHP", "scale": 0.15 }] }] }
+  ]
+}

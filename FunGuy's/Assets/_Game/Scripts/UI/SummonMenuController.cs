@@ -45,51 +45,18 @@ public class SummonMenuController : MonoBehaviour
     {
         if (_busy) return;
         EnsureServices();
-        var pulledIds = new List<string>();
-        bool usedTicket = false;
-
-        for (int i = 0; i < count; i++)
+        try
         {
-            bool consumeCurrency = true;
-            if (!Save.tutorialCompleted && Save.tutorialTickets > 0 && count == 1 && i == 0)
-            {
-                Save.tutorialTickets -= 1;
-                consumeCurrency = false;
-                usedTicket = true;
-            }
-
-            try
-            {
-                pulledIds.Add(Game.Gacha.PullOne(Save, defaultBannerId, consumeCurrency));
-            }
-            catch (Exception ex)
-            {
-                if (pulledIds.Count == 0) SetResult($"Summon failed: {ex.Message}");
-                break;
-            }
-        }
-
-        if (pulledIds.Count > 0)
-        {
-            SaveSystem.Save(Save);
-            NotifyTutorialOnFirstSummon();
+            var result = Game.Summons.Pull(defaultBannerId, count);
             RefreshUi();
-            PlayRevealOrFallback(pulledIds, usedTicket);
+            PlayRevealOrFallback(result.characterIds, result.usedTutorialTicket);
         }
+        catch (Exception error) { SetResult($"Summon failed: {error.Message}"); }
     }
 
     private void EnsureServices()
     {
-        if (Game.Data == null)
-        {
-            Game.Data = new GameData();
-            Game.Data.LoadAll();
-        }
-
-        if (Game.Gacha == null)
-        {
-            Game.Gacha = new GachaService(Game.Data);
-        }
+        Game.EnsureInitialized();
     }
 
     private void NotifyTutorialOnFirstSummon()
@@ -101,7 +68,7 @@ public class SummonMenuController : MonoBehaviour
     private string BuildResultSummary(List<string> pulledIds, bool usedTicket)
     {
         var names = pulledIds
-            .Select(id => Game.Data.Characters.TryGetValue(id, out var c) ? $"{c.name} ({c.rarity}★)" : id)
+            .Select(id => Game.Data.Characters.TryGetValue(id, out var c) ? $"{c.name} ({c.rarityTier})" : id)
             .ToList();
 
         string prefix = usedTicket ? "Tutorial ticket used.\n" : string.Empty;
@@ -137,6 +104,7 @@ public class SummonMenuController : MonoBehaviour
         if (revealController == null)
         {
             SetResult(BuildResultSummary(pulledIds, usedTicket));
+            NotifyTutorialOnFirstSummon();
             return;
         }
 
@@ -147,6 +115,7 @@ public class SummonMenuController : MonoBehaviour
             _busy = false;
             SetPullButtonsInteractable(true);
             SetResult(BuildResultSummary(pulledIds, usedTicket));
+            NotifyTutorialOnFirstSummon();
         });
     }
 

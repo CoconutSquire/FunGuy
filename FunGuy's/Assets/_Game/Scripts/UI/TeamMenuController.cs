@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TeamMenuController : MonoBehaviour
 {
-    [SerializeField] private int maxTeamSize = 5;
+    private int maxTeamSize => Team.Capacity;
     [SerializeField] private string battleSceneName = "Battle";
     [SerializeField] private Text teamStatusLabel;
     [SerializeField] private Text rosterLabel;
@@ -14,10 +14,49 @@ public class TeamMenuController : MonoBehaviour
     [SerializeField] private bool autoSeedFromSaveIfTeamEmpty = true;
 
     private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
+    private ITeamService Team { get { Game.EnsureInitialized(); return Game.Team; } }
+    private int selectedSlot = -1;
+    private Text[] formationLabels;
+    private Button removeSlotButton;
+
+    public void ConfigureFormation(Button[] buttons, Text[] labels, Button remove)
+    {
+        formationLabels = labels;
+        removeSlotButton = remove;
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int slot = i;
+            buttons[i].onClick.RemoveAllListeners();
+            buttons[i].onClick.AddListener(() => OnFormationSlotPressed(slot));
+        }
+        remove.onClick.RemoveAllListeners();
+        remove.onClick.AddListener(OnRemoveSelectedPressed);
+        RefreshStatus();
+    }
+
+    public void OnFormationSlotPressed(int slot)
+    {
+        FormationRules.ValidateSlot(slot);
+        if (selectedSlot < 0) selectedSlot = slot;
+        else
+        {
+            Team.SwapSlots(selectedSlot, slot);
+            selectedSlot = -1;
+        }
+        RefreshStatus();
+    }
+
+    public void OnRemoveSelectedPressed()
+    {
+        var selected = Team.GetFormation().FirstOrDefault(p => p.slot == selectedSlot);
+        if (selected != null) Team.Remove(selected.charId);
+        selectedSlot = -1;
+        RefreshStatus();
+    }
 
     private void Start()
     {
-        if (autoSeedFromSaveIfTeamEmpty && Save.activeTeam.Count == 0 && Save.units.Count > 0)
+        if (autoSeedFromSaveIfTeamEmpty && !Save.tutorialCompleted && Save.activeTeam.Count == 0 && Save.units.Count > 0)
         {
             AutoFillTeam();
         }
@@ -26,27 +65,30 @@ public class TeamMenuController : MonoBehaviour
 
     public void AddUnitToTeam(string charId)
     {
-        if (string.IsNullOrWhiteSpace(charId)) return;
-        if (!Save.units.Any(u => u.charId == charId)) return;
-        if (Save.activeTeam.Contains(charId)) return;
-        if (Save.activeTeam.Count >= maxTeamSize) return;
-
-        Save.activeTeam.Add(charId);
-        SaveSystem.Save(Save);
+        if (!Team.Add(charId)) return;
         AdvanceTutorialOnTeamPlacement();
         RefreshStatus();
     }
 
     public void RemoveUnitFromTeam(string charId)
     {
-        if (!Save.activeTeam.Remove(charId)) return;
-        SaveSystem.Save(Save);
+        if (!Team.Remove(charId)) return;
         RefreshStatus();
     }
 
     public void ToggleUnitInTeam(string charId)
     {
         if (string.IsNullOrWhiteSpace(charId)) return;
+        if (selectedSlot >= 0)
+        {
+            bool placed = Team.Place(charId, selectedSlot);
+            if (placed) AdvanceTutorialOnTeamPlacement();
+            selectedSlot = -1;
+            RefreshStatus();
+            if (!placed && !Save.activeTeam.Contains(charId) && Save.activeTeam.Count >= maxTeamSize && hintLabel != null)
+                hintLabel.text = "Team is full. Choose an occupied hex to replace a fighter, or remove one first.";
+            return;
+        }
         if (Save.activeTeam.Contains(charId)) RemoveUnitFromTeam(charId);
         else AddUnitToTeam(charId);
     }
@@ -66,21 +108,16 @@ public class TeamMenuController : MonoBehaviour
 
     public void AutoFillTeam()
     {
-        var ranked = RankedOwnedUnits()
-            .Take(maxTeamSize)
-            .Select(u => u.charId)
-            .ToList();
-
-        Save.activeTeam = ranked;
-        SaveSystem.Save(Save);
+        selectedSlot = -1;
+        Team.AutoFill();
         AdvanceTutorialOnTeamPlacement();
         RefreshStatus();
     }
 
     public void OnClearTeamPressed()
     {
-        Save.activeTeam.Clear();
-        SaveSystem.Save(Save);
+        selectedSlot = -1;
+        Team.Clear();
         RefreshStatus();
     }
 
@@ -88,10 +125,9 @@ public class TeamMenuController : MonoBehaviour
     {
         if (Save.activeTeam.Count == 0)
         {
-            AutoFillTeam();
+            if (hintLabel != null) hintLabel.text = "Place at least one fighter before starting a battle.";
+            return;
         }
-
-        SaveSystem.Save(Save);
 
         if (TutorialManager.I != null && !Save.tutorialCompleted)
         {
@@ -128,44 +164,39 @@ public class TeamMenuController : MonoBehaviour
 
     private void EnsureData()
     {
-        if (Game.Data != null) return;
-        Game.Data = new GameData();
-        Game.Data.LoadAll();
+        Game.EnsureInitialized();
     }
 
     private void RefreshStatus()
     {
         EnsureData();
 
+        var formation = Team.GetFormation();
+        if (formationLabels != null)
+            for (int i = 0; i < formationLabels.Length; i++)
+            {
+                var placement = formation.FirstOrDefault(p => p.slot == i);
+                string label = FormationRules.Label(i);
+                if (selectedSlot == i) label = $"> {label} <";
+                formationLabels[i].text = $"{label}\n{(placement == null ? "Empty" : ResolveName(placement.charId))}";
+            }
+        if (removeSlotButton != null) removeSlotButton.interactable = formation.Any(p => p.slot == selectedSlot);
+
         if (teamStatusLabel != null)
         {
-            string roster = Save.activeTeam.Count == 0
-                ? "No units selected"
-                : string.Join(", ", Save.activeTeam.Select((id, i) => $"[{i + 1}] {ResolveName(id)}"));
-            teamStatusLabel.text = $"Team ({Save.activeTeam.Count}/{maxTeamSize}): {roster}";
+            teamStatusLabel.text = $"Team {formation.Count}/{maxTeamSize} · {FormationRules.SlotCount} hex spaces\nRear     /     Middle     /     Front → Enemy";
         }
 
         if (rosterLabel != null)
         {
-            var lines = RankedOwnedUnits()
-                .Select(u =>
-                {
-                    var rarity = GetRarity(u.charId);
-                    string stars = IdleHuntressTheme.Stars(rarity);
-                    string marker = Save.activeTeam.Contains(u.charId) ? "[In Team]" : "[Bench]";
-                    string name = ResolveName(u.charId);
-                    return $"{marker} {name} {stars} Lv.{u.level}  (ID: {u.charId})";
-                })
-                .ToList();
-
-            rosterLabel.text = lines.Count == 0 ? "No units owned yet. Visit Summon." : string.Join("\n", lines);
+            rosterLabel.text = "Choose any hex. Empty spaces stay empty.\nNormal attacks target the nearest occupied depth; rear attacks bypass it.";
         }
 
         if (hintLabel != null)
         {
-            hintLabel.text = Save.activeTeam.Count < 3
-                ? "Tip: build at least 3 units for smoother stage clears."
-                : "Tip: frontload tanks, backline DPS/Tactician for better tempo.";
+            hintLabel.text = selectedSlot < 0
+                ? "Tap a position, then a fighter to place them.\nTap two positions to swap or move."
+                : $"Selected: {FormationRules.Label(selectedSlot)}.\nChoose a fighter, another position, or Remove.";
         }
     }
 
@@ -175,6 +206,7 @@ public class TeamMenuController : MonoBehaviour
         return Save.units
             .OrderByDescending(u => GetRarity(u.charId))
             .ThenByDescending(u => u.level)
+            .ThenBy(u => u.charId, System.StringComparer.Ordinal)
             .ToList();
     }
 

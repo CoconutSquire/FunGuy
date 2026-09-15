@@ -12,6 +12,18 @@ public class TeamRosterSlotBinder : MonoBehaviour
     [SerializeField] private bool autoDiscoverSlots = true;
 
     private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
+    private int page;
+    private Button previousPage;
+    private Button nextPage;
+    private Text pageLabel;
+
+    public void ConfigurePaging(Button previous, Button next, Text label)
+    {
+        previousPage = previous; nextPage = next; pageLabel = label;
+        previous.onClick.RemoveAllListeners(); next.onClick.RemoveAllListeners();
+        previous.onClick.AddListener(() => { page--; RebindSlots(); });
+        next.onClick.AddListener(() => { page++; RebindSlots(); });
+    }
 
     private void Start()
     {
@@ -28,7 +40,14 @@ public class TeamRosterSlotBinder : MonoBehaviour
         List<OwnedUnit> ranked = Save.units
             .OrderByDescending(u => Game.Data.Characters.TryGetValue(u.charId, out var c) ? c.rarity : 0)
             .ThenByDescending(u => u.level)
+            .ThenBy(u => u.charId, System.StringComparer.Ordinal)
             .ToList();
+
+        int pages = Mathf.Max(1, Mathf.CeilToInt(ranked.Count / (float)slotButtons.Length));
+        page = Mathf.Clamp(page, 0, pages - 1);
+        if (previousPage != null) previousPage.interactable = page > 0;
+        if (nextPage != null) nextPage.interactable = page + 1 < pages;
+        if (pageLabel != null) pageLabel.text = $"Roster {page + 1}/{pages} ({ranked.Count} owned)";
 
         for (int i = 0; i < slotButtons.Length; i++)
         {
@@ -36,7 +55,8 @@ public class TeamRosterSlotBinder : MonoBehaviour
             if (button == null) continue;
             button.onClick.RemoveAllListeners();
 
-            if (i >= ranked.Count)
+            int index = page * slotButtons.Length + i;
+            if (index >= ranked.Count)
             {
                 button.interactable = false;
                 SetLabel(i, "-- Empty --");
@@ -44,10 +64,10 @@ public class TeamRosterSlotBinder : MonoBehaviour
             }
 
             button.interactable = true;
-            string charId = ranked[i].charId;
+            string charId = ranked[index].charId;
             string name = Game.Data.Characters.TryGetValue(charId, out var def) ? def.name : charId;
-            int rarity = Game.Data.Characters.TryGetValue(charId, out var cdef) ? cdef.rarity : 0;
-            SetLabel(i, $"{name} {IdleHuntressTheme.Stars(rarity)}");
+            string tier = def?.rarityTier ?? "?";
+            SetLabel(i, $"{name}\n{tier}  •  Lv.{ranked[index].level}");
             button.onClick.AddListener(() =>
             {
                 teamController.ToggleUnitInTeam(charId);

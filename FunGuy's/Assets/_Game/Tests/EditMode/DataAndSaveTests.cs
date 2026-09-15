@@ -17,7 +17,7 @@ public class DataAndSaveTests
 
             for (int i = 0; i < stage.waves.Count; i++)
             {
-                var wave = stage.waves[i];
+                var wave = stage.waves[i].enemies;
                 Assert.NotNull(wave, $"Stage {stage.id} wave {i + 1} null.");
                 Assert.Greater(wave.Count, 0, $"Stage {stage.id} wave {i + 1} empty.");
                 foreach (var wu in wave)

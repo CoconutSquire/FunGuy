@@ -49,9 +49,9 @@ public class IdleHuntressSkin : MonoBehaviour
         ApplyColor(backgroundLayers, bg);
         ApplyColor(panelLayers, panel);
         ApplyColor(accentLayers, _accentBase);
-        ApplyButtons();
         ApplyText(titleLabels, Color.white);
         ApplyText(bodyLabels, new Color(0.92f, 0.92f, 0.92f, 1f));
+        ApplyButtons();
     }
 
     private void ApplyButtons()
@@ -67,6 +67,9 @@ public class IdleHuntressSkin : MonoBehaviour
             colors.selectedColor = colors.highlightedColor;
             colors.disabledColor = new Color(_accentBase.r, _accentBase.g, _accentBase.b, 0.45f);
             button.colors = colors;
+            // The current palette uses bright buttons; pale body text is difficult to read on them.
+            foreach (var label in button.GetComponentsInChildren<Text>(true))
+                label.color = new Color(0.06f, 0.08f, 0.10f, 1f);
         }
     }
 

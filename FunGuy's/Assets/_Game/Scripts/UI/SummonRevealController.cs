@@ -23,13 +23,13 @@ public class SummonRevealController : MonoBehaviour
     private bool _waitingForNext;
     private float _pulseTimer;
 
-    private void Awake()
+    public void Initialize(GameObject panel, Text title, Text name, Text rarity, Image frame, Image glow, Button next)
     {
-        if (nextButton != null)
-        {
-            nextButton.onClick.RemoveListener(OnNextPressed);
-            nextButton.onClick.AddListener(OnNextPressed);
-        }
+        if (nextButton != null) nextButton.onClick.RemoveListener(OnNextPressed);
+        root = panel; titleLabel = title; nameLabel = name; rarityLabel = rarity;
+        rarityFrame = frame; rarityGlow = glow; nextButton = next;
+        nextButton.onClick.RemoveListener(OnNextPressed);
+        nextButton.onClick.AddListener(OnNextPressed);
     }
 
     private void Update()
@@ -112,8 +112,7 @@ public class SummonRevealController : MonoBehaviour
         if (titleLabel != null) titleLabel.text = "New Funguy Acquired";
         if (nameLabel != null) nameLabel.text = character.name;
 
-        string stars = IdleHuntressTheme.Stars(character.rarity);
-        if (rarityLabel != null) rarityLabel.text = $"{stars}  ({character.rarity}★)";
+        if (rarityLabel != null) rarityLabel.text = $"{character.rarityTier} · {character.biome} · {character.classArchetype}";
 
         var rarityColor = IdleHuntressTheme.RarityColor(character.rarity);
         if (rarityFrame != null) rarityFrame.color = rarityColor;

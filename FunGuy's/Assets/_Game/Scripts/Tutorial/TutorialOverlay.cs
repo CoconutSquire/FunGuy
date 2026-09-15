@@ -10,13 +10,12 @@ public class TutorialOverlay : MonoBehaviour
 
     private Action pendingContinue;
 
-    private void Awake()
+    public void Initialize(GameObject panel, Text label, Button next)
     {
-        if (continueButton != null)
-        {
-            continueButton.onClick.RemoveListener(HandleContinuePressed);
-            continueButton.onClick.AddListener(HandleContinuePressed);
-        }
+        if (continueButton != null) continueButton.onClick.RemoveListener(HandleContinuePressed);
+        root = panel; messageLabel = label; continueButton = next;
+        continueButton.onClick.RemoveListener(HandleContinuePressed);
+        continueButton.onClick.AddListener(HandleContinuePressed);
     }
 
     public void Show()
@@ -35,6 +34,7 @@ public class TutorialOverlay : MonoBehaviour
     {
         Show();
         pendingContinue = onContinue;
+        if (continueButton != null) continueButton.gameObject.SetActive(onContinue != null);
 
         if (messageLabel != null) messageLabel.text = message;
         Debug.Log($"[TutorialOverlay] {message}");

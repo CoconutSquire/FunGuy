@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class SaveSystem
 {
     // Bump this when you change PlayerSave schema in a breaking way
-    private const int CurrentVersion = 2;
+    private const int CurrentVersion = 5;
 
     // Primary + backup keys
     private const string Key = "FUNGI_SAVE_V2";
@@ -78,6 +79,7 @@ public static class SaveSystem
     {
         if (save == null) return;
 
+        if (save.version < CurrentVersion) save = Migrate(save);
         EnsureLists(save);
 
         save.version = CurrentVersion;
@@ -86,8 +88,9 @@ public static class SaveSystem
         // Serialize once
         var json = JsonUtility.ToJson(save);
 
-        // Write backup first (so we always have last-known-good)
-        PlayerPrefs.SetString(BackupKey, json);
+        // Preserve the previous parseable snapshot; never replace it with corrupt primary data.
+        if (TryLoadFromKey(Key, out _)) PlayerPrefs.SetString(BackupKey, PlayerPrefs.GetString(Key));
+        else if (!PlayerPrefs.HasKey(BackupKey)) PlayerPrefs.SetString(BackupKey, json);
 
         // Then write primary
         PlayerPrefs.SetString(Key, json);
@@ -98,6 +101,7 @@ public static class SaveSystem
     {
         if (PlayerPrefs.HasKey(Key)) PlayerPrefs.DeleteKey(Key);
         if (PlayerPrefs.HasKey(BackupKey)) PlayerPrefs.DeleteKey(BackupKey);
+        foreach (var key in LegacyKeys) PlayerPrefs.DeleteKey(key);
         PlayerPrefs.Save();
     }
 
@@ -106,6 +110,7 @@ public static class SaveSystem
     /// </summary>
     public static PlayerSave ResetToNewSave()
     {
+        DeleteSave();
         var save = NewSave();
         Save(save);
         return save;
@@ -166,10 +171,8 @@ public static class SaveSystem
         try
         {
             save = JsonUtility.FromJson<PlayerSave>(json);
-            if (save == null)
+            if (save == null || save.version > CurrentVersion)
                 return false;
-
-            EnsureLists(save);
 
             // Normalize missing version
             if (save.version < 0) save.version = 0;
@@ -181,6 +184,8 @@ public static class SaveSystem
                 // Don't automatically Save() here to avoid double writes;
                 // caller can Save() after success, but it's fine either way.
             }
+
+            EnsureLists(save);
 
             return true;
         }
@@ -233,6 +238,10 @@ public static class SaveSystem
         if (save.bannerPity == null) save.bannerPity = new List<StringIntEntry>();
         if (save.bannerFeaturedGuarantee == null) save.bannerFeaturedGuarantee = new List<StringBoolEntry>();
         if (save.bannerHistory == null) save.bannerHistory = new List<BannerHistoryEntry>();
+        if (save.clearedStages == null) save.clearedStages = new List<string>();
+        save.units.RemoveAll(u => u == null || string.IsNullOrWhiteSpace(u.charId));
+        save.activeTeam = save.activeTeam.Where(id => save.units.Any(u => u.charId == id)).Distinct().Take(5).ToList();
+        save.formation = FormationRules.Resolve(save);
 
         foreach (var unit in save.units)
         {
@@ -262,6 +271,31 @@ public static class SaveSystem
             if (save.bannerFeaturedGuarantee == null) save.bannerFeaturedGuarantee = new List<StringBoolEntry>();
             if (save.bannerHistory == null) save.bannerHistory = new List<BannerHistoryEntry>();
             save.version = 2;
+        }
+
+        if (save.version < 3)
+        {
+            // Legacy rewards cannot be reconstructed. Preserve balances/level, begin tracking new clears.
+            save.clearedStages ??= new List<string>();
+            save.tutorialBattleRewardClaimed = save.tutorialCompleted || save.tutorialStep >= 7;
+            if (save.tutorialStep >= 4) save.tutorialTickets = 0;
+            save.version = 3;
+        }
+
+        if (save.version < 4)
+        {
+            // Legacy order maps front left/right then back left/center/right. No roster/currency loss.
+            save.formation = (save.activeTeam ?? new List<string>()).Distinct().Take(FormationRules.Capacity)
+                .Select((id, index) => new FormationPlacement { charId = id, slot = index }).ToList();
+            save.version = 4;
+        }
+
+        if (save.version < 5)
+        {
+            // Map old row intent before new-board validation; invalid old indices are not new cells.
+            save.formation = (save.formation ?? new List<FormationPlacement>()).Where(p => p != null)
+                .Select(p => new FormationPlacement { charId = p.charId, slot = FormationRules.MigrateLegacySlot(p.slot) }).ToList();
+            save.version = 5;
         }
 
         // After migrations, ensure lists again

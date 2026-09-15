@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,6 +11,9 @@ public static class RuntimeSceneUiBootstrap
 {
     private static Font _cachedFont;
     private static bool _registered;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() { _registered = false; _cachedFont = null; }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Register()
@@ -23,11 +27,14 @@ public static class RuntimeSceneUiBootstrap
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (!scene.IsValid() || !scene.isLoaded) return;
+        if (scene.name != "Boot" && scene.name != "Home" && scene.name != "Summon" && scene.name != "Team" &&
+            scene.name != "Battle" && scene.name != "Tutorial" && scene.name != "Options") return;
 
         EnsureEventSystem(scene);
 
         if (string.Equals(scene.name, "Boot", StringComparison.OrdinalIgnoreCase)) return;
 
+        Game.EnsureInitialized();
         var canvas = EnsureCanvas(scene);
 
         switch (scene.name)
@@ -45,18 +52,36 @@ public static class RuntimeSceneUiBootstrap
                 EnsureBattleScene(scene, canvas);
                 break;
             case "Tutorial":
-                EnsureTutorialScene(scene, canvas);
+                EnsureWelcomeScene(scene, canvas);
                 break;
             case "Options":
                 EnsureOptionsScene(scene, canvas);
                 break;
         }
 
+        if (!Game.Save.tutorialCompleted) EnsureTutorialScene(scene, canvas);
+        LandscapeMenuLayout.Apply(scene, canvas);
+
         foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
         {
             if (binder == null) continue;
             binder.AutoBindCommonReferences();
         }
+    }
+
+    private static void EnsureWelcomeScene(Scene scene, Canvas canvas)
+    {
+        var root = EnsureSceneRoot(scene, canvas.transform, "TutorialRoot");
+        var art = new GameObject("WelcomeArt", typeof(RectTransform), typeof(RawImage));
+        art.transform.SetParent(root.transform, false);
+        var rect = (RectTransform)art.transform; rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        var image = art.GetComponent<RawImage>(); image.texture = Resources.Load<Texture2D>("Presentation/kitchen-battlefield-v1"); image.raycastTarget = false;
+        EnsurePanel(root.transform, "WelcomeShade", new Color(0, 0, 0, .55f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        var title = EnsureLabel(root.transform, "WelcomeTitle", "FUNGUY'S", 72, FontStyle.Bold, TextAnchor.MiddleCenter, new Color(1, .85f, .5f));
+        title.rectTransform.anchoredPosition = new Vector2(0, 80); title.rectTransform.sizeDelta = new Vector2(1000, 140);
+        var detail = EnsureLabel(root.transform, "WelcomeDetail", "Build your team. Choose your formation.\nTime your skills.", 32, FontStyle.Normal, TextAnchor.MiddleCenter, Color.white);
+        detail.rectTransform.anchoredPosition = new Vector2(0, -70); detail.rectTransform.sizeDelta = new Vector2(1100, 160);
     }
 
     private static void EnsureHomeScene(Scene scene, Canvas canvas)
@@ -105,7 +130,9 @@ public static class RuntimeSceneUiBootstrap
             });
 
         // Keep the home controller on root so binder can wire all local controls.
-        controller.transform.SetParent(root.transform, false);
+        var campaign = CampaignPanelController.Create(root.transform);
+        controller.OpenCampaign = campaign.Open;
+        battleLabel.text = "Campaign";
     }
 
     private static void EnsureSummonScene(Scene scene, Canvas canvas)
@@ -166,7 +193,8 @@ public static class RuntimeSceneUiBootstrap
         var revealNext = EnsureButton(revealCard.transform, "Btn_RevealNext", "Next", new Vector2(0f, -360f), new Vector2(420f, 100f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var revealNextLabel);
 
         var revealController = EnsureSceneComponent<SummonRevealController>(scene, revealRoot.transform);
-        revealController.transform.SetParent(revealRoot.transform, false);
+        revealController.Initialize(revealRoot, revealTitle, revealName, revealRarity,
+            revealFrame.GetComponent<Image>(), revealGlow.GetComponent<Image>(), revealNext);
         revealRoot.SetActive(false);
 
         ConfigureSkin(root, UiTone.Summon,
@@ -186,7 +214,6 @@ public static class RuntimeSceneUiBootstrap
                 Target(TutorialStep.DoFirstSummon, pullOne, "Pull one unit to continue onboarding."),
             });
 
-        controller.transform.SetParent(root.transform, false);
     }
 
     private static void EnsureTeamScene(Scene scene, Canvas canvas)
@@ -204,15 +231,29 @@ public static class RuntimeSceneUiBootstrap
 
         var teamStatus = EnsureLabel(shell.transform, "Lbl_TeamStatus", "Team (0/5): No units selected",
             29, FontStyle.Bold, TextAnchor.UpperLeft, Color.white);
-        SetRect(teamStatus.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 620f), new Vector2(860f, 110f));
+        SetRect(teamStatus.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 620f), new Vector2(860f, 80f));
+
+        var formationButtons = new List<Button>();
+        var formationLabels = new List<Text>();
+        for (int i = 0; i < FormationRules.SlotCount; i++)
+        {
+            int depth = FormationRules.Depth(i);
+            float x = 250f - depth * 250f;
+            var button = EnsureButton(shell.transform, $"Btn_FormationSlot{i + 1}", FormationRules.Label(i),
+                new Vector2(x, 440f - FormationRules.Lane(i) * 125f + (depth % 2) * 62.5f), new Vector2(320f, 120f), IdleHuntressTheme.AccentFor(UiTone.Team), out var label);
+            HexBoardVisual.Apply(button.GetComponent<Image>());
+            label.fontSize = 19;
+            SetRect(label.rectTransform, CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(190f, 100f));
+            formationButtons.Add(button); formationLabels.Add(label);
+        }
 
         var hint = EnsureLabel(shell.transform, "Lbl_Hint", "Tip: build at least 3 units for smoother stage clears.",
             24, FontStyle.Italic, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 500f), new Vector2(860f, 90f));
+        SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -50f), new Vector2(860f, 90f));
 
         var slotStrip = EnsurePanel(shell.transform, "Panel_RosterSlots",
             WithAlpha(IdleHuntressTheme.BackgroundFor(UiTone.Team), 0.55f),
-            CenterAnchor, CenterAnchor, new Vector2(0f, 340f), new Vector2(860f, 130f));
+            CenterAnchor, CenterAnchor, new Vector2(0f, -200f), new Vector2(860f, 160f));
 
         var slotButtons = new List<Button>();
         var slotLabels = new List<Text>();
@@ -221,14 +262,27 @@ public static class RuntimeSceneUiBootstrap
         {
             float x = firstX + (i * 160f);
             var slot = EnsureButton(slotStrip.transform, $"Btn_RosterSlot{i + 1}", $"Slot {i + 1}",
-                new Vector2(x, 0f), new Vector2(150f, 86f), IdleHuntressTheme.AccentFor(UiTone.Team), out var slotLabel, $"Lbl_RosterSlot{i + 1}");
+                new Vector2(x, 0f), new Vector2(150f, 140f), IdleHuntressTheme.AccentFor(UiTone.Team), out var slotLabel, $"Lbl_RosterSlot{i + 1}");
+            slotLabel.fontSize = 20;
             slotButtons.Add(slot);
             slotLabels.Add(slotLabel);
         }
 
         var roster = EnsureLabel(shell.transform, "Lbl_Roster", "No units owned yet. Visit Summon.",
             25, FontStyle.Normal, TextAnchor.UpperLeft, SoftWhite);
-        SetRect(roster.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -20f), new Vector2(860f, 700f));
+        SetRect(roster.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -425f), new Vector2(860f, 95f));
+        var previous = EnsureButton(shell.transform, "Btn_RosterPrevious", "Previous", new Vector2(-300f, -330f), new Vector2(240f, 70f), IdleHuntressTheme.AccentFor(UiTone.Team), out var previousLabel);
+        var next = EnsureButton(shell.transform, "Btn_RosterNext", "Next", new Vector2(300f, -330f), new Vector2(240f, 70f), IdleHuntressTheme.AccentFor(UiTone.Team), out var nextLabel);
+        var pageLabel = EnsureLabel(shell.transform, "Lbl_RosterPage", "Roster", 22, FontStyle.Normal, TextAnchor.MiddleCenter, Color.white);
+        SetRect(pageLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -330f), new Vector2(340f, 70f));
+        var remove = EnsureButton(shell.transform, "Btn_RemoveSelected", "Remove selected fighter", new Vector2(0f, -520f), new Vector2(500f, 70f), IdleHuntressTheme.AccentFor(UiTone.Team), out var removeLabel);
+        controller.ConfigureFormation(formationButtons.ToArray(), formationLabels.ToArray(), remove);
+        slotBinder.ConfigurePaging(previous, next, pageLabel);
+
+        var upgrades = EnsureButton(shell.transform, "Btn_Upgrades", "Upgrade fighters", Vector2.zero,
+            new Vector2(400, 55), IdleHuntressTheme.AccentFor(UiTone.Team), out _);
+        var workshop = UpgradePanelView.Create(root.transform, slotBinder.RebindSlots);
+        upgrades.onClick.RemoveAllListeners(); upgrades.onClick.AddListener(workshop.Open);
 
         var autoFill = EnsureButton(shell.transform, "Btn_AutoFill", "Auto Fill", new Vector2(-210f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var autoFillLabel);
         var clearTeam = EnsureButton(shell.transform, "Btn_ClearTeam", "Clear Team", new Vector2(50f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var clearLabel);
@@ -239,122 +293,52 @@ public static class RuntimeSceneUiBootstrap
             new[] { bg.GetComponent<Image>() },
             new[] { shell.GetComponent<Image>(), slotStrip.GetComponent<Image>() },
             new[] { autoFill.GetComponent<Image>(), clearTeam.GetComponent<Image>(), startBattle.GetComponent<Image>(), back.GetComponent<Image>() }
-                .Concat(slotButtons.Select(b => b.GetComponent<Image>())).ToArray(),
-            new[] { autoFill, clearTeam, startBattle, back }.Concat(slotButtons).ToArray(),
+                .Concat(slotButtons.Concat(formationButtons).Concat(new[] { previous, next, remove }).Select(b => b.GetComponent<Image>())).ToArray(),
+            new[] { autoFill, clearTeam, startBattle, back, previous, next, remove }.Concat(slotButtons).Concat(formationButtons).ToArray(),
             new[] { teamStatus },
             new[] { hint, roster, autoFillLabel, clearLabel, startBattleLabel, backLabel }
-                .Concat(slotLabels).ToArray());
+                .Concat(slotLabels).Concat(formationLabels).Concat(new[] { previousLabel, nextLabel, pageLabel, removeLabel }).ToArray());
 
         spotlight.Configure(
-            hint,
+            null, // Team controller owns persistent placement instructions; tutorial uses its overlay.
             new[]
             {
                 Target(TutorialStep.GoToTeamBuilder, autoFill, "Auto-fill to place your first formation."),
-                Target(TutorialStep.PlaceFirstUnit, slotButtons.FirstOrDefault(), "Tap roster slots to toggle team placement."),
+                Target(TutorialStep.PlaceFirstUnit, formationButtons.FirstOrDefault(), "Tap a position, then a fighter. Two positions swap or move."),
                 Target(TutorialStep.StartFirstBattle, startBattle, "When ready, start your first battle."),
+                Target(TutorialStep.PlaceTankFrontDpsBack, upgrades, "Preview a fighter's next level and gold cost in the workshop."),
             });
 
-        controller.transform.SetParent(root.transform, false);
-        slotBinder.transform.SetParent(root.transform, false);
     }
 
     private static void EnsureBattleScene(Scene scene, Canvas canvas)
     {
-        var root = EnsureSceneRoot(scene, canvas.transform, "BattleRoot");
-        var controller = EnsureSceneComponent<BattleSceneController>(scene, root.transform);
-        var spotlight = EnsureComponent<TutorialSpotlightController>(root);
-
-        var bg = EnsurePanel(root.transform, "Img_Background", IdleHuntressTheme.BackgroundFor(UiTone.Battle),
-            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        var shell = EnsurePanel(root.transform, "Panel_Main",
-            WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Battle), 0.96f),
-            CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(940f, 1540f));
-
-        var stageInfo = EnsureLabel(shell.transform, "Lbl_StageInfo", "Stage info will appear here.",
-            28, FontStyle.Bold, TextAnchor.UpperLeft, Color.white);
-        SetRect(stageInfo.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 620f), new Vector2(860f, 220f));
-
-        var teamPreview = EnsureLabel(shell.transform, "Lbl_TeamPreview", "Current Team: Auto-team will be used.",
-            26, FontStyle.Normal, TextAnchor.UpperLeft, SoftWhite);
-        SetRect(teamPreview.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 430f), new Vector2(860f, 130f));
-
-        var battleResult = EnsureLabel(shell.transform, "Lbl_BattleResult", "Run battle to simulate combat.",
-            30, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(battleResult.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 180f), new Vector2(860f, 220f));
-
-        var runBattle = EnsureButton(shell.transform, "Btn_RunBattle", "Run Battle", new Vector2(-230f, -150f), new Vector2(280f, 96f), IdleHuntressTheme.AccentFor(UiTone.Battle), out var runBattleLabel);
-        var retry = EnsureButton(shell.transform, "Btn_Retry", "Retry", new Vector2(60f, -150f), new Vector2(240f, 96f), IdleHuntressTheme.AccentFor(UiTone.Battle), out var retryLabel);
-        var nextStage = EnsureButton(shell.transform, "Btn_NextStage", "Next Stage", new Vector2(320f, -150f), new Vector2(240f, 96f), IdleHuntressTheme.AccentFor(UiTone.Battle), out var nextLabel);
-        var goTeam = EnsureButton(shell.transform, "Btn_GoTeam", "Team", new Vector2(-160f, -270f), new Vector2(280f, 96f), IdleHuntressTheme.AccentFor(UiTone.Battle), out var teamLabel);
-        var back = EnsureButton(shell.transform, "Btn_Back", "Back", new Vector2(170f, -270f), new Vector2(280f, 96f), IdleHuntressTheme.AccentFor(UiTone.Battle), out var backLabel);
-
-        var hint = EnsureLabel(shell.transform, "Lbl_TutorialHint", string.Empty, 24, FontStyle.Italic, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -420f), new Vector2(840f, 120f));
-
-        ConfigureSkin(root, UiTone.Battle,
-            new[] { bg.GetComponent<Image>() },
-            new[] { shell.GetComponent<Image>() },
-            new[] { runBattle.GetComponent<Image>(), retry.GetComponent<Image>(), nextStage.GetComponent<Image>(), goTeam.GetComponent<Image>(), back.GetComponent<Image>() },
-            new[] { runBattle, retry, nextStage, goTeam, back },
-            new[] { stageInfo, battleResult },
-            new[] { teamPreview, hint, runBattleLabel, retryLabel, nextLabel, teamLabel, backLabel });
-
-        spotlight.Configure(
-            hint,
-            new[]
-            {
-                Target(TutorialStep.StartFirstBattle, runBattle, "Run battle now to complete onboarding combat."),
-            });
-
-        controller.transform.SetParent(root.transform, false);
+        var asset = Resources.Load<BattleScreenView>("Presentation/BattleScreen");
+        if (asset == null) throw new InvalidOperationException("Battle presentation prefab is missing. Run the Presentation authoring task.");
+        var screen = UnityEngine.Object.Instantiate(asset, canvas.transform);
+        screen.name = "BattleRoot";
+        var controller = EnsureSceneComponent<BattleSceneController>(scene, screen.transform);
+        controller.Configure(screen);
     }
-
     private static void EnsureTutorialScene(Scene scene, Canvas canvas)
     {
-        // Tutorial manager and overlay are persistent once created.
-        if (TutorialManager.I != null) return;
-
-        var root = EnsureSceneRoot(scene, canvas.transform, "TutorialRoot");
-        var manager = EnsureSceneComponent<TutorialManager>(scene, root.transform);
-
-        var bg = EnsurePanel(root.transform, "Img_Background", WithAlpha(Color.black, 0.80f),
-            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        var overlayRoot = EnsurePanel(root.transform, "TutorialOverlayRoot", WithAlpha(Color.black, 0.72f),
-            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        var frame = EnsurePanel(overlayRoot.transform, "Panel_TutorialFrame",
-            WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.98f),
-            CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(820f, 720f));
-
-        var title = EnsureLabel(frame.transform, "Lbl_TutorialTitle", "Commander Tutorial",
-            42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
-        SetRect(title.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 240f), new Vector2(700f, 110f));
-
-        var message = EnsureLabel(frame.transform, "Lbl_TutorialMessage",
-            "Welcome, sproutling. We will walk through summon, team setup, and first combat.",
-            29, FontStyle.Normal, TextAnchor.UpperLeft, SoftWhite);
-        SetRect(message.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 20f), new Vector2(700f, 300f));
-
-        var continueButton = EnsureButton(frame.transform, "Btn_TutorialContinue", "Continue",
-            new Vector2(0f, -250f), new Vector2(420f, 96f), IdleHuntressTheme.AccentFor(UiTone.Home), out var continueLabel);
-
-        var overlay = EnsureSceneComponent<TutorialOverlay>(scene, overlayRoot.transform);
-        overlay.transform.SetParent(overlayRoot.transform, false);
-
-        ConfigureSkin(root, UiTone.Home,
-            new[] { bg.GetComponent<Image>(), overlayRoot.GetComponent<Image>() },
-            new[] { frame.GetComponent<Image>() },
-            new[] { continueButton.GetComponent<Image>() },
-            new[] { continueButton },
-            new[] { title },
-            new[] { message, continueLabel });
-
-        manager.transform.SetParent(root.transform, false);
-        overlayRoot.SetActive(true);
+        var manager = TutorialManager.EnsureInstance();
+        if (canvas.transform.Find("TutorialOverlayRoot") != null) return;
+        var overlayRoot = EnsurePanel(canvas.transform, "TutorialOverlayRoot", new Color(0.08f, 0.12f, 0.16f, 0.97f),
+            new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -200f), new Vector2(980f, 360f));
+        var message = EnsureLabel(overlayRoot.transform, "Lbl_TutorialMessage", "", 27, FontStyle.Normal, TextAnchor.MiddleCenter, Color.white);
+        SetRect(message.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 50f), new Vector2(900f, 180f));
+        var next = EnsureButton(overlayRoot.transform, "Btn_TutorialContinue", "Continue", new Vector2(0f, -100f),
+            new Vector2(400f, 80f), IdleHuntressTheme.AccentFor(UiTone.Home), out _);
+        var overlay = overlayRoot.AddComponent<TutorialOverlay>();
+        overlay.Initialize(overlayRoot, message, next);
+        manager.AttachOverlay(overlay);
     }
 
     private static void EnsureOptionsScene(Scene scene, Canvas canvas)
     {
         var root = EnsureSceneRoot(scene, canvas.transform, "OptionsRoot");
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         var debugRoot = EnsureChild(root.transform, "DebugRoot");
         StretchToParent(EnsureRectTransform(debugRoot));
 
@@ -395,14 +379,25 @@ public static class RuntimeSceneUiBootstrap
             new[] { title },
             new[] { status, smokeOutput, resetLabel, grantLabel, seedLabel, skipLabel, openSummonLabel, smokeLabel, backLabel });
 
-        debugController.transform.SetParent(debugRoot.transform, false);
-        smokeController.transform.SetParent(debugRoot.transform, false);
+#else
+        var title = EnsureLabel(root.transform, "Lbl_OptionsTitle", "Options", 40, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+        SetRect(title.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 240f), new Vector2(800f, 100f));
+        var audio = EnsureButton(root.transform, "Btn_Audio", AudioListener.pause ? "Enable audio" : "Mute audio", Vector2.zero,
+            new Vector2(560f, 100f), IdleHuntressTheme.AccentFor(UiTone.Home), out var audioLabel);
+        audio.onClick.AddListener(() => {
+            AudioListener.pause = !AudioListener.pause;
+            audioLabel.text = AudioListener.pause ? "Enable audio" : "Mute audio";
+        });
+        var back = EnsureButton(root.transform, "Btn_Back", "Back", new Vector2(0f, -150f), new Vector2(560f, 100f),
+            IdleHuntressTheme.AccentFor(UiTone.Home), out _);
+        back.onClick.AddListener(() => SceneManager.LoadScene("Home"));
+#endif
     }
 
     private static Canvas EnsureCanvas(Scene scene)
     {
         var existing = FindInScene<Canvas>(scene).FirstOrDefault();
-        if (existing != null) return existing;
+        if (existing != null) { ConfigureLandscapeCanvas(existing); return existing; }
 
         var canvasGo = new GameObject("Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
         SceneManager.MoveGameObjectToScene(canvasGo, scene);
@@ -412,16 +407,22 @@ public static class RuntimeSceneUiBootstrap
 
         var scaler = canvasGo.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1080f, 1920f);
-        scaler.matchWidthOrHeight = 0.5f;
+        scaler.referenceResolution = new Vector2(1600f, 900f);
+        scaler.matchWidthOrHeight = 1f;
 
         return canvas;
     }
 
+    private static void ConfigureLandscapeCanvas(Canvas canvas)
+    {
+        var scaler = EnsureComponent<CanvasScaler>(canvas.gameObject);
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1600, 900); scaler.matchWidthOrHeight = 1;
+    }
     private static void EnsureEventSystem(Scene scene)
     {
         if (UnityEngine.Object.FindFirstObjectByType<EventSystem>() != null) return;
-        var es = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+        var es = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
         SceneManager.MoveGameObjectToScene(es, scene);
     }
 
@@ -438,7 +439,7 @@ public static class RuntimeSceneUiBootstrap
         var existing = FindInScene<T>(scene).FirstOrDefault();
         if (existing != null)
         {
-            if (parent != null && existing.transform.parent != parent)
+            if (parent != null && existing.transform != parent && existing.transform.parent != parent)
             {
                 existing.transform.SetParent(parent, false);
             }

@@ -1,6 +1,9 @@
 {
   "name": "Game.Runtime",
-  "references": [],
+  "references": [
+    "Unity.InputSystem",
+    "Unity.TextMeshPro"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,

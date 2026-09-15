@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HomeMenuController : MonoBehaviour {
+  public System.Action OpenCampaign;
   [SerializeField] private Text welcomeLabel = null;
   [SerializeField] private Text accountStatsLabel = null;
   [SerializeField] private bool autoLaunchTutorialOnFirstOpen = true;
@@ -35,7 +36,7 @@ public class HomeMenuController : MonoBehaviour {
   }
 
   public void OnBattlePressed() {
-    SceneManager.LoadScene("Battle");
+    if (OpenCampaign != null) OpenCampaign(); else SceneManager.LoadScene("Battle");
   }
 
   public void OnOptionsPressed() {

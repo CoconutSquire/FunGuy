@@ -1,277 +1,166 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class BattleSceneController : MonoBehaviour
+// Presentation orchestrator. Damage, targeting and wallet transactions stay behind application contracts.
+public sealed class BattleSceneController : MonoBehaviour
 {
     [SerializeField] private string stageId = "s_1_1";
-    [SerializeField] private Text battleResultLabel;
-    [SerializeField] private Text stageInfoLabel;
-    [SerializeField] private Text teamPreviewLabel;
-    [SerializeField] private bool healTeamBetweenWaves = false;
+    private BattleScreenView view;
+    private CampaignSession run;
+    private int cursor;
+    private float wait;
+    private bool playing, manualPause, inspectPause, focusPause, autoEnabled, fastForward, settlementPending;
+    private string rewardDescription;
+    public bool IsPlaying => playing;
+    public bool IsPaused => manualPause || inspectPause || focusPause;
+    public bool ReducedMotion { get; private set; }
+    public float PlaybackSpeed { get; private set; } = 1;
+    public int DisplayedEventCount { get; private set; }
+    public CampaignSession Session => run;
+    public BattleScreenView View => view;
 
-    private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
-    private bool _lastBattleWon;
-    private int _lastWaveReached;
-    private int _lastWaveCount;
-
-    private void Start()
+    public void Configure(BattleScreenView screen)
     {
-        EnsureData();
-        RefreshStageUi();
+        view = screen; Game.EnsureInitialized(); view.Initialize(Game.Data);
+        if (Game.Campaign.IsUnlocked(Game.SelectedStageId)) stageId = Game.SelectedStageId;
+        ReducedMotion = PlayerPrefs.GetInt("FUNGUY_REDUCED_MOTION", 0) == 1;
+        view.start.onClick.AddListener(OnRunBattlePressed); view.home.onClick.AddListener(OnBackPressed);
+        view.team.onClick.AddListener(OnGoTeamPressed); view.pause.onClick.AddListener(OnPausePressed);
+        view.speed.onClick.AddListener(OnSpeedPressed); view.auto.onClick.AddListener(OnAutoPressed);
+        view.finish.onClick.AddListener(OnFinishPressed); view.motion.onClick.AddListener(() => SetReducedMotion(!ReducedMotion));
+        view.retry.onClick.AddListener(OnRunBattlePressed); view.next.onClick.AddListener(OnNextStagePressed); view.resultTeam.onClick.AddListener(OnGoTeamPressed);
+        view.Inspect = id => { inspectPause = playing; view.ShowInspector(id); RefreshControls(); };
+        view.inspectorClose.onClick.AddListener(() => { inspectPause = false; view.inspectorPanel.SetActive(false); RefreshControls(); });
+        for (int i = 0; i < view.signatures.Length; i++) { int index = i; view.signatures[i].button.onClick.AddListener(() => OnSignaturePressed(index)); }
+        ShowPreview();
     }
-
+    private void ShowPreview()
+    {
+        if (!Game.Data.Stages.TryGetValue(stageId, out var stage)) { view.feedLabel.text = "Stage unavailable."; return; }
+        view.stageLabel.text = (stage.boss ? "BOSS · " : "") + stage.name;
+        rewardDescription = $"+{stage.rewards.gold} gold   +{stage.rewards.spores} spores   +{stage.rewards.accountXp} XP";
+        view.waveLabel.text = $"{stageId.Replace("s_", "STAGE ").Replace('_', '-')}   ·   {stage.waves.Count} waves   ·   " +
+            (Game.Save.clearedStages.Contains(stageId) ? "Practice · rewards already claimed" : rewardDescription);
+        var states = new List<BattleFighterState>();
+        foreach (var placement in FormationRules.Resolve(Game.Save)) {
+            var owned = Game.Save.units.First(u => u.charId == placement.charId);
+            var fighter = CombatUnitFactory.Create(Game.Data.Characters[placement.charId], owned.level, TeamSide.Player, owned.stars, Game.Data.StatRules);
+            fighter.formationSlot = placement.slot;
+            states.Add(new BattleFighterState("preview/player/" + placement.slot, fighter));
+        }
+        var enemies = stage.waves[0].enemies.Select(e => CombatUnitFactory.Create(Game.Data.Enemies[e.enemyId], e, TeamSide.Enemy)).ToList();
+        FormationRules.AssignBattleSlots(enemies);
+        states.AddRange(enemies.Select(e => new BattleFighterState("preview/enemy/" + e.formationSlot, e)));
+        view.SetFighters(states); view.resultPanel.SetActive(false);
+        view.playerBonuses.text = "YOUR DEPLOYMENT  ·  " + states.Count(s => s.Side == TeamSide.Player) + " / 5 fighters";
+        view.enemyBonuses.text = "ENEMY DEPLOYMENT  ·  wave 1";
+        view.feedLabel.text = stage.description ?? "Choose your formation in Team. Basics are automatic; tap a signature to queue it.";
+        RefreshControls();
+    }
     public void OnRunBattlePressed()
     {
-        EnsureData();
-
-        var playerTeam = BuildPlayerTeam();
-        if (playerTeam.Count == 0)
-        {
-            SetResult("Cannot start battle: missing player team.");
-            return;
+        if (playing) return;
+        if (settlementPending) { Settle(); return; }
+        try {
+            run = Game.Campaign.Begin(stageId, auto: autoEnabled); playing = true;
+            manualPause = inspectPause = focusPause = fastForward = false; cursor = 0; wait = .35f; DisplayedEventCount = 0;
+            view.resultPanel.SetActive(false); view.inspectorPanel.SetActive(false);
+            view.retry.GetComponentInChildren<TMPro.TMP_Text>().text = "Play again";
+            StartWave();
+            if (!Game.Save.tutorialCompleted && Game.Save.tutorialStep == (int)TutorialStep.StartFirstBattle)
+                FindFirstObjectByType<TutorialOverlay>()?.Hide();
+        } catch (Exception error) { run?.Cancel(); playing = false; view.feedLabel.text = error.Message; }
+        RefreshControls();
+    }
+    private void StartWave()
+    {
+        cursor = 0; view.SetFighters(run.Battle.InitialState); view.RefreshBonuses(run.Battle);
+        view.waveLabel.text = $"WAVE {run.Wave} / {run.WaveCount}  ·  {Game.Data.Stages[stageId].name}";
+        view.feedLabel.text = $"Wave {run.Wave} begins";
+    }
+    private void Update()
+    {
+        if (view == null || !playing || IsPaused) return;
+        float delta = Time.unscaledDeltaTime * PlaybackSpeed;
+        view.Tick(delta, ReducedMotion || fastForward);
+        wait -= delta;
+        for (int budget = 0; budget < 96 && playing && wait <= 0; budget++) {
+            if (cursor < run.Battle.Events.Count) {
+                var e = run.Battle.Events[cursor++]; DisplayedEventCount++;
+                view.Consume(e, ReducedMotion || fastForward);
+                if (e.Kind == BattleEventKind.ActionCompleted) view.RefreshBonuses(run.Battle);
+                wait += EventDuration(e.Kind);
+            } else if (run.Battle.Outcome == BattleOutcome.Running) {
+                try { run.Step(); }
+                catch (Exception error) { run.Cancel(); playing = false; view.feedLabel.text = "Battle stopped: " + error.Message; }
+            } else if (run.AdvanceWave()) { StartWave(); wait = fastForward ? 0 : .55f; }
+            else { playing = false; Settle(); }
         }
-
-        if (!Game.Data.Stages.TryGetValue(stageId, out var stage) || stage.waves == null || stage.waves.Count == 0)
-        {
-            SetResult($"Cannot start battle: stage {stageId} has no waves.");
-            return;
-        }
-
-        _lastWaveReached = 0;
-        _lastWaveCount = stage.waves.Count;
-        _lastBattleWon = true;
-
-        for (int i = 0; i < stage.waves.Count; i++)
-        {
-            int waveNumber = i + 1;
-            var enemyTeam = BuildEnemyTeam(stage, i);
-            if (enemyTeam.Count == 0)
-            {
-                _lastBattleWon = false;
-                SetResult($"Stage data error: wave {waveNumber} has no enemies.");
-                break;
-            }
-
-            var sim = new BattleSim(Game.Data);
-            bool waveWon = sim.RunBattle(playerTeam, enemyTeam);
-            _lastWaveReached = waveNumber;
-
-            if (!waveWon)
-            {
-                _lastBattleWon = false;
-                break;
-            }
-
-            if (healTeamBetweenWaves && waveNumber < stage.waves.Count)
-            {
-                foreach (var unit in playerTeam.Where(u => u.hp > 0))
-                {
-                    unit.hp = Mathf.Min(unit.maxHp, unit.hp + Mathf.RoundToInt(unit.maxHp * 0.25f));
-                    unit.statuses.Clear();
-                }
-            }
-        }
-
-        HandleBattleOutcome(_lastBattleWon);
+        RefreshControls();
     }
-
-    public void OnBackPressed()
+    private float EventDuration(BattleEventKind kind)
     {
-        SceneManager.LoadScene("Home");
-    }
-
-    public void OnGoTeamPressed()
-    {
-        SceneManager.LoadScene("Team");
-    }
-
-    public void OnRetryPressed()
-    {
-        OnRunBattlePressed();
-    }
-
-    public void OnNextStagePressed()
-    {
-        EnsureData();
-        var ordered = Game.Data.Stages.Keys.OrderBy(k => k, System.StringComparer.OrdinalIgnoreCase).ToList();
-        if (ordered.Count == 0) return;
-
-        int idx = ordered.IndexOf(stageId);
-        if (idx < 0) idx = 0;
-        int next = Mathf.Clamp(idx + 1, 0, ordered.Count - 1);
-        stageId = ordered[next];
-        RefreshStageUi();
-    }
-
-    public void OnSelectStage(string newStageId)
-    {
-        if (string.IsNullOrWhiteSpace(newStageId)) return;
-        stageId = newStageId;
-        RefreshStageUi();
-    }
-
-    private List<CombatUnit> BuildPlayerTeam()
-    {
-        var selected = Save.activeTeam.Count > 0
-            ? Save.activeTeam
-            : Save.units.Take(5).Select(u => u.charId).ToList();
-
-        var units = new List<CombatUnit>();
-        foreach (var charId in selected)
-        {
-            var owned = Save.units.FirstOrDefault(u => u.charId == charId);
-            if (owned == null) continue;
-            if (!Game.Data.Characters.TryGetValue(charId, out var def)) continue;
-            units.Add(ToCombatUnit(def, owned.level, TeamSide.Player));
-        }
-
-        return units;
-    }
-
-    private List<CombatUnit> BuildEnemyTeam(StageDef stage, int waveIndex)
-    {
-        if (stage == null || stage.waves == null || stage.waves.Count <= waveIndex) return new List<CombatUnit>();
-
-        var firstWave = stage.waves[waveIndex];
-        var units = new List<CombatUnit>();
-
-        foreach (var waveUnit in firstWave)
-        {
-            if (!Game.Data.Enemies.TryGetValue(waveUnit.enemyId, out var def)) continue;
-            units.Add(ToCombatUnit(def, waveUnit.level, TeamSide.Enemy));
-        }
-
-        return units;
-    }
-
-    private CombatUnit ToCombatUnit(CharacterDef def, int level, TeamSide side)
-    {
-        int lvl = Mathf.Max(1, level);
-        int maxHp = ScaleStat(def.baseStats.hp, def.growth.hp, lvl);
-        return new CombatUnit
-        {
-            side = side,
-            id = def.id,
-            name = def.name,
-            level = lvl,
-            biome = def.biome,
-            classArchetype = def.classArchetype,
-            role = def.role,
-            maxHp = maxHp,
-            hp = maxHp,
-            atk = ScaleStat(def.baseStats.atk, def.growth.atk, lvl),
-            def = ScaleStat(def.baseStats.def, def.growth.def, lvl),
-            spd = ScaleStat(def.baseStats.spd, def.growth.spd, lvl),
-            pot = ScaleStat(def.baseStats.pot, def.growth.pot, lvl),
-            basicSkillId = def.skills?.basic,
-            ultSkillId = def.skills?.ult,
-            ultCdRemaining = 0,
-            energy = 0,
-            maxEnergy = 100,
-            actionGauge = 0f,
-            shield = 0,
-            statuses = new List<StatusInstance>(),
+        if (fastForward) return 0;
+        if (ReducedMotion) return kind == BattleEventKind.ActionCompleted ? .18f : 0;
+        return kind switch {
+            BattleEventKind.SkillUsed => .24f, BattleEventKind.Damage => .16f,
+            BattleEventKind.Heal or BattleEventKind.Shield => .1f,
+            BattleEventKind.UnitDied => .25f, BattleEventKind.ActionCompleted => .18f, _ => 0
         };
     }
-
-    private CombatUnit ToCombatUnit(EnemyDef def, int level, TeamSide side)
+    private void Settle()
     {
-        int lvl = Mathf.Max(1, level);
-        int maxHp = ScaleStat(def.baseStats.hp, 0f, lvl);
-        return new CombatUnit
-        {
-            side = side,
-            id = def.id,
-            name = def.name,
-            level = lvl,
-            biome = def.biome,
-            classArchetype = def.classArchetype,
-            role = def.role,
-            maxHp = maxHp,
-            hp = maxHp,
-            atk = ScaleStat(def.baseStats.atk, 0f, lvl),
-            def = ScaleStat(def.baseStats.def, 0f, lvl),
-            spd = ScaleStat(def.baseStats.spd, 0f, lvl),
-            pot = ScaleStat(def.baseStats.pot, 0f, lvl),
-            basicSkillId = def.skills?.basic,
-            ultSkillId = def.skills?.ult,
-            ultCdRemaining = 0,
-            energy = 0,
-            maxEnergy = 100,
-            actionGauge = 0f,
-            shield = 0,
-            statuses = new List<StatusInstance>(),
-        };
+        CampaignResult result;
+        try {
+            result = run.Complete(); settlementPending = false;
+        } catch (Exception error) {
+            settlementPending = true;
+            view.ShowResult("REWARDS NOT SAVED", "The battle is complete. Retry saving to claim safely.\n" + error.Message, false);
+            view.retry.GetComponentInChildren<TMPro.TMP_Text>().text = "Retry saving";
+            RefreshControls(); return;
+        }
+            view.retry.GetComponentInChildren<TMPro.TMP_Text>().text = "Play again";
+            string title = result.outcome switch { BattleOutcome.Victory => "VICTORY", BattleOutcome.Draw => "DRAW", BattleOutcome.Timeout => "TIME LIMIT", _ => "DEFEAT" };
+            string detail = result.won ? $"All {result.waveCount} waves cleared.\n" + (result.firstClearRewardGranted ? rewardDescription + "\nFirst-clear rewards saved." : "Practice clear. First-clear rewards were already claimed.") :
+                $"Reached wave {result.wavesReached} / {result.waveCount}.\n" + (result.outcome == BattleOutcome.Timeout ? "Try another formation or signature timing." : "Adjust your formation and try again.");
+            view.ShowResult(title, detail, NextStageId() != null && Game.Save.tutorialCompleted);
+            view.feedLabel.text = title;
+            TutorialManager.I?.OnFirstBattleCompleted(result.won);
+        RefreshControls();
     }
-
-    private int ScaleStat(int baseValue, float growth, int level)
+    public void OnSignaturePressed(int index)
     {
-        return Mathf.Max(1, Mathf.RoundToInt(baseValue + (growth * (level - 1))));
+        if (!playing || index < 0 || index >= view.PlayerIds.Count) return;
+        string id = view.PlayerIds[index];
+        if (run.Battle.IsSignatureQueued(id)) run.Battle.CancelSignature(id); else run.Battle.QueueSignature(id);
+        RefreshControls();
     }
-
-    private void HandleBattleOutcome(bool won)
+    public void OnPausePressed() { if (playing) { manualPause = focusPause ? false : !manualPause; focusPause = false; RefreshControls(); } }
+    public void OnAutoPressed() { autoEnabled = !autoEnabled; if (playing) run.Battle.SetAuto(autoEnabled); RefreshControls(); }
+    public void OnSpeedPressed() { PlaybackSpeed = PlaybackSpeed == 1 ? 1.5f : PlaybackSpeed == 1.5f ? 2 : 1; RefreshControls(); }
+    public void SetReducedMotion(bool enabled) { ReducedMotion = enabled; PlayerPrefs.SetInt("FUNGUY_REDUCED_MOTION", enabled ? 1 : 0); PlayerPrefs.Save(); RefreshControls(); }
+    public void OnFinishPressed()
     {
-        if (won && Game.Data.Stages.TryGetValue(stageId, out var stage) && stage.rewards != null)
-        {
-            Save.gold += stage.rewards.gold;
-            Save.spores += stage.rewards.spores;
-            Save.accountLevel += Mathf.Max(0, stage.rewards.accountXp);
-            SaveSystem.Save(Save);
-        }
-
-        if (TutorialManager.I != null)
-        {
-            TutorialManager.I.OnFirstBattleCompleted(won);
-        }
-
-        if (won)
-        {
-            SetResult($"Victory! Cleared all {_lastWaveCount} wave(s).");
-        }
-        else
-        {
-            SetResult($"Defeat on wave {_lastWaveReached}/{_lastWaveCount}.");
-        }
-        RefreshStageUi();
+        if (!playing) return;
+        fastForward = true; autoEnabled = true; manualPause = inspectPause = focusPause = false;
+        view.inspectorPanel.SetActive(false); run.Battle.SetAuto(true); wait = 0; RefreshControls();
     }
-
-    private void EnsureData()
+    private void RefreshControls() { if (view != null) view.RefreshControls(run, playing, IsPaused, autoEnabled, PlaybackSpeed, ReducedMotion, settlementPending); }
+    private string NextStageId()
     {
-        if (Game.Data == null)
-        {
-            Game.Data = new GameData();
-            Game.Data.LoadAll();
-        }
+        var ordered = Game.Data.Stages.Values.OrderBy(s => s.order).Select(s => s.id).ToList(); int index = ordered.IndexOf(stageId);
+        return index >= 0 && index + 1 < ordered.Count && Game.Campaign.IsUnlocked(ordered[index + 1]) ? ordered[index + 1] : null;
     }
-
-    private void SetResult(string message)
-    {
-        if (battleResultLabel != null) battleResultLabel.text = message;
-        Debug.Log($"[BattleScene] {message}");
-    }
-
-    private void RefreshStageUi()
-    {
-        if (stageInfoLabel != null)
-        {
-            if (Game.Data.Stages.TryGetValue(stageId, out var stage))
-            {
-                int waveCount = stage.waves == null ? 0 : stage.waves.Count;
-                stageInfoLabel.text = $"{stage.name} ({stage.id})\nRec Power: {stage.recommendedPower}\nWaves: {waveCount}\nRewards: +{stage.rewards.gold} Gold, +{stage.rewards.spores} Spores";
-            }
-            else
-            {
-                stageInfoLabel.text = $"Stage {stageId} not found.";
-            }
-        }
-
-        if (teamPreviewLabel != null)
-        {
-            string summary = Save.activeTeam.Count == 0 ? "Auto-team will be used." : string.Join(", ", Save.activeTeam);
-            teamPreviewLabel.text = $"Current Team: {summary}";
-        }
-    }
+    public void OnNextStagePressed() { if (playing || settlementPending) return; string next = NextStageId(); if (next == null) return; stageId = Game.SelectedStageId = next; run = null; ShowPreview(); }
+    public void OnSelectStage(string id) { if (playing || settlementPending || !Game.Campaign.IsUnlocked(id)) return; stageId = Game.SelectedStageId = id; run = null; ShowPreview(); }
+    public void OnRetryPressed() => OnRunBattlePressed();
+    public void OnBackPressed() { Cancel(); SceneManager.LoadScene("Home"); }
+    public void OnGoTeamPressed() { Cancel(); SceneManager.LoadScene("Team"); }
+    private void Cancel() { if (playing || settlementPending) run?.Cancel(); playing = false; }
+    private void OnDisable() => Cancel();
+    private void OnApplicationPause(bool paused) { if (playing && paused) { focusPause = true; RefreshControls(); } }
+    private void OnApplicationFocus(bool focused) { if (playing && !focused) { focusPause = true; RefreshControls(); } }
 }

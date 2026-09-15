@@ -7,6 +7,7 @@ public class CombatUnit {
   public string id; // charId or enemyId
   public string name;
   public int level;
+  public int formationSlot = -1; // -1 is legacy/unassigned; runtime fixes positions once before the battle.
   public string biome;
   public string classArchetype;
   public string role;
@@ -28,6 +29,10 @@ public class CombatUnit {
 
   public List<StatusInstance> statuses = new();
   public int shield; // simple flat shield for MVP
+  public List<PassiveDef> passives = new();
+  public int turnsTaken;
+  internal string instanceId;
+  internal bool encounterStarted;
 }
 
 public class StatusInstance {
@@ -35,4 +40,7 @@ public class StatusInstance {
   public int remainingTurns;
   public float potency;
   public int stacks;
+  public string sourceId;
+  public string sourceRole;
+  public float damageMultiplier = 1;
 }

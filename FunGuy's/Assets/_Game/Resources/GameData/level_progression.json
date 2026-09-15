@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "rulesVersion": "slice-levels-v1",
+  "levelCap": 20,
+  "costs": [
+    { "fromLevel": 1, "gold": 25 },
+    { "fromLevel": 2, "gold": 35 },
+    { "fromLevel": 3, "gold": 45 },
+    { "fromLevel": 4, "gold": 55 },
+    { "fromLevel": 5, "gold": 65 },
+    { "fromLevel": 6, "gold": 75 },
+    { "fromLevel": 7, "gold": 85 },
+    { "fromLevel": 8, "gold": 95 },
+    { "fromLevel": 9, "gold": 105 },
+    { "fromLevel": 10, "gold": 115 },
+    { "fromLevel": 11, "gold": 125 },
+    { "fromLevel": 12, "gold": 135 },
+    { "fromLevel": 13, "gold": 145 },
+    { "fromLevel": 14, "gold": 155 },
+    { "fromLevel": 15, "gold": 165 },
+    { "fromLevel": 16, "gold": 175 },
+    { "fromLevel": 17, "gold": 185 },
+    { "fromLevel": 18, "gold": 195 },
+    { "fromLevel": 19, "gold": 205 }
+  ]
+}

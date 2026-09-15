@@ -6,7 +6,12 @@
       "target": "EnemyFront",
       "cooldown": 0,
       "energyCost": 0,
-      "effects": [{ "type": "Damage", "scale": 1.0 }]
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.0
+        }
+      ]
     },
     {
       "id": "ult_sporeburst",
@@ -14,7 +19,19 @@
       "target": "AllEnemies",
       "cooldown": 3,
       "energyCost": 100,
-      "effects": [{ "type": "Damage", "scale": 0.75 }, { "type": "ApplyStatus", "status": "Poison", "chance": 0.35, "duration": 2, "potency": 0.06 }]
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.75
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Poison",
+          "chance": 0.35,
+          "duration": 2,
+          "potency": 0.06
+        }
+      ]
     },
     {
       "id": "ult_rotguard",
@@ -22,7 +39,19 @@
       "target": "Self",
       "cooldown": 3,
       "energyCost": 100,
-      "effects": [{ "type": "Shield", "scale": 0.25 }, { "type": "ApplyStatus", "status": "Thorns", "chance": 1.0, "duration": 2, "potency": 0.20 }]
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.25
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Thorns",
+          "chance": 1.0,
+          "duration": 2,
+          "potency": 0.2
+        }
+      ]
     },
     {
       "id": "ult_mendglow",
@@ -30,7 +59,19 @@
       "target": "AllAllies",
       "cooldown": 3,
       "energyCost": 100,
-      "effects": [{ "type": "Heal", "scale": 0.35 }, { "type": "ApplyStatus", "status": "Regen", "chance": 1.0, "duration": 2, "potency": 0.05 }]
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.35
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Regen",
+          "chance": 1.0,
+          "duration": 2,
+          "potency": 0.05
+        }
+      ]
     },
     {
       "id": "ult_freeze",
@@ -38,7 +79,19 @@
       "target": "RandomEnemy2",
       "cooldown": 3,
       "energyCost": 100,
-      "effects": [{ "type": "Damage", "scale": 0.60 }, { "type": "ApplyStatus", "status": "Freeze", "chance": 0.30, "duration": 1, "potency": 0.0 }]
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.6
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Freeze",
+          "chance": 0.3,
+          "duration": 1,
+          "potency": 0.0
+        }
+      ]
     },
     {
       "id": "ult_burn",
@@ -46,7 +99,515 @@
       "target": "AllEnemies",
       "cooldown": 3,
       "energyCost": 100,
-      "effects": [{ "type": "Damage", "scale": 0.70 }, { "type": "ApplyStatus", "status": "Burn", "chance": 0.40, "duration": 2, "potency": 0.06 }]
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.7
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Burn",
+          "chance": 0.4,
+          "duration": 2,
+          "potency": 6
+        }
+      ]
+    },
+    {
+      "id": "puffmage_orbi_basic",
+      "name": "Spore Bolt",
+      "description": "Hit the nearest enemy for 0.85x POT.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.85,
+          "stat": "POT"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "puffmage_orbi_signature",
+      "name": "Sporeburst",
+      "description": "Hit all enemies for 0.9x POT; 45% base chance of 3% max-HP Poison for 2 turns.",
+      "target": "AllEnemies",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "stat": "POT"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Poison",
+          "potency": 0.03,
+          "duration": 2,
+          "chance": 0.45
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "barkrot_thane_basic",
+      "name": "Bark Bash",
+      "description": "Hit the nearest enemy for 1x ATK.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "stat": "ATK"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "barkrot_thane_signature",
+      "name": "Rotguard",
+      "description": "Taunt for 2 turns; gain a shield equal to 25% of max HP.",
+      "target": "Self",
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "status": "Taunt",
+          "potency": 0,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "Shield",
+          "stat": "MaxHP",
+          "scale": 0.25
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "mosswhisper_luma_basic",
+      "name": "Moss Touch",
+      "description": "Hit the nearest enemy for 0.5x POT and heal the lowest-HP ally for 0.3x POT.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.5,
+          "stat": "POT"
+        },
+        {
+          "type": "Heal",
+          "stat": "POT",
+          "scale": 0.3,
+          "target": "LowestHpAlly"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "mosswhisper_luma_signature",
+      "name": "Mendglow",
+      "description": "Heal all allies for 0.85x POT; grant 3% max-HP Regen for 2 turns.",
+      "target": "AllAllies",
+      "effects": [
+        {
+          "type": "Heal",
+          "stat": "POT",
+          "scale": 0.85
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Regen",
+          "potency": 0.03,
+          "duration": 2,
+          "chance": 1
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "shroomblade_rowan_basic",
+      "name": "Twin Cuts",
+      "description": "Strike the nearest enemy twice for 0.5x ATK each.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.5,
+          "stat": "ATK"
+        },
+        {
+          "type": "Damage",
+          "scale": 0.5,
+          "stat": "ATK"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "shroomblade_rowan_signature",
+      "name": "Verdant Lunge",
+      "description": "Strike the nearest enemy for 1.8x ATK; gain 15% ATK for 2 turns.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.8,
+          "stat": "ATK"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "ATKUp",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1,
+          "target": "Self"
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "mirelord_gloomrot_basic",
+      "name": "Mire Grip",
+      "description": "Hit the nearest enemy for 0.8x ATK and attempt 10% DEF reduction for 2 turns.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.8,
+          "stat": "ATK"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "DEFDown",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "mirelord_gloomrot_signature",
+      "name": "Sinking Mire",
+      "description": "Hit all enemies for 0.8x POT and attempt 15% POT reduction for 2 turns.",
+      "target": "AllEnemies",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.8,
+          "stat": "POT"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "POTDown",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "frostcap_serin_basic",
+      "name": "Cold Snap",
+      "description": "Hit the nearest enemy for 0.7x POT; 60% base chance of 15% Slow for 1 turn.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.7,
+          "stat": "POT"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Slow",
+          "potency": 0.15,
+          "duration": 1,
+          "chance": 0.6
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "frostcap_serin_signature",
+      "name": "Cryo Spores",
+      "description": "Hit two random enemies for 1x POT; 65% base chance to Freeze each for 1 turn.",
+      "target": "RandomEnemy2",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "stat": "POT"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Freeze",
+          "potency": 0,
+          "duration": 1,
+          "chance": 0.65
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "glacierstalk_bronn_basic",
+      "name": "Ice Knuckle",
+      "description": "Hit the nearest enemy for 0.9x ATK.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "stat": "ATK"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "glacierstalk_bronn_signature",
+      "name": "Sheltering Ice",
+      "description": "Shield the frontmost occupied ally row for 22% of Bronn’s max HP.",
+      "target": "AllyFrontRow",
+      "effects": [
+        {
+          "type": "Shield",
+          "stat": "MaxHP",
+          "scale": 0.22
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "embercap_rugo_basic",
+      "name": "Ember Spear",
+      "description": "Hit the nearest enemy for 1x ATK.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "stat": "ATK"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "embercap_rugo_signature",
+      "name": "Flare Lance",
+      "description": "Hit the nearest enemy for 2x ATK; 70% base chance of 30 flat Burn for 2 turns.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "stat": "ATK"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Burn",
+          "potency": 30,
+          "duration": 2,
+          "chance": 0.7
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "ashmote_kira_basic",
+      "name": "Warm Breeze",
+      "description": "Hit the nearest enemy for 0.6x POT; grant the lowest-HP ally 10 energy.",
+      "target": "EnemyFront",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.6,
+          "stat": "POT"
+        },
+        {
+          "type": "Energy",
+          "potency": 10,
+          "target": "LowestHpAlly"
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "ashmote_kira_signature",
+      "name": "Kindling Chorus",
+      "description": "Grant all allies 15% ATK and 15% POT for 2 turns.",
+      "target": "AllAllies",
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "status": "ATKUp",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "POTUp",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "starspore_zenith_basic",
+      "name": "Star Needle",
+      "description": "Hit a rear enemy for 0.9x ATK, bypassing 15% DEF. Taunt can redirect it.",
+      "target": "EnemyBack",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "stat": "ATK",
+          "ignoreDefense": 0.15
+        }
+      ],
+      "cooldown": 0,
+      "energyCost": 0
+    },
+    {
+      "id": "starspore_zenith_signature",
+      "name": "Falling Star",
+      "description": "Hit a rear enemy for 1.8x ATK, bypassing shields. Taunt can redirect it.",
+      "target": "EnemyBack",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.8,
+          "stat": "ATK",
+          "ignoreShield": true
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "enemy_spore_cloud",
+      "name": "Spore Cloud",
+      "description": "Attempt 3% max-HP Poison on all foes for 2 turns.",
+      "target": "AllEnemies",
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "status": "Poison",
+          "potency": 0.03,
+          "duration": 2,
+          "chance": 0.65
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "enemy_pan_guard",
+      "name": "Pan Guard",
+      "description": "Shield self for 20% max HP; Taunt for 1 turn.",
+      "target": "Self",
+      "effects": [
+        {
+          "type": "Shield",
+          "stat": "MaxHP",
+          "scale": 0.2
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Taunt",
+          "potency": 0,
+          "duration": 1,
+          "chance": 1
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "enemy_simmer",
+      "name": "Simmer",
+      "description": "Hit all foes for 0.6x ATK; attempt 15 flat Burn for 2 turns.",
+      "target": "AllEnemies",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.6,
+          "stat": "ATK"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Burn",
+          "potency": 15,
+          "duration": 2,
+          "chance": 0.6
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "enemy_cold_storage",
+      "name": "Cold Storage",
+      "description": "Hit two random foes for 0.7x POT; attempt 20% Slow for 2 turns.",
+      "target": "RandomEnemy2",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.7,
+          "stat": "POT"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Slow",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 0.75
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
+    },
+    {
+      "id": "boss_boil_over",
+      "name": "Boil Over",
+      "description": "Hit all foes for 0.9x ATK; attempt 25 flat Burn for 2 turns.",
+      "target": "AllEnemies",
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "stat": "ATK"
+        },
+        {
+          "type": "ApplyStatus",
+          "status": "Burn",
+          "potency": 25,
+          "duration": 2,
+          "chance": 0.75
+        }
+      ],
+      "cooldown": 3,
+      "energyCost": 100
     }
   ]
 }

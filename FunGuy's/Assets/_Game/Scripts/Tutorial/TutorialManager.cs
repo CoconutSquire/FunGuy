@@ -33,7 +33,28 @@ public class TutorialManager : MonoBehaviour
         "c_mosswhisper_luma",
     };
 
-    private PlayerSave save;
+    private PlayerSave save => Game.Save ??= SaveSystem.LoadOrNew();
+    private string currentMessage;
+    private System.Action currentContinue;
+
+    public static TutorialManager EnsureInstance()
+    {
+        if (I != null) return I;
+        return new GameObject("TutorialManager").AddComponent<TutorialManager>();
+    }
+
+    public void AttachOverlay(TutorialOverlay value)
+    {
+        overlay = value;
+        if (!string.IsNullOrEmpty(currentMessage)) overlay.Say(currentMessage, currentContinue);
+    }
+
+    private void OnDestroy() { if (I == this) I = null; }
+
+    private static void OpenScene(string name)
+    {
+        if (SceneManager.GetActiveScene().name != name) SceneManager.LoadScene(name);
+    }
 
     private void Awake()
     {
@@ -44,12 +65,13 @@ public class TutorialManager : MonoBehaviour
         }
 
         I = this;
+        transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        save = Game.Save ??= SaveSystem.LoadOrNew();
+        Game.EnsureInitialized();
         EnsureData();
         EnsureStarterProfileForFirstRun();
 
@@ -62,7 +84,10 @@ public class TutorialManager : MonoBehaviour
         if (save.tutorialStep < 0 || save.tutorialStep > (int)TutorialStep.Complete)
             save.tutorialStep = (int)TutorialStep.Welcome;
 
-        GoToStep((TutorialStep)save.tutorialStep);
+        var step = (TutorialStep)save.tutorialStep;
+        GoToStep(step);
+        if (step >= TutorialStep.ShowSummonPool && step <= TutorialStep.DoFirstSummon) OpenScene("Summon");
+        else if (step == TutorialStep.PlaceFirstUnit) OpenScene("Team");
     }
 
     public void GoToStep(TutorialStep step)
@@ -86,12 +111,11 @@ public class TutorialManager : MonoBehaviour
                     "This is the Summon menu. Pull your first unit to build your team.",
                     ContinueTutorial
                 );
-                SceneManager.LoadScene("Summon");
+                OpenScene("Summon");
                 break;
 
             case TutorialStep.GiveTicket:
-                save.tutorialTickets = Mathf.Max(1, save.tutorialTickets);
-                SaveSystem.Save(save);
+                // The one-time ticket is created with the save, never replenished on resume.
                 Present(
                     "You received a tutorial summon ticket. Use it now.",
                     ContinueTutorial
@@ -110,53 +134,52 @@ public class TutorialManager : MonoBehaviour
                     "Open Team and place your first unit.",
                     ContinueTutorial
                 );
-                SceneManager.LoadScene("Team");
+                OpenScene("Team");
                 break;
 
             case TutorialStep.PlaceFirstUnit:
                 Present(
-                    "Place a Tank in front and a damage unit in back when available.",
+                    "Place durable fighters in front. Tap a position, then a fighter; tap two positions to swap or move.",
                     ContinueTutorial
                 );
                 break;
 
             case TutorialStep.StartFirstBattle:
                 Present(
-                    "Start your first combat. Focus on turn order and signature skill timing.",
+                    "Start battle. Basic attacks are automatic; tap a signature to queue it, or turn Auto on.",
                     null
                 );
-                SceneManager.LoadScene("Battle");
+                OpenScene("Battle");
                 break;
 
             case TutorialStep.BattleWinRewards:
-                save.gold += 100;
-                save.spores += 10;
-                SaveSystem.Save(save);
+                Game.Campaign.ClaimTutorialBattleReward();
                 Present(
-                    "Battle clear rewards granted. Upgrade and continue your journey.",
+                    "Rewards saved! First clears earn gold. Replaying a cleared stage is practice and gives no extra rewards.",
                     ContinueTutorial
                 );
                 break;
 
             case TutorialStep.ExplainTankDps:
                 Present(
-                    "Tanks protect your line. DPS and Assassins finish priority targets.",
+                    "Use gold to level up your fighters. Compare their next-level stats and read their skills before spending.",
                     ContinueTutorial
                 );
                 break;
 
             case TutorialStep.PlaceTankFrontDpsBack:
                 Present(
-                    "Team strategy check: front = survivability, back = damage/control.",
+                    "Open Upgrade fighters below. Choose a fighter, review the gold cost and level up. Continue when ready, or save your gold for later.",
                     ContinueTutorial
                 );
+                OpenScene("Team");
                 break;
 
             case TutorialStep.Complete:
                 save.tutorialCompleted = true;
                 SaveSystem.Save(save);
                 if (overlay != null) overlay.Hide();
-                SceneManager.LoadScene("Home");
+                OpenScene("Home");
                 break;
         }
     }
@@ -183,14 +206,20 @@ public class TutorialManager : MonoBehaviour
             GoToStep(TutorialStep.BattleWinRewards);
     }
 
+    // Guidance never owns a purchase or requires spending to complete onboarding.
+    public void SetWorkshopVisible(bool visible)
+    {
+        if (save.tutorialCompleted || save.tutorialStep != (int)TutorialStep.PlaceTankFrontDpsBack) return;
+        if (visible) { if (overlay != null) overlay.Hide(); }
+        else Present("Your upgrades save immediately. Return here between stages to strengthen your team. Continue to Home → Campaign.", ContinueTutorial);
+    }
+
     private void Present(string message, System.Action onContinue)
     {
+        currentMessage = message;
+        currentContinue = onContinue;
         if (overlay != null) overlay.Say(message, onContinue);
-        else
-        {
-            Debug.Log($"[Tutorial] {message}");
-            onContinue?.Invoke();
-        }
+        else Debug.Log($"[Tutorial] Waiting for overlay: {message}");
     }
 
     private void EnsureData()
@@ -205,11 +234,7 @@ public class TutorialManager : MonoBehaviour
         if (save == null || save.tutorialCompleted || Game.Data == null) return;
 
         bool changed = false;
-        if (save.tutorialTickets < 1)
-        {
-            save.tutorialTickets = 1;
-            changed = true;
-        }
+
 
         int targetCount = Mathf.Clamp(minimumStarterUnits, 1, 5);
         var ownedIds = new HashSet<string>(

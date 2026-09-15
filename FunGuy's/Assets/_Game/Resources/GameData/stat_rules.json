@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "rulesVersion": "stat-sheet-v1",
+  "classes": [
+    {
+      "id": "Tank",
+      "baseStats": {
+        "hp": 150,
+        "atk": 90,
+        "def": 150,
+        "spd": 90,
+        "pot": 120
+      },
+      "growth": {
+        "hp": 65,
+        "atk": 5,
+        "def": 12,
+        "spd": 0.8,
+        "pot": 5
+      }
+    },
+    {
+      "id": "DPS",
+      "baseStats": {
+        "hp": 90,
+        "atk": 180,
+        "def": 90,
+        "spd": 150,
+        "pot": 90
+      },
+      "growth": {
+        "hp": 25,
+        "atk": 12,
+        "def": 5,
+        "spd": 1.2,
+        "pot": 5
+      }
+    },
+    {
+      "id": "Mage",
+      "baseStats": {
+        "hp": 100,
+        "atk": 150,
+        "def": 90,
+        "spd": 130,
+        "pot": 130
+      },
+      "growth": {
+        "hp": 18,
+        "atk": 10,
+        "def": 2,
+        "spd": 0.8,
+        "pot": 10
+      }
+    },
+    {
+      "id": "Support",
+      "baseStats": {
+        "hp": 120,
+        "atk": 80,
+        "def": 120,
+        "spd": 120,
+        "pot": 160
+      },
+      "growth": {
+        "hp": 30,
+        "atk": 5,
+        "def": 5,
+        "spd": 1,
+        "pot": 12
+      }
+    },
+    {
+      "id": "Tactician",
+      "baseStats": {
+        "hp": 100,
+        "atk": 100,
+        "def": 100,
+        "spd": 150,
+        "pot": 150
+      },
+      "growth": {
+        "hp": 22,
+        "atk": 8,
+        "def": 4,
+        "spd": 1.3,
+        "pot": 10
+      }
+    },
+    {
+      "id": "Assassin",
+      "baseStats": {
+        "hp": 80,
+        "atk": 160,
+        "def": 80,
+        "spd": 180,
+        "pot": 100
+      },
+      "growth": {
+        "hp": 15,
+        "atk": 12,
+        "def": 3,
+        "spd": 1.8,
+        "pot": 5
+      }
+    }
+  ],
+  "evolution": [
+    {
+      "stars": 1,
+      "levelCap": 100,
+      "multiplier": 1
+    },
+    {
+      "stars": 2,
+      "levelCap": 120,
+      "multiplier": 1.2
+    },
+    {
+      "stars": 3,
+      "levelCap": 140,
+      "multiplier": 1.5
+    },
+    {
+      "stars": 4,
+      "levelCap": 160,
+      "multiplier": 2
+    },
+    {
+      "stars": 5,
+      "levelCap": 180,
+      "multiplier": 2.5
+    },
+    {
+      "stars": 6,
+      "levelCap": 200,
+      "multiplier": 3.5
+    }
+  ],
+  "characters": [
+    {
+      "id": "sheet_01",
+      "name": "Golden Chanterelle",
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 615,
+      "baseStats": {
+        "hp": 190,
+        "atk": 70,
+        "def": 155,
+        "spd": 70,
+        "pot": 130
+      }
+    },
+    {
+      "id": "sheet_05",
+      "name": "Porcelain Guard",
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 600,
+      "baseStats": {
+        "hp": 170,
+        "atk": 40,
+        "def": 180,
+        "spd": 70,
+        "pot": 140
+      }
+    },
+    {
+      "id": "sheet_14",
+      "name": "Peat-Moss Shaman",
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Tank",
+      "role": "Battery",
+      "bst": 600,
+      "baseStats": {
+        "hp": 160,
+        "atk": 90,
+        "def": 140,
+        "spd": 80,
+        "pot": 130
+      }
+    },
+    {
+      "id": "sheet_21",
+      "name": "Xylaria Bone-Breaker",
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 600,
+      "baseStats": {
+        "hp": 155,
+        "atk": 90,
+        "def": 175,
+        "spd": 80,
+        "pot": 100
+      }
+    },
+    {
+      "id": "sheet_24",
+      "name": "Scum-Layer Sentinel",
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Tank",
+      "role": "Saboteur",
+      "bst": 595,
+      "baseStats": {
+        "hp": 170,
+        "atk": 90,
+        "def": 145,
+        "spd": 90,
+        "pot": 100
+      }
+    },
+    {
+      "id": "sheet_32",
+      "name": "Snow-Bank Hermit",
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tank",
+      "role": "Cover",
+      "bst": 615,
+      "baseStats": {
+        "hp": 175,
+        "atk": 80,
+        "def": 170,
+        "spd": 70,
+        "pot": 120
+      }
+    },
+    {
+      "id": "sheet_34",
+      "name": "Permafrost Sentinel",
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 600,
+      "baseStats": {
+        "hp": 150,
+        "atk": 80,
+        "def": 140,
+        "spd": 80,
+        "pot": 150
+      }
+    },
+    {
+      "id": "sheet_38",
+      "name": "Glassy Bracket",
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 600,
+      "baseStats": {
+        "hp": 160,
+        "atk": 90,
+        "def": 160,
+        "spd": 60,
+        "pot": 130
+      }
+    },
+    {
+      "id": "sheet_42",
+      "name": "Grey Oyster",
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 575,
+      "baseStats": {
+        "hp": 160,
+        "atk": 60,
+        "def": 160,
+        "spd": 90,
+        "pot": 105
+      }
+    },
+    {
+      "id": "sheet_49",
+      "name": "Turkey Tail Guard",
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Tank",
+      "role": "Cover",
+      "bst": 575,
+      "baseStats": {
+        "hp": 145,
+        "atk": 90,
+        "def": 130,
+        "spd": 100,
+        "pot": 110
+      }
+    },
+    {
+      "id": "sheet_R09",
+      "name": "Parasol Runt",
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Cover",
+      "bst": 500,
+      "baseStats": {
+        "hp": 110,
+        "atk": 80,
+        "def": 130,
+        "spd": 90,
+        "pot": 90
+      }
+    },
+    {
+      "id": "sheet_R10",
+      "name": "Portobello Brute",
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 500,
+      "baseStats": {
+        "hp": 140,
+        "atk": 70,
+        "def": 130,
+        "spd": 60,
+        "pot": 100
+      }
+    },
+    {
+      "id": "sheet_R17",
+      "name": "Pine Spike",
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 500,
+      "baseStats": {
+        "hp": 150,
+        "atk": 70,
+        "def": 140,
+        "spd": 50,
+        "pot": 90
+      }
+    },
+    {
+      "id": "sheet_R19",
+      "name": "Earth Ball",
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 500,
+      "baseStats": {
+        "hp": 150,
+        "atk": 70,
+        "def": 140,
+        "spd": 60,
+        "pot": 80
+      }
+    }
+  ]
+}

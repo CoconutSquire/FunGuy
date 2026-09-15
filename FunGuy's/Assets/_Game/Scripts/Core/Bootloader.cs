@@ -6,11 +6,7 @@ public class Bootloader : MonoBehaviour {
   [SerializeField] private bool autoRouteToHome = true;
 
   void Awake() {
-    Game.Data = new GameData();
-    Game.Data.LoadAll();
-
-    Game.Save = SaveSystem.LoadOrNew();
-    Game.Gacha = new GachaService(Game.Data);
+    Game.EnsureInitialized();
 
     Debug.Log("Boot complete: data loaded + save loaded.");
 
