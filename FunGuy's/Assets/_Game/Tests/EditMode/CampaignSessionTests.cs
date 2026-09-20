@@ -18,8 +18,8 @@ public class CampaignSessionTests
     private static (GameData data, Store store, LocalCampaignService service) Setup() {
         var data = new GameData(); data.LoadAll();
         var store = new Store();
-        store.state.units.Add(new() { charId = "c_barkrot_thane", level = 100, stars = 1 });
-        store.state.activeTeam.Add("c_barkrot_thane");
+        store.state.units.Add(new() { charId = "1", level = 100, stars = 1 });
+        store.state.activeTeam.Add("1");
         return (data, store, new LocalCampaignService(data, store));
     }
     private static void Drain(CampaignSession run) {

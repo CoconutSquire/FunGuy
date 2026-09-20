@@ -21,7 +21,7 @@ public class UpgradeServiceTests
     private GameData data;
     private Store store;
     private LocalUpgradeService service;
-    private const string Id = "c_puffmage_orbi";
+    private const string Id = "1";
     [SetUp] public void Setup()
     {
         data = new GameData(); data.LoadAll(); store = new Store(); store.state.gold = 250;
@@ -85,7 +85,7 @@ public class UpgradeServiceTests
     [Test] public void MissingDuplicateAndInvalidOwnedState_CannotSpend()
     {
         Assert.Throws<InvalidOperationException>(() => service.Preview("missing"));
-        Assert.Throws<InvalidOperationException>(() => service.Preview("c_barkrot_thane"));
+        Assert.Throws<InvalidOperationException>(() => service.Preview("2"));
         store.state.units.Add(new OwnedUnit { charId = Id, level = 1, stars = 1 });
         Assert.Throws<InvalidOperationException>(() => service.LevelUp(Id, 1, LevelProgressionRules.Version));
         store.state.units.RemoveAt(1); store.state.units[0].stars = 7;

@@ -1,89 +1,223 @@
 {
   "characters": [
     {
-      "id": "c_puffmage_orbi",
-      "name": "Puffmage Orbi",
-      "rarity": 3,
-      "role": "AoE",
-      "baseStats": {
-        "hp": 90,
-        "atk": 120,
-        "def": 70,
-        "spd": 110,
-        "pot": 110
-      },
-      "skills": {
-        "basic": "puffmage_orbi_basic",
-        "ult": "puffmage_orbi_signature"
-      },
       "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Mage",
-      "biome": "Biome-less",
-      "rarityTier": "R",
-      "passives": [
-        {
-          "id": "orbi_fresh_spores",
-          "description": "Gain 20 energy at battle start.",
-          "trigger": "BattleStart",
-          "target": "Self",
-          "every": 1,
-          "effects": [
-            {
-              "type": "Energy",
-              "potency": 20
-            }
-          ]
-        }
-      ],
-      "bst": 500
-    },
-    {
-      "id": "c_barkrot_thane",
-      "name": "Barkrot Thane",
+      "kitVersion": "garrett-roster-v1",
+      "id": "1",
+      "name": "Golden Chanterelle",
       "rarity": 4,
-      "role": "Taunt",
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 615,
+      "synergyTags": [
+        "Fortress",
+        "Vanguard",
+        "Phalanx"
+      ],
+      "passiveName": "Gilded Bash",
+      "passiveDescription": "Gain a 10% Max HP shield when dealing damage.",
+      "signatureSkillName": "Sunlight Barrier",
+      "signatureSkillDescription": "Grants a shield to self and lowest health ally.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
         "hp": 190,
         "atk": 70,
-        "def": 160,
+        "def": 155,
         "spd": 70,
-        "pot": 110
+        "pot": 130
       },
       "skills": {
-        "basic": "barkrot_thane_basic",
-        "ult": "barkrot_thane_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Tank",
-      "biome": "Decay",
-      "rarityTier": "SR",
-      "passives": [
-        {
-          "id": "thane_sapping_bark",
-          "description": "When hit, attempt to lower the attacker’s ATK by 5% for 1 turn.",
-          "trigger": "DamageTaken",
-          "target": "Attacker",
-          "every": 1,
-          "effects": [
-            {
-              "type": "ApplyStatus",
-              "status": "ATKDown",
-              "potency": 0.05,
-              "duration": 1,
-              "chance": 1
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_mosswhisper_luma",
-      "name": "Mosswhisper Luma",
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "2",
+      "name": "Indigo Archer",
       "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "DPS",
+      "role": "Multi-Hit",
+      "bst": 615,
+      "synergyTags": [
+        "Armor Shred"
+      ],
+      "passiveName": "Azure Bleed",
+      "passiveDescription": "If damage hits a bleeding target +10%.",
+      "signatureSkillName": "Forest Volley",
+      "signatureSkillDescription": "Fires 3 arrows at random targets; 30% Bleed.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 90,
+        "atk": 175,
+        "def": 90,
+        "spd": 160,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "3",
+      "name": "Lion's Mane Monk",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "DPS",
+      "role": "Nuker",
+      "bst": 600,
+      "synergyTags": [
+        "Sniper Nest"
+      ],
+      "passiveName": "Focused Strike",
+      "passiveDescription": "10% chance to counter attack with a basic attack when hit with an ability or basic attack.",
+      "signatureSkillName": "Counter Bloom",
+      "signatureSkillDescription": "Deals bonus counter-damage based on attack timing.",
+      "signatureCooldown": "2 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 160,
+        "def": 90,
+        "spd": 120,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "4",
+      "name": "Fly Agaric Jester",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Mage",
+      "role": "AoE",
+      "bst": 590,
+      "synergyTags": [
+        "Cataclysm"
+      ],
+      "passiveName": "Prankster's Cane",
+      "passiveDescription": "Basic attacks grant user a stack of Ibotenic Acid. Permanent.",
+      "signatureSkillName": "Hallucinogen",
+      "signatureSkillDescription": "Deals bonus damage based on Ibotenic Acid stacks.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 95,
+        "atk": 160,
+        "def": 70,
+        "spd": 115,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "5",
+      "name": "Porcelain Guard",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 600,
+      "synergyTags": [
+        "Attrition",
+        "Lifeline",
+        "Vengeance"
+      ],
+      "passiveName": "Clay Layers",
+      "passiveDescription": "Damage redirected is reduced by 20%.",
+      "signatureSkillName": "Impenetrable Glaze",
+      "signatureSkillDescription": "Taunts all enemies; +50% Self DEF for 1 turn.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 170,
+        "atk": 40,
+        "def": 180,
+        "spd": 70,
+        "pot": 140
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "6",
+      "name": "Birch Polypore",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Support",
       "role": "Medic",
+      "bst": 600,
+      "synergyTags": [
+        "Brawling Pair",
+        "Vanguard"
+      ],
+      "passiveName": "Spore Puff",
+      "passiveDescription": "Heals are 10% stronger when affecting Tanks.",
+      "signatureSkillName": "Sanitizing Mist",
+      "signatureSkillDescription": "Heals team and removes 1 debuff.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 120,
+        "atk": 80,
+        "def": 110,
+        "spd": 130,
+        "pot": 160
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "7",
+      "name": "Honey Fungus",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Support",
+      "role": "Saboteur",
+      "bst": 600,
+      "synergyTags": [
+        "Assassination",
+        "Cataclysm",
+        "Armor Shred"
+      ],
+      "passiveName": "Amber Hive",
+      "passiveDescription": "Increase Synergy strength by 10%.",
+      "signatureSkillName": "Sticky Overgrowth",
+      "signatureSkillDescription": "Heals a small amount of the whole team.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
         "hp": 120,
         "atk": 80,
@@ -92,307 +226,2111 @@
         "pot": 160
       },
       "skills": {
-        "basic": "mosswhisper_luma_basic",
-        "ult": "mosswhisper_luma_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Support",
-      "biome": "Forest",
-      "rarityTier": "SR",
-      "passives": [
-        {
-          "id": "luma_renewal",
-          "description": "Every third turn, cleanse one debuff from the lowest-HP ally.",
-          "trigger": "TurnStart",
-          "target": "LowestHpAlly",
-          "every": 3,
-          "effects": [
-            {
-              "type": "Cleanse",
-              "potency": 1
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_shroomblade_rowan",
-      "name": "Shroomblade Rowan",
-      "rarity": 6,
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "8",
+      "name": "Amethyst Deceiver",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Assassin",
+      "role": "Stealth",
+      "bst": 585,
+      "synergyTags": [
+        "Shadow Step"
+      ],
+      "passiveName": "Violet Slash",
+      "passiveDescription": "If this unit crits, enter stealth for a turn.",
+      "signatureSkillName": "Ethereal Shift",
+      "signatureSkillDescription": "100% Crit attack. Stealth lasts an extra turn.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 80,
+        "atk": 160,
+        "def": 60,
+        "spd": 185,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "9",
+      "name": "Parrot Waxcap",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Mage",
+      "role": "Nuker",
+      "bst": 595,
+      "synergyTags": [
+        "Sniper Nest"
+      ],
+      "passiveName": "Colorful Peck",
+      "passiveDescription": "Has a 10% chance to mimic. Basic attack during allies' turn at 50% effectiveness and does not generate energy.",
+      "signatureSkillName": "Iridescent Burst",
+      "signatureSkillDescription": "Deals multi-hit burst damage.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 180,
+        "def": 100,
+        "spd": 115,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "10",
+      "name": "King Bolete",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Forest",
+      "classArchetype": "Tactician",
+      "role": "Captain",
+      "bst": 600,
+      "synergyTags": [
+        "Gourmet Line",
+        "The Battery"
+      ],
+      "passiveName": "Scepter Swing",
+      "passiveDescription": "Increases team POT by 10%.",
+      "signatureSkillName": "Sovereign's Decree",
+      "signatureSkillDescription": "Forces all allies to attack target.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 120,
+        "atk": 100,
+        "def": 110,
+        "spd": 120,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "11",
+      "name": "Veiled Siren",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Assassin",
+      "role": "Stealth",
+      "bst": 610,
+      "synergyTags": [
+        "Shadow Step"
+      ],
+      "passiveName": "Aquatic Ripple",
+      "passiveDescription": "Activate Stealth for 1 turn after inflicting a status ailment.",
+      "signatureSkillName": "Mesmerizing Wail",
+      "signatureSkillDescription": "High chance to Confuse and apply status.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 95,
+        "atk": 140,
+        "def": 90,
+        "spd": 155,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "12",
+      "name": "Bog Snatcher",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Assassin",
+      "role": "Stalker",
+      "bst": 610,
+      "synergyTags": [
+        "Assassination",
+        "Shadow Step",
+        "Coup de Grăce"
+      ],
+      "passiveName": "Muddy Claw",
+      "passiveDescription": "+50% damage to targets not in the front row.",
+      "signatureSkillName": "Drag to the Deep",
+      "signatureSkillDescription": "Pulls backline enemies into danger.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 165,
+        "def": 85,
+        "spd": 170,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "13",
+      "name": "Slime-Mold Geologist",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Mage",
+      "role": "Multi-Hit",
+      "bst": 595,
+      "synergyTags": [
+        "Armor Shred"
+      ],
+      "passiveName": "Viscous Slam",
+      "passiveDescription": "Skills have a 50% chance to trigger again at 50% effectiveness.",
+      "signatureSkillName": "Tectonic Shift",
+      "signatureSkillDescription": "Move to an adjacent tile and hit nearby foes.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 110,
+        "atk": 165,
+        "def": 100,
+        "spd": 110,
+        "pot": 110
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "14",
+      "name": "Peat-Moss Shaman",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Tank",
+      "role": "Battery",
+      "bst": 600,
+      "synergyTags": [
+        "Overclock",
+        "The Battery"
+      ],
+      "passiveName": "Ritual Staff",
+      "passiveDescription": "Energy granted to others by Shaman's ability grants Shaman an equal % Max HP shield.",
+      "signatureSkillName": "Nature's Resurgence",
+      "signatureSkillDescription": "Restores energy and grants a barrier.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 160,
+        "atk": 90,
+        "def": 140,
+        "spd": 80,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "15",
+      "name": "Bioluminescent Angler",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Support",
+      "role": "Buffer",
+      "bst": 600,
+      "synergyTags": [
+        "Overclock"
+      ],
+      "passiveName": "Neon Bite",
+      "passiveDescription": "Heal lowest current % health ally on basic attack.",
+      "signatureSkillName": "Abyssal Lure",
+      "signatureSkillDescription": "Increases all allies' next attack or ability damage.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 95,
+        "def": 90,
+        "spd": 115,
+        "pot": 200
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "16",
+      "name": "Swamp Truffle",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "DPS",
       "role": "Duelist",
+      "bst": 600,
+      "synergyTags": [
+        "Shatter"
+      ],
+      "passiveName": "Filth",
+      "passiveDescription": "Gains 10% lifesteal against poisoned enemies.",
+      "signatureSkillName": "Toxic Film",
+      "signatureSkillDescription": "Applies Poison; increases own healing received.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 180,
+        "def": 100,
+        "spd": 120,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "17",
+      "name": "Black-Yeasted Diver",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Mage",
+      "role": "DoT",
+      "bst": 600,
+      "synergyTags": [
+        "Attrition",
+        "Plague Wind"
+      ],
+      "passiveName": "Dark Ferment",
+      "passiveDescription": "Basic attacks have a small chance to apply a stack of Poison.",
+      "signatureSkillName": "Pressure Explosion",
+      "signatureSkillDescription": "Damage scales based on Poison stacks.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 110,
+        "atk": 150,
+        "def": 100,
+        "spd": 100,
+        "pot": 140
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "18",
+      "name": "Marsh Marasmius",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Tactician",
+      "role": "Captain",
+      "bst": 600,
+      "synergyTags": [
+        "Gourmet Line",
+        "The Battery"
+      ],
+      "passiveName": "Root Tangler",
+      "passiveDescription": "Basic attacks force the enemy to move, if possible.",
+      "signatureSkillName": "Boggy Trap",
+      "signatureSkillDescription": "Sets a trap; next enemy to move triggers it.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 120,
+        "atk": 120,
+        "def": 120,
+        "spd": 140,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "19",
+      "name": "Candelabra Hunter",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "DPS",
+      "role": "Nuker",
+      "bst": 585,
+      "synergyTags": [
+        "Sniper Nest"
+      ],
+      "passiveName": "Flicker Blade",
+      "passiveDescription": "Increases Crit damage by 10%.",
+      "signatureSkillName": "Exorcism",
+      "signatureSkillDescription": "2.0x damage to targets with status effects.",
+      "signatureCooldown": "2 Turns",
       "baseStats": {
         "hp": 90,
-        "atk": 180,
-        "def": 90,
+        "atk": 175,
+        "def": 80,
         "spd": 150,
         "pot": 90
       },
       "skills": {
-        "basic": "shroomblade_rowan_basic",
-        "ult": "shroomblade_rowan_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "DPS",
-      "biome": "Forest",
-      "rarityTier": "UR",
-      "passives": [
-        {
-          "id": "rowan_second_wind",
-          "description": "Every third turn, heal self for 8% max HP.",
-          "trigger": "TurnStart",
-          "target": "Self",
-          "every": 3,
-          "effects": [
-            {
-              "type": "Heal",
-              "stat": "MaxHP",
-              "scale": 0.08
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_mirelord_gloomrot",
-      "name": "Mirelord Gloomrot",
-      "rarity": 5,
-      "role": "Saboteur",
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "20",
+      "name": "Willow-Bracket",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Wetlands",
+      "classArchetype": "Tactician",
+      "role": "Bomber",
+      "bst": 600,
+      "synergyTags": [
+        "The Minefield"
+      ],
+      "passiveName": "Anchor Drop",
+      "passiveDescription": "When an enemy moves, place a mushroom bomb in the spot they just left.",
+      "signatureSkillName": "Mushroom Detonation",
+      "signatureSkillDescription": "Bombs detonate when space becomes occupied.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
-        "hp": 160,
+        "hp": 130,
+        "atk": 140,
+        "def": 120,
+        "spd": 110,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "21",
+      "name": "Xylaria Bone-Breaker",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 600,
+      "synergyTags": [
+        "Attrition",
+        "Lifeline",
+        "Vengeance"
+      ],
+      "passiveName": "Marrow Crush",
+      "passiveDescription": "Lower attacker's ATK by 10% for 1 turn; stacks debuff for each hit.",
+      "signatureSkillName": "Fracture",
+      "signatureSkillDescription": "Damage + permanent DEF reduction.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 155,
+        "atk": 90,
+        "def": 175,
+        "spd": 80,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "22",
+      "name": "Inky Cap Assassin",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "DPS",
+      "role": "Nuker",
+      "bst": 615,
+      "synergyTags": [
+        "Sniper Nest"
+      ],
+      "passiveName": "Midnight Dagger",
+      "passiveDescription": "Attacks enemy with lowest health if possible.",
+      "signatureSkillName": "Final Dissolve",
+      "signatureSkillDescription": "Executes targets below 20% HP instantly.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 90,
+        "atk": 170,
+        "def": 85,
+        "spd": 150,
+        "pot": 120
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "23",
+      "name": "Dead Man's Fingers",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "DPS",
+      "role": "Drinker",
+      "bst": 600,
+      "synergyTags": [
+        "Vampiric Link"
+      ],
+      "passiveName": "Jagged Edge",
+      "passiveDescription": "When current health is lower than 80%, gain 10% lifesteal on attacks and skills.",
+      "signatureSkillName": "Berserker's Call",
+      "signatureSkillDescription": "Consumes health to increase damage and heal output.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 90,
+        "atk": 180,
+        "def": 90,
+        "spd": 140,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "24",
+      "name": "Scum-Layer Sentinel",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Tank",
+      "role": "Saboteur",
+      "bst": 595,
+      "synergyTags": [
+        "Assassination",
+        "Cataclysm",
+        "Armor Shred"
+      ],
+      "passiveName": "Acid Spray",
+      "passiveDescription": "Basic attacks lower target ATK by 10% for 2 turns.",
+      "signatureSkillName": "Rotting Gas",
+      "signatureSkillDescription": "AoE attack that applies debuffs to enemies.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 170,
         "atk": 90,
         "def": 145,
         "spd": 90,
-        "pot": 115
+        "pot": 100
       },
       "skills": {
-        "basic": "mirelord_gloomrot_basic",
-        "ult": "mirelord_gloomrot_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Tank",
-      "biome": "Decay",
-      "rarityTier": "SR",
-      "passives": [
-        {
-          "id": "gloomrot_mire_skin",
-          "description": "Begin battle with a shield equal to 15% max HP.",
-          "trigger": "BattleStart",
-          "target": "Self",
-          "every": 1,
-          "effects": [
-            {
-              "type": "Shield",
-              "stat": "MaxHP",
-              "scale": 0.15
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_frostcap_serin",
-      "name": "Frostcap Serin",
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "25",
+      "name": "Jack O'Lantern",
       "rarity": 4,
-      "role": "CC",
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Mage",
+      "role": "AoE",
+      "bst": 600,
+      "synergyTags": [
+        "Cataclysm"
+      ],
+      "passiveName": "Kindling",
+      "passiveDescription": "For every enemy currently burning, gain 5% ATK.",
+      "signatureSkillName": "Harvest Flare",
+      "signatureSkillDescription": "High AoE damage; 50% Burn chance.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
-        "hp": 100,
+        "hp": 110,
+        "atk": 160,
+        "def": 90,
+        "spd": 110,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "26",
+      "name": "Bleeding Tooth",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Assassin",
+      "role": "Multi-Hit",
+      "bst": 600,
+      "synergyTags": [
+        "Armor Shred"
+      ],
+      "passiveName": "Spore Rapidfire",
+      "passiveDescription": "Basics hit 2 different enemies.",
+      "signatureSkillName": "Cluster Bombard",
+      "signatureSkillDescription": "4 random shots; 2x damage to Shields.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 80,
+        "atk": 160,
+        "def": 90,
+        "spd": 170,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "27",
+      "name": "Death Cap Alchemist",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Support",
+      "role": "CC",
+      "bst": 600,
+      "synergyTags": [
+        "Shatter"
+      ],
+      "passiveName": "Multi-Fan",
+      "passiveDescription": "Deals increased damage to enemies suffering from a debuff.",
+      "signatureSkillName": "Chromatic Wind",
+      "signatureSkillDescription": "Reveals enemy team by 20% for 2 turns.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 130,
+        "atk": 100,
+        "def": 120,
+        "spd": 130,
+        "pot": 120
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "28",
+      "name": "Devil's Urn",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Support",
+      "role": "Purifier",
+      "bst": 600,
+      "synergyTags": [
+        "Purifying Ward"
+      ],
+      "passiveName": "Vibrating Spear",
+      "passiveDescription": "Heals allies when enemies are revealed.",
+      "signatureSkillName": "Echo Location",
+      "signatureSkillDescription": "Reveals enemies in stealth; increases allies' SPD.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 110,
         "atk": 100,
         "def": 100,
         "spd": 150,
+        "pot": 140
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "29",
+      "name": "Black Trumpet",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Tactician",
+      "role": "Captain",
+      "bst": 600,
+      "synergyTags": [
+        "Gourmet Line",
+        "The Battery"
+      ],
+      "passiveName": "Gore Siphon",
+      "passiveDescription": "Increases team's crit chance by 15%.",
+      "signatureSkillName": "Vampiric Feast",
+      "signatureSkillDescription": "Damage + heals self for 100% of damage dealt.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 130,
+        "atk": 100,
+        "def": 110,
+        "spd": 110,
         "pot": 150
       },
       "skills": {
-        "basic": "frostcap_serin_basic",
-        "ult": "frostcap_serin_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Tactician",
-      "biome": "Tundra",
-      "rarityTier": "SR",
-      "passives": [
-        {
-          "id": "serin_cold_read",
-          "description": "Gain 25 energy at battle start.",
-          "trigger": "BattleStart",
-          "target": "Self",
-          "every": 1,
-          "effects": [
-            {
-              "type": "Energy",
-              "potency": 25
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_glacierstalk_bronn",
-      "name": "Glacierstalk Bronn",
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "30",
+      "name": "Carbon Ball Ninja",
       "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Decay",
+      "classArchetype": "Assassin",
+      "role": "Stealth",
+      "bst": 590,
+      "synergyTags": [
+        "Shadow Step"
+      ],
+      "passiveName": "Soot",
+      "passiveDescription": "Crit damage increased by 50%.",
+      "signatureSkillName": "Blackout",
+      "signatureSkillDescription": "Enters Stealth; next hit is guaranteed Crit.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 90,
+        "atk": 180,
+        "def": 80,
+        "spd": 180,
+        "pot": 60
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "31",
+      "name": "Blue Lichen Sniper",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "DPS",
+      "role": "Multi-Hit",
+      "bst": 615,
+      "synergyTags": [
+        "Armor Shred"
+      ],
+      "passiveName": "Frost Bolt",
+      "passiveDescription": "If attacks hit a frozen enemy, basic attack them again. Max 3x.",
+      "signatureSkillName": "Zero-In",
+      "signatureSkillDescription": "Grants self 50% Defense Penetration.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 115,
+        "atk": 165,
+        "def": 95,
+        "spd": 140,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "32",
+      "name": "Snow-Bank Hermit",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tank",
       "role": "Cover",
+      "bst": 615,
+      "synergyTags": [
+        "Not Alone",
+        "Fortress",
+        "Purifying Ward"
+      ],
+      "passiveName": "Frozen Shield",
+      "passiveDescription": "Jumps in front of the first ally who will take damage each turn.",
+      "signatureSkillName": "Ice Wall",
+      "signatureSkillDescription": "Grants a shield to an ally.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
         "hp": 175,
         "atk": 80,
         "def": 170,
         "spd": 70,
-        "pot": 105
+        "pot": 120
       },
       "skills": {
-        "basic": "glacierstalk_bronn_basic",
-        "ult": "glacierstalk_bronn_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Tank",
-      "biome": "Tundra",
-      "rarityTier": "SR",
-      "passives": [
-        {
-          "id": "bronn_intercept",
-          "description": "Intercept the first damaging hit on an adjacent ally in each action.",
-          "trigger": "BattleStart",
-          "target": "Self",
-          "every": 1,
-          "effects": [
-            {
-              "type": "ApplyStatus",
-              "status": "Cover",
-              "potency": 0.5,
-              "duration": -1,
-              "chance": 1
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_embercap_rugo",
-      "name": "Embercap Rugo",
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "33",
+      "name": "Icicle-Tooth Rogue",
       "rarity": 4,
-      "role": "Nuker",
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Assassin",
+      "role": "Stalker",
+      "bst": 585,
+      "synergyTags": [
+        "Assassination",
+        "Shadow Step",
+        "Coup de Grăce"
+      ],
+      "passiveName": "Cold Snap",
+      "passiveDescription": "Gains 20% more damage against frozen enemies.",
+      "signatureSkillName": "Flash Freeze",
+      "signatureSkillDescription": "Damage + target has a chance to freeze.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
         "hp": 90,
         "atk": 180,
-        "def": 90,
+        "def": 75,
         "spd": 150,
         "pot": 90
       },
       "skills": {
-        "basic": "embercap_rugo_basic",
-        "ult": "embercap_rugo_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "DPS",
-      "biome": "Wetlands",
-      "rarityTier": "SR",
-      "passives": [
-        {
-          "id": "rugo_hot_start",
-          "description": "Gain 15% ATK for the first 2 owner turns.",
-          "trigger": "BattleStart",
-          "target": "Self",
-          "every": 1,
-          "effects": [
-            {
-              "type": "ApplyStatus",
-              "status": "ATKUp",
-              "potency": 0.15,
-              "duration": 2,
-              "chance": 1
-            }
-          ]
-        }
-      ],
-      "bst": 600
+      "passives": []
     },
     {
-      "id": "c_ashmote_kira",
-      "name": "Ashmote Kira",
-      "rarity": 3,
-      "role": "Buffer",
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "34",
+      "name": "Permafrost Sentinel",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 600,
+      "synergyTags": [
+        "Fortress",
+        "Vanguard",
+        "Phalanx"
+      ],
+      "passiveName": "Glacier",
+      "passiveDescription": "While shielded, gain immunity to burn.",
+      "signatureSkillName": "Blizzard Aura",
+      "signatureSkillDescription": "Reduces SPD of all enemies by 20% while alive.",
+      "signatureCooldown": "Passive",
+      "baseStats": {
+        "hp": 150,
+        "atk": 80,
+        "def": 140,
+        "spd": 80,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "35",
+      "name": "Alpine Puffball",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Mage",
+      "role": "Bomber",
+      "bst": 600,
+      "synergyTags": [
+        "The Minefield"
+      ],
+      "passiveName": "Chilly Gale",
+      "passiveDescription": "Attacks have a 25% chance to freeze enemies for 2 turns.",
+      "signatureSkillName": "Oxygen Depletion",
+      "signatureSkillDescription": "Deal AoE and reduce ATK and POT.",
+      "signatureCooldown": "3 Turns",
       "baseStats": {
         "hp": 100,
-        "atk": 70,
+        "atk": 140,
+        "def": 110,
+        "spd": 130,
+        "pot": 120
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "36",
+      "name": "Star-Tip Scout",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Support",
+      "role": "Battery",
+      "bst": 585,
+      "synergyTags": [
+        "Overclock",
+        "The Battery"
+      ],
+      "passiveName": "Comet Dash",
+      "passiveDescription": "Adds 20% of SPD to ATK.",
+      "signatureSkillName": "Starlight Rush",
+      "signatureSkillDescription": "Grants 1 ally an immediate extra turn.",
+      "signatureCooldown": "5 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 100,
         "def": 90,
-        "spd": 100,
+        "spd": 195,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "37",
+      "name": "Bitter-Cold Oyster",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Support",
+      "role": "Purifier",
+      "bst": 600,
+      "synergyTags": [
+        "Purifying Ward"
+      ],
+      "passiveName": "Shell Cracker",
+      "passiveDescription": "10% chance to apply Brittle on attacks.",
+      "signatureSkillName": "Frostbite Grip",
+      "signatureSkillDescription": "Damage + removes 1 debuff from an ally.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 120,
+        "atk": 120,
+        "def": 130,
+        "spd": 110,
+        "pot": 120
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "38",
+      "name": "Glassy Bracket",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 600,
+      "synergyTags": [
+        "Attrition",
+        "Lifeline",
+        "Vengeance"
+      ],
+      "passiveName": "Crystallized",
+      "passiveDescription": "Damage dealt to oneself has a chance of lowering ATK.",
+      "signatureSkillName": "Refractive Shield",
+      "signatureSkillDescription": "Taunts and reflects 50% of incoming damage.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 160,
+        "atk": 90,
+        "def": 160,
+        "spd": 60,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "39",
+      "name": "Aurora Mycena",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Support",
+      "role": "Medic",
+      "bst": 600,
+      "synergyTags": [
+        "Brawling Pair",
+        "Vanguard"
+      ],
+      "passiveName": "Prism Flash",
+      "passiveDescription": "Aurora's heals are 10% stronger.",
+      "signatureSkillName": "Cosmic Dance",
+      "signatureSkillDescription": "Heals team and grants 15% Crit Rate for 1 turn.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 110,
+        "atk": 120,
+        "def": 100,
+        "spd": 120,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "40",
+      "name": "Glacial Polypore",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Tundra",
+      "classArchetype": "Tactician",
+      "role": "Captain",
+      "bst": 600,
+      "synergyTags": [
+        "Gourmet Line",
+        "The Battery"
+      ],
+      "passiveName": "Ice Chip",
+      "passiveDescription": "Grants team a 10% chance to freeze on basic attacks.",
+      "signatureSkillName": "Flash Thaw",
+      "signatureSkillDescription": "Removes all team debuffs and grants a shield.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 130,
+        "atk": 90,
+        "def": 130,
+        "spd": 110,
         "pot": 140
       },
       "skills": {
-        "basic": "ashmote_kira_basic",
-        "ult": "ashmote_kira_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
-      "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Support",
-      "biome": "Biome-less",
-      "rarityTier": "R",
-      "passives": [
-        {
-          "id": "kira_embers",
-          "description": "Every third turn, grant the lowest-HP ally 15 energy.",
-          "trigger": "TurnStart",
-          "target": "LowestHpAlly",
-          "every": 3,
-          "effects": [
-            {
-              "type": "Energy",
-              "potency": 15
-            }
-          ]
-        }
-      ],
-      "bst": 500
+      "passives": []
     },
     {
-      "id": "c_starspore_zenith",
-      "name": "Starspore Zenith",
-      "rarity": 6,
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "41",
+      "name": "Bread Mold",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Mage",
+      "role": "DoT",
+      "bst": 575,
+      "synergyTags": [
+        "Attrition",
+        "Plague Wind"
+      ],
+      "passiveName": "Toasted",
+      "passiveDescription": "Burns stack twice.",
+      "signatureSkillName": "Spreading Ferment",
+      "signatureSkillDescription": "Applies a spreading burn to a target enemy that spreads to a random neighbor.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 145,
+        "def": 85,
+        "spd": 120,
+        "pot": 125
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "42",
+      "name": "Grey Oyster",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 575,
+      "synergyTags": [
+        "Attrition",
+        "Lifeline",
+        "Vengeance"
+      ],
+      "passiveName": "Shell Up",
+      "passiveDescription": "Gain a 15% max health shield every other turn.",
+      "signatureSkillName": "Gourmet Platter",
+      "signatureSkillDescription": "Taunts enemies and restores 25% max HP.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 160,
+        "atk": 60,
+        "def": 160,
+        "spd": 90,
+        "pot": 105
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "43",
+      "name": "Yeast Bud",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Support",
+      "role": "Battery",
+      "bst": 575,
+      "synergyTags": [
+        "Overclock",
+        "The Battery"
+      ],
+      "passiveName": "Rising Jab",
+      "passiveDescription": "Whenever an ally takes a turn because of the boost of energy, restore their health by 10%.",
+      "signatureSkillName": "Over-Proofing",
+      "signatureSkillDescription": "Grants team a burst of energy and minor heal.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 115,
+        "atk": 80,
+        "def": 110,
+        "spd": 130,
+        "pot": 140
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "44",
+      "name": "Crimini Cadet",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Assassin",
       "role": "Stalker",
+      "bst": 575,
+      "synergyTags": [
+        "Assassination",
+        "Shadow Step",
+        "Coup de Grăce"
+      ],
+      "passiveName": "Searing Blade",
+      "passiveDescription": "Increases SPD by 5% permanently if multiple hits occurred.",
+      "signatureSkillName": "Julienne Slash",
+      "signatureSkillDescription": "Targets vulnerable enemies for a cutting burst.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 165,
+        "def": 75,
+        "spd": 135,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "45",
+      "name": "Shiitake Sensei",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Tactician",
+      "role": "Captain",
+      "bst": 575,
+      "synergyTags": [
+        "Gourmet Line",
+        "The Battery"
+      ],
+      "passiveName": "Umami Strike",
+      "passiveDescription": "Applies Burn on basic attacks at a 40% chance.",
+      "signatureSkillName": "Master's Recipe",
+      "signatureSkillDescription": "Grants the team a random buff.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 110,
+        "atk": 90,
+        "def": 90,
+        "spd": 140,
+        "pot": 145
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "46",
+      "name": "Witch's Butter",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Support",
+      "role": "Buffer",
+      "bst": 575,
+      "synergyTags": [
+        "Overclock"
+      ],
+      "passiveName": "Substance",
+      "passiveDescription": "10% chance to apply Intangible to self.",
+      "signatureSkillName": "Golden Glaze",
+      "signatureSkillDescription": "Makes an ally Intangible (untargetable) for 1 turn.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 110,
+        "atk": 90,
+        "def": 100,
+        "spd": 130,
+        "pot": 145
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "47",
+      "name": "Morel Scout",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "DPS",
+      "role": "Buffer",
+      "bst": 575,
+      "synergyTags": [
+        "Overclock"
+      ],
+      "passiveName": "Pitted Spear",
+      "passiveDescription": "Attacks have a 10% chance to drop 'Scraps'. They provide a small team heal; chance doubled on crits.",
+      "signatureSkillName": "Flavor Finder",
+      "signatureSkillDescription": "Deals damage and grants a small heal.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 90,
+        "atk": 145,
+        "def": 90,
+        "spd": 150,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "48",
+      "name": "Enoki Archer",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "DPS",
+      "role": "Multi-Hit",
+      "bst": 575,
+      "synergyTags": [
+        "Armor Shred"
+      ],
+      "passiveName": "Bundle Shot",
+      "passiveDescription": "Attacks on enemies suffering from a debuff do 10% more damage.",
+      "signatureSkillName": "Needle Rain",
+      "signatureSkillDescription": "AoE attack with a high chance to apply a debuff.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 100,
+        "atk": 160,
+        "def": 90,
+        "spd": 125,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "49",
+      "name": "Turkey Tail Guard",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Tank",
+      "role": "Cover",
+      "bst": 575,
+      "synergyTags": [
+        "Not Alone",
+        "Fortress",
+        "Purifying Ward"
+      ],
+      "passiveName": "Fan Sweep",
+      "passiveDescription": "Blocks damage passively for an ally with the lowest DEF.",
+      "signatureSkillName": "Pillow Wall",
+      "signatureSkillDescription": "Provides a defensive barrier and taunt effect.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 145,
+        "atk": 90,
+        "def": 130,
+        "spd": 100,
+        "pot": 110
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "50",
+      "name": "Lobster Fungus",
+      "rarity": 4,
+      "rarityTier": "SR",
+      "biome": "Kitchen",
+      "classArchetype": "Support",
+      "role": "Medic",
+      "bst": 575,
+      "synergyTags": [
+        "Brawling Pair",
+        "Vanguard"
+      ],
+      "passiveName": "Pincer Heal",
+      "passiveDescription": "Applies Regen to a frontline ally.",
+      "signatureSkillName": "Butter Bath",
+      "signatureSkillDescription": "Grants a 20% max health shield to self then heals more.",
+      "signatureCooldown": "3 Turns",
+      "baseStats": {
+        "hp": 150,
+        "atk": 80,
+        "def": 95,
+        "spd": 100,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "C1",
+      "name": "Nebula Cordyceps",
+      "rarity": 6,
+      "rarityTier": "UR",
+      "biome": "Cosmic",
+      "classArchetype": "Tactician",
+      "role": "AoE",
+      "bst": 900,
+      "synergyTags": [
+        "Cataclysm"
+      ],
+      "passiveName": "Constellation",
+      "passiveDescription": "Links together allies and enemies. Damage and healing is shared evenly amongst the team.",
+      "signatureSkillName": "Black Hole",
+      "signatureSkillDescription": "Pulls enemies together and deals massive AoE damage.",
+      "signatureCooldown": "4 Turns",
+      "baseStats": {
+        "hp": 180,
+        "atk": 180,
+        "def": 160,
+        "spd": 160,
+        "pot": 220
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R01",
+      "name": "Common Button",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Support",
+      "role": "Medic",
+      "bst": 500,
+      "synergyTags": [
+        "Brawling Pair",
+        "Vanguard"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Quick Patch",
+      "signatureSkillDescription": "Low flat heal to one ally.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 100,
+        "atk": 80,
+        "def": 100,
+        "spd": 100,
+        "pot": 120
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R02",
+      "name": "Brown Field Cap",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Assassin",
+      "role": "Stalker",
+      "bst": 500,
+      "synergyTags": [
+        "Assassination",
+        "Shadow Step",
+        "Coup de Grăce"
+      ],
+      "passiveName": "N/A",
+      "passiveDescription": "N/A",
+      "signatureSkillName": "Swift Strike",
+      "signatureSkillDescription": "Basic physical attack.",
+      "signatureCooldown": "N/A",
+      "baseStats": {
+        "hp": 80,
+        "atk": 110,
+        "def": 110,
+        "spd": 100,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R03",
+      "name": "Lawn Fairy",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Support",
+      "role": "Buffer",
+      "bst": 500,
+      "synergyTags": [
+        "Overclock"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Dew Drop",
+      "signatureSkillDescription": "Gives 10% POT to an ally.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 80,
+        "atk": 70,
+        "def": 70,
+        "spd": 130,
+        "pot": 150
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R04",
+      "name": "Shaggy Mane",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "DPS",
+      "role": "Nuker",
+      "bst": 500,
+      "synergyTags": [
+        "Sniper Nest"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Ink Splash",
+      "signatureSkillDescription": "High damage, but loses 5% HP.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 80,
+        "atk": 140,
+        "def": 70,
+        "spd": 120,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R05",
+      "name": "Puffball Sprout",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Mage",
+      "role": "Bomber",
+      "bst": 500,
+      "synergyTags": [
+        "The Minefield"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Pop",
+      "signatureSkillDescription": "Deals small AoE damage.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 100,
+        "atk": 120,
+        "def": 90,
+        "spd": 100,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R06",
+      "name": "Dryad's Saddle",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tactician",
+      "role": "Captain",
+      "bst": 500,
+      "synergyTags": [
+        "Gourmet Line",
+        "The Battery"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Eagle Eye",
+      "signatureSkillDescription": "Increases ally Accuracy by 5%.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 120,
+        "atk": 100,
+        "def": 80,
+        "spd": 100,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R07",
+      "name": "Cup Fungus",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Support",
+      "role": "Drinker",
+      "bst": 500,
+      "synergyTags": [
+        "Vampiric Link"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Sip",
+      "signatureSkillDescription": "Steals 5% HP from target.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 130,
+        "atk": 110,
+        "def": 90,
+        "spd": 80,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R08",
+      "name": "Yellow Brain",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Mage",
+      "role": "CC",
+      "bst": 500,
+      "synergyTags": [
+        "Shatter"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Mind Fog",
+      "signatureSkillDescription": "10% chance to Stun.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 90,
+        "atk": 100,
+        "def": 80,
+        "spd": 100,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R09",
+      "name": "Parasol Runt",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Cover",
+      "bst": 500,
+      "synergyTags": [
+        "Not Alone",
+        "Fortress",
+        "Purifying Ward"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Shade",
+      "signatureSkillDescription": "Reduces AoE damage taken by 10%.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 110,
+        "atk": 80,
+        "def": 130,
+        "spd": 90,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R10",
+      "name": "Portobello Brute",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 500,
+      "synergyTags": [
+        "Fortress",
+        "Vanguard",
+        "Phalanx"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Protective Circle",
+      "signatureSkillDescription": "Grants a small DEF buff to row for 2 turns.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 140,
+        "atk": 70,
+        "def": 130,
+        "spd": 60,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R11",
+      "name": "Fairy Ring Guard",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Support",
+      "role": "DoT",
+      "bst": 500,
+      "synergyTags": [
+        "Attrition",
+        "Plague Wind"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Toxic Dust",
+      "signatureSkillDescription": "Applies a weak Poison DoT for 3 turns.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 100,
+        "atk": 110,
+        "def": 90,
+        "spd": 90,
+        "pot": 110
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R12",
+      "name": "Cloud Ear",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Support",
+      "role": "Medic",
+      "bst": 500,
+      "synergyTags": [
+        "Brawling Pair",
+        "Vanguard"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Reaching Tentacles",
+      "signatureSkillDescription": "Hits 2 random enemies; 15% chance to slow.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 100,
+        "atk": 80,
+        "def": 85,
+        "spd": 110,
+        "pot": 125
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R13",
+      "name": "Dead Man's Foot",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Mage",
+      "role": "Saboteur",
+      "bst": 500,
+      "synergyTags": [
+        "Assassination",
+        "Cataclysm",
+        "Armor Shred"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Quick Reflex",
+      "signatureSkillDescription": "Increases own SPD by 5% for 2 rounds.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 80,
+        "atk": 130,
+        "def": 75,
+        "spd": 115,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R14",
+      "name": "Coral Creep",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "DPS",
+      "role": "Multi-Hit",
+      "bst": 500,
+      "synergyTags": [
+        "Armor Shred"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Veiled Protection",
+      "signatureSkillDescription": "Reduces damage of the next hit for a backline ally.",
+      "signatureCooldown": null,
       "baseStats": {
         "hp": 75,
-        "atk": 155,
+        "atk": 120,
+        "def": 90,
+        "spd": 115,
+        "pot": 100
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R15",
+      "name": "Velvet Shank",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Assassin",
+      "role": "Stalker",
+      "bst": 500,
+      "synergyTags": [
+        "Assassination",
+        "Shadow Step",
+        "Coup de Grăce"
+      ],
+      "passiveName": "N/A",
+      "passiveDescription": "N/A",
+      "signatureSkillName": "Resin Trap",
+      "signatureSkillDescription": "Deals damage and reduces target SPD by 10 for 2 turns.",
+      "signatureCooldown": "N/A",
+      "baseStats": {
+        "hp": 90,
+        "atk": 125,
         "def": 80,
-        "spd": 170,
+        "spd": 120,
+        "pot": 85
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R16",
+      "name": "Bamboo Pith",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Mage",
+      "role": "Saboteur",
+      "bst": 500,
+      "synergyTags": [
+        "Assassination",
+        "Cataclysm",
+        "Armor Shred"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Yellow Flare",
+      "signatureSkillDescription": "AoE damage to front row; 10% chance to Stun.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 95,
+        "atk": 130,
+        "def": 70,
+        "spd": 110,
         "pot": 95
       },
       "skills": {
-        "basic": "starspore_zenith_basic",
-        "ult": "starspore_zenith_signature"
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
       },
+      "passives": []
+    },
+    {
       "statModel": "class-growth-v1",
-      "kitVersion": "slice-roster-v1",
-      "classArchetype": "Assassin",
-      "biome": "Kitchen",
-      "rarityTier": "UR",
-      "passives": [
-        {
-          "id": "zenith_dusk",
-          "description": "Begin battle in Stealth for 1 owner turn.",
-          "trigger": "BattleStart",
-          "target": "Self",
-          "every": 1,
-          "effects": [
-            {
-              "type": "ApplyStatus",
-              "status": "Stealth",
-              "potency": 0,
-              "duration": 1,
-              "chance": 1
-            }
-          ]
-        }
+      "kitVersion": "garrett-roster-v1",
+      "id": "R17",
+      "name": "Pine Spike",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Taunt",
+      "bst": 500,
+      "synergyTags": [
+        "Attrition",
+        "Lifeline",
+        "Vengeance"
       ],
-      "bst": 575
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Hardened Rind",
+      "signatureSkillDescription": "Increases self-DEF by 25% for 3 turns.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 150,
+        "atk": 70,
+        "def": 140,
+        "spd": 50,
+        "pot": 90
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R18",
+      "name": "Sulfur Tuft",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Mage",
+      "role": "AoE",
+      "bst": 500,
+      "synergyTags": [
+        "Cataclysm"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Faint Radiance",
+      "signatureSkillDescription": "Deals a small scaling amount of AoE damage.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 105,
+        "atk": 130,
+        "def": 85,
+        "spd": 105,
+        "pot": 75
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R19",
+      "name": "Earth Ball",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Tank",
+      "role": "Wall",
+      "bst": 500,
+      "synergyTags": [
+        "Fortress",
+        "Vanguard",
+        "Phalanx"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Firm Shell",
+      "signatureSkillDescription": "Small self-DEF buff.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 150,
+        "atk": 70,
+        "def": 140,
+        "spd": 60,
+        "pot": 80
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
+    },
+    {
+      "statModel": "class-growth-v1",
+      "kitVersion": "garrett-roster-v1",
+      "id": "R20",
+      "name": "Luminous Myca",
+      "rarity": 3,
+      "rarityTier": "R",
+      "biome": "Biome-less",
+      "classArchetype": "Support",
+      "role": "Battery",
+      "bst": 500,
+      "synergyTags": [
+        "Overclock",
+        "The Battery"
+      ],
+      "passiveName": null,
+      "passiveDescription": null,
+      "signatureSkillName": "Glow",
+      "signatureSkillDescription": "Grants an ally 10 energy.",
+      "signatureCooldown": null,
+      "baseStats": {
+        "hp": 90,
+        "atk": 90,
+        "def": 80,
+        "spd": 110,
+        "pot": 130
+      },
+      "skills": {
+        "basic": "imported_character_basic",
+        "ult": "imported_character_signature"
+      },
+      "passives": []
     }
   ],
   "enemies": [
