@@ -28,9 +28,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private int minimumStarterUnits = 3;
     [SerializeField] private string[] preferredStarterIds =
     {
-        "c_barkrot_thane",
-        "c_puffmage_orbi",
-        "c_mosswhisper_luma",
+        "1",
+        "2",
+        "6",
     };
 
     private PlayerSave save => Game.Save ??= SaveSystem.LoadOrNew();
