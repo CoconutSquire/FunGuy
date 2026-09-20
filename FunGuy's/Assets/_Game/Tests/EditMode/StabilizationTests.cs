@@ -154,8 +154,8 @@ public class StabilizationTests
     {
         var data = Load(); var store = new MemoryStore();
         store.state.accountLevel = 1;
-        store.state.units.Add(new() { charId = "c_barkrot_thane", level = 100, stars = 1 });
-        store.state.activeTeam.Add("c_barkrot_thane");
+        store.state.units.Add(new() { charId = "1", level = 100, stars = 1 });
+        store.state.activeTeam.Add("1");
         var campaign = new LocalCampaignService(data, store);
         Assert.False(campaign.IsUnlocked("s_1_2"));
         var firstClear = campaign.Run("s_1_1");
