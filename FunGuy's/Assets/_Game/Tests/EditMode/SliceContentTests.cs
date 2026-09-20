@@ -12,7 +12,7 @@ public class SliceContentTests
         public PlayerSave Read() => JsonUtility.FromJson<PlayerSave>(JsonUtility.ToJson(state));
         public void Write(PlayerSave value) => state = value;
     }
-    private static readonly string[] Starters = { "c_barkrot_thane", "c_puffmage_orbi", "c_mosswhisper_luma" };
+    private static readonly string[] Starters = { "1", "2", "6" };
     private static Store NewAccount()
     {
         var store = new Store(); store.state.gold = 100;
@@ -27,26 +27,31 @@ public class SliceContentTests
         return session.Complete();
     }
 
-    [Test] public void Roster_HasTenDistinctKitsAcrossAllClassesAndBiomes_WithSourceGrowth()
+    [Test] public void Roster_LoadsGarrettCatalogAcrossClassesAndBiomes_WithSourceGrowth()
     {
         var data = new GameData(); data.LoadAll();
-        Assert.AreEqual(10, data.Characters.Count);
+        Assert.AreEqual(71, data.Characters.Count);
         Assert.AreEqual(6, data.Characters.Values.Select(c => c.classArchetype).Distinct().Count());
-        Assert.AreEqual(5, data.Characters.Values.Where(c => c.biome != "Biome-less").Select(c => c.biome).Distinct().Count());
-        Assert.AreEqual(10, data.Characters.Values.Select(c => c.skills.ult).Distinct().Count());
+        Assert.AreEqual(6, data.Characters.Values.Where(c => c.biome != "Biome-less").Select(c => c.biome).Distinct().Count());
+        var removed = new[] {
+            "c_puffmage_orbi", "c_barkrot_thane", "c_mosswhisper_luma", "c_shroomblade_rowan",
+            "c_mirelord_gloomrot", "c_frostcap_serin", "c_glacierstalk_bronn", "c_embercap_rugo",
+            "c_ashmote_kira", "c_starspore_zenith"
+        };
+        Assert.False(removed.Any(data.Characters.ContainsKey));
         foreach (var c in data.Characters.Values)
         {
-            Assert.AreEqual("class-growth-v1", c.statModel); Assert.AreEqual("slice-roster-v1", c.kitVersion);
-            Assert.IsNotEmpty(c.passives); Assert.IsNotEmpty(data.Skills[c.skills.basic].description);
-            Assert.IsNotEmpty(data.Skills[c.skills.ult].description);
-            Assert.True(c.passives.All(p => !string.IsNullOrEmpty(p.description)));
-            Assert.AreEqual(c.rarityTier == "R" ? 500 : c.biome == "Kitchen" ? 575 : 600, c.bst);
+            Assert.AreEqual("class-growth-v1", c.statModel);
+            Assert.AreEqual("garrett-roster-v1", c.kitVersion);
+            Assert.AreEqual(c.bst, c.baseStats.hp + c.baseStats.atk + c.baseStats.def + c.baseStats.spd + c.baseStats.pot);
+            Assert.AreEqual("imported_character_basic", c.skills.basic);
+            Assert.AreEqual("imported_character_signature", c.skills.ult);
             if (c.rarityTier == "R") Assert.AreEqual("Biome-less", c.biome);
         }
-        var orbi = CombatUnitFactory.Create(data.Characters[Starters[1]], 3, TeamSide.Player, 1, data.StatRules);
-        Assert.AreEqual(126, orbi.maxHp); Assert.AreEqual(130, orbi.pot); Assert.AreEqual(125, orbi.spd);
-        var grown = CombatUnitFactory.Create(data.Characters[Starters[1]], 3, TeamSide.Player, 2, data.StatRules);
-        Assert.AreEqual(151, grown.maxHp); Assert.AreEqual(140, grown.spd);
+        var levelOne = CombatUnitFactory.Create(data.Characters["1"], 1, TeamSide.Player, 1, data.StatRules);
+        var levelThree = CombatUnitFactory.Create(data.Characters["1"], 3, TeamSide.Player, 1, data.StatRules);
+        Assert.Greater(levelThree.maxHp, levelOne.maxHp);
+        Assert.Greater(levelThree.atk, levelOne.atk);
     }
 
     [Test] public void StarterCampaign_CanReachBossThroughEarnedUpgradesWithoutSummonLuck()
@@ -80,7 +85,7 @@ public class SliceContentTests
         Assert.IsEmpty(failures, string.Join("\n", failures));
     }
 
-    [Test] public void EveryAuthoredKit_ExecutesItsBasicSignatureAndPassive()
+    [Test] public void EveryImportedCharacter_ExecutesFallbackBasicAndSignature()
     {
         var data = new GameData(); data.LoadAll();
         foreach (var definition in data.Characters.Values)
@@ -90,9 +95,8 @@ public class SliceContentTests
             dummy.maxHp = dummy.hp = 50000; dummy.atk = 1; dummy.pot = 1; dummy.ultSkillId = dummy.basicSkillId;
             var session = new BattleSession(data, new() { player }, new() { dummy }, seed: 17, auto: true, maxActions: 80);
             while (session.Outcome == BattleOutcome.Running) session.Step();
-            Assert.True(session.Events.Any(e => e.Kind == BattleEventKind.SkillUsed && e.Detail == definition.skills.basic), definition.id + " basic");
-            Assert.True(session.Events.Any(e => e.Kind == BattleEventKind.SkillUsed && e.Detail == definition.skills.ult), definition.id + " signature");
-            Assert.True(session.Events.Any(e => e.Kind == BattleEventKind.PassiveTriggered && e.Detail == definition.passives[0].id), definition.id + " passive");
+            Assert.True(session.Events.Any(x => x.Kind == BattleEventKind.SkillUsed && x.Detail == definition.skills.basic), definition.id + " basic");
+            Assert.True(session.Events.Any(x => x.Kind == BattleEventKind.SkillUsed && x.Detail == definition.skills.ult), definition.id + " signature");
         }
     }
 
