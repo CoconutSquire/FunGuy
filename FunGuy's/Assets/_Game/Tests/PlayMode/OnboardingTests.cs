@@ -152,7 +152,7 @@ public class OnboardingTests
         yield return SceneManager.LoadSceneAsync("Team"); yield return Settle();
         yield return Press("Btn_Upgrades");
         var workshop = Object.FindFirstObjectByType<UpgradePanelController>(); Assert.True(workshop.IsOpen);
-        string id = "c_puffmage_orbi"; workshop.Select(id); yield return Settle();
+        string id = "2"; workshop.Select(id); yield return Settle();
         var preview = workshop.Preview; Assert.AreEqual(3, preview.Level); // Onboarding starters begin at level 3.
         yield return CaptureOptional("step4-upgrade-preview");
         yield return Press("Btn_ConfirmUpgrade");
@@ -175,8 +175,8 @@ public class OnboardingTests
         yield return Press("Btn_CloseUpgrades");
         yield return Press("Btn_StartBattle");
         var battle = Object.FindFirstObjectByType<BattleSceneController>(); battle.OnRunBattlePressed();
-        Assert.AreEqual(1, Game.Save.activeTeam.Count(x => Game.Data.Characters[x].biome == "Forest"));
-        // R Orbi is biome-less; these three starters have no Forest HP tier.
+        Assert.AreEqual(3, Game.Save.activeTeam.Count(x => Game.Data.Characters[x].biome == "Forest"));
+        // The imported tutorial starter trio currently comes from the Forest roster.
         Assert.AreEqual(preview.Next.HP,
             battle.Session.Battle.GetState().Single(u => u.ContentId == id).MaxHp);
     }

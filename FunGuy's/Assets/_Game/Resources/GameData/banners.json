@@ -7,33 +7,49 @@
       "currency": "spores",
       "costPerPull": 10,
       "rates": [
-        { "rarity": 3, "rate": 0.78 },
-        { "rarity": 4, "rate": 0.18 },
-        { "rarity": 5, "rate": 0.035 },
-        { "rarity": 6, "rate": 0.005 }
+        {
+          "rarity": 3,
+          "rate": 0.78
+        },
+        {
+          "rarity": 4,
+          "rate": 0.215
+        },
+        {
+          "rarity": 6,
+          "rate": 0.005
+        }
       ],
       "pity": {
         "guaranteeRarityAt": 80,
-        "guaranteeRarity": 5,
+        "guaranteeRarity": 4,
         "softPityStart": 65,
         "hardPity": 80,
-        "featuredRarity": 5
+        "featuredRarity": 4
       },
-      "featuredRateUp": 1.0,
+      "featuredRateUp": 1,
       "carryFeaturedGuarantee": false,
       "featuredCharacterIds": []
     },
     {
       "id": "b_event_starspore",
-      "name": "Starseed Bloom Event Banner",
+      "name": "Nebula Cordyceps Event Banner",
       "bannerType": "limited_character",
       "currency": "spores",
       "costPerPull": 10,
       "rates": [
-        { "rarity": 3, "rate": 0.79 },
-        { "rarity": 4, "rate": 0.15 },
-        { "rarity": 5, "rate": 0.054 },
-        { "rarity": 6, "rate": 0.006 }
+        {
+          "rarity": 3,
+          "rate": 0.79
+        },
+        {
+          "rarity": 4,
+          "rate": 0.204
+        },
+        {
+          "rarity": 6,
+          "rate": 0.006
+        }
       ],
       "pity": {
         "guaranteeRarityAt": 90,
@@ -44,7 +60,9 @@
       },
       "featuredRateUp": 0.5,
       "carryFeaturedGuarantee": true,
-      "featuredCharacterIds": [ "c_starspore_zenith" ]
+      "featuredCharacterIds": [
+        "C1"
+      ]
     }
   ]
 }

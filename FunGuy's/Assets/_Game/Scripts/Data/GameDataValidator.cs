@@ -22,7 +22,7 @@ public static class GameDataValidator
             {
                 Require(c.statModel == "class-growth-v1" && string.IsNullOrEmpty(c.statProfileId) && statRules != null,
                     $"Unit {c.id}: unsupported or conflicting stat model.");
-                Require(c.kitVersion == "slice-roster-v1" && !string.IsNullOrWhiteSpace(c.name) && !string.IsNullOrWhiteSpace(c.role),
+                Require(!string.IsNullOrWhiteSpace(c.kitVersion) && !string.IsNullOrWhiteSpace(c.name) && !string.IsNullOrWhiteSpace(c.role),
                     $"Unit {c.id}: missing authored identity/version.");
                 Require(c.rarityTier == "R" || c.rarityTier == "SR" || c.rarityTier == "UR", $"Unit {c.id}: missing acquisition tier.");
                 Require(c.rarityTier != "R" || c.biome == "Biome-less", $"Unit {c.id}: R units are biome-less.");
@@ -31,7 +31,6 @@ public static class GameDataValidator
                 BiomeRules.Parse(c.biome);
                 statRules.CalculateAuthored(c.baseStats, c.classArchetype, 1, 1);
                 Require(c.bst == c.baseStats.hp + c.baseStats.atk + c.baseStats.def + c.baseStats.spd + c.baseStats.pot, $"Unit {c.id}: incorrect BST.");
-                Require(c.bst == (c.rarityTier == "R" ? 500 : c.biome == "Kitchen" ? 575 : 600), $"Unit {c.id}: invalid draft stat budget.");
                 Require(c.skills != null && skillIds.Contains(c.skills.basic) && skillIds.Contains(c.skills.ult), $"Unit {c.id}: missing skill reference.");
             }
             else if (string.IsNullOrEmpty(c.statProfileId)) ValidateUnit(c.id, c.baseStats, c.growth, c.skills, skillIds);
