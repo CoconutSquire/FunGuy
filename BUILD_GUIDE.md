@@ -1,5 +1,13 @@
 # FunGuy's local build and validation
 
+## Version identity and pinned editor
+
+The game/project release is **v2**. Unity Player Settings use `bundleVersion: 2.0.0` and Android `versionCode: 2`.
+
+The Unity editor version is a separate toolchain identifier and must **not** be renamed to v2. This repository is pinned to **Unity 6000.3.2f1**. `FunGuy's/ProjectSettings/ProjectVersion.txt` must continue to contain that exact editor version unless an editor upgrade is deliberately tested on a separate branch.
+
+If the project was accidentally opened in a newer/different Unity editor, close Unity without committing editor-generated changes, restore the Git checkout, then remove only generated local folders such as `Library/`, `Temp/`, `Obj/`, and `Logs/`. Run `git lfs pull`, then open the project specifically with Unity 6000.3.2f1 and allow a clean import. Do **not** delete `Assets/`, `Packages/`, or `ProjectSettings/`.
+
 ## Toolchain and project
 
 Use PowerShell 7 and Unity 6000.3.2f1 with Android Build Support, SDK/NDK and OpenJDK installed. The Unity project is the nested `FunGuy's` directory. Close interactive Unity sessions before using the batch runner.
