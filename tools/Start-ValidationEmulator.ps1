@@ -3,7 +3,7 @@ param(
     [int]$Port = 5580,
     [int]$BootTimeoutSeconds = 300,
     [string]$EmulatorPath = "$env:LOCALAPPDATA/Android/Sdk/emulator/emulator.exe",
-    [string]$AdbPath = 'C:/Program Files/Unity/Hub/Editor/6000.3.2f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb.exe'
+    [string]$AdbPath = 'C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb.exe'
 )
 $ErrorActionPreference = 'Stop'
 if (Get-Process Unity -ErrorAction SilentlyContinue) { throw 'Finish Unity batch work before starting emulator validation.' }
