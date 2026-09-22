@@ -51,7 +51,7 @@ public sealed class BattleSceneController : MonoBehaviour
             fighter.formationSlot = placement.slot;
             states.Add(new BattleFighterState("preview/player/" + placement.slot, fighter));
         }
-        var enemies = stage.waves[0].enemies.Select(e => CombatUnitFactory.Create(Game.Data.Enemies[e.enemyId], e, TeamSide.Enemy)).ToList();
+        var enemies = stage.waves[0].enemies.Select(e => CombatUnitFactory.Create(Game.Data.Characters[e.enemyId], e, TeamSide.Enemy, Game.Data.StatRules)).ToList();
         FormationRules.AssignBattleSlots(enemies);
         states.AddRange(enemies.Select(e => new BattleFighterState("preview/enemy/" + e.formationSlot, e)));
         view.SetFighters(states); view.resultPanel.SetActive(false);

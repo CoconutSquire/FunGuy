@@ -5,7 +5,7 @@ using UnityEngine;
 public class DataAndSaveTests
 {
     [Test]
-    public void StageWaves_ReferenceExistingEnemies()
+    public void StageWaves_ReferenceExistingRosterOpponents()
     {
         var data = new GameData();
         data.LoadAll();
@@ -22,8 +22,8 @@ public class DataAndSaveTests
                 Assert.Greater(wave.Count, 0, $"Stage {stage.id} wave {i + 1} empty.");
                 foreach (var wu in wave)
                 {
-                    Assert.IsTrue(data.Enemies.ContainsKey(wu.enemyId),
-                        $"Stage {stage.id} wave {i + 1} references missing enemy {wu.enemyId}.");
+                    Assert.IsTrue(data.Characters.ContainsKey(wu.enemyId),
+                        $"Stage {stage.id} wave {i + 1} references missing roster opponent {wu.enemyId}.");
                 }
             }
         }

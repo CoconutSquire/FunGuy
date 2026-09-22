@@ -10,7 +10,6 @@ public static class GameDataValidator
         Require(characters != null && skills != null && stages != null && banners != null, "Missing content file.");
         Require(stages.schemaVersion == 1, "stages.json requires schemaVersion 1 and wave objects with enemies lists.");
         var characterIds = Ids(characters.characters, x => x.id, "characters");
-        var enemyIds = Ids(characters.enemies, x => x.id, "enemies");
         var skillIds = Ids(skills.skills, x => x.id, "skills");
         Ids(stages.stages, x => x.id, "stages");
         Ids(banners.banners, x => x.id, "banners");
@@ -44,7 +43,7 @@ public static class GameDataValidator
                 Require(c.skills != null && skillIds.Contains(c.skills.basic) && skillIds.Contains(c.skills.ult), $"Unit {c.id}: missing skill reference.");
             }
         }
-        foreach (var e in characters.enemies)
+        foreach (var e in characters.enemies ?? new List<EnemyDef>())
         {
             ValidatePassives(e.id, e.passives);
             if (!string.IsNullOrEmpty(e.biome)) BiomeRules.Parse(e.biome);
@@ -63,7 +62,7 @@ public static class GameDataValidator
                 var slots = new HashSet<int>();
                 foreach (var unit in wave.enemies)
                 {
-                    Require(unit != null && enemyIds.Contains(unit.enemyId) && unit.level > 0, $"Stage {stage.id}: invalid enemy reference/level.");
+                    Require(unit != null && characterIds.Contains(unit.enemyId) && unit.level > 0, $"Stage {stage.id}: invalid roster opponent reference/level.");
                     if (!string.IsNullOrEmpty(unit.slotId))
                         Require(slots.Add(FormationRules.ParseSlot(unit.slotId)), $"Stage {stage.id}: duplicate enemy slot.");
                 }
