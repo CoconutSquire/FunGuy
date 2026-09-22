@@ -2649,9 +2649,23 @@ MonoBehaviour:
       name: Forager's Trial
       order: 1
       recommendedPower: 0
-      waves: []
+      waves:
+      - enemies:
+        - enemyId: R01
+          level: 1
+          slotId: front_1
+        - enemyId: R04
+          level: 1
+          slotId: front_3
+      - enemies:
+        - enemyId: R10
+          level: 1
+          slotId: front_2
+        - enemyId: R03
+          level: 1
+          slotId: rear_2
       rewards:
-        gold: 99999
+        gold: 50
         spores: 10
         accountXp: 5
     - description: A tougher front line protects ranged roster fighters. Use formation

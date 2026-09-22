@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class GameData
 {
-    // Shared finalization path for JSON and Unity-authored catalogs.
+    // Shared finalization path for JSON and Unity-authored catalogs. Unity callers pass a detached snapshot, never ScriptableObject-owned DTO references.
     public void LoadValidated(CharactersFile cfile, SkillsFile sfile, StagesFile stfile, BannersFile bfile,
         StatRulesCatalog statRules, LevelProgressionRules levelRules)
     {

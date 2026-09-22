@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Unity-authored catalog container. Edit this asset in the Inspector; the runtime
-// converts its serialized definitions into the same validated domain catalog used
-// by JSON and future server adapters.
+// Unity-authored catalog container. Edit this asset in the Inspector; runtime code
+// always consumes a deep-cloned snapshot, never these serialized objects directly.
 [CreateAssetMenu(menuName = "FunGuy/Content/Runtime Content Catalog", fileName = "UnityContentCatalog")]
 public sealed class ContentCatalogAsset : ScriptableObject
 {
@@ -15,7 +14,9 @@ public sealed class ContentCatalogAsset : ScriptableObject
     public StagesFile stages = new StagesFile();
     public BannersFile banners = new BannersFile();
 
-    public void EnsureLists()
+    // Editor-authoring convenience only. Runtime loading intentionally does not call
+    // this method because silently creating missing lists would hide a damaged asset.
+    public void EnsureListsForEditing()
     {
         characters ??= new CharactersFile();
         characters.characters ??= new List<CharacterDef>();
@@ -25,14 +26,13 @@ public sealed class ContentCatalogAsset : ScriptableObject
         skills.skills ??= new List<SkillDef>();
 
         stages ??= new StagesFile();
-        stages.schemaVersion = stages.schemaVersion == 0 ? 1 : stages.schemaVersion;
+        if (stages.schemaVersion == 0) stages.schemaVersion = 1;
         stages.stages ??= new List<StageDef>();
 
         foreach (var stage in stages.stages)
         {
             if (stage == null) continue;
             stage.waves ??= new List<WaveDef>();
-
             foreach (var wave in stage.waves)
             {
                 if (wave == null) continue;
@@ -46,12 +46,11 @@ public sealed class ContentCatalogAsset : ScriptableObject
 
     public void ValidateSchema()
     {
-        EnsureLists();
-
         if (schemaVersion != 1)
             throw new InvalidOperationException($"Unsupported Unity catalog schema: {schemaVersion}.");
-
-        if (stages.schemaVersion == 0)
-            stages.schemaVersion = 1;
+        if (characters == null || skills == null || stages == null || banners == null)
+            throw new InvalidOperationException("Unity content catalog is missing a top-level content section.");
+        if (stages.schemaVersion != 1)
+            throw new InvalidOperationException($"Unsupported stage schema in Unity catalog: {stages.schemaVersion}.");
     }
 }
