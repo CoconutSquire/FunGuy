@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameData {
+public partial class GameData {
   public StatRulesCatalog StatRules { get; private set; }
   public LevelProgressionRules LevelRules { get; private set; }
   public Dictionary<string, CharacterDef> Characters = new();
