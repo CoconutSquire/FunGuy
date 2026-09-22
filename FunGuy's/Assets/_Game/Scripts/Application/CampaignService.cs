@@ -80,7 +80,7 @@ public sealed class LocalCampaignService : ICampaignService
         }
         if (player.Count != selected.Count) throw new InvalidOperationException("Your team contains an unavailable unit.");
         var waves = stage.waves.Select(w => w.enemies.Select(u =>
-            CombatUnitFactory.Create(data.Enemies[u.enemyId], u, TeamSide.Enemy)).ToList()).ToList();
+            CombatUnitFactory.Create(data.Characters[u.enemyId], u, TeamSide.Enemy, data.StatRules)).ToList()).ToList();
         var reward = new RewardDef { gold = stage.rewards.gold, spores = stage.rewards.spores, accountXp = stage.rewards.accountXp };
         return new CampaignSession(data, player, waves, seed ?? new Random().Next(), auto, maxActionsPerWave,
             () => CommitFirstClear(stageId, reward), stage.encounterVersion ?? "legacy");

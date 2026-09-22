@@ -40,6 +40,15 @@ public static class CombatUnitFactory
         return fighter;
     }
 
+    // Campaign opponents now use the same authored roster definitions as collectible fighters.
+    public static CombatUnit Create(CharacterDef definition, WaveUnit entry, TeamSide side, StatRulesCatalog rules)
+    {
+        if (entry == null) throw new ArgumentNullException(nameof(entry));
+        var fighter = Create(definition, entry.level, side, 1, rules);
+        if (!string.IsNullOrEmpty(entry.slotId)) fighter.formationSlot = FormationRules.ParseSlot(entry.slotId);
+        return fighter;
+    }
+
     private static CombatUnit Create(string id, string name, string biome, string archetype,
         string role, StatBlock stats, SkillRefs skills, int level, TeamSide side, List<PassiveDef> passives)
     {

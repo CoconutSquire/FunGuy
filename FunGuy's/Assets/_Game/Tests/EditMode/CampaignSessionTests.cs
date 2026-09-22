@@ -70,7 +70,7 @@ public class CampaignSessionTests
         var (data, store, service) = Setup();
         int gold = store.state.gold, reward = data.Stages["s_1_1"].rewards.gold;
         var run = service.Begin("s_1_1", seed: 4, auto: true);
-        data.Skills.Clear(); data.Enemies.Clear(); data.Stages["s_1_1"].waves.Clear();
+        data.Skills.Clear(); data.Characters.Clear(); data.Enemies.Clear(); data.Stages["s_1_1"].waves.Clear();
         data.Stages["s_1_1"].rewards.gold = 99999;
         Drain(run); store.fail = true;
         Assert.Throws<InvalidOperationException>(() => run.Complete());

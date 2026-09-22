@@ -18,11 +18,20 @@ public sealed class BattleFighterView : MonoBehaviour
         moveTime = pulse = hit = popup = 0; floatingLabel.alpha = 0;
         portrait.cap = BattleScreenView.BiomeColor(biome);
         portrait.enemy = state.Side == TeamSide.Enemy;
-        portrait.variant = role == "Tank" || role == "Wall" || role == "Taunt" ? 0 : role == "Support" || role == "Mage" || role == "Healer" ? 1 : 2;
+        portrait.variant = PlaceholderVariant(state.ContentId, role);
         baseColor = Color.white; portrait.color = baseColor; portrait.SetVerticesDirty();
         nameLabel.text = state.Name; hpFill.color = state.Side == TeamSide.Player ? new(.48f, .8f, .24f) : new(.92f, .34f, .23f);
         Apply(state, true);
     }
+    // Stable code-native placeholder selection keeps every roster fighter battle-visible until final sprites are authored.
+    private static int PlaceholderVariant(string contentId, string role)
+    {
+        int value = role == "Tank" || role == "Wall" || role == "Taunt" ? 0 :
+            role == "Support" || role == "Mage" || role == "Healer" ? 1 : 2;
+        foreach (char c in contentId ?? string.Empty) value = (value * 31 + c) & 0x7fffffff;
+        return value;
+    }
+
     public void Apply(BattleFighterState state, bool instant = false)
     {
         State = state;

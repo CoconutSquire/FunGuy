@@ -63,7 +63,7 @@ public class GameplaySmokeTestController : MonoBehaviour
             foreach (var wave in stage.waves)
             {
                 if (wave?.enemies == null || wave.enemies.Count == 0) return false;
-                if (wave.enemies.Any(wu => !Game.Data.Enemies.ContainsKey(wu.enemyId))) return false;
+                if (wave.enemies.Any(wu => !Game.Data.Characters.ContainsKey(wu.enemyId))) return false;
             }
         }
 
@@ -101,7 +101,7 @@ public class GameplaySmokeTestController : MonoBehaviour
         };
 
         var e1 = stage.waves[0].enemies
-            .Select(wu => Game.Data.Enemies.TryGetValue(wu.enemyId, out var e) ? CombatUnitFactory.Create(e, wu, TeamSide.Enemy) : null)
+            .Select(wu => Game.Data.Characters.TryGetValue(wu.enemyId, out var c) ? CombatUnitFactory.Create(c, wu, TeamSide.Enemy, Game.Data.StatRules) : null)
             .Where(u => u != null)
             .ToList();
         if (e1.Count == 0) return false;

@@ -174,9 +174,9 @@ public class FormationTests
     public void EnemyContent_ReservesExplicitSlotsAndRejectsDuplicateAssignments()
     {
         var data = new GameData(); data.LoadAll();
-        var entry = JsonUtility.FromJson<WaveUnit>("{\"enemyId\":\"e_sporeling\",\"level\":2,\"slotId\":\"back_right\"}");
-        var unit = CombatUnitFactory.Create(data.Enemies[entry.enemyId], entry, TeamSide.Enemy);
-        Assert.AreEqual(11, unit.formationSlot); Assert.AreEqual(190, unit.maxHp);
+        var entry = JsonUtility.FromJson<WaveUnit>("{\"enemyId\":\"R10\",\"level\":2,\"slotId\":\"back_right\"}");
+        var unit = CombatUnitFactory.Create(data.Characters[entry.enemyId], entry, TeamSide.Enemy, data.StatRules);
+        Assert.AreEqual(11, unit.formationSlot); Assert.AreEqual("R10", unit.id); Assert.Greater(unit.maxHp, 140);
         var c = JsonLoader.LoadFromResources<CharactersFile>("GameData/characters");
         var s = JsonLoader.LoadFromResources<SkillsFile>("GameData/skills");
         var stages = JsonLoader.LoadFromResources<StagesFile>("GameData/stages");

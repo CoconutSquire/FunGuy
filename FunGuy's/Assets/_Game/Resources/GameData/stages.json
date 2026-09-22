@@ -3,22 +3,22 @@
   "stages": [
     {
       "id": "s_1_1",
-      "name": "Pantry Threshold",
+      "name": "Forager's Trial",
       "order": 1,
-      "description": "Learn the board. Protect your damage dealer and watch automatic basics.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "Learn the board against real roster fighters. Basics are automatic; queue signatures when ready.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": false,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R01",
               "level": 1,
               "slotId": "front_1"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R04",
               "level": 1,
               "slotId": "front_3"
             }
@@ -27,17 +27,12 @@
         {
           "enemies": [
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R10",
               "level": 1,
-              "slotId": "front_1"
+              "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 1,
-              "slotId": "front_3"
-            },
-            {
-              "enemyId": "e_sporeling",
+              "enemyId": "R03",
               "level": 1,
               "slotId": "rear_2"
             }
@@ -52,28 +47,28 @@
     },
     {
       "id": "s_1_2",
-      "name": "The Spoon Line",
+      "name": "Mushroom Line",
       "order": 2,
-      "description": "The Pan Guard shields and taunts. Queue signatures to break through.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "A tougher front line protects ranged roster fighters. Use formation and queued signatures to break through.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": false,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
+              "enemyId": "R10",
               "level": 1,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 2,
+              "enemyId": "R05",
+              "level": 1,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 2,
+              "enemyId": "R04",
+              "level": 1,
               "slotId": "rear_4"
             }
           ]
@@ -81,17 +76,17 @@
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
+              "enemyId": "R10",
               "level": 2,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R01",
               "level": 2,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R05",
               "level": 2,
               "slotId": "rear_4"
             }
@@ -108,26 +103,26 @@
       "id": "s_1_3",
       "name": "Spore Cupboard",
       "order": 3,
-      "description": "Poison threatens longer fights. Bring healing and use first-clear gold to upgrade.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "Mixed Rare roster roles test sustain and target pressure. Use earned gold between stages if needed.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": false,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_sporeling",
-              "level": 3,
+              "enemyId": "R11",
+              "level": 2,
               "slotId": "front_1"
             },
             {
-              "enemyId": "e_rot_thrall",
+              "enemyId": "R13",
               "level": 2,
               "slotId": "front_3"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 3,
+              "enemyId": "R07",
+              "level": 2,
               "slotId": "rear_2"
             }
           ]
@@ -135,22 +130,22 @@
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
+              "enemyId": "R10",
               "level": 3,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R11",
               "level": 3,
               "slotId": "middle_4"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R04",
               "level": 3,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "R13",
               "level": 3,
               "slotId": "rear_4"
             }
@@ -165,28 +160,28 @@
     },
     {
       "id": "s_1_4",
-      "name": "Cold Cellar",
+      "name": "Frozen Shelf",
       "order": 4,
-      "description": "Slow delays your turns. Change biomes, formation or signature timing.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "Tundra roster fighters bring durable fronts and fast back-line pressure.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": false,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_frost_keeper",
-              "level": 3,
+              "enemyId": "34",
+              "level": 2,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 3,
+              "enemyId": "31",
+              "level": 2,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 3,
+              "enemyId": "39",
+              "level": 2,
               "slotId": "rear_4"
             }
           ]
@@ -194,17 +189,17 @@
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
+              "enemyId": "38",
               "level": 3,
               "slotId": "front_1"
             },
             {
-              "enemyId": "e_frost_keeper",
-              "level": 4,
+              "enemyId": "31",
+              "level": 3,
               "slotId": "middle_3"
             },
             {
-              "enemyId": "e_frost_keeper",
+              "enemyId": "36",
               "level": 3,
               "slotId": "rear_4"
             }
@@ -219,28 +214,28 @@
     },
     {
       "id": "s_1_5",
-      "name": "The Simmering Kitchen",
+      "name": "Kitchen Muster",
       "order": 5,
-      "description": "Ashen Cooks burn the whole team. A shield or well-timed heal keeps the line standing.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "Kitchen roster fighters combine tanks, support and damage. Watch the formation before committing signatures.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": false,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
-              "level": 4,
+              "enemyId": "42",
+              "level": 2,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_ashen_spore",
-              "level": 3,
+              "enemyId": "41",
+              "level": 2,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_ashen_spore",
-              "level": 3,
+              "enemyId": "48",
+              "level": 2,
               "slotId": "rear_4"
             }
           ]
@@ -248,23 +243,23 @@
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
-              "level": 4,
+              "enemyId": "49",
+              "level": 3,
               "slotId": "front_1"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 4,
+              "enemyId": "43",
+              "level": 3,
               "slotId": "middle_3"
             },
             {
-              "enemyId": "e_ashen_spore",
-              "level": 4,
+              "enemyId": "47",
+              "level": 3,
               "slotId": "rear_2"
             },
             {
-              "enemyId": "e_ashen_spore",
-              "level": 4,
+              "enemyId": "48",
+              "level": 3,
               "slotId": "rear_4"
             }
           ]
@@ -278,28 +273,28 @@
     },
     {
       "id": "s_1_6",
-      "name": "Before the Boil",
+      "name": "Before the Bloom",
       "order": 6,
-      "description": "Build a balanced team and prepare upgrades before facing the keeper.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "A full mixed roster wave prepares you for the final encounter.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": false,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
-              "level": 4,
+              "enemyId": "49",
+              "level": 3,
               "slotId": "front_1"
             },
             {
-              "enemyId": "e_frost_keeper",
-              "level": 4,
+              "enemyId": "42",
+              "level": 3,
               "slotId": "front_3"
             },
             {
-              "enemyId": "e_ashen_spore",
-              "level": 4,
+              "enemyId": "43",
+              "level": 3,
               "slotId": "rear_2"
             }
           ]
@@ -307,23 +302,23 @@
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
-              "level": 5,
+              "enemyId": "42",
+              "level": 4,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_frost_keeper",
+              "enemyId": "48",
               "level": 4,
               "slotId": "middle_4"
             },
             {
-              "enemyId": "e_ashen_spore",
+              "enemyId": "45",
               "level": 4,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_sporeling",
-              "level": 5,
+              "enemyId": "50",
+              "level": 4,
               "slotId": "rear_3"
             }
           ]
@@ -337,27 +332,27 @@
     },
     {
       "id": "s_1_7",
-      "name": "The Cauldron Keeper",
+      "name": "Nebula Convergence",
       "order": 7,
-      "description": "Boss: Boil Over burns the team; pressure raises ATK every third turn. Break the shield and sustain your fighters.",
-      "encounterVersion": "kitchen-slice-v1",
+      "description": "Final encounter: survive a reinforced roster wave, then face Nebula Cordyceps with Kitchen support.",
+      "encounterVersion": "garrett-roster-campaign-v2",
       "boss": true,
       "recommendedPower": 0,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "e_rot_thrall",
+              "enemyId": "42",
               "level": 4,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "48",
               "level": 4,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_ashen_spore",
+              "enemyId": "43",
               "level": 4,
               "slotId": "rear_4"
             }
@@ -366,17 +361,17 @@
         {
           "enemies": [
             {
-              "enemyId": "e_kitchen_overseer",
-              "level": 1,
+              "enemyId": "C1",
+              "level": 4,
               "slotId": "front_2"
             },
             {
-              "enemyId": "e_sporeling",
+              "enemyId": "49",
               "level": 3,
               "slotId": "rear_1"
             },
             {
-              "enemyId": "e_ashen_spore",
+              "enemyId": "50",
               "level": 3,
               "slotId": "rear_4"
             }

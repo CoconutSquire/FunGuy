@@ -17,14 +17,18 @@ public class StabilizationTests
     private static GameData Load() { var data = new GameData(); data.LoadAll(); return data; }
 
     [Test]
-    public void ResourceCatalog_LoadsEveryWaveAndExplicitEnemyGrowth()
+    public void ResourceCatalog_LoadsEveryWaveFromTheGarrettRoster()
     {
         var data = Load();
+        Assert.AreEqual(71, data.Characters.Count);
+        Assert.AreEqual(0, data.Enemies.Count);
         Assert.AreEqual(14, data.Stages.Values.Sum(s => s.waves.Count));
-        var low = CombatUnitFactory.Create(data.Enemies["e_sporeling"], 1, TeamSide.Enemy);
-        var high = CombatUnitFactory.Create(data.Enemies["e_sporeling"], 6, TeamSide.Enemy);
-        Assert.AreEqual(low.maxHp + 225, high.maxHp);
-        Assert.AreEqual(low.atk + 35, high.atk);
+        Assert.True(data.Stages.Values.SelectMany(s => s.waves).SelectMany(w => w.enemies)
+            .All(entry => data.Characters.ContainsKey(entry.enemyId)));
+        var low = CombatUnitFactory.Create(data.Characters["R10"], 1, TeamSide.Enemy, 1, data.StatRules);
+        var high = CombatUnitFactory.Create(data.Characters["R10"], 6, TeamSide.Enemy, 1, data.StatRules);
+        Assert.Greater(high.maxHp, low.maxHp);
+        Assert.Greater(high.atk, low.atk);
     }
 
     [Test]

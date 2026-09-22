@@ -91,7 +91,7 @@ public class SliceContentTests
         foreach (var definition in data.Characters.Values)
         {
             var player = CombatUnitFactory.Create(definition, 20, TeamSide.Player, 1, data.StatRules);
-            var dummy = CombatUnitFactory.Create(data.Enemies["e_sporeling"], 1, TeamSide.Enemy);
+            var dummy = CombatUnitFactory.Create(data.Characters["R10"], 1, TeamSide.Enemy, 1, data.StatRules);
             dummy.maxHp = dummy.hp = 50000; dummy.atk = 1; dummy.pot = 1; dummy.ultSkillId = dummy.basicSkillId;
             var session = new BattleSession(data, new() { player }, new() { dummy }, seed: 17, auto: true, maxActions: 80);
             while (session.Outcome == BattleOutcome.Running) session.Step();

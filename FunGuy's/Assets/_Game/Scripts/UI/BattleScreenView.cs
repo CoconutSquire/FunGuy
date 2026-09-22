@@ -38,7 +38,7 @@ public sealed class BattleScreenView : MonoBehaviour
     public static Color BiomeColor(string biome) => (biome ?? "").ToLowerInvariant() switch {
         "forest" => new(.43f, .64f, .2f), "wetlands" => new(.23f, .66f, .67f),
         "decay" => new(.67f, .35f, .63f), "tundra" => new(.4f, .72f, .86f),
-        "kitchen" => new(.88f, .38f, .15f), _ => new(.7f, .54f, .3f)
+        "kitchen" => new(.88f, .38f, .15f), "cosmic" => new(.58f, .42f, .9f), _ => new(.7f, .54f, .3f)
     };
     public void Initialize(GameData source)
     {

@@ -30,7 +30,7 @@ public class GameData {
     StatRules = statRules;
     LevelRules = levelRules;
     Characters = cfile.characters.ToDictionary(x => x.id, x => x);
-    Enemies    = cfile.enemies.ToDictionary(x => x.id, x => x);
+    Enemies    = (cfile.enemies ?? new List<EnemyDef>()).ToDictionary(x => x.id, x => x);
     Skills     = sfile.skills.ToDictionary(x => x.id, x => x);
     Stages     = stfile.stages.ToDictionary(x => x.id, x => x);
     Banners    = bfile.banners.ToDictionary(x => x.id, x => x);
