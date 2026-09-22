@@ -1,0 +1,2907 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e73a63cc754cd84180f9a725a34c03b, type: 3}
+  m_Name: UnityContentCatalog
+  m_EditorClassIdentifier: Game.Runtime::ContentCatalogAsset
+  schemaVersion: 1
+  contentVersion: unity-authored-v1
+  characters:
+    characters:
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 1
+      name: Golden Chanterelle
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Tank
+      role: Wall
+      element: 
+      bst: 615
+      synergyTags:
+      - Fortress
+      - Vanguard
+      - Phalanx
+      passiveName: Gilded Bash
+      passiveDescription: Gain a 10% Max HP shield when dealing damage.
+      signatureSkillName: Sunlight Barrier
+      signatureSkillDescription: Grants a shield to self and lowest health ally.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 190
+        atk: 70
+        def: 155
+        spd: 70
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 2
+      name: Indigo Archer
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: DPS
+      role: Multi-Hit
+      element: 
+      bst: 615
+      synergyTags:
+      - Armor Shred
+      passiveName: Azure Bleed
+      passiveDescription: If damage hits a bleeding target +10%.
+      signatureSkillName: Forest Volley
+      signatureSkillDescription: Fires 3 arrows at random targets; 30% Bleed.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 90
+        atk: 175
+        def: 90
+        spd: 160
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 3
+      name: Lion's Mane Monk
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: DPS
+      role: Nuker
+      element: 
+      bst: 600
+      synergyTags:
+      - Sniper Nest
+      passiveName: Focused Strike
+      passiveDescription: 10% chance to counter attack with a basic attack when hit
+        with an ability or basic attack.
+      signatureSkillName: Counter Bloom
+      signatureSkillDescription: Deals bonus counter-damage based on attack timing.
+      signatureCooldown: 2 Turns
+      baseStats:
+        hp: 100
+        atk: 160
+        def: 90
+        spd: 120
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 4
+      name: Fly Agaric Jester
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Mage
+      role: AoE
+      element: 
+      bst: 590
+      synergyTags:
+      - Cataclysm
+      passiveName: Prankster's Cane
+      passiveDescription: Basic attacks grant user a stack of Ibotenic Acid. Permanent.
+      signatureSkillName: Hallucinogen
+      signatureSkillDescription: Deals bonus damage based on Ibotenic Acid stacks.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 95
+        atk: 160
+        def: 70
+        spd: 115
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 5
+      name: Porcelain Guard
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Tank
+      role: Taunt
+      element: 
+      bst: 600
+      synergyTags:
+      - Attrition
+      - Lifeline
+      - Vengeance
+      passiveName: Clay Layers
+      passiveDescription: Damage redirected is reduced by 20%.
+      signatureSkillName: Impenetrable Glaze
+      signatureSkillDescription: Taunts all enemies; +50% Self DEF for 1 turn.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 170
+        atk: 40
+        def: 180
+        spd: 70
+        pot: 140
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 6
+      name: Birch Polypore
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Support
+      role: Medic
+      element: 
+      bst: 600
+      synergyTags:
+      - Brawling Pair
+      - Vanguard
+      passiveName: Spore Puff
+      passiveDescription: Heals are 10% stronger when affecting Tanks.
+      signatureSkillName: Sanitizing Mist
+      signatureSkillDescription: Heals team and removes 1 debuff.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 120
+        atk: 80
+        def: 110
+        spd: 130
+        pot: 160
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 7
+      name: Honey Fungus
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Support
+      role: Saboteur
+      element: 
+      bst: 600
+      synergyTags:
+      - Assassination
+      - Cataclysm
+      - Armor Shred
+      passiveName: Amber Hive
+      passiveDescription: Increase Synergy strength by 10%.
+      signatureSkillName: Sticky Overgrowth
+      signatureSkillDescription: Heals a small amount of the whole team.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 120
+        atk: 80
+        def: 120
+        spd: 120
+        pot: 160
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 8
+      name: Amethyst Deceiver
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Assassin
+      role: Stealth
+      element: 
+      bst: 585
+      synergyTags:
+      - Shadow Step
+      passiveName: Violet Slash
+      passiveDescription: If this unit crits, enter stealth for a turn.
+      signatureSkillName: Ethereal Shift
+      signatureSkillDescription: 100% Crit attack. Stealth lasts an extra turn.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 80
+        atk: 160
+        def: 60
+        spd: 185
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 9
+      name: Parrot Waxcap
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Mage
+      role: Nuker
+      element: 
+      bst: 595
+      synergyTags:
+      - Sniper Nest
+      passiveName: Colorful Peck
+      passiveDescription: Has a 10% chance to mimic. Basic attack during allies'
+        turn at 50% effectiveness and does not generate energy.
+      signatureSkillName: Iridescent Burst
+      signatureSkillDescription: Deals multi-hit burst damage.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 180
+        def: 100
+        spd: 115
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 10
+      name: King Bolete
+      rarity: 4
+      rarityTier: SR
+      biome: Forest
+      classArchetype: Tactician
+      role: Captain
+      element: 
+      bst: 600
+      synergyTags:
+      - Gourmet Line
+      - The Battery
+      passiveName: Scepter Swing
+      passiveDescription: Increases team POT by 10%.
+      signatureSkillName: Sovereign's Decree
+      signatureSkillDescription: Forces all allies to attack target.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 120
+        atk: 100
+        def: 110
+        spd: 120
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 11
+      name: Veiled Siren
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Assassin
+      role: Stealth
+      element: 
+      bst: 610
+      synergyTags:
+      - Shadow Step
+      passiveName: Aquatic Ripple
+      passiveDescription: Activate Stealth for 1 turn after inflicting a status ailment.
+      signatureSkillName: Mesmerizing Wail
+      signatureSkillDescription: High chance to Confuse and apply status.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 95
+        atk: 140
+        def: 90
+        spd: 155
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 12
+      name: Bog Snatcher
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Assassin
+      role: Stalker
+      element: 
+      bst: 610
+      synergyTags:
+      - Assassination
+      - Shadow Step
+      - "Coup de Gr\u0103ce"
+      passiveName: Muddy Claw
+      passiveDescription: +50% damage to targets not in the front row.
+      signatureSkillName: Drag to the Deep
+      signatureSkillDescription: Pulls backline enemies into danger.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 165
+        def: 85
+        spd: 170
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 13
+      name: Slime-Mold Geologist
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Mage
+      role: Multi-Hit
+      element: 
+      bst: 595
+      synergyTags:
+      - Armor Shred
+      passiveName: Viscous Slam
+      passiveDescription: Skills have a 50% chance to trigger again at 50% effectiveness.
+      signatureSkillName: Tectonic Shift
+      signatureSkillDescription: Move to an adjacent tile and hit nearby foes.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 110
+        atk: 165
+        def: 100
+        spd: 110
+        pot: 110
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 14
+      name: Peat-Moss Shaman
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Tank
+      role: Battery
+      element: 
+      bst: 600
+      synergyTags:
+      - Overclock
+      - The Battery
+      passiveName: Ritual Staff
+      passiveDescription: Energy granted to others by Shaman's ability grants Shaman
+        an equal % Max HP shield.
+      signatureSkillName: Nature's Resurgence
+      signatureSkillDescription: Restores energy and grants a barrier.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 160
+        atk: 90
+        def: 140
+        spd: 80
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 15
+      name: Bioluminescent Angler
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Support
+      role: Buffer
+      element: 
+      bst: 600
+      synergyTags:
+      - Overclock
+      passiveName: Neon Bite
+      passiveDescription: Heal lowest current % health ally on basic attack.
+      signatureSkillName: Abyssal Lure
+      signatureSkillDescription: Increases all allies' next attack or ability damage.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 95
+        def: 90
+        spd: 115
+        pot: 200
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 16
+      name: Swamp Truffle
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: DPS
+      role: Duelist
+      element: 
+      bst: 600
+      synergyTags:
+      - Shatter
+      passiveName: Filth
+      passiveDescription: Gains 10% lifesteal against poisoned enemies.
+      signatureSkillName: Toxic Film
+      signatureSkillDescription: Applies Poison; increases own healing received.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 180
+        def: 100
+        spd: 120
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 17
+      name: Black-Yeasted Diver
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Mage
+      role: DoT
+      element: 
+      bst: 600
+      synergyTags:
+      - Attrition
+      - Plague Wind
+      passiveName: Dark Ferment
+      passiveDescription: Basic attacks have a small chance to apply a stack of Poison.
+      signatureSkillName: Pressure Explosion
+      signatureSkillDescription: Damage scales based on Poison stacks.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 110
+        atk: 150
+        def: 100
+        spd: 100
+        pot: 140
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 18
+      name: Marsh Marasmius
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Tactician
+      role: Captain
+      element: 
+      bst: 600
+      synergyTags:
+      - Gourmet Line
+      - The Battery
+      passiveName: Root Tangler
+      passiveDescription: Basic attacks force the enemy to move, if possible.
+      signatureSkillName: Boggy Trap
+      signatureSkillDescription: Sets a trap; next enemy to move triggers it.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 120
+        atk: 120
+        def: 120
+        spd: 140
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 19
+      name: Candelabra Hunter
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: DPS
+      role: Nuker
+      element: 
+      bst: 585
+      synergyTags:
+      - Sniper Nest
+      passiveName: Flicker Blade
+      passiveDescription: Increases Crit damage by 10%.
+      signatureSkillName: Exorcism
+      signatureSkillDescription: 2.0x damage to targets with status effects.
+      signatureCooldown: 2 Turns
+      baseStats:
+        hp: 90
+        atk: 175
+        def: 80
+        spd: 150
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 20
+      name: Willow-Bracket
+      rarity: 4
+      rarityTier: SR
+      biome: Wetlands
+      classArchetype: Tactician
+      role: Bomber
+      element: 
+      bst: 600
+      synergyTags:
+      - The Minefield
+      passiveName: Anchor Drop
+      passiveDescription: When an enemy moves, place a mushroom bomb in the spot
+        they just left.
+      signatureSkillName: Mushroom Detonation
+      signatureSkillDescription: Bombs detonate when space becomes occupied.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 130
+        atk: 140
+        def: 120
+        spd: 110
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 21
+      name: Xylaria Bone-Breaker
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Tank
+      role: Taunt
+      element: 
+      bst: 600
+      synergyTags:
+      - Attrition
+      - Lifeline
+      - Vengeance
+      passiveName: Marrow Crush
+      passiveDescription: Lower attacker's ATK by 10% for 1 turn; stacks debuff for
+        each hit.
+      signatureSkillName: Fracture
+      signatureSkillDescription: Damage + permanent DEF reduction.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 155
+        atk: 90
+        def: 175
+        spd: 80
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 22
+      name: Inky Cap Assassin
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: DPS
+      role: Nuker
+      element: 
+      bst: 615
+      synergyTags:
+      - Sniper Nest
+      passiveName: Midnight Dagger
+      passiveDescription: Attacks enemy with lowest health if possible.
+      signatureSkillName: Final Dissolve
+      signatureSkillDescription: Executes targets below 20% HP instantly.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 90
+        atk: 170
+        def: 85
+        spd: 150
+        pot: 120
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 23
+      name: Dead Man's Fingers
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: DPS
+      role: Drinker
+      element: 
+      bst: 600
+      synergyTags:
+      - Vampiric Link
+      passiveName: Jagged Edge
+      passiveDescription: When current health is lower than 80%, gain 10% lifesteal
+        on attacks and skills.
+      signatureSkillName: Berserker's Call
+      signatureSkillDescription: Consumes health to increase damage and heal output.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 90
+        atk: 180
+        def: 90
+        spd: 140
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 24
+      name: Scum-Layer Sentinel
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Tank
+      role: Saboteur
+      element: 
+      bst: 595
+      synergyTags:
+      - Assassination
+      - Cataclysm
+      - Armor Shred
+      passiveName: Acid Spray
+      passiveDescription: Basic attacks lower target ATK by 10% for 2 turns.
+      signatureSkillName: Rotting Gas
+      signatureSkillDescription: AoE attack that applies debuffs to enemies.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 170
+        atk: 90
+        def: 145
+        spd: 90
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 25
+      name: Jack O'Lantern
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Mage
+      role: AoE
+      element: 
+      bst: 600
+      synergyTags:
+      - Cataclysm
+      passiveName: Kindling
+      passiveDescription: For every enemy currently burning, gain 5% ATK.
+      signatureSkillName: Harvest Flare
+      signatureSkillDescription: High AoE damage; 50% Burn chance.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 110
+        atk: 160
+        def: 90
+        spd: 110
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 26
+      name: Bleeding Tooth
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Assassin
+      role: Multi-Hit
+      element: 
+      bst: 600
+      synergyTags:
+      - Armor Shred
+      passiveName: Spore Rapidfire
+      passiveDescription: Basics hit 2 different enemies.
+      signatureSkillName: Cluster Bombard
+      signatureSkillDescription: 4 random shots; 2x damage to Shields.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 80
+        atk: 160
+        def: 90
+        spd: 170
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 27
+      name: Death Cap Alchemist
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Support
+      role: CC
+      element: 
+      bst: 600
+      synergyTags:
+      - Shatter
+      passiveName: Multi-Fan
+      passiveDescription: Deals increased damage to enemies suffering from a debuff.
+      signatureSkillName: Chromatic Wind
+      signatureSkillDescription: Reveals enemy team by 20% for 2 turns.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 130
+        atk: 100
+        def: 120
+        spd: 130
+        pot: 120
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 28
+      name: Devil's Urn
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Support
+      role: Purifier
+      element: 
+      bst: 600
+      synergyTags:
+      - Purifying Ward
+      passiveName: Vibrating Spear
+      passiveDescription: Heals allies when enemies are revealed.
+      signatureSkillName: Echo Location
+      signatureSkillDescription: Reveals enemies in stealth; increases allies' SPD.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 110
+        atk: 100
+        def: 100
+        spd: 150
+        pot: 140
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 29
+      name: Black Trumpet
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Tactician
+      role: Captain
+      element: 
+      bst: 600
+      synergyTags:
+      - Gourmet Line
+      - The Battery
+      passiveName: Gore Siphon
+      passiveDescription: Increases team's crit chance by 15%.
+      signatureSkillName: Vampiric Feast
+      signatureSkillDescription: Damage + heals self for 100% of damage dealt.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 130
+        atk: 100
+        def: 110
+        spd: 110
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 30
+      name: Carbon Ball Ninja
+      rarity: 4
+      rarityTier: SR
+      biome: Decay
+      classArchetype: Assassin
+      role: Stealth
+      element: 
+      bst: 590
+      synergyTags:
+      - Shadow Step
+      passiveName: Soot
+      passiveDescription: Crit damage increased by 50%.
+      signatureSkillName: Blackout
+      signatureSkillDescription: Enters Stealth; next hit is guaranteed Crit.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 90
+        atk: 180
+        def: 80
+        spd: 180
+        pot: 60
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 31
+      name: Blue Lichen Sniper
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: DPS
+      role: Multi-Hit
+      element: 
+      bst: 615
+      synergyTags:
+      - Armor Shred
+      passiveName: Frost Bolt
+      passiveDescription: If attacks hit a frozen enemy, basic attack them again.
+        Max 3x.
+      signatureSkillName: Zero-In
+      signatureSkillDescription: Grants self 50% Defense Penetration.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 115
+        atk: 165
+        def: 95
+        spd: 140
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 32
+      name: Snow-Bank Hermit
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Tank
+      role: Cover
+      element: 
+      bst: 615
+      synergyTags:
+      - Not Alone
+      - Fortress
+      - Purifying Ward
+      passiveName: Frozen Shield
+      passiveDescription: Jumps in front of the first ally who will take damage each
+        turn.
+      signatureSkillName: Ice Wall
+      signatureSkillDescription: Grants a shield to an ally.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 175
+        atk: 80
+        def: 170
+        spd: 70
+        pot: 120
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 33
+      name: Icicle-Tooth Rogue
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Assassin
+      role: Stalker
+      element: 
+      bst: 585
+      synergyTags:
+      - Assassination
+      - Shadow Step
+      - "Coup de Gr\u0103ce"
+      passiveName: Cold Snap
+      passiveDescription: Gains 20% more damage against frozen enemies.
+      signatureSkillName: Flash Freeze
+      signatureSkillDescription: Damage + target has a chance to freeze.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 90
+        atk: 180
+        def: 75
+        spd: 150
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 34
+      name: Permafrost Sentinel
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Tank
+      role: Wall
+      element: 
+      bst: 600
+      synergyTags:
+      - Fortress
+      - Vanguard
+      - Phalanx
+      passiveName: Glacier
+      passiveDescription: While shielded, gain immunity to burn.
+      signatureSkillName: Blizzard Aura
+      signatureSkillDescription: Reduces SPD of all enemies by 20% while alive.
+      signatureCooldown: Passive
+      baseStats:
+        hp: 150
+        atk: 80
+        def: 140
+        spd: 80
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 35
+      name: Alpine Puffball
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Mage
+      role: Bomber
+      element: 
+      bst: 600
+      synergyTags:
+      - The Minefield
+      passiveName: Chilly Gale
+      passiveDescription: Attacks have a 25% chance to freeze enemies for 2 turns.
+      signatureSkillName: Oxygen Depletion
+      signatureSkillDescription: Deal AoE and reduce ATK and POT.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 140
+        def: 110
+        spd: 130
+        pot: 120
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 36
+      name: Star-Tip Scout
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Support
+      role: Battery
+      element: 
+      bst: 585
+      synergyTags:
+      - Overclock
+      - The Battery
+      passiveName: Comet Dash
+      passiveDescription: Adds 20% of SPD to ATK.
+      signatureSkillName: Starlight Rush
+      signatureSkillDescription: Grants 1 ally an immediate extra turn.
+      signatureCooldown: 5 Turns
+      baseStats:
+        hp: 100
+        atk: 100
+        def: 90
+        spd: 195
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 37
+      name: Bitter-Cold Oyster
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Support
+      role: Purifier
+      element: 
+      bst: 600
+      synergyTags:
+      - Purifying Ward
+      passiveName: Shell Cracker
+      passiveDescription: 10% chance to apply Brittle on attacks.
+      signatureSkillName: Frostbite Grip
+      signatureSkillDescription: Damage + removes 1 debuff from an ally.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 120
+        atk: 120
+        def: 130
+        spd: 110
+        pot: 120
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 38
+      name: Glassy Bracket
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Tank
+      role: Taunt
+      element: 
+      bst: 600
+      synergyTags:
+      - Attrition
+      - Lifeline
+      - Vengeance
+      passiveName: Crystallized
+      passiveDescription: Damage dealt to oneself has a chance of lowering ATK.
+      signatureSkillName: Refractive Shield
+      signatureSkillDescription: Taunts and reflects 50% of incoming damage.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 160
+        atk: 90
+        def: 160
+        spd: 60
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 39
+      name: Aurora Mycena
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Support
+      role: Medic
+      element: 
+      bst: 600
+      synergyTags:
+      - Brawling Pair
+      - Vanguard
+      passiveName: Prism Flash
+      passiveDescription: Aurora's heals are 10% stronger.
+      signatureSkillName: Cosmic Dance
+      signatureSkillDescription: Heals team and grants 15% Crit Rate for 1 turn.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 110
+        atk: 120
+        def: 100
+        spd: 120
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 40
+      name: Glacial Polypore
+      rarity: 4
+      rarityTier: SR
+      biome: Tundra
+      classArchetype: Tactician
+      role: Captain
+      element: 
+      bst: 600
+      synergyTags:
+      - Gourmet Line
+      - The Battery
+      passiveName: Ice Chip
+      passiveDescription: Grants team a 10% chance to freeze on basic attacks.
+      signatureSkillName: Flash Thaw
+      signatureSkillDescription: Removes all team debuffs and grants a shield.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 130
+        atk: 90
+        def: 130
+        spd: 110
+        pot: 140
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 41
+      name: Bread Mold
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Mage
+      role: DoT
+      element: 
+      bst: 575
+      synergyTags:
+      - Attrition
+      - Plague Wind
+      passiveName: Toasted
+      passiveDescription: Burns stack twice.
+      signatureSkillName: Spreading Ferment
+      signatureSkillDescription: Applies a spreading burn to a target enemy that
+        spreads to a random neighbor.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 145
+        def: 85
+        spd: 120
+        pot: 125
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 42
+      name: Grey Oyster
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Tank
+      role: Taunt
+      element: 
+      bst: 575
+      synergyTags:
+      - Attrition
+      - Lifeline
+      - Vengeance
+      passiveName: Shell Up
+      passiveDescription: Gain a 15% max health shield every other turn.
+      signatureSkillName: Gourmet Platter
+      signatureSkillDescription: Taunts enemies and restores 25% max HP.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 160
+        atk: 60
+        def: 160
+        spd: 90
+        pot: 105
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 43
+      name: Yeast Bud
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Support
+      role: Battery
+      element: 
+      bst: 575
+      synergyTags:
+      - Overclock
+      - The Battery
+      passiveName: Rising Jab
+      passiveDescription: Whenever an ally takes a turn because of the boost of energy,
+        restore their health by 10%.
+      signatureSkillName: Over-Proofing
+      signatureSkillDescription: Grants team a burst of energy and minor heal.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 115
+        atk: 80
+        def: 110
+        spd: 130
+        pot: 140
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 44
+      name: Crimini Cadet
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Assassin
+      role: Stalker
+      element: 
+      bst: 575
+      synergyTags:
+      - Assassination
+      - Shadow Step
+      - "Coup de Gr\u0103ce"
+      passiveName: Searing Blade
+      passiveDescription: Increases SPD by 5% permanently if multiple hits occurred.
+      signatureSkillName: Julienne Slash
+      signatureSkillDescription: Targets vulnerable enemies for a cutting burst.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 165
+        def: 75
+        spd: 135
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 45
+      name: Shiitake Sensei
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Tactician
+      role: Captain
+      element: 
+      bst: 575
+      synergyTags:
+      - Gourmet Line
+      - The Battery
+      passiveName: Umami Strike
+      passiveDescription: Applies Burn on basic attacks at a 40% chance.
+      signatureSkillName: Master's Recipe
+      signatureSkillDescription: Grants the team a random buff.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 110
+        atk: 90
+        def: 90
+        spd: 140
+        pot: 145
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 46
+      name: Witch's Butter
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Support
+      role: Buffer
+      element: 
+      bst: 575
+      synergyTags:
+      - Overclock
+      passiveName: Substance
+      passiveDescription: 10% chance to apply Intangible to self.
+      signatureSkillName: Golden Glaze
+      signatureSkillDescription: Makes an ally Intangible (untargetable) for 1 turn.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 110
+        atk: 90
+        def: 100
+        spd: 130
+        pot: 145
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 47
+      name: Morel Scout
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: DPS
+      role: Buffer
+      element: 
+      bst: 575
+      synergyTags:
+      - Overclock
+      passiveName: Pitted Spear
+      passiveDescription: Attacks have a 10% chance to drop 'Scraps'. They provide
+        a small team heal; chance doubled on crits.
+      signatureSkillName: Flavor Finder
+      signatureSkillDescription: Deals damage and grants a small heal.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 90
+        atk: 145
+        def: 90
+        spd: 150
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 48
+      name: Enoki Archer
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: DPS
+      role: Multi-Hit
+      element: 
+      bst: 575
+      synergyTags:
+      - Armor Shred
+      passiveName: Bundle Shot
+      passiveDescription: Attacks on enemies suffering from a debuff do 10% more
+        damage.
+      signatureSkillName: Needle Rain
+      signatureSkillDescription: AoE attack with a high chance to apply a debuff.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 100
+        atk: 160
+        def: 90
+        spd: 125
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 49
+      name: Turkey Tail Guard
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Tank
+      role: Cover
+      element: 
+      bst: 575
+      synergyTags:
+      - Not Alone
+      - Fortress
+      - Purifying Ward
+      passiveName: Fan Sweep
+      passiveDescription: Blocks damage passively for an ally with the lowest DEF.
+      signatureSkillName: Pillow Wall
+      signatureSkillDescription: Provides a defensive barrier and taunt effect.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 145
+        atk: 90
+        def: 130
+        spd: 100
+        pot: 110
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: 50
+      name: Lobster Fungus
+      rarity: 4
+      rarityTier: SR
+      biome: Kitchen
+      classArchetype: Support
+      role: Medic
+      element: 
+      bst: 575
+      synergyTags:
+      - Brawling Pair
+      - Vanguard
+      passiveName: Pincer Heal
+      passiveDescription: Applies Regen to a frontline ally.
+      signatureSkillName: Butter Bath
+      signatureSkillDescription: Grants a 20% max health shield to self then heals
+        more.
+      signatureCooldown: 3 Turns
+      baseStats:
+        hp: 150
+        atk: 80
+        def: 95
+        spd: 100
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: C1
+      name: Nebula Cordyceps
+      rarity: 6
+      rarityTier: UR
+      biome: Cosmic
+      classArchetype: Tactician
+      role: AoE
+      element: 
+      bst: 900
+      synergyTags:
+      - Cataclysm
+      passiveName: Constellation
+      passiveDescription: Links together allies and enemies. Damage and healing is
+        shared evenly amongst the team.
+      signatureSkillName: Black Hole
+      signatureSkillDescription: Pulls enemies together and deals massive AoE damage.
+      signatureCooldown: 4 Turns
+      baseStats:
+        hp: 180
+        atk: 180
+        def: 160
+        spd: 160
+        pot: 220
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R01
+      name: Common Button
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Support
+      role: Medic
+      element: 
+      bst: 500
+      synergyTags:
+      - Brawling Pair
+      - Vanguard
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Quick Patch
+      signatureSkillDescription: Low flat heal to one ally.
+      signatureCooldown: 
+      baseStats:
+        hp: 100
+        atk: 80
+        def: 100
+        spd: 100
+        pot: 120
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R02
+      name: Brown Field Cap
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Assassin
+      role: Stalker
+      element: 
+      bst: 500
+      synergyTags:
+      - Assassination
+      - Shadow Step
+      - "Coup de Gr\u0103ce"
+      passiveName: N/A
+      passiveDescription: N/A
+      signatureSkillName: Swift Strike
+      signatureSkillDescription: Basic physical attack.
+      signatureCooldown: N/A
+      baseStats:
+        hp: 80
+        atk: 110
+        def: 110
+        spd: 100
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R03
+      name: Lawn Fairy
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Support
+      role: Buffer
+      element: 
+      bst: 500
+      synergyTags:
+      - Overclock
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Dew Drop
+      signatureSkillDescription: Gives 10% POT to an ally.
+      signatureCooldown: 
+      baseStats:
+        hp: 80
+        atk: 70
+        def: 70
+        spd: 130
+        pot: 150
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R04
+      name: Shaggy Mane
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: DPS
+      role: Nuker
+      element: 
+      bst: 500
+      synergyTags:
+      - Sniper Nest
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Ink Splash
+      signatureSkillDescription: High damage, but loses 5% HP.
+      signatureCooldown: 
+      baseStats:
+        hp: 80
+        atk: 140
+        def: 70
+        spd: 120
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R05
+      name: Puffball Sprout
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Mage
+      role: Bomber
+      element: 
+      bst: 500
+      synergyTags:
+      - The Minefield
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Pop
+      signatureSkillDescription: Deals small AoE damage.
+      signatureCooldown: 
+      baseStats:
+        hp: 100
+        atk: 120
+        def: 90
+        spd: 100
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R06
+      name: Dryad's Saddle
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Tactician
+      role: Captain
+      element: 
+      bst: 500
+      synergyTags:
+      - Gourmet Line
+      - The Battery
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Eagle Eye
+      signatureSkillDescription: Increases ally Accuracy by 5%.
+      signatureCooldown: 
+      baseStats:
+        hp: 120
+        atk: 100
+        def: 80
+        spd: 100
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R07
+      name: Cup Fungus
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Support
+      role: Drinker
+      element: 
+      bst: 500
+      synergyTags:
+      - Vampiric Link
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Sip
+      signatureSkillDescription: Steals 5% HP from target.
+      signatureCooldown: 
+      baseStats:
+        hp: 130
+        atk: 110
+        def: 90
+        spd: 80
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R08
+      name: Yellow Brain
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Mage
+      role: CC
+      element: 
+      bst: 500
+      synergyTags:
+      - Shatter
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Mind Fog
+      signatureSkillDescription: 10% chance to Stun.
+      signatureCooldown: 
+      baseStats:
+        hp: 90
+        atk: 100
+        def: 80
+        spd: 100
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R09
+      name: Parasol Runt
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Tank
+      role: Cover
+      element: 
+      bst: 500
+      synergyTags:
+      - Not Alone
+      - Fortress
+      - Purifying Ward
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Shade
+      signatureSkillDescription: Reduces AoE damage taken by 10%.
+      signatureCooldown: 
+      baseStats:
+        hp: 110
+        atk: 80
+        def: 130
+        spd: 90
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R10
+      name: Portobello Brute
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Tank
+      role: Wall
+      element: 
+      bst: 500
+      synergyTags:
+      - Fortress
+      - Vanguard
+      - Phalanx
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Protective Circle
+      signatureSkillDescription: Grants a small DEF buff to row for 2 turns.
+      signatureCooldown: 
+      baseStats:
+        hp: 140
+        atk: 70
+        def: 130
+        spd: 60
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R11
+      name: Fairy Ring Guard
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Support
+      role: DoT
+      element: 
+      bst: 500
+      synergyTags:
+      - Attrition
+      - Plague Wind
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Toxic Dust
+      signatureSkillDescription: Applies a weak Poison DoT for 3 turns.
+      signatureCooldown: 
+      baseStats:
+        hp: 100
+        atk: 110
+        def: 90
+        spd: 90
+        pot: 110
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R12
+      name: Cloud Ear
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Support
+      role: Medic
+      element: 
+      bst: 500
+      synergyTags:
+      - Brawling Pair
+      - Vanguard
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Reaching Tentacles
+      signatureSkillDescription: Hits 2 random enemies; 15% chance to slow.
+      signatureCooldown: 
+      baseStats:
+        hp: 100
+        atk: 80
+        def: 85
+        spd: 110
+        pot: 125
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R13
+      name: Dead Man's Foot
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Mage
+      role: Saboteur
+      element: 
+      bst: 500
+      synergyTags:
+      - Assassination
+      - Cataclysm
+      - Armor Shred
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Quick Reflex
+      signatureSkillDescription: Increases own SPD by 5% for 2 rounds.
+      signatureCooldown: 
+      baseStats:
+        hp: 80
+        atk: 130
+        def: 75
+        spd: 115
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R14
+      name: Coral Creep
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: DPS
+      role: Multi-Hit
+      element: 
+      bst: 500
+      synergyTags:
+      - Armor Shred
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Veiled Protection
+      signatureSkillDescription: Reduces damage of the next hit for a backline ally.
+      signatureCooldown: 
+      baseStats:
+        hp: 75
+        atk: 120
+        def: 90
+        spd: 115
+        pot: 100
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R15
+      name: Velvet Shank
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Assassin
+      role: Stalker
+      element: 
+      bst: 500
+      synergyTags:
+      - Assassination
+      - Shadow Step
+      - "Coup de Gr\u0103ce"
+      passiveName: N/A
+      passiveDescription: N/A
+      signatureSkillName: Resin Trap
+      signatureSkillDescription: Deals damage and reduces target SPD by 10 for 2
+        turns.
+      signatureCooldown: N/A
+      baseStats:
+        hp: 90
+        atk: 125
+        def: 80
+        spd: 120
+        pot: 85
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R16
+      name: Bamboo Pith
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Mage
+      role: Saboteur
+      element: 
+      bst: 500
+      synergyTags:
+      - Assassination
+      - Cataclysm
+      - Armor Shred
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Yellow Flare
+      signatureSkillDescription: AoE damage to front row; 10% chance to Stun.
+      signatureCooldown: 
+      baseStats:
+        hp: 95
+        atk: 130
+        def: 70
+        spd: 110
+        pot: 95
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R17
+      name: Pine Spike
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Tank
+      role: Taunt
+      element: 
+      bst: 500
+      synergyTags:
+      - Attrition
+      - Lifeline
+      - Vengeance
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Hardened Rind
+      signatureSkillDescription: Increases self-DEF by 25% for 3 turns.
+      signatureCooldown: 
+      baseStats:
+        hp: 150
+        atk: 70
+        def: 140
+        spd: 50
+        pot: 90
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R18
+      name: Sulfur Tuft
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Mage
+      role: AoE
+      element: 
+      bst: 500
+      synergyTags:
+      - Cataclysm
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Faint Radiance
+      signatureSkillDescription: Deals a small scaling amount of AoE damage.
+      signatureCooldown: 
+      baseStats:
+        hp: 105
+        atk: 130
+        def: 85
+        spd: 105
+        pot: 75
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R19
+      name: Earth Ball
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Tank
+      role: Wall
+      element: 
+      bst: 500
+      synergyTags:
+      - Fortress
+      - Vanguard
+      - Phalanx
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Firm Shell
+      signatureSkillDescription: Small self-DEF buff.
+      signatureCooldown: 
+      baseStats:
+        hp: 150
+        atk: 70
+        def: 140
+        spd: 60
+        pot: 80
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    - statModel: class-growth-v1
+      kitVersion: garrett-roster-v1
+      statProfileId: 
+      id: R20
+      name: Luminous Myca
+      rarity: 3
+      rarityTier: R
+      biome: Biome-less
+      classArchetype: Support
+      role: Battery
+      element: 
+      bst: 500
+      synergyTags:
+      - Overclock
+      - The Battery
+      passiveName: 
+      passiveDescription: 
+      signatureSkillName: Glow
+      signatureSkillDescription: Grants an ally 10 energy.
+      signatureCooldown: 
+      baseStats:
+        hp: 90
+        atk: 90
+        def: 80
+        spd: 110
+        pot: 130
+      growth:
+        hp: 0
+        atk: 0
+        def: 0
+        spd: 0
+        pot: 0
+      skills:
+        basic: imported_character_basic
+        ult: imported_character_signature
+      passives: []
+    enemies: []
+  skills:
+    skills:
+    - description: 
+      id: atk_basic
+      name: Basic Attack
+      target: EnemyFront
+      cooldown: 0
+      energyCost: 0
+      effects:
+      - type: Damage
+        scale: 1
+        status: 
+        chance: 0
+        duration: 0
+        potency: 0
+        target: 
+        stat: 
+        ignoreDefense: 0
+        ignoreShield: 0
+        sureHit: 0
+        slot: -1
+    - description: Temporary executable basic attack for imported Garrett roster
+        characters while authored kits are implemented.
+      id: imported_character_basic
+      name: Basic Attack
+      target: EnemyFront
+      cooldown: 0
+      energyCost: 0
+      effects:
+      - type: Damage
+        scale: 1
+        status: 
+        chance: 0
+        duration: 0
+        potency: 0
+        target: 
+        stat: ATK
+        ignoreDefense: 0
+        ignoreShield: 0
+        sureHit: 0
+        slot: -1
+    - description: Temporary executable signature for imported Garrett roster characters.
+        Authored signature names and descriptions remain on each character definition.
+      id: imported_character_signature
+      name: Signature Placeholder
+      target: EnemyFront
+      cooldown: 3
+      energyCost: 100
+      effects:
+      - type: Damage
+        scale: 1.5
+        status: 
+        chance: 0
+        duration: 0
+        potency: 0
+        target: 
+        stat: ATK
+        ignoreDefense: 0
+        ignoreShield: 0
+        sureHit: 0
+        slot: -1
+  stages:
+    schemaVersion: 1
+    stages:
+    - description: Learn the board against real roster fighters. Basics are automatic;
+        queue signatures when ready.
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 0
+      id: s_1_1
+      name: Forager's Trial
+      order: 1
+      recommendedPower: 0
+      waves: []
+      rewards:
+        gold: 99999
+        spores: 10
+        accountXp: 5
+    - description: A tougher front line protects ranged roster fighters. Use formation
+        and queued signatures to break through.
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 0
+      id: s_1_2
+      name: Mushroom Line
+      order: 2
+      recommendedPower: 0
+      waves:
+      - enemies:
+        - enemyId: R10
+          level: 1
+          slotId: front_2
+        - enemyId: R05
+          level: 1
+          slotId: rear_1
+        - enemyId: R04
+          level: 1
+          slotId: rear_4
+      - enemies:
+        - enemyId: R10
+          level: 2
+          slotId: front_2
+        - enemyId: R01
+          level: 2
+          slotId: rear_1
+        - enemyId: R05
+          level: 2
+          slotId: rear_4
+      rewards:
+        gold: 150
+        spores: 12
+        accountXp: 6
+    - description: Mixed Rare roster roles test sustain and target pressure. Use
+        earned gold between stages if needed.
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 0
+      id: s_1_3
+      name: Spore Cupboard
+      order: 3
+      recommendedPower: 0
+      waves:
+      - enemies:
+        - enemyId: R11
+          level: 2
+          slotId: front_1
+        - enemyId: R13
+          level: 2
+          slotId: front_3
+        - enemyId: R07
+          level: 2
+          slotId: rear_2
+      - enemies:
+        - enemyId: R10
+          level: 3
+          slotId: front_2
+        - enemyId: R11
+          level: 3
+          slotId: middle_4
+        - enemyId: R04
+          level: 3
+          slotId: rear_1
+        - enemyId: R13
+          level: 3
+          slotId: rear_4
+      rewards:
+        gold: 200
+        spores: 15
+        accountXp: 7
+    - description: Tundra roster fighters bring durable fronts and fast back-line
+        pressure.
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 0
+      id: s_1_4
+      name: Frozen Shelf
+      order: 4
+      recommendedPower: 0
+      waves:
+      - enemies:
+        - enemyId: 34
+          level: 2
+          slotId: front_2
+        - enemyId: 31
+          level: 2
+          slotId: rear_1
+        - enemyId: 39
+          level: 2
+          slotId: rear_4
+      - enemies:
+        - enemyId: 38
+          level: 3
+          slotId: front_1
+        - enemyId: 31
+          level: 3
+          slotId: middle_3
+        - enemyId: 36
+          level: 3
+          slotId: rear_4
+      rewards:
+        gold: 250
+        spores: 18
+        accountXp: 8
+    - description: Kitchen roster fighters combine tanks, support and damage. Watch
+        the formation before committing signatures.
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 0
+      id: s_1_5
+      name: Kitchen Muster
+      order: 5
+      recommendedPower: 0
+      waves:
+      - enemies:
+        - enemyId: 42
+          level: 2
+          slotId: front_2
+        - enemyId: 41
+          level: 2
+          slotId: rear_1
+        - enemyId: 48
+          level: 2
+          slotId: rear_4
+      - enemies:
+        - enemyId: 49
+          level: 3
+          slotId: front_1
+        - enemyId: 43
+          level: 3
+          slotId: middle_3
+        - enemyId: 47
+          level: 3
+          slotId: rear_2
+        - enemyId: 48
+          level: 3
+          slotId: rear_4
+      rewards:
+        gold: 300
+        spores: 22
+        accountXp: 9
+    - description: A full mixed roster wave prepares you for the final encounter.
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 0
+      id: s_1_6
+      name: Before the Bloom
+      order: 6
+      recommendedPower: 0
+      waves:
+      - enemies:
+        - enemyId: 49
+          level: 3
+          slotId: front_1
+        - enemyId: 42
+          level: 3
+          slotId: front_3
+        - enemyId: 43
+          level: 3
+          slotId: rear_2
+      - enemies:
+        - enemyId: 42
+          level: 4
+          slotId: front_2
+        - enemyId: 48
+          level: 4
+          slotId: middle_4
+        - enemyId: 45
+          level: 4
+          slotId: rear_1
+        - enemyId: 50
+          level: 4
+          slotId: rear_3
+      rewards:
+        gold: 400
+        spores: 25
+        accountXp: 10
+    - description: 'Final encounter: survive a reinforced roster wave, then face
+        Nebula Cordyceps with Kitchen support.'
+      encounterVersion: garrett-roster-campaign-v2
+      boss: 1
+      id: s_1_7
+      name: Nebula Convergence
+      order: 7
+      recommendedPower: 0
+      waves:
+      - enemies:
+        - enemyId: 42
+          level: 4
+          slotId: front_2
+        - enemyId: 48
+          level: 4
+          slotId: rear_1
+        - enemyId: 43
+          level: 4
+          slotId: rear_4
+      - enemies:
+        - enemyId: C1
+          level: 4
+          slotId: front_2
+        - enemyId: 49
+          level: 3
+          slotId: rear_1
+        - enemyId: 50
+          level: 3
+          slotId: rear_4
+      rewards:
+        gold: 600
+        spores: 30
+        accountXp: 11
+  banners:
+    banners:
+    - id: b_standard
+      name: Standard Spore Banner
+      bannerType: standard_character
+      currency: spores
+      costPerPull: 10
+      rates:
+      - rarity: 3
+        rate: 0.78
+      - rarity: 4
+        rate: 0.215
+      - rarity: 6
+        rate: 0.005
+      pity:
+        guaranteeRarityAt: 80
+        guaranteeRarity: 4
+        softPityStart: 65
+        hardPity: 80
+        featuredRarity: 4
+      featuredRateUp: 1
+      carryFeaturedGuarantee: 0
+      featuredCharacterIds: []
+    - id: b_event_starspore
+      name: Nebula Cordyceps Event Banner
+      bannerType: limited_character
+      currency: spores
+      costPerPull: 10
+      rates:
+      - rarity: 3
+        rate: 0.79
+      - rarity: 4
+        rate: 0.204
+      - rarity: 6
+        rate: 0.006
+      pity:
+        guaranteeRarityAt: 90
+        guaranteeRarity: 6
+        softPityStart: 74
+        hardPity: 90
+        featuredRarity: 6
+      featuredRateUp: 0.5
+      carryFeaturedGuarantee: 1
+      featuredCharacterIds:
+      - C1

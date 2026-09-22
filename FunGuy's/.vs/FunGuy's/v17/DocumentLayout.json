@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E60E926F-147A-698F-F617-8775C58E29A0}|Game.Runtime.csproj|c:\\users\\naisi\\desktop\\funguy\\funguy\u0027s\\assets\\_game\\scripts\\data\\gamedatavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E60E926F-147A-698F-F617-8775C58E29A0}|Game.Runtime.csproj|solutionrelative:assets\\_game\\scripts\\data\\gamedatavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22610CFF-6202-CF3A-1180-4A8C51CE56E5}|Assembly-CSharp-Editor.csproj|c:\\users\\naisi\\desktop\\funguy\\funguy\u0027s\\assets\\editor\\funguycontentauthoringmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22610CFF-6202-CF3A-1180-4A8C51CE56E5}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\editor\\funguycontentauthoringmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E60E926F-147A-698F-F617-8775C58E29A0}|Game.Runtime.csproj|C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\assets\\_game\\scripts\\data\\contentcatalogasset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E60E926F-147A-698F-F617-8775C58E29A0}|Game.Runtime.csproj|solutionrelative:assets\\_game\\scripts\\data\\contentcatalogasset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FunGuyContentAuthoringMenu.cs",
+              "DocumentMoniker": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\Assets\\Editor\\FunGuyContentAuthoringMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Editor\\FunGuyContentAuthoringMenu.cs",
+              "ToolTip": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\Assets\\Editor\\FunGuyContentAuthoringMenu.cs",
+              "RelativeToolTip": "Assets\\Editor\\FunGuyContentAuthoringMenu.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwDAAAABzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-22T06:57:01.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContentCatalogAsset.cs",
+              "DocumentMoniker": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\Assets\\_Game\\Scripts\\Data\\ContentCatalogAsset.cs",
+              "RelativeDocumentMoniker": "Assets\\_Game\\Scripts\\Data\\ContentCatalogAsset.cs",
+              "ToolTip": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\Assets\\_Game\\Scripts\\Data\\ContentCatalogAsset.cs",
+              "RelativeToolTip": "Assets\\_Game\\Scripts\\Data\\ContentCatalogAsset.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-22T06:37:16.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameDataValidator.cs",
+              "DocumentMoniker": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\Assets\\_Game\\Scripts\\Data\\GameDataValidator.cs",
+              "RelativeDocumentMoniker": "Assets\\_Game\\Scripts\\Data\\GameDataValidator.cs",
+              "ToolTip": "C:\\Users\\naisi\\Desktop\\FunGuy\\FunGuy\u0027s\\Assets\\_Game\\Scripts\\Data\\GameDataValidator.cs",
+              "RelativeToolTip": "Assets\\_Game\\Scripts\\Data\\GameDataValidator.cs",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAtwMcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-22T06:02:12.788Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
