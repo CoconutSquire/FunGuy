@@ -43,6 +43,8 @@ public partial class GameData {
     if (characters == null) return;
 
     foreach (var c in characters) {
+      c.passives ??= new List<PassiveDef>();
+      NormalizePassives(c.passives);
       if (!string.IsNullOrEmpty(c.statProfileId) || !string.IsNullOrEmpty(c.statModel)) continue; // Authored content is explicit and validated.
       if (c.baseStats == null) c.baseStats = new StatBlock();
       if (c.growth == null) c.growth = new StatGrowth();
@@ -64,6 +66,8 @@ public partial class GameData {
     if (enemies == null) return;
 
     foreach (var e in enemies) {
+      e.passives ??= new List<PassiveDef>();
+      NormalizePassives(e.passives);
       if (e.baseStats == null) e.baseStats = new StatBlock();
       if (e.skills == null) e.skills = new SkillRefs();
       if (e.baseStats.pot <= 0) e.baseStats.pot = Math.Max(1, e.baseStats.atk);
@@ -78,9 +82,28 @@ public partial class GameData {
 
     foreach (var s in skills) {
       if (s.effects == null) s.effects = new List<EffectDef>();
+      foreach (var effect in s.effects) NormalizeEffect(effect);
       if (s.energyCost <= 0) s.energyCost = s.cooldown > 0 ? 100 : 0;
       if (s.cooldown < 0) s.cooldown = 0;
     }
+  }
+
+  private static void NormalizePassives(List<PassiveDef> passives) {
+    if (passives == null) return;
+    foreach (var passive in passives) {
+      if (passive?.effects == null) continue;
+      foreach (var effect in passive.effects) NormalizeEffect(effect);
+    }
+  }
+
+  private static void NormalizeEffect(EffectDef effect) {
+    if (effect == null) return;
+    // Unity serializes unset string fields in ScriptableObjects as "", while the
+    // JSON path leaves omitted optional strings null. Canonicalize both paths so
+    // domain code sees one representation.
+    if (string.IsNullOrWhiteSpace(effect.target)) effect.target = null;
+    if (string.IsNullOrWhiteSpace(effect.stat)) effect.stat = null;
+    if (string.IsNullOrWhiteSpace(effect.status)) effect.status = null;
   }
 
   private void NormalizeBanners(List<BannerDef> banners) {

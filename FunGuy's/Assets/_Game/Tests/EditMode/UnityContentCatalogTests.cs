@@ -22,6 +22,24 @@ public class UnityContentCatalogTests
     }
 
     [Test]
+    public void UnityBlankEffectFieldsNormalizeToJsonEquivalentRuntimeValues()
+    {
+        var asset = Resources.Load<ContentCatalogAsset>(UnityContentCatalogLoader.ResourcesPath);
+        Assert.NotNull(asset);
+
+        var authored = asset.skills.skills.Single(s => s.id == "imported_character_basic").effects.Single();
+        Assert.AreEqual("", authored.target, "Unity asset should demonstrate the empty-string serialization case.");
+
+        var data = new GameData();
+        data.LoadAll();
+        var runtime = data.Skills["imported_character_basic"].effects.Single();
+
+        Assert.IsNull(runtime.target);
+        Assert.AreEqual("ATK", runtime.stat);
+        Assert.AreEqual("", authored.target, "Runtime normalization must not mutate the authored asset.");
+    }
+
+    [Test]
     public void RuntimeCatalog_IsDeepCopiedAndCannotDirtyAuthoredAsset()
     {
         var asset = Resources.Load<ContentCatalogAsset>(UnityContentCatalogLoader.ResourcesPath);

@@ -2,6 +2,10 @@
 
 This branch adds a Unity Inspector authoring path while retaining the JSON files as a fallback/import source.
 
+## Debugging reference
+
+For the chronological error history, explanations of each root cause, pre-test checklist, battle-energy smoke test, Git cleanup checklist, and reusable error-report template, see **`GARRETT_DEBUG_LOG_AND_CHECKLIST.md`**.
+
 ## Runtime ownership rule
 
 `UnityContentCatalog.asset` is **authored source data**. Runtime code must never hold references to the asset's nested `CharacterDef`, `StageDef`, `SkillDef`, or `BannerDef` objects.

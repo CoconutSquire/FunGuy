@@ -1,5 +1,9 @@
 # Garrett Unity-authored content repair — 2026-09-22
 
+## Learning/debugging companion
+
+For a beginner-oriented chronological log of the issues found before each repair, the diagnostic reasoning used, test checklists, Git hygiene, battle-energy verification, and a reusable future-error template, see **`GARRETT_DEBUG_LOG_AND_CHECKLIST.md`**.
+
 ## Scope and safety
 
 Garrett's original WIP commit is preserved in Git history at `669cc4a4`. The repair was built on a separate review branch because the active GitHub integration has read access but no direct write permission to `CoconutSquire/FunGuy`. No changes in this repair are intended for `OneVillage83/main`; the delivery mechanism is a cross-fork PR back to Garrett's `feature/unity-authored-content` branch.
@@ -181,3 +185,69 @@ After merging the PR:
 10. do not commit generated IDE/test/font/package side effects
 
 If a fresh test report still fails, send the first failing test/stack trace; do not commit the XML.
+
+## Follow-up: Battle stopped immediately after energy generation
+
+### Symptom reported
+
+After the catalog-isolation repair, Garrett reported that the project/home screen loaded, but Battle stopped around energy generation.
+
+### Deterministic source diagnosis
+
+The normal action lifecycle is:
+
+1. choose next actor
+2. reset action gauge
+3. grant **20 start-turn energy**
+4. reduce cooldown
+5. select/execute the skill
+
+The Unity-authored asset serializes an unset `EffectDef.target` as an empty string:
+
+```yaml
+effects:
+- type: Damage
+  target:
+  stat: ATK
+```
+
+The JSON form omits `target`, which becomes `null`.
+
+The battle engine previously used:
+
+```csharp
+string rule = eff.target ?? skill.target;
+```
+
+That works for JSON (`null`) but not for Unity (`""`). Therefore the first action generated the +20 energy correctly, then passed `""` into target selection and threw `Unsupported target:`.
+
+This explains why the failure appeared to be an energy-generation problem: energy was the last successful event immediately before target resolution failed.
+
+The same null-only assumption existed for optional effect stat fields and passive target overrides.
+
+### Fix
+
+Two layers now protect the boundary:
+
+1. `GameData` canonicalizes whitespace-only optional effect `target`, `stat`, and `status` fields to `null` on the **detached runtime snapshot**.
+2. `BattleSim` uses `string.IsNullOrWhiteSpace` semantics defensively for:
+   - skill effect target → skill target
+   - passive effect target → passive target
+   - damage stat → ATK
+   - heal/shield/scaled utility stat → the effect-specific fallback
+
+This makes JSON-authored and Unity-authored content semantically identical without mutating the ScriptableObject.
+
+### Regression coverage
+
+Added `BattleSessionTests.UnityBlankOptionalEffectFieldsFallbackAfterStartTurnEnergyGeneration`.
+
+It intentionally creates the Unity serialization case (`target = ""`, `stat = ""`) and verifies:
+
+- +20 start-turn energy is emitted
+- the basic skill executes
+- damage resolves
+- hit energy raises the actor to 25 total energy
+- the battle remains Running rather than throwing
+
+Also added `UnityContentCatalogTests.UnityBlankEffectFieldsNormalizeToJsonEquivalentRuntimeValues` to prove the runtime clone normalizes the field while the authored asset remains unchanged.
