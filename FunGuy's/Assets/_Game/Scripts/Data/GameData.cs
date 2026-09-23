@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameData {
+public partial class GameData {
   public StatRulesCatalog StatRules { get; private set; }
   public LevelProgressionRules LevelRules { get; private set; }
   public Dictionary<string, CharacterDef> Characters = new();
@@ -13,6 +13,13 @@ public class GameData {
   public Dictionary<string, BannerDef> Banners = new();
 
   public void LoadAll() {
+    // When the Unity-authored catalog exists it is authoritative. The loader creates
+    // a detached runtime snapshot so gameplay/tests can never mutate the asset itself.
+    if (UnityContentCatalogLoader.TryLoad(out var authoredCatalog)) {
+      UnityContentCatalogLoader.LoadInto(this, authoredCatalog);
+      return;
+    }
+
     var cfile = JsonLoader.LoadFromResources<CharactersFile>("GameData/characters");
     var sfile = JsonLoader.LoadFromResources<SkillsFile>("GameData/skills");
     var stfile = JsonLoader.LoadFromResources<StagesFile>("GameData/stages");
@@ -21,20 +28,7 @@ public class GameData {
     var statRules = new StatRulesCatalog(JsonLoader.LoadFromResources<StatRulesFile>("GameData/stat_rules"));
     var levelRules = new LevelProgressionRules(JsonLoader.LoadFromResources<LevelProgressionFile>("GameData/level_progression"));
     GameDataValidator.Validate(cfile, sfile, stfile, bfile, statRules);
-
-    NormalizeCharacters(cfile.characters);
-    NormalizeEnemies(cfile.enemies);
-    NormalizeSkills(sfile.skills);
-    NormalizeBanners(bfile.banners);
-
-    StatRules = statRules;
-    LevelRules = levelRules;
-    Characters = cfile.characters.ToDictionary(x => x.id, x => x);
-    Enemies    = (cfile.enemies ?? new List<EnemyDef>()).ToDictionary(x => x.id, x => x);
-    Skills     = sfile.skills.ToDictionary(x => x.id, x => x);
-    Stages     = stfile.stages.ToDictionary(x => x.id, x => x);
-    Banners    = bfile.banners.ToDictionary(x => x.id, x => x);
-    _ = new CombatExampleCatalog(this); // Validate executable reference content without adding it to summon pools.
+    LoadValidated(cfile, sfile, stfile, bfile, statRules, levelRules);
   }
 
   public IReadOnlyList<RateEntry> GetSortedRates(BannerDef banner) {
@@ -49,6 +43,8 @@ public class GameData {
     if (characters == null) return;
 
     foreach (var c in characters) {
+      c.passives ??= new List<PassiveDef>();
+      NormalizePassives(c.passives);
       if (!string.IsNullOrEmpty(c.statProfileId) || !string.IsNullOrEmpty(c.statModel)) continue; // Authored content is explicit and validated.
       if (c.baseStats == null) c.baseStats = new StatBlock();
       if (c.growth == null) c.growth = new StatGrowth();
@@ -70,6 +66,8 @@ public class GameData {
     if (enemies == null) return;
 
     foreach (var e in enemies) {
+      e.passives ??= new List<PassiveDef>();
+      NormalizePassives(e.passives);
       if (e.baseStats == null) e.baseStats = new StatBlock();
       if (e.skills == null) e.skills = new SkillRefs();
       if (e.baseStats.pot <= 0) e.baseStats.pot = Math.Max(1, e.baseStats.atk);
@@ -84,9 +82,28 @@ public class GameData {
 
     foreach (var s in skills) {
       if (s.effects == null) s.effects = new List<EffectDef>();
+      foreach (var effect in s.effects) NormalizeEffect(effect);
       if (s.energyCost <= 0) s.energyCost = s.cooldown > 0 ? 100 : 0;
       if (s.cooldown < 0) s.cooldown = 0;
     }
+  }
+
+  private static void NormalizePassives(List<PassiveDef> passives) {
+    if (passives == null) return;
+    foreach (var passive in passives) {
+      if (passive?.effects == null) continue;
+      foreach (var effect in passive.effects) NormalizeEffect(effect);
+    }
+  }
+
+  private static void NormalizeEffect(EffectDef effect) {
+    if (effect == null) return;
+    // Unity serializes unset string fields in ScriptableObjects as "", while the
+    // JSON path leaves omitted optional strings null. Canonicalize both paths so
+    // domain code sees one representation.
+    if (string.IsNullOrWhiteSpace(effect.target)) effect.target = null;
+    if (string.IsNullOrWhiteSpace(effect.stat)) effect.stat = null;
+    if (string.IsNullOrWhiteSpace(effect.status)) effect.status = null;
   }
 
   private void NormalizeBanners(List<BannerDef> banners) {
