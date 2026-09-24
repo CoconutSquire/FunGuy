@@ -20,6 +20,10 @@ public class GearSlotState {
   public string itemId;
   public int rarity;      // 1-6
   public int level;       // 1-20
+  public string rolledStat;       // Symbiote random stat: HP/ATK/DEF/SPD/POT
+  public int rolledStatAmount;
+  public string uniqueTrait;      // Symbiote unique skill trait
+  public float traitAmount;
 }
 
 [Serializable]
@@ -63,6 +67,7 @@ public class PlayerSave {
   public int tutorialTickets;  // scripted first-time summon pacing
 
   public List<OwnedUnit> units = new();
+  public List<GearSlotState> equipmentInventory = new();
   public List<string> activeTeam = new(); // list of charIds
   public List<FormationPlacement> formation = new(); // Positions for activeTeam members; removed units leave holes.
   public List<StringIntEntry> bannerPity = new();
