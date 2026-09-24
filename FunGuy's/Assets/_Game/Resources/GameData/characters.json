@@ -29,8 +29,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_1_signature"
       },
       "passives": []
     },
@@ -61,8 +61,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_2_signature"
       },
       "passives": []
     },
@@ -93,8 +93,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_3_signature"
       },
       "passives": []
     },
@@ -125,8 +125,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_4_signature"
       },
       "passives": []
     },
@@ -159,8 +159,8 @@
         "pot": 140
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_5_signature"
       },
       "passives": []
     },
@@ -192,8 +192,8 @@
         "pot": 160
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_6_signature"
       },
       "passives": []
     },
@@ -226,8 +226,8 @@
         "pot": 160
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_7_signature"
       },
       "passives": []
     },
@@ -258,8 +258,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_8_signature"
       },
       "passives": []
     },
@@ -290,8 +290,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_9_signature"
       },
       "passives": []
     },
@@ -323,8 +323,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_10_signature"
       },
       "passives": []
     },
@@ -355,8 +355,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_11_signature"
       },
       "passives": []
     },
@@ -389,8 +389,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_12_signature"
       },
       "passives": []
     },
@@ -421,8 +421,8 @@
         "pot": 110
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_13_signature"
       },
       "passives": []
     },
@@ -454,8 +454,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_14_signature"
       },
       "passives": []
     },
@@ -486,8 +486,8 @@
         "pot": 200
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_15_signature"
       },
       "passives": []
     },
@@ -518,8 +518,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_16_signature"
       },
       "passives": []
     },
@@ -551,8 +551,8 @@
         "pot": 140
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_17_signature"
       },
       "passives": []
     },
@@ -584,8 +584,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_18_signature"
       },
       "passives": []
     },
@@ -616,8 +616,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_19_signature"
       },
       "passives": []
     },
@@ -648,8 +648,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_20_signature"
       },
       "passives": []
     },
@@ -682,8 +682,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_21_signature"
       },
       "passives": []
     },
@@ -714,8 +714,8 @@
         "pot": 120
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_22_signature"
       },
       "passives": []
     },
@@ -746,8 +746,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_23_signature"
       },
       "passives": []
     },
@@ -780,8 +780,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_24_signature"
       },
       "passives": []
     },
@@ -812,8 +812,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_25_signature"
       },
       "passives": []
     },
@@ -844,8 +844,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_26_signature"
       },
       "passives": []
     },
@@ -876,8 +876,8 @@
         "pot": 120
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_27_signature"
       },
       "passives": []
     },
@@ -908,8 +908,8 @@
         "pot": 140
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_28_signature"
       },
       "passives": []
     },
@@ -941,8 +941,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_29_signature"
       },
       "passives": []
     },
@@ -973,8 +973,8 @@
         "pot": 60
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_30_signature"
       },
       "passives": []
     },
@@ -1005,8 +1005,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_31_signature"
       },
       "passives": []
     },
@@ -1039,8 +1039,8 @@
         "pot": 120
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_32_signature"
       },
       "passives": []
     },
@@ -1073,8 +1073,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_33_signature"
       },
       "passives": []
     },
@@ -1107,8 +1107,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_34_signature"
       },
       "passives": []
     },
@@ -1139,8 +1139,8 @@
         "pot": 120
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_35_signature"
       },
       "passives": []
     },
@@ -1172,8 +1172,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_36_signature"
       },
       "passives": []
     },
@@ -1204,8 +1204,8 @@
         "pot": 120
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_37_signature"
       },
       "passives": []
     },
@@ -1238,8 +1238,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_38_signature"
       },
       "passives": []
     },
@@ -1271,8 +1271,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_39_signature"
       },
       "passives": []
     },
@@ -1304,8 +1304,8 @@
         "pot": 140
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_40_signature"
       },
       "passives": []
     },
@@ -1337,8 +1337,8 @@
         "pot": 125
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_41_signature"
       },
       "passives": []
     },
@@ -1371,8 +1371,8 @@
         "pot": 105
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_42_signature"
       },
       "passives": []
     },
@@ -1404,8 +1404,8 @@
         "pot": 140
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_43_signature"
       },
       "passives": []
     },
@@ -1438,8 +1438,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_44_signature"
       },
       "passives": []
     },
@@ -1471,8 +1471,8 @@
         "pot": 145
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_45_signature"
       },
       "passives": []
     },
@@ -1503,8 +1503,8 @@
         "pot": 145
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_46_signature"
       },
       "passives": []
     },
@@ -1535,8 +1535,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_47_signature"
       },
       "passives": []
     },
@@ -1567,8 +1567,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_48_signature"
       },
       "passives": []
     },
@@ -1601,8 +1601,8 @@
         "pot": 110
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_49_signature"
       },
       "passives": []
     },
@@ -1634,8 +1634,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_50_signature"
       },
       "passives": []
     },
@@ -1666,8 +1666,8 @@
         "pot": 220
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_c1_signature"
       },
       "passives": []
     },
@@ -1699,8 +1699,8 @@
         "pot": 120
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r01_signature"
       },
       "passives": []
     },
@@ -1733,8 +1733,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r02_signature"
       },
       "passives": []
     },
@@ -1765,8 +1765,8 @@
         "pot": 150
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r03_signature"
       },
       "passives": []
     },
@@ -1797,8 +1797,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r04_signature"
       },
       "passives": []
     },
@@ -1829,8 +1829,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r05_signature"
       },
       "passives": []
     },
@@ -1862,8 +1862,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r06_signature"
       },
       "passives": []
     },
@@ -1894,8 +1894,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r07_signature"
       },
       "passives": []
     },
@@ -1926,8 +1926,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r08_signature"
       },
       "passives": []
     },
@@ -1960,8 +1960,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r09_signature"
       },
       "passives": []
     },
@@ -1994,8 +1994,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r10_signature"
       },
       "passives": []
     },
@@ -2027,8 +2027,8 @@
         "pot": 110
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r11_signature"
       },
       "passives": []
     },
@@ -2060,8 +2060,8 @@
         "pot": 125
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r12_signature"
       },
       "passives": []
     },
@@ -2094,8 +2094,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r13_signature"
       },
       "passives": []
     },
@@ -2126,8 +2126,8 @@
         "pot": 100
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r14_signature"
       },
       "passives": []
     },
@@ -2160,8 +2160,8 @@
         "pot": 85
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r15_signature"
       },
       "passives": []
     },
@@ -2194,8 +2194,8 @@
         "pot": 95
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r16_signature"
       },
       "passives": []
     },
@@ -2228,8 +2228,8 @@
         "pot": 90
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r17_signature"
       },
       "passives": []
     },
@@ -2260,8 +2260,8 @@
         "pot": 75
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r18_signature"
       },
       "passives": []
     },
@@ -2294,8 +2294,8 @@
         "pot": 80
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r19_signature"
       },
       "passives": []
     },
@@ -2327,8 +2327,8 @@
         "pot": 130
       },
       "skills": {
-        "basic": "imported_character_basic",
-        "ult": "imported_character_signature"
+        "basic": "atk_basic",
+        "ult": "char_r20_signature"
       },
       "passives": []
     }
