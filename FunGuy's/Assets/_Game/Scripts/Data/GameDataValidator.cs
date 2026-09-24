@@ -13,6 +13,7 @@ public static class GameDataValidator
         var skillIds = Ids(skills.skills, x => x.id, "skills");
         Ids(stages.stages, x => x.id, "stages");
         Ids(banners.banners, x => x.id, "banners");
+
         foreach (var c in characters.characters)
         {
             ValidatePassives(c.id, c.passives);
@@ -43,35 +44,57 @@ public static class GameDataValidator
                 Require(c.skills != null && skillIds.Contains(c.skills.basic) && skillIds.Contains(c.skills.ult), $"Unit {c.id}: missing skill reference.");
             }
         }
+
         foreach (var e in characters.enemies ?? new List<EnemyDef>())
         {
             ValidatePassives(e.id, e.passives);
             if (!string.IsNullOrEmpty(e.biome)) BiomeRules.Parse(e.biome);
             ValidateUnit(e.id, e.baseStats, e.growth, e.skills, skillIds);
         }
+
         foreach (var skill in skills.skills)
             ValidateSkill(skill);
+
         Require(stages.stages.All(s => s.order > 0) && stages.stages.Select(s => s.order).Distinct().Count() == stages.stages.Count, "Stages require unique positive order values.");
-        foreach (var stage in stages.stages)
+
+        foreach (var stage in stages.stages ?? new List<StageDef>())
         {
+            Require(stage != null, "Stage entry is null.");
             Require(stage.waves != null && stage.waves.Count > 0, $"Stage {stage.id}: missing waves.");
-            foreach (var wave in stage.waves)
+
+            foreach (var wave in stage.waves ?? new List<WaveDef>())
             {
-                Require(wave?.enemies != null && wave.enemies.Count > 0, $"Stage {stage.id}: empty wave.");
+                Require(wave != null, $"Stage {stage.id}: wave entry is null.");
+                Require(wave.enemies != null && wave.enemies.Count > 0, $"Stage {stage.id}: empty wave.");
                 Require(wave.enemies.Count <= FormationRules.Capacity, $"Stage {stage.id}: wave exceeds formation capacity.");
+
                 var slots = new HashSet<int>();
                 foreach (var unit in wave.enemies)
                 {
                     Require(unit != null && characterIds.Contains(unit.enemyId) && unit.level > 0, $"Stage {stage.id}: invalid roster opponent reference/level.");
                     if (!string.IsNullOrEmpty(unit.slotId))
-                        Require(slots.Add(FormationRules.ParseSlot(unit.slotId)), $"Stage {stage.id}: duplicate enemy slot.");
+                    {
+                        int slot;
+                        try
+                        {
+                            slot = FormationRules.ParseSlot(unit.slotId);
+                        }
+                        catch (Exception)
+                        {
+                            Require(false, $"Stage {stage.id}: invalid enemy slot '{unit.slotId}'.");
+                            slot = -1; // unreachable, but keeps compiler happy
+                        }
+                        Require(slots.Add(slot), $"Stage {stage.id}: duplicate enemy slot.");
+                    }
                 }
             }
+
             Require(stage.rewards != null && stage.rewards.gold >= 0 && stage.rewards.spores >= 0 && stage.rewards.accountXp >= 0,
                 $"Stage {stage.id}: invalid rewards.");
         }
+
         foreach (var banner in banners.banners)
-        {
+        {                      
             Require(banner.currency == "spores" && banner.costPerPull > 0, $"Banner {banner.id}: unsupported currency/cost.");
             Require(banner.rates != null && banner.rates.Count > 0, $"Banner {banner.id}: missing rates.");
             Require(banner.rates.All(r => r != null && FiniteNonnegative(r.rate)), $"Banner {banner.id}: invalid rate.");
@@ -110,7 +133,8 @@ public static class GameDataValidator
     {
         if (passives == null) return; // Legacy content has none.
         var ids = new HashSet<string>();
-        foreach (var p in passives) {
+        foreach (var p in passives)
+        {
             Require(p != null && !string.IsNullOrWhiteSpace(p.id) && ids.Add(p.id), $"Unit {unitId}: invalid passive ID.");
             Require(CombatEffectRules.Triggers.Contains(p.trigger) && CombatEffectRules.Targets.Contains(p.target) && p.every > 0,
                 $"Passive {p.id}: invalid trigger/target/interval.");
@@ -124,14 +148,34 @@ public static class GameDataValidator
     private static void ValidateEffects(string id, List<EffectDef> effects, bool counterpart, bool energyGrant = false)
     {
         Require(effects != null && effects.Count > 0, $"Skill/passive {id}: empty effects.");
-        foreach (var e in effects) {
+        foreach (var e in effects)
+        {
             Require(e != null && CombatEffectRules.Effects.Contains(e.type), $"Skill/passive {id}: unsupported effect.");
             Require(FiniteNonnegative(e.scale) && !float.IsNaN(e.potency) && !float.IsInfinity(e.potency) &&
                 (e.potency >= 0 || e.type == "Gauge"), $"Skill/passive {id}: invalid scaling.");
-            Require(e.target == null || (CombatEffectRules.Targets.Contains(e.target) && (e.target != "Attacker" || counterpart)), $"Skill/passive {id}: invalid effect target.");
-            Require(e.stat == null || new[] { "ATK", "POT", "MaxHP", "TargetMaxHP", "GrantedEnergy" }.Contains(e.stat), $"Skill/passive {id}: invalid scaling stat.");
-            Require(e.stat != "GrantedEnergy" || energyGrant, $"Skill/passive {id}: GrantedEnergy needs its trigger context.");
-            Require(e.type != "Damage" || e.stat == null || e.stat == "ATK" || e.stat == "POT", $"Skill/passive {id}: damage requires ATK or POT.");
+
+            Require(
+                string.IsNullOrWhiteSpace(e.target) ||
+                (CombatEffectRules.Targets.Contains(e.target) &&
+                 (e.target != "Attacker" || counterpart)),
+                $"Skill/passive {id}: invalid effect target.");
+
+            Require(
+                string.IsNullOrWhiteSpace(e.stat) ||
+                new[] { "ATK", "POT", "MaxHP", "TargetMaxHP", "GrantedEnergy" }.Contains(e.stat),
+                $"Skill/passive {id}: invalid scaling stat.");
+
+            Require(
+                e.stat != "GrantedEnergy" || energyGrant,
+                $"Skill/passive {id}: GrantedEnergy needs its trigger context.");
+
+            Require(
+                e.type != "Damage" ||
+                string.IsNullOrWhiteSpace(e.stat) ||
+                e.stat == "ATK" ||
+                e.stat == "POT",
+                $"Skill/passive {id}: damage requires ATK or POT.");
+
             Require(FiniteNonnegative(e.ignoreDefense) && e.ignoreDefense <= 1, $"Skill/passive {id}: invalid defense bypass.");
             Require(e.slot >= -1 && e.slot < FormationRules.SlotCount, $"Skill/passive {id}: invalid movement slot.");
             if (e.type == "ApplyStatus")
