@@ -284,6 +284,29 @@ public static class RuntimeSceneUiBootstrap
         var workshop = UpgradePanelView.Create(root.transform, slotBinder.RebindSlots);
         upgrades.onClick.RemoveAllListeners(); upgrades.onClick.AddListener(workshop.Open);
 
+        var equipmentButton = EnsureButton(shell.transform, "Btn_Equipment", "Equipment", new Vector2(0f, 70f),
+            new Vector2(400f, 55f), IdleHuntressTheme.AccentFor(UiTone.Team), out _);
+        var equipmentRoot = EnsurePanel(root.transform, "EquipmentPanel", new Color(.05f,.08f,.1f,.98f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        var equipmentCard = EnsurePanel(equipmentRoot.transform, "Panel_EquipmentCard", WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Team), .99f), CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1450f));
+        var equipmentTitle = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentTitle", "Equipment", 42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+        SetRect(equipmentTitle.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, 620), new Vector2(820, 90));
+        var equipmentCharacter = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentCharacter", "Character", 34, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+        SetRect(equipmentCharacter.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, 515), new Vector2(820, 80));
+        var equipmentDetails = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentDetails", "", 23, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
+        SetRect(equipmentDetails.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, -360), new Vector2(800, 180));
+        var charButtons=new Button[5];
+        for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,390),new Vector2(115,70),IdleHuntressTheme.AccentFor(UiTone.Team),out _); charButtons[i]=b; }
+        var gearButtons=new Button[4]; var gearLabels=new Text[4];
+        for(int i=0;i<4;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentSlot{i+1}",EquipmentService.Slots[i].ToUpperInvariant(),new Vector2(-300+i*200,80),new Vector2(175,150),IdleHuntressTheme.AccentFor(UiTone.Team),out var l); gearButtons[i]=b; gearLabels[i]=l; }
+        var equipmentClose=EnsureButton(equipmentCard.transform,"Btn_EquipmentClose","Close",new Vector2(0,-570),new Vector2(400,80),IdleHuntressTheme.AccentFor(UiTone.Team),out _);
+        var equipmentController=EnsureSceneComponent<EquipmentPanelController>(scene,equipmentRoot.transform);
+        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentDetails,charButtons,gearButtons,gearLabels);
+        for(int i=0;i<5;i++){ int index=i; charButtons[i].onClick.AddListener(()=>equipmentController.SelectCharacter(index)); }
+        for(int i=0;i<4;i++){ int index=i; gearButtons[i].onClick.AddListener(()=>equipmentController.EquipFromSlot(index)); }
+        equipmentClose.onClick.AddListener(equipmentController.Close);
+        equipmentRoot.SetActive(false);
+        equipmentButton.onClick.AddListener(equipmentController.Open);
+
         var autoFill = EnsureButton(shell.transform, "Btn_AutoFill", "Auto Fill", new Vector2(-210f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var autoFillLabel);
         var clearTeam = EnsureButton(shell.transform, "Btn_ClearTeam", "Clear Team", new Vector2(50f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var clearLabel);
         var startBattle = EnsureButton(shell.transform, "Btn_StartBattle", "Start Battle", new Vector2(310f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var startBattleLabel);
