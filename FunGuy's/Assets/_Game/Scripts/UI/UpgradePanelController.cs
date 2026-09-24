@@ -60,12 +60,12 @@ public sealed class UpgradePanelController : MonoBehaviour
 
     public void OnUpgradePressed()
     {
-        if (submitting || preview == null || !preview.CanAfford) return;
+        if (submitting || preview == null || (!preview.CanAfford && !preview.CanAscend)) return;
         submitting = true; upgrade.interactable = false;
         try
         {
-            var result = Game.Upgrades.LevelUp(preview.CharacterId, preview.Level, preview.RulesVersion);
-            message = $"Saved: {Game.Data.Characters[result.CharacterId].name} is now level {result.Level}.";
+            var result = preview.AtCap ? Game.Upgrades.Ascend(preview.CharacterId, preview.Level, preview.RulesVersion) : Game.Upgrades.LevelUp(preview.CharacterId, preview.Level, preview.RulesVersion);
+            message = preview.AtCap ? $"Saved: {Game.Data.Characters[result.CharacterId].name} is now {result.EvolutionStars}★." : $"Saved: {Game.Data.Characters[result.CharacterId].name} is now level {result.Level}.";
         }
         catch (Exception)
         {
@@ -119,10 +119,10 @@ public sealed class UpgradePanelController : MonoBehaviour
             "Decay" => new Color(.62f, .38f, .73f), "Tundra" => new Color(.62f, .82f, .95f),
             _ => new Color(.88f, .54f, .25f) };
         portrait.SetVerticesDirty();
-        upgradeLabel.text = preview.AtCap ? "Current level cap reached" : preview.RequiresAscension ? $"Ascension  •  {preview.GoldCost} gold + {preview.SporeCost} Spores" : $"Level up  •  {preview.GoldCost} gold";
-        upgrade.interactable = preview.CanAfford && !submitting;
+        upgradeLabel.text = preview.AtCap ? (preview.RequiresAscension ? $"ASCEND  •  {preview.SporeCost} Spores → {preview.NextEvolutionStars}★" : "Maximum evolution reached") : $"Level up  •  {preview.GoldCost} gold";
+        upgrade.interactable = (preview.AtCap ? preview.CanAscend : preview.CanAfford) && !submitting;
         if (!preview.AtCap && !preview.CanAfford)
             if (preview.Gold < preview.GoldCost) feedback.text += $"\nNeed {preview.GoldCost - preview.Gold} more gold.";
-        if (!preview.AtCap && preview.Spores < preview.SporeCost) feedback.text += $"\nNeed {preview.SporeCost - preview.Spores} more Spores for this ascension milestone.";
+        if (preview.RequiresAscension && preview.Spores < preview.SporeCost) feedback.text += $"\nNeed {preview.SporeCost - preview.Spores} more Spores to ascend.";
     }
 }
