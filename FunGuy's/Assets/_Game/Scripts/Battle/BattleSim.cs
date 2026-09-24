@@ -72,15 +72,21 @@ public partial class BattleSim {
         if (usedUlt) {
           signatureUsed(actor);
           SpendEnergy(actor, selectedSkill.energyCost);
-          actor.ultCdRemaining = Bonus(actor).Biome("Kitchen") >= 5 && selectedSkill.cooldown > 0 ? Math.Max(2, selectedSkill.cooldown - 1) : Math.Max(0, selectedSkill.cooldown);
-          Emit(BattleEventKind.CooldownChanged, actor, actor, actor.ultCdRemaining, "signature");
+          if (selectedSkill.id == actor.ultimateSkillId) {
+            actor.ultimateCdRemaining = Bonus(actor).Biome("Kitchen") >= 5 && selectedSkill.cooldown > 0 ? Math.Max(2, selectedSkill.cooldown - 1) : Math.Max(0, selectedSkill.cooldown);
+            Emit(BattleEventKind.CooldownChanged, actor, actor, actor.ultimateCdRemaining, "ultimate");
+          } else {
+            actor.ultCdRemaining = Bonus(actor).Biome("Kitchen") >= 5 && selectedSkill.cooldown > 0 ? Math.Max(2, selectedSkill.cooldown - 1) : Math.Max(0, selectedSkill.cooldown);
+            Emit(BattleEventKind.CooldownChanged, actor, actor, actor.ultCdRemaining, "signature");
+          }
         }
         Emit(BattleEventKind.SkillUsed, actor, actor, usedUlt ? 1 : 0, selectedSkill.id);
         usingBasic = !usedUlt;
         ExecuteSkill(actor, allies, opponents, selectedSkill);
-        if (actor.hp > 0 && usedUlt && Bonus(actor).Class("Mage") >= 4 && _rng.NextDouble() < .1) {
+        if (actor.hp > 0 && usedUlt && selectedSkill.id == actor.ultSkillId && Bonus(actor).Class("Mage") >= 4 && _rng.NextDouble() < .1) {
           actor.ultCdRemaining = 0;
           Emit(BattleEventKind.CooldownChanged, actor, actor, 0, "Spell Weaver");
+        }
         }
       }
       finally {
@@ -135,7 +141,11 @@ public partial class BattleSim {
   private void TickUltCooldown(CombatUnit unit) {
     if (unit.ultCdRemaining > 0) {
       unit.ultCdRemaining -= 1;
-      Emit(BattleEventKind.CooldownChanged, unit, unit, unit.ultCdRemaining, "turn-start");
+      Emit(BattleEventKind.CooldownChanged, unit, unit, unit.ultCdRemaining, "signature-turn-start");
+    }
+    if (unit.ultimateCdRemaining > 0) {
+      unit.ultimateCdRemaining -= 1;
+      Emit(BattleEventKind.CooldownChanged, unit, unit, unit.ultimateCdRemaining, "ultimate-turn-start");
     }
   }
 
@@ -144,17 +154,22 @@ public partial class BattleSim {
     usedUlt = false;
 
     _ = _data.Skills.TryGetValue(actor.basicSkillId ?? string.Empty, out var basicSkill);
-    _ = _data.Skills.TryGetValue(actor.ultSkillId ?? string.Empty, out var ultSkill);
-    if (basicSkill == null && ultSkill == null) return false;
+    _ = _data.Skills.TryGetValue(actor.ultSkillId ?? string.Empty, out var signatureSkill);
+    _ = _data.Skills.TryGetValue(actor.ultimateSkillId ?? string.Empty, out var ultimateSkill);
+    if (basicSkill == null && signatureSkill == null && ultimateSkill == null) return false;
 
     bool silenced = HasStatus(actor, "Silence");
-    bool canCastUlt = wantsSignature && !silenced &&
-      ultSkill != null && ultSkill != basicSkill &&
+    bool canCastUltimate = wantsSignature && !silenced &&
+      ultimateSkill != null && ultimateSkill != basicSkill &&
+      actor.ultimateCdRemaining <= 0 &&
+      actor.energy >= Math.Max(0, ultimateSkill.energyCost);
+    bool canCastSignature = wantsSignature && !silenced &&
+      signatureSkill != null && signatureSkill != basicSkill &&
       actor.ultCdRemaining <= 0 &&
-      actor.energy >= Math.Max(0, ultSkill.energyCost);
+      actor.energy >= Math.Max(0, signatureSkill.energyCost);
 
-    selectedSkill = canCastUlt ? ultSkill : basicSkill;
-    usedUlt = canCastUlt;
+    selectedSkill = canCastUltimate ? ultimateSkill : canCastSignature ? signatureSkill : basicSkill;
+    usedUlt = canCastUltimate || canCastSignature;
     return selectedSkill != null;
   }
 
