@@ -30,7 +30,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_1_signature"
+        "ult": "char_1_signature",
+        "signature": "char_1_signature",
+        "ultimate": "char_1_ultimate"
       },
       "passives": []
     },
@@ -62,7 +64,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_2_signature"
+        "ult": "char_2_signature",
+        "signature": "char_2_signature",
+        "ultimate": "char_2_ultimate"
       },
       "passives": []
     },
@@ -94,7 +98,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_3_signature"
+        "ult": "char_3_signature",
+        "signature": "char_3_signature",
+        "ultimate": "char_3_ultimate"
       },
       "passives": []
     },
@@ -126,7 +132,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_4_signature"
+        "ult": "char_4_signature",
+        "signature": "char_4_signature",
+        "ultimate": "char_4_ultimate"
       },
       "passives": []
     },
@@ -160,7 +168,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_5_signature"
+        "ult": "char_5_signature",
+        "signature": "char_5_signature",
+        "ultimate": "char_5_ultimate"
       },
       "passives": []
     },
@@ -193,7 +203,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_6_signature"
+        "ult": "char_6_signature",
+        "signature": "char_6_signature",
+        "ultimate": "char_6_ultimate"
       },
       "passives": []
     },
@@ -227,7 +239,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_7_signature"
+        "ult": "char_7_signature",
+        "signature": "char_7_signature",
+        "ultimate": "char_7_ultimate"
       },
       "passives": []
     },
@@ -259,7 +273,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_8_signature"
+        "ult": "char_8_signature",
+        "signature": "char_8_signature",
+        "ultimate": "char_8_ultimate"
       },
       "passives": []
     },
@@ -291,7 +307,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_9_signature"
+        "ult": "char_9_signature",
+        "signature": "char_9_signature",
+        "ultimate": "char_9_ultimate"
       },
       "passives": []
     },
@@ -324,7 +342,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_10_signature"
+        "ult": "char_10_signature",
+        "signature": "char_10_signature",
+        "ultimate": "char_10_ultimate"
       },
       "passives": []
     },
@@ -356,7 +376,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_11_signature"
+        "ult": "char_11_signature",
+        "signature": "char_11_signature",
+        "ultimate": "char_11_ultimate"
       },
       "passives": []
     },
@@ -390,7 +412,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_12_signature"
+        "ult": "char_12_signature",
+        "signature": "char_12_signature",
+        "ultimate": "char_12_ultimate"
       },
       "passives": []
     },
@@ -422,7 +446,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_13_signature"
+        "ult": "char_13_signature",
+        "signature": "char_13_signature",
+        "ultimate": "char_13_ultimate"
       },
       "passives": []
     },
@@ -455,7 +481,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_14_signature"
+        "ult": "char_14_signature",
+        "signature": "char_14_signature",
+        "ultimate": "char_14_ultimate"
       },
       "passives": []
     },
@@ -487,7 +515,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_15_signature"
+        "ult": "char_15_signature",
+        "signature": "char_15_signature",
+        "ultimate": "char_15_ultimate"
       },
       "passives": []
     },
@@ -519,7 +549,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_16_signature"
+        "ult": "char_16_signature",
+        "signature": "char_16_signature",
+        "ultimate": "char_16_ultimate"
       },
       "passives": []
     },
@@ -552,7 +584,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_17_signature"
+        "ult": "char_17_signature",
+        "signature": "char_17_signature",
+        "ultimate": "char_17_ultimate"
       },
       "passives": []
     },
@@ -585,7 +619,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_18_signature"
+        "ult": "char_18_signature",
+        "signature": "char_18_signature",
+        "ultimate": "char_18_ultimate"
       },
       "passives": []
     },
@@ -617,7 +653,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_19_signature"
+        "ult": "char_19_signature",
+        "signature": "char_19_signature",
+        "ultimate": "char_19_ultimate"
       },
       "passives": []
     },
@@ -649,7 +687,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_20_signature"
+        "ult": "char_20_signature",
+        "signature": "char_20_signature",
+        "ultimate": "char_20_ultimate"
       },
       "passives": []
     },
@@ -683,7 +723,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_21_signature"
+        "ult": "char_21_signature",
+        "signature": "char_21_signature",
+        "ultimate": "char_21_ultimate"
       },
       "passives": []
     },
@@ -715,7 +757,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_22_signature"
+        "ult": "char_22_signature",
+        "signature": "char_22_signature",
+        "ultimate": "char_22_ultimate"
       },
       "passives": []
     },
@@ -747,7 +791,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_23_signature"
+        "ult": "char_23_signature",
+        "signature": "char_23_signature",
+        "ultimate": "char_23_ultimate"
       },
       "passives": []
     },
@@ -781,7 +827,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_24_signature"
+        "ult": "char_24_signature",
+        "signature": "char_24_signature",
+        "ultimate": "char_24_ultimate"
       },
       "passives": []
     },
@@ -813,7 +861,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_25_signature"
+        "ult": "char_25_signature",
+        "signature": "char_25_signature",
+        "ultimate": "char_25_ultimate"
       },
       "passives": []
     },
@@ -845,7 +895,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_26_signature"
+        "ult": "char_26_signature",
+        "signature": "char_26_signature",
+        "ultimate": "char_26_ultimate"
       },
       "passives": []
     },
@@ -877,7 +929,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_27_signature"
+        "ult": "char_27_signature",
+        "signature": "char_27_signature",
+        "ultimate": "char_27_ultimate"
       },
       "passives": []
     },
@@ -909,7 +963,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_28_signature"
+        "ult": "char_28_signature",
+        "signature": "char_28_signature",
+        "ultimate": "char_28_ultimate"
       },
       "passives": []
     },
@@ -942,7 +998,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_29_signature"
+        "ult": "char_29_signature",
+        "signature": "char_29_signature",
+        "ultimate": "char_29_ultimate"
       },
       "passives": []
     },
@@ -974,7 +1032,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_30_signature"
+        "ult": "char_30_signature",
+        "signature": "char_30_signature",
+        "ultimate": "char_30_ultimate"
       },
       "passives": []
     },
@@ -1006,7 +1066,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_31_signature"
+        "ult": "char_31_signature",
+        "signature": "char_31_signature",
+        "ultimate": "char_31_ultimate"
       },
       "passives": []
     },
@@ -1040,7 +1102,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_32_signature"
+        "ult": "char_32_signature",
+        "signature": "char_32_signature",
+        "ultimate": "char_32_ultimate"
       },
       "passives": []
     },
@@ -1074,7 +1138,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_33_signature"
+        "ult": "char_33_signature",
+        "signature": "char_33_signature",
+        "ultimate": "char_33_ultimate"
       },
       "passives": []
     },
@@ -1108,7 +1174,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_34_signature"
+        "ult": "char_34_signature",
+        "signature": "char_34_signature",
+        "ultimate": "char_34_ultimate"
       },
       "passives": []
     },
@@ -1140,7 +1208,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_35_signature"
+        "ult": "char_35_signature",
+        "signature": "char_35_signature",
+        "ultimate": "char_35_ultimate"
       },
       "passives": []
     },
@@ -1173,7 +1243,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_36_signature"
+        "ult": "char_36_signature",
+        "signature": "char_36_signature",
+        "ultimate": "char_36_ultimate"
       },
       "passives": []
     },
@@ -1205,7 +1277,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_37_signature"
+        "ult": "char_37_signature",
+        "signature": "char_37_signature",
+        "ultimate": "char_37_ultimate"
       },
       "passives": []
     },
@@ -1239,7 +1313,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_38_signature"
+        "ult": "char_38_signature",
+        "signature": "char_38_signature",
+        "ultimate": "char_38_ultimate"
       },
       "passives": []
     },
@@ -1272,7 +1348,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_39_signature"
+        "ult": "char_39_signature",
+        "signature": "char_39_signature",
+        "ultimate": "char_39_ultimate"
       },
       "passives": []
     },
@@ -1305,7 +1383,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_40_signature"
+        "ult": "char_40_signature",
+        "signature": "char_40_signature",
+        "ultimate": "char_40_ultimate"
       },
       "passives": []
     },
@@ -1338,7 +1418,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_41_signature"
+        "ult": "char_41_signature",
+        "signature": "char_41_signature",
+        "ultimate": "char_41_ultimate"
       },
       "passives": []
     },
@@ -1372,7 +1454,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_42_signature"
+        "ult": "char_42_signature",
+        "signature": "char_42_signature",
+        "ultimate": "char_42_ultimate"
       },
       "passives": []
     },
@@ -1405,7 +1489,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_43_signature"
+        "ult": "char_43_signature",
+        "signature": "char_43_signature",
+        "ultimate": "char_43_ultimate"
       },
       "passives": []
     },
@@ -1439,7 +1525,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_44_signature"
+        "ult": "char_44_signature",
+        "signature": "char_44_signature",
+        "ultimate": "char_44_ultimate"
       },
       "passives": []
     },
@@ -1472,7 +1560,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_45_signature"
+        "ult": "char_45_signature",
+        "signature": "char_45_signature",
+        "ultimate": "char_45_ultimate"
       },
       "passives": []
     },
@@ -1504,7 +1594,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_46_signature"
+        "ult": "char_46_signature",
+        "signature": "char_46_signature",
+        "ultimate": "char_46_ultimate"
       },
       "passives": []
     },
@@ -1536,7 +1628,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_47_signature"
+        "ult": "char_47_signature",
+        "signature": "char_47_signature",
+        "ultimate": "char_47_ultimate"
       },
       "passives": []
     },
@@ -1568,7 +1662,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_48_signature"
+        "ult": "char_48_signature",
+        "signature": "char_48_signature",
+        "ultimate": "char_48_ultimate"
       },
       "passives": []
     },
@@ -1602,7 +1698,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_49_signature"
+        "ult": "char_49_signature",
+        "signature": "char_49_signature",
+        "ultimate": "char_49_ultimate"
       },
       "passives": []
     },
@@ -1635,7 +1733,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_50_signature"
+        "ult": "char_50_signature",
+        "signature": "char_50_signature",
+        "ultimate": "char_50_ultimate"
       },
       "passives": []
     },
@@ -1667,7 +1767,9 @@
       },
       "skills": {
         "basic": "atk_basic",
-        "ult": "char_c1_signature"
+        "ult": "char_c1_signature",
+        "signature": "char_c1_signature",
+        "ultimate": "char_C1_ultimate"
       },
       "passives": []
     },
