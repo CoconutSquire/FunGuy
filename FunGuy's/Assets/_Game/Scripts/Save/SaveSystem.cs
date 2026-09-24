@@ -6,7 +6,7 @@ using UnityEngine;
 public static class SaveSystem
 {
     // Bump this when you change PlayerSave schema in a breaking way
-    private const int CurrentVersion = 5;
+    private const int CurrentVersion = 6;
 
     // Primary + backup keys
     private const string Key = "FUNGI_SAVE_V2";
@@ -205,6 +205,8 @@ public static class SaveSystem
             version = CurrentVersion,
             createdUtc = now,
             lastSavedUtc = now,
+            idleLastClaimedUtc = now,
+            idleEquipmentProgress = 0d,
 
             gold = 100,
             spores = 50,
@@ -297,6 +299,13 @@ public static class SaveSystem
             save.formation = (save.formation ?? new List<FormationPlacement>()).Where(p => p != null)
                 .Select(p => new FormationPlacement { charId = p.charId, slot = FormationRules.MigrateLegacySlot(p.slot) }).ToList();
             save.version = 5;
+        }
+
+        if (save.version < 6)
+        {
+            if (string.IsNullOrWhiteSpace(save.idleLastClaimedUtc)) save.idleLastClaimedUtc = string.IsNullOrWhiteSpace(save.lastSavedUtc) ? DateTime.UtcNow.ToString("o") : save.lastSavedUtc;
+            if (save.idleEquipmentProgress < 0d) save.idleEquipmentProgress = 0d;
+            save.version = 6;
         }
 
         // After migrations, ensure lists again
