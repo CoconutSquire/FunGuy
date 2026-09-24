@@ -100,9 +100,26 @@ public sealed class LocalCampaignService : ICampaignService
             }
             save.clearedStages.Add(stageId);
             if (Game.Equipment != null) {
-                if (boss) { if (!Game.Equipment.HasType("stipe", save)) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("stipe", 2, 1)); }
-                else if (save.clearedStages.Count == 1) { if (!Game.Equipment.HasType("cap", save)) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("cap", 1, 1)); }
-                if (new Random().NextDouble() < .05) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("symbiote", 3, 1));
+                // Every first campaign clear now awards equipment. The first stage and boss stages
+                // retain their guaranteed milestone pieces; other stages award a random equipment type.
+                string equipmentId;
+                int equipmentRarity;
+                if (save.clearedStages.Count == 1) {
+                    equipmentId = "cap";
+                    equipmentRarity = 1;
+                } else if (boss) {
+                    equipmentId = "stipe";
+                    equipmentRarity = 2;
+                } else {
+                    string[] campaignEquipment = { "cap", "stipe", "mycelium", "symbiote" };
+                    equipmentId = campaignEquipment[new Random().Next(campaignEquipment.Length)];
+                    equipmentRarity = Math.Max(1, Math.Min(6, 1 + save.clearedStages.Count / 10));
+                }
+                Game.Equipment.AddToSave(save, Game.Equipment.Acquire(equipmentId, equipmentRarity, 1));
+
+                // Keep the existing rare Symbiote bonus drop on top of the guaranteed campaign reward.
+                if (new Random().NextDouble() < .05)
+                    Game.Equipment.AddToSave(save, Game.Equipment.Acquire("symbiote", 3, 1));
             }
             store.Write(save);
             return true;
