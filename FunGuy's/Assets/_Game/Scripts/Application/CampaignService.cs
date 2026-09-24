@@ -75,6 +75,7 @@ public sealed class LocalCampaignService : ICampaignService
             var owned = save.units.FirstOrDefault(u => u.charId == id);
             if (owned == null || !data.Characters.TryGetValue(id, out var definition)) throw new InvalidOperationException("Your team contains an unavailable unit.");
             var fighter = CombatUnitFactory.Create(definition, owned.level, TeamSide.Player, owned.stars, data.StatRules);
+            EquipmentService.ApplyTo(fighter, owned);
             fighter.formationSlot = placement.slot;
             player.Add(fighter);
         }
