@@ -196,9 +196,11 @@ public partial class BattleSim
                 bool cleanse = effect.type == "Cleanse";
                 var removable = target.statuses.Where(s => cleanse ? CombatEffectRules.Debuffs.Contains(s.status) : CombatEffectRules.Buffs.Contains(s.status)).ToArray();
                 int limit = effect.potency <= 0 ? removable.Length : (int)effect.potency;
+                int removed = 0;
                 foreach (var status in removable.Take(limit)) {
-                    target.statuses.Remove(status); Emit(BattleEventKind.StatusExpired, actor, target, 0, effect.type + ":" + status.status);
+                    target.statuses.Remove(status); removed++; Emit(BattleEventKind.StatusExpired, actor, target, 0, effect.type + ":" + status.status);
                 }
+                if (removed > 0) GrantSupportEnergy(actor);
                 if (cleanse && removable.Length > 0 && actor.role == "Purifier" && Bonus(actor).Pair("Purifier", "Cover"))
                     foreach (var cover in all.Where(u => u.side == actor.side && u.hp > 0 && u.role == "Cover"))
                         AddShield(actor, cover, (int)MathF.Round(cover.maxHp * .1f), "Purifying Ward");
