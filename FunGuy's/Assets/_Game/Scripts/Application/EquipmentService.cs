@@ -47,7 +47,7 @@ public sealed class EquipmentService
         unit.gearSlots.Remove(item); save.equipmentInventory.Add(item); SaveSystem.Save(save); Game.Save = save; return true;
     }
 
-    public void AddToInventory(GearSlotState item) { if (item == null) return; var save=Game.Save ?? SaveSystem.LoadOrNew(); save.equipmentInventory ??= new List<GearSlotState>(); save.equipmentInventory.Add(item); SaveSystem.Save(save); Game.Save=save; }
+    public void AddToSave(PlayerSave save, GearSlotState item) { if (save == null || item == null) return; save.equipmentInventory ??= new List<GearSlotState>(); save.equipmentInventory.Add(item); }\n\n    public void AddToInventory(GearSlotState item) { if (item == null) return; var save=Game.Save ?? SaveSystem.LoadOrNew(); AddToSave(save, item); SaveSystem.Save(save); Game.Save=save; }
 
     public static void ApplyTo(CombatUnit fighter, OwnedUnit owned) {
         if (fighter == null || owned?.gearSlots == null) return;
