@@ -3,20 +3,7 @@
     {
       "id": "atk_basic",
       "name": "Basic Attack",
-      "target": "EnemyFront",
-      "cooldown": 0,
-      "energyCost": 0,
-      "effects": [
-        {
-          "type": "Damage",
-          "scale": 1
-        }
-      ]
-    },
-    {
-      "id": "imported_character_basic",
-      "name": "Basic Attack",
-      "description": "Temporary executable basic attack for imported Garrett roster characters while authored kits are implemented.",
+      "description": "Standard basic attack.",
       "target": "EnemyFront",
       "cooldown": 0,
       "energyCost": 0,
@@ -24,22 +11,1342 @@
         {
           "type": "Damage",
           "scale": 1,
-          "stat": "ATK"
+          "target": "EnemyFront"
         }
       ]
     },
     {
-      "id": "imported_character_signature",
-      "name": "Signature Placeholder",
-      "description": "Temporary executable signature for imported Garrett roster characters. Authored signature names and descriptions remain on each character definition.",
+      "id": "char_1_signature",
+      "target": "SelfAndLowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.2,
+          "target": "Self",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.2,
+          "target": "LowestHpAlly",
+          "stat": "TargetMaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_2_signature",
+      "target": "RandomEnemy2",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.75,
+          "target": "RandomEnemy2"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "RandomEnemy2",
+          "status": "Bleed",
+          "potency": 0.03,
+          "duration": 2,
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "id": "char_3_signature",
       "target": "EnemyFront",
-      "cooldown": 3,
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.8,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_4_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.6,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_5_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.5,
+          "duration": 1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_6_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Cleanse",
+          "target": "AllAllies",
+          "potency": 1
+        }
+      ]
+    },
+    {
+      "id": "char_7_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.12,
+          "target": "AllAllies",
+          "stat": "POT"
+        }
+      ]
+    },
+    {
+      "id": "char_8_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Luminescence",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "Damage",
+          "scale": 1.5,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_9_signature",
+      "target": "RandomEnemy2",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "RandomEnemy2"
+        },
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "RandomEnemy2"
+        }
+      ]
+    },
+    {
+      "id": "char_10_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Energy",
+          "target": "AllAllies",
+          "potency": 20
+        },
+        {
+          "type": "Gauge",
+          "target": "AllAllies",
+          "potency": 1000
+        }
+      ]
+    },
+    {
+      "id": "char_11_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.8,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Confusion",
+          "potency": 1,
+          "duration": 2,
+          "chance": 0.65
+        }
+      ]
+    },
+    {
+      "id": "char_12_signature",
+      "target": "EnemyBack",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Move",
+          "target": "EnemyBack",
+          "slot": 0
+        },
+        {
+          "type": "Damage",
+          "scale": 1,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_13_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Move",
+          "target": "Self",
+          "slot": -1
+        },
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "EnemyFrontRow"
+        }
+      ]
+    },
+    {
+      "id": "char_14_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Energy",
+          "target": "AllAllies",
+          "potency": 20
+        },
+        {
+          "type": "Shield",
+          "scale": 0.12,
+          "target": "SelfAndLowestHpAlly",
+          "stat": "TargetMaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_15_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.25,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "POTUp",
+          "potency": 0.25,
+          "duration": 1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_16_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Poison",
+          "potency": 0.03,
+          "duration": 3,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Regen",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_17_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_18_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Root",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "Damage",
+          "scale": 0.75,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_19_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_20_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.7,
+          "target": "AllEnemies"
+        }
+      ]
+    },
+    {
+      "id": "char_21_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.15,
+          "duration": -1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_22_signature",
+      "target": "LowestHpEnemy",
+      "cooldown": 0,
       "energyCost": 100,
       "effects": [
         {
           "type": "Damage",
           "scale": 1.5,
+          "target": "LowestHpEnemy"
+        }
+      ]
+    },
+    {
+      "id": "char_23_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DamageReduction",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "Damage",
+          "scale": 1.6,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "Heal",
+          "scale": 0.8,
+          "target": "Self",
           "stat": "ATK"
+        }
+      ]
+    },
+    {
+      "id": "char_24_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "ATKDown",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "DEFDown",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_25_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.1,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Burn",
+          "potency": 0.03,
+          "duration": 2,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_26_signature",
+      "target": "RandomEnemy2",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.75,
+          "target": "RandomEnemy2"
+        },
+        {
+          "type": "Damage",
+          "scale": 0.75,
+          "target": "RandomEnemy2"
+        }
+      ]
+    },
+    {
+      "id": "char_27_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Dispel",
+          "target": "AllEnemies",
+          "potency": 0
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Marked",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_28_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Dispel",
+          "target": "AllEnemies",
+          "potency": 0
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "SPDUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_29_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.7,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "Heal",
+          "scale": 1,
+          "target": "Self",
+          "stat": "ATK"
+        }
+      ]
+    },
+    {
+      "id": "char_30_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Luminescence",
+          "potency": 1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_31_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Vantage",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "Damage",
+          "scale": 1.4,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_32_signature",
+      "target": "LowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.25,
+          "target": "LowestHpAlly",
+          "stat": "TargetMaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_33_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Freeze",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_34_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Slow",
+          "potency": 0.2,
+          "duration": -1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_35_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "ATKDown",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "POTDown",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_36_signature",
+      "target": "Self",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Gauge",
+          "target": "Self",
+          "potency": 1000
+        }
+      ]
+    },
+    {
+      "id": "char_37_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "Cleanse",
+          "target": "LowestHpAlly",
+          "potency": 1
+        }
+      ]
+    },
+    {
+      "id": "char_38_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Reflect",
+          "potency": 0.5,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_39_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.15,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "Luminescence",
+          "potency": 0.15,
+          "duration": 1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_40_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Cleanse",
+          "target": "AllAllies",
+          "potency": 0
+        },
+        {
+          "type": "Shield",
+          "scale": 0.15,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_41_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.8,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Burn",
+          "potency": 0.04,
+          "duration": 3,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_42_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "Heal",
+          "scale": 0.25,
+          "target": "Self",
+          "stat": "MaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_43_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Energy",
+          "target": "AllAllies",
+          "potency": 25
+        },
+        {
+          "type": "Heal",
+          "scale": 0.05,
+          "target": "AllAllies",
+          "stat": "MaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_44_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.8,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_45_signature",
+      "target": "AllAllies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_46_signature",
+      "target": "LowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "LowestHpAlly",
+          "status": "Intangible",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_47_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.9,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "Heal",
+          "scale": 0.25,
+          "target": "Self",
+          "stat": "ATK"
+        }
+      ]
+    },
+    {
+      "id": "char_48_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.8,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Slow",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 0.6
+        }
+      ]
+    },
+    {
+      "id": "char_49_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.25,
+          "duration": 2,
+          "chance": 1
+        },
+        {
+          "type": "Shield",
+          "scale": 0.15,
+          "target": "Self",
+          "stat": "TargetMaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_50_signature",
+      "target": "Self",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.2,
+          "target": "Self",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "Heal",
+          "scale": 0.25,
+          "target": "Self",
+          "stat": "MaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_c1_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "Move",
+          "target": "AllEnemies",
+          "slot": -1
+        }
+      ]
+    },
+    {
+      "id": "char_r01_signature",
+      "target": "LowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.15,
+          "target": "LowestHpAlly",
+          "stat": "POT"
+        }
+      ]
+    },
+    {
+      "id": "char_r02_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_r03_signature",
+      "target": "LowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "LowestHpAlly",
+          "status": "POTUp",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r04_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.5,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "Damage",
+          "scale": 0.05,
+          "target": "Self"
+        }
+      ]
+    },
+    {
+      "id": "char_r05_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.5,
+          "target": "AllEnemies"
+        }
+      ]
+    },
+    {
+      "id": "char_r06_signature",
+      "target": "LowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "LowestHpAlly",
+          "status": "Vantage",
+          "potency": 0.05,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r07_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.6,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "Heal",
+          "scale": 0.05,
+          "target": "Self",
+          "stat": "MaxHP"
+        }
+      ]
+    },
+    {
+      "id": "char_r08_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Stun",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.1
+        },
+        {
+          "type": "Damage",
+          "scale": 0.5,
+          "target": "EnemyFront"
+        }
+      ]
+    },
+    {
+      "id": "char_r09_signature",
+      "target": "Self",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DamageReduction",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r10_signature",
+      "target": "AllyRow",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "AllyRow",
+          "status": "DEFUp",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r11_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Poison",
+          "potency": 0.02,
+          "duration": 3,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r12_signature",
+      "target": "RandomEnemy2",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.6,
+          "target": "RandomEnemy2"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "RandomEnemy2",
+          "status": "Slow",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 0.15
+        }
+      ]
+    },
+    {
+      "id": "char_r13_signature",
+      "target": "Self",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "SPDUp",
+          "potency": 0.05,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r14_signature",
+      "target": "EnemyBack",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyBack",
+          "status": "DamageReduction",
+          "potency": 0.5,
+          "duration": 1,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r15_signature",
+      "target": "EnemyFront",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.7,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "Slow",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r16_signature",
+      "target": "EnemyFrontRow",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.7,
+          "target": "EnemyFrontRow"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFrontRow",
+          "status": "Stun",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "char_r17_signature",
+      "target": "Self",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.25,
+          "duration": 3,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r18_signature",
+      "target": "AllEnemies",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 0.5,
+          "target": "AllEnemies"
+        }
+      ]
+    },
+    {
+      "id": "char_r19_signature",
+      "target": "Self",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.1,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_r20_signature",
+      "target": "LowestHpAlly",
+      "cooldown": 0,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Energy",
+          "target": "LowestHpAlly",
+          "potency": 10
         }
       ]
     }
