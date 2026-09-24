@@ -234,6 +234,7 @@ public static class SaveSystem
         if (save.tutorialTickets < 0) save.tutorialTickets = 0;
 
         if (save.units == null) save.units = new List<OwnedUnit>();
+        if (save.equipmentInventory == null) save.equipmentInventory = new List<GearSlotState>();
         if (save.activeTeam == null) save.activeTeam = new List<string>();
         if (save.bannerPity == null) save.bannerPity = new List<StringIntEntry>();
         if (save.bannerFeaturedGuarantee == null) save.bannerFeaturedGuarantee = new List<StringBoolEntry>();
