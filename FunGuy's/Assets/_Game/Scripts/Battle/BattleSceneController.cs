@@ -48,6 +48,7 @@ public sealed class BattleSceneController : MonoBehaviour
         foreach (var placement in FormationRules.Resolve(Game.Save)) {
             var owned = Game.Save.units.First(u => u.charId == placement.charId);
             var fighter = CombatUnitFactory.Create(Game.Data.Characters[placement.charId], owned.level, TeamSide.Player, owned.stars, Game.Data.StatRules);
+            EquipmentService.ApplyTo(fighter, owned);
             fighter.formationSlot = placement.slot;
             states.Add(new BattleFighterState("preview/player/" + placement.slot, fighter));
         }
