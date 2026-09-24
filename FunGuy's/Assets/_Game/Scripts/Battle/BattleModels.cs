@@ -26,7 +26,7 @@ public class CombatUnit {
   public int ultCdRemaining;
   public int ultimateCdRemaining;
   public int energy;
-  public int maxEnergy = 200;
+  public int maxEnergy = 100;
   public float actionGauge;
 
   public List<StatusInstance> statuses = new();
