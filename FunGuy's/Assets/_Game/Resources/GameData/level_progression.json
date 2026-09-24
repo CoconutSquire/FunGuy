@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "rulesVersion": "slice-levels-v2",
-  "levelCap": 180,
+  "levelCap": 200,
   "costs": [
     {
       "fromLevel": 1,
@@ -897,6 +897,106 @@
       "fromLevel": 179,
       "gold": 1805,
       "spores": 4000
+    },
+    {
+      "fromLevel": 180,
+      "gold": 1815,
+      "spores": 0
+    },
+    {
+      "fromLevel": 181,
+      "gold": 1825,
+      "spores": 0
+    },
+    {
+      "fromLevel": 182,
+      "gold": 1835,
+      "spores": 0
+    },
+    {
+      "fromLevel": 183,
+      "gold": 1845,
+      "spores": 0
+    },
+    {
+      "fromLevel": 184,
+      "gold": 1855,
+      "spores": 0
+    },
+    {
+      "fromLevel": 185,
+      "gold": 1865,
+      "spores": 0
+    },
+    {
+      "fromLevel": 186,
+      "gold": 1875,
+      "spores": 0
+    },
+    {
+      "fromLevel": 187,
+      "gold": 1885,
+      "spores": 0
+    },
+    {
+      "fromLevel": 188,
+      "gold": 1895,
+      "spores": 0
+    },
+    {
+      "fromLevel": 189,
+      "gold": 1905,
+      "spores": 0
+    },
+    {
+      "fromLevel": 190,
+      "gold": 1915,
+      "spores": 0
+    },
+    {
+      "fromLevel": 191,
+      "gold": 1925,
+      "spores": 0
+    },
+    {
+      "fromLevel": 192,
+      "gold": 1935,
+      "spores": 0
+    },
+    {
+      "fromLevel": 193,
+      "gold": 1945,
+      "spores": 0
+    },
+    {
+      "fromLevel": 194,
+      "gold": 1955,
+      "spores": 0
+    },
+    {
+      "fromLevel": 195,
+      "gold": 1965,
+      "spores": 0
+    },
+    {
+      "fromLevel": 196,
+      "gold": 1975,
+      "spores": 0
+    },
+    {
+      "fromLevel": 197,
+      "gold": 1985,
+      "spores": 0
+    },
+    {
+      "fromLevel": 198,
+      "gold": 1995,
+      "spores": 0
+    },
+    {
+      "fromLevel": 199,
+      "gold": 2005,
+      "spores": 0
     }
   ]
 }
