@@ -1,26 +1,902 @@
 {
-  "schemaVersion": 1,
-  "rulesVersion": "slice-levels-v1",
-  "levelCap": 20,
+  "schemaVersion": 2,
+  "rulesVersion": "slice-levels-v2",
+  "levelCap": 180,
   "costs": [
-    { "fromLevel": 1, "gold": 25 },
-    { "fromLevel": 2, "gold": 35 },
-    { "fromLevel": 3, "gold": 45 },
-    { "fromLevel": 4, "gold": 55 },
-    { "fromLevel": 5, "gold": 65 },
-    { "fromLevel": 6, "gold": 75 },
-    { "fromLevel": 7, "gold": 85 },
-    { "fromLevel": 8, "gold": 95 },
-    { "fromLevel": 9, "gold": 105 },
-    { "fromLevel": 10, "gold": 115 },
-    { "fromLevel": 11, "gold": 125 },
-    { "fromLevel": 12, "gold": 135 },
-    { "fromLevel": 13, "gold": 145 },
-    { "fromLevel": 14, "gold": 155 },
-    { "fromLevel": 15, "gold": 165 },
-    { "fromLevel": 16, "gold": 175 },
-    { "fromLevel": 17, "gold": 185 },
-    { "fromLevel": 18, "gold": 195 },
-    { "fromLevel": 19, "gold": 205 }
+    {
+      "fromLevel": 1,
+      "gold": 25,
+      "spores": 0
+    },
+    {
+      "fromLevel": 2,
+      "gold": 35,
+      "spores": 0
+    },
+    {
+      "fromLevel": 3,
+      "gold": 45,
+      "spores": 0
+    },
+    {
+      "fromLevel": 4,
+      "gold": 55,
+      "spores": 0
+    },
+    {
+      "fromLevel": 5,
+      "gold": 65,
+      "spores": 0
+    },
+    {
+      "fromLevel": 6,
+      "gold": 75,
+      "spores": 0
+    },
+    {
+      "fromLevel": 7,
+      "gold": 85,
+      "spores": 0
+    },
+    {
+      "fromLevel": 8,
+      "gold": 95,
+      "spores": 0
+    },
+    {
+      "fromLevel": 9,
+      "gold": 105,
+      "spores": 0
+    },
+    {
+      "fromLevel": 10,
+      "gold": 115,
+      "spores": 0
+    },
+    {
+      "fromLevel": 11,
+      "gold": 125,
+      "spores": 0
+    },
+    {
+      "fromLevel": 12,
+      "gold": 135,
+      "spores": 0
+    },
+    {
+      "fromLevel": 13,
+      "gold": 145,
+      "spores": 0
+    },
+    {
+      "fromLevel": 14,
+      "gold": 155,
+      "spores": 0
+    },
+    {
+      "fromLevel": 15,
+      "gold": 165,
+      "spores": 0
+    },
+    {
+      "fromLevel": 16,
+      "gold": 175,
+      "spores": 0
+    },
+    {
+      "fromLevel": 17,
+      "gold": 185,
+      "spores": 0
+    },
+    {
+      "fromLevel": 18,
+      "gold": 195,
+      "spores": 0
+    },
+    {
+      "fromLevel": 19,
+      "gold": 205,
+      "spores": 0
+    },
+    {
+      "fromLevel": 20,
+      "gold": 215,
+      "spores": 0
+    },
+    {
+      "fromLevel": 21,
+      "gold": 225,
+      "spores": 0
+    },
+    {
+      "fromLevel": 22,
+      "gold": 235,
+      "spores": 0
+    },
+    {
+      "fromLevel": 23,
+      "gold": 245,
+      "spores": 0
+    },
+    {
+      "fromLevel": 24,
+      "gold": 255,
+      "spores": 0
+    },
+    {
+      "fromLevel": 25,
+      "gold": 265,
+      "spores": 0
+    },
+    {
+      "fromLevel": 26,
+      "gold": 275,
+      "spores": 0
+    },
+    {
+      "fromLevel": 27,
+      "gold": 285,
+      "spores": 0
+    },
+    {
+      "fromLevel": 28,
+      "gold": 295,
+      "spores": 0
+    },
+    {
+      "fromLevel": 29,
+      "gold": 305,
+      "spores": 0
+    },
+    {
+      "fromLevel": 30,
+      "gold": 315,
+      "spores": 0
+    },
+    {
+      "fromLevel": 31,
+      "gold": 325,
+      "spores": 0
+    },
+    {
+      "fromLevel": 32,
+      "gold": 335,
+      "spores": 0
+    },
+    {
+      "fromLevel": 33,
+      "gold": 345,
+      "spores": 0
+    },
+    {
+      "fromLevel": 34,
+      "gold": 355,
+      "spores": 0
+    },
+    {
+      "fromLevel": 35,
+      "gold": 365,
+      "spores": 0
+    },
+    {
+      "fromLevel": 36,
+      "gold": 375,
+      "spores": 0
+    },
+    {
+      "fromLevel": 37,
+      "gold": 385,
+      "spores": 0
+    },
+    {
+      "fromLevel": 38,
+      "gold": 395,
+      "spores": 0
+    },
+    {
+      "fromLevel": 39,
+      "gold": 405,
+      "spores": 0
+    },
+    {
+      "fromLevel": 40,
+      "gold": 415,
+      "spores": 0
+    },
+    {
+      "fromLevel": 41,
+      "gold": 425,
+      "spores": 0
+    },
+    {
+      "fromLevel": 42,
+      "gold": 435,
+      "spores": 0
+    },
+    {
+      "fromLevel": 43,
+      "gold": 445,
+      "spores": 0
+    },
+    {
+      "fromLevel": 44,
+      "gold": 455,
+      "spores": 0
+    },
+    {
+      "fromLevel": 45,
+      "gold": 465,
+      "spores": 0
+    },
+    {
+      "fromLevel": 46,
+      "gold": 475,
+      "spores": 0
+    },
+    {
+      "fromLevel": 47,
+      "gold": 485,
+      "spores": 0
+    },
+    {
+      "fromLevel": 48,
+      "gold": 495,
+      "spores": 0
+    },
+    {
+      "fromLevel": 49,
+      "gold": 505,
+      "spores": 0
+    },
+    {
+      "fromLevel": 50,
+      "gold": 515,
+      "spores": 0
+    },
+    {
+      "fromLevel": 51,
+      "gold": 525,
+      "spores": 0
+    },
+    {
+      "fromLevel": 52,
+      "gold": 535,
+      "spores": 0
+    },
+    {
+      "fromLevel": 53,
+      "gold": 545,
+      "spores": 0
+    },
+    {
+      "fromLevel": 54,
+      "gold": 555,
+      "spores": 0
+    },
+    {
+      "fromLevel": 55,
+      "gold": 565,
+      "spores": 0
+    },
+    {
+      "fromLevel": 56,
+      "gold": 575,
+      "spores": 0
+    },
+    {
+      "fromLevel": 57,
+      "gold": 585,
+      "spores": 0
+    },
+    {
+      "fromLevel": 58,
+      "gold": 595,
+      "spores": 0
+    },
+    {
+      "fromLevel": 59,
+      "gold": 605,
+      "spores": 100
+    },
+    {
+      "fromLevel": 60,
+      "gold": 615,
+      "spores": 0
+    },
+    {
+      "fromLevel": 61,
+      "gold": 625,
+      "spores": 0
+    },
+    {
+      "fromLevel": 62,
+      "gold": 635,
+      "spores": 0
+    },
+    {
+      "fromLevel": 63,
+      "gold": 645,
+      "spores": 0
+    },
+    {
+      "fromLevel": 64,
+      "gold": 655,
+      "spores": 0
+    },
+    {
+      "fromLevel": 65,
+      "gold": 665,
+      "spores": 0
+    },
+    {
+      "fromLevel": 66,
+      "gold": 675,
+      "spores": 0
+    },
+    {
+      "fromLevel": 67,
+      "gold": 685,
+      "spores": 0
+    },
+    {
+      "fromLevel": 68,
+      "gold": 695,
+      "spores": 0
+    },
+    {
+      "fromLevel": 69,
+      "gold": 705,
+      "spores": 0
+    },
+    {
+      "fromLevel": 70,
+      "gold": 715,
+      "spores": 0
+    },
+    {
+      "fromLevel": 71,
+      "gold": 725,
+      "spores": 0
+    },
+    {
+      "fromLevel": 72,
+      "gold": 735,
+      "spores": 0
+    },
+    {
+      "fromLevel": 73,
+      "gold": 745,
+      "spores": 0
+    },
+    {
+      "fromLevel": 74,
+      "gold": 755,
+      "spores": 0
+    },
+    {
+      "fromLevel": 75,
+      "gold": 765,
+      "spores": 0
+    },
+    {
+      "fromLevel": 76,
+      "gold": 775,
+      "spores": 0
+    },
+    {
+      "fromLevel": 77,
+      "gold": 785,
+      "spores": 0
+    },
+    {
+      "fromLevel": 78,
+      "gold": 795,
+      "spores": 0
+    },
+    {
+      "fromLevel": 79,
+      "gold": 805,
+      "spores": 0
+    },
+    {
+      "fromLevel": 80,
+      "gold": 815,
+      "spores": 0
+    },
+    {
+      "fromLevel": 81,
+      "gold": 825,
+      "spores": 0
+    },
+    {
+      "fromLevel": 82,
+      "gold": 835,
+      "spores": 0
+    },
+    {
+      "fromLevel": 83,
+      "gold": 845,
+      "spores": 0
+    },
+    {
+      "fromLevel": 84,
+      "gold": 855,
+      "spores": 0
+    },
+    {
+      "fromLevel": 85,
+      "gold": 865,
+      "spores": 0
+    },
+    {
+      "fromLevel": 86,
+      "gold": 875,
+      "spores": 0
+    },
+    {
+      "fromLevel": 87,
+      "gold": 885,
+      "spores": 0
+    },
+    {
+      "fromLevel": 88,
+      "gold": 895,
+      "spores": 0
+    },
+    {
+      "fromLevel": 89,
+      "gold": 905,
+      "spores": 0
+    },
+    {
+      "fromLevel": 90,
+      "gold": 915,
+      "spores": 0
+    },
+    {
+      "fromLevel": 91,
+      "gold": 925,
+      "spores": 0
+    },
+    {
+      "fromLevel": 92,
+      "gold": 935,
+      "spores": 0
+    },
+    {
+      "fromLevel": 93,
+      "gold": 945,
+      "spores": 0
+    },
+    {
+      "fromLevel": 94,
+      "gold": 955,
+      "spores": 0
+    },
+    {
+      "fromLevel": 95,
+      "gold": 965,
+      "spores": 0
+    },
+    {
+      "fromLevel": 96,
+      "gold": 975,
+      "spores": 0
+    },
+    {
+      "fromLevel": 97,
+      "gold": 985,
+      "spores": 0
+    },
+    {
+      "fromLevel": 98,
+      "gold": 995,
+      "spores": 0
+    },
+    {
+      "fromLevel": 99,
+      "gold": 1005,
+      "spores": 250
+    },
+    {
+      "fromLevel": 100,
+      "gold": 1015,
+      "spores": 0
+    },
+    {
+      "fromLevel": 101,
+      "gold": 1025,
+      "spores": 0
+    },
+    {
+      "fromLevel": 102,
+      "gold": 1035,
+      "spores": 0
+    },
+    {
+      "fromLevel": 103,
+      "gold": 1045,
+      "spores": 0
+    },
+    {
+      "fromLevel": 104,
+      "gold": 1055,
+      "spores": 0
+    },
+    {
+      "fromLevel": 105,
+      "gold": 1065,
+      "spores": 0
+    },
+    {
+      "fromLevel": 106,
+      "gold": 1075,
+      "spores": 0
+    },
+    {
+      "fromLevel": 107,
+      "gold": 1085,
+      "spores": 0
+    },
+    {
+      "fromLevel": 108,
+      "gold": 1095,
+      "spores": 0
+    },
+    {
+      "fromLevel": 109,
+      "gold": 1105,
+      "spores": 0
+    },
+    {
+      "fromLevel": 110,
+      "gold": 1115,
+      "spores": 0
+    },
+    {
+      "fromLevel": 111,
+      "gold": 1125,
+      "spores": 0
+    },
+    {
+      "fromLevel": 112,
+      "gold": 1135,
+      "spores": 0
+    },
+    {
+      "fromLevel": 113,
+      "gold": 1145,
+      "spores": 0
+    },
+    {
+      "fromLevel": 114,
+      "gold": 1155,
+      "spores": 0
+    },
+    {
+      "fromLevel": 115,
+      "gold": 1165,
+      "spores": 0
+    },
+    {
+      "fromLevel": 116,
+      "gold": 1175,
+      "spores": 0
+    },
+    {
+      "fromLevel": 117,
+      "gold": 1185,
+      "spores": 0
+    },
+    {
+      "fromLevel": 118,
+      "gold": 1195,
+      "spores": 0
+    },
+    {
+      "fromLevel": 119,
+      "gold": 1205,
+      "spores": 500
+    },
+    {
+      "fromLevel": 120,
+      "gold": 1215,
+      "spores": 0
+    },
+    {
+      "fromLevel": 121,
+      "gold": 1225,
+      "spores": 0
+    },
+    {
+      "fromLevel": 122,
+      "gold": 1235,
+      "spores": 0
+    },
+    {
+      "fromLevel": 123,
+      "gold": 1245,
+      "spores": 0
+    },
+    {
+      "fromLevel": 124,
+      "gold": 1255,
+      "spores": 0
+    },
+    {
+      "fromLevel": 125,
+      "gold": 1265,
+      "spores": 0
+    },
+    {
+      "fromLevel": 126,
+      "gold": 1275,
+      "spores": 0
+    },
+    {
+      "fromLevel": 127,
+      "gold": 1285,
+      "spores": 0
+    },
+    {
+      "fromLevel": 128,
+      "gold": 1295,
+      "spores": 0
+    },
+    {
+      "fromLevel": 129,
+      "gold": 1305,
+      "spores": 0
+    },
+    {
+      "fromLevel": 130,
+      "gold": 1315,
+      "spores": 0
+    },
+    {
+      "fromLevel": 131,
+      "gold": 1325,
+      "spores": 0
+    },
+    {
+      "fromLevel": 132,
+      "gold": 1335,
+      "spores": 0
+    },
+    {
+      "fromLevel": 133,
+      "gold": 1345,
+      "spores": 0
+    },
+    {
+      "fromLevel": 134,
+      "gold": 1355,
+      "spores": 0
+    },
+    {
+      "fromLevel": 135,
+      "gold": 1365,
+      "spores": 0
+    },
+    {
+      "fromLevel": 136,
+      "gold": 1375,
+      "spores": 0
+    },
+    {
+      "fromLevel": 137,
+      "gold": 1385,
+      "spores": 0
+    },
+    {
+      "fromLevel": 138,
+      "gold": 1395,
+      "spores": 0
+    },
+    {
+      "fromLevel": 139,
+      "gold": 1405,
+      "spores": 1000
+    },
+    {
+      "fromLevel": 140,
+      "gold": 1415,
+      "spores": 0
+    },
+    {
+      "fromLevel": 141,
+      "gold": 1425,
+      "spores": 0
+    },
+    {
+      "fromLevel": 142,
+      "gold": 1435,
+      "spores": 0
+    },
+    {
+      "fromLevel": 143,
+      "gold": 1445,
+      "spores": 0
+    },
+    {
+      "fromLevel": 144,
+      "gold": 1455,
+      "spores": 0
+    },
+    {
+      "fromLevel": 145,
+      "gold": 1465,
+      "spores": 0
+    },
+    {
+      "fromLevel": 146,
+      "gold": 1475,
+      "spores": 0
+    },
+    {
+      "fromLevel": 147,
+      "gold": 1485,
+      "spores": 0
+    },
+    {
+      "fromLevel": 148,
+      "gold": 1495,
+      "spores": 0
+    },
+    {
+      "fromLevel": 149,
+      "gold": 1505,
+      "spores": 0
+    },
+    {
+      "fromLevel": 150,
+      "gold": 1515,
+      "spores": 0
+    },
+    {
+      "fromLevel": 151,
+      "gold": 1525,
+      "spores": 0
+    },
+    {
+      "fromLevel": 152,
+      "gold": 1535,
+      "spores": 0
+    },
+    {
+      "fromLevel": 153,
+      "gold": 1545,
+      "spores": 0
+    },
+    {
+      "fromLevel": 154,
+      "gold": 1555,
+      "spores": 0
+    },
+    {
+      "fromLevel": 155,
+      "gold": 1565,
+      "spores": 0
+    },
+    {
+      "fromLevel": 156,
+      "gold": 1575,
+      "spores": 0
+    },
+    {
+      "fromLevel": 157,
+      "gold": 1585,
+      "spores": 0
+    },
+    {
+      "fromLevel": 158,
+      "gold": 1595,
+      "spores": 0
+    },
+    {
+      "fromLevel": 159,
+      "gold": 1605,
+      "spores": 2000
+    },
+    {
+      "fromLevel": 160,
+      "gold": 1615,
+      "spores": 0
+    },
+    {
+      "fromLevel": 161,
+      "gold": 1625,
+      "spores": 0
+    },
+    {
+      "fromLevel": 162,
+      "gold": 1635,
+      "spores": 0
+    },
+    {
+      "fromLevel": 163,
+      "gold": 1645,
+      "spores": 0
+    },
+    {
+      "fromLevel": 164,
+      "gold": 1655,
+      "spores": 0
+    },
+    {
+      "fromLevel": 165,
+      "gold": 1665,
+      "spores": 0
+    },
+    {
+      "fromLevel": 166,
+      "gold": 1675,
+      "spores": 0
+    },
+    {
+      "fromLevel": 167,
+      "gold": 1685,
+      "spores": 0
+    },
+    {
+      "fromLevel": 168,
+      "gold": 1695,
+      "spores": 0
+    },
+    {
+      "fromLevel": 169,
+      "gold": 1705,
+      "spores": 0
+    },
+    {
+      "fromLevel": 170,
+      "gold": 1715,
+      "spores": 0
+    },
+    {
+      "fromLevel": 171,
+      "gold": 1725,
+      "spores": 0
+    },
+    {
+      "fromLevel": 172,
+      "gold": 1735,
+      "spores": 0
+    },
+    {
+      "fromLevel": 173,
+      "gold": 1745,
+      "spores": 0
+    },
+    {
+      "fromLevel": 174,
+      "gold": 1755,
+      "spores": 0
+    },
+    {
+      "fromLevel": 175,
+      "gold": 1765,
+      "spores": 0
+    },
+    {
+      "fromLevel": 176,
+      "gold": 1775,
+      "spores": 0
+    },
+    {
+      "fromLevel": 177,
+      "gold": 1785,
+      "spores": 0
+    },
+    {
+      "fromLevel": 178,
+      "gold": 1795,
+      "spores": 0
+    },
+    {
+      "fromLevel": 179,
+      "gold": 1805,
+      "spores": 4000
+    }
   ]
 }
