@@ -35,7 +35,7 @@
       "def": 0,
       "pot": 0,
       "spd": 25,
-      "critChance": 0.05,
+      "critChance": 0.15,
       "randomStat": false,
       "uniqueTrait": false
     },
