@@ -271,8 +271,8 @@ public partial class BattleSim {
       }
       case "Shield": {
         int amt = ScaledAmount(actor, target, eff, "TargetMaxHP");
-        target.shield += amt;
-        Emit(BattleEventKind.Shield, actor, target, amt, skillContext);
+        target.shield += (int)MathF.Round(amt * (1 + actor.shieldBonus));
+        Emit(BattleEventKind.Shield, actor, target, (int)MathF.Round(amt * (1 + actor.shieldBonus)), skillContext);
         if (amt > 0) GrantSupportEnergy(actor);
         break;
       }
@@ -362,7 +362,7 @@ public partial class BattleSim {
   private void Heal(CombatUnit source, CombatUnit t, int amt) {
     if (t.hp <= 0 || HasStatus(t, "HealBlock") || HasStatus(t, "Intangible")) return;
     int before = t.hp;
-    t.hp = Math.Min(t.maxHp, t.hp + Math.Max(0, (int)MathF.Round(amt * (1 + Bonus(t).HealingBonus))));
+    t.hp = Math.Min(t.maxHp, t.hp + Math.Max(0, (int)MathF.Round(amt * (1 + Bonus(t).HealingBonus + (source?.healingBonus ?? 0f)))));
     Emit(BattleEventKind.Heal, source ?? actingUnit, t, t.hp - before, skillContext ?? "Regen");
     if (t.hp > before) {
       GrantSupportEnergy(source ?? actingUnit);
