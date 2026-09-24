@@ -21,10 +21,12 @@ public class CombatUnit {
 
   public string basicSkillId;
   public string ultSkillId;
+  public string ultimateSkillId;
 
   public int ultCdRemaining;
+  public int ultimateCdRemaining;
   public int energy;
-  public int maxEnergy = 100;
+  public int maxEnergy = 200;
   public float actionGauge;
 
   public List<StatusInstance> statuses = new();
