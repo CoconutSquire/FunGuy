@@ -41,6 +41,7 @@ public sealed class IdleGenerationService
         var depth = CampaignDepth(save);
         var goldRate = GoldPerHour(depth);
         var equipmentRate = EquipmentPerHour(depth);
+        var totalGoldProgress = save.idleGoldProgress + elapsed.TotalHours * goldRate;
         var totalEquipmentProgress = save.idleEquipmentProgress + elapsed.TotalHours * equipmentRate;
         return new IdleGenerationPreview
         {
@@ -48,7 +49,7 @@ public sealed class IdleGenerationService
             elapsed = elapsed,
             goldPerHour = goldRate,
             equipmentPerHour = equipmentRate,
-            gold = (int)Math.Floor(elapsed.TotalHours * goldRate),
+            gold = (int)Math.Floor(totalGoldProgress),
             equipmentCount = (int)Math.Floor(totalEquipmentProgress),
         };
     }
@@ -68,9 +69,11 @@ public sealed class IdleGenerationService
         };
 
         save.gold = Math.Max(0, save.gold + result.gold);
-        var totalProgress = save.idleEquipmentProgress + preview.elapsed.TotalHours * preview.equipmentPerHour;
-        var itemCount = (int)Math.Floor(totalProgress);
-        save.idleEquipmentProgress = Math.Max(0d, totalProgress - itemCount);
+        var totalGoldProgress = save.idleGoldProgress + preview.elapsed.TotalHours * preview.goldPerHour;
+        var totalEquipmentProgress = save.idleEquipmentProgress + preview.elapsed.TotalHours * preview.equipmentPerHour;
+        var itemCount = (int)Math.Floor(totalEquipmentProgress);
+        save.idleGoldProgress = Math.Max(0d, totalGoldProgress - result.gold);
+        save.idleEquipmentProgress = Math.Max(0d, totalEquipmentProgress - itemCount);
 
         if (itemCount > 0 && equipmentService != null)
         {
