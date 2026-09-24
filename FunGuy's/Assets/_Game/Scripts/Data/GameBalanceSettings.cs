@@ -20,6 +20,8 @@ public sealed class GameBalanceSettings : ScriptableObject
     [Min(0)] public float symbioteTraitPercentPerRarity = 0.05f;
     [Min(0)] public float equipmentLevelStatGrowth = 0.10f;
     [Min(0)] public float equipmentRarityStatGrowth = 0.20f;
+    [Min(0)] public int equipmentEvolutionSporeCost = 100;
+    [Min(0)] public float equipmentEvolutionStatGrowth = 0.25f;
 
     public EquipmentDef GetEquipment(string id)
     {
