@@ -32,7 +32,7 @@ public class UpgradeServiceTests
     [Test] public void LevelUp_UsesSharedStatsAndCommitsOnlyLevelAndGold()
     {
         var first = service.Preview(Id); string before = JsonUtility.ToJson(store.state);
-        Assert.AreEqual(25, first.GoldCost); Assert.AreEqual(20, first.LevelCap);
+        Assert.AreEqual(25, first.GoldCost); Assert.AreEqual(100, first.LevelCap);
         Assert.AreEqual(before, JsonUtility.ToJson(store.state)); Assert.AreEqual(0, store.writes);
         var result = service.LevelUp(Id, first.Level, first.RulesVersion);
         Assert.AreEqual(2, result.Level); Assert.AreEqual(225, result.Gold); Assert.AreEqual(35, result.GoldCost);
@@ -43,6 +43,15 @@ public class UpgradeServiceTests
         var expected = JsonUtility.FromJson<PlayerSave>(before); expected.gold = 225; expected.units[0].level = 2;
         Assert.AreEqual(JsonUtility.ToJson(expected), JsonUtility.ToJson(store.state)); Assert.AreEqual(1, store.writes);
         Assert.AreEqual(1, first.Level); // A displayed quote stays detached.
+    }
+    [Test] public void AscensionMilestones_RequireSpores()
+    {
+        store.state.gold = 10000; store.state.spores = 100; store.state.units[0].level = 59;
+        var preview = service.Preview(Id);
+        Assert.AreEqual(605, preview.GoldCost); Assert.AreEqual(100, preview.SporeCost); Assert.True(preview.RequiresAscension);
+        Assert.True(preview.CanAfford);
+        var result = service.LevelUp(Id, 59, preview.RulesVersion);
+        Assert.AreEqual(60, result.Level); Assert.AreEqual(9395, result.Gold); Assert.AreEqual(0, result.Spores);
     }
     [Test] public void DuplicateOrStaleRequest_CannotBuyAnAdditionalLevel()
     {
@@ -73,7 +82,7 @@ public class UpgradeServiceTests
     }
     [Test] public void Cap_DoesNotSpendOrDowngradeOlderSaves()
     {
-        foreach (int level in new[] { 20, 30 })
+        foreach (int level in new[] { 100, 101 })
         {
             store.state.units[0].level = level; var preview = service.Preview(Id);
             Assert.True(preview.AtCap); Assert.IsNull(preview.Next); Assert.False(preview.CanAfford);
@@ -104,13 +113,14 @@ public class UpgradeServiceTests
     }
     [Test] public void Catalog_RejectsMissingDuplicateInvalidAndUnsupportedCosts_AndCopiesInputs()
     {
-        LevelProgressionFile Valid() => new() { schemaVersion = 1, rulesVersion = LevelProgressionRules.Version,
-            levelCap = 3, costs = new List<LevelCostDef> { new() { fromLevel = 1, gold = 25 }, new() { fromLevel = 2, gold = 35 } } };
+        LevelProgressionFile Valid() => new() { schemaVersion = 2, rulesVersion = LevelProgressionRules.Version,
+            levelCap = 3, costs = new List<LevelCostDef> { new() { fromLevel = 1, gold = 25, spores = 0 }, new() { fromLevel = 2, gold = 35, spores = 0 } } };
         var file = Valid(); var rules = new LevelProgressionRules(file); file.costs[0].gold = 1;
-        Assert.AreEqual(25, rules.Cost(1)); Assert.Throws<ArgumentOutOfRangeException>(() => rules.Cost(3));
+        Assert.AreEqual(25, rules.Cost(1)); Assert.AreEqual(0, rules.SporeCost(1)); Assert.Throws<ArgumentOutOfRangeException>(() => rules.Cost(3));
         file = Valid(); file.costs.RemoveAt(0); Assert.Throws<InvalidOperationException>(() => new LevelProgressionRules(file));
         file = Valid(); file.costs[1].fromLevel = 1; Assert.Throws<InvalidOperationException>(() => new LevelProgressionRules(file));
         file = Valid(); file.costs[0].gold = -1; Assert.Throws<InvalidOperationException>(() => new LevelProgressionRules(file));
+        file = Valid(); file.costs[0].spores = -1; Assert.Throws<InvalidOperationException>(() => new LevelProgressionRules(file));
         file = Valid(); file.rulesVersion = "unknown"; Assert.Throws<InvalidOperationException>(() => new LevelProgressionRules(file));
     }
 }
