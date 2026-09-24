@@ -38,12 +38,13 @@ public sealed class BattleFighterState {
     public int SignatureCooldown { get; }
     public string BasicSkillId { get; }
     public string SignatureSkillId { get; }
+    public string UltimateSkillId { get; }
     public IReadOnlyList<BattleStatusState> Statuses { get; }
     internal BattleFighterState(string instanceId, CombatUnit unit) {
         InstanceId = instanceId; ContentId = unit.id; Name = unit.name; Side = unit.side; Slot = unit.formationSlot;
         Hp = unit.hp; MaxHp = unit.maxHp; Shield = unit.shield; Energy = unit.energy; MaxEnergy = unit.maxEnergy;
         Gauge = unit.actionGauge; SignatureCooldown = unit.ultCdRemaining;
-        BasicSkillId = unit.basicSkillId; SignatureSkillId = unit.ultSkillId;
+        BasicSkillId = unit.basicSkillId; SignatureSkillId = unit.ultSkillId; UltimateSkillId = unit.ultimateSkillId;
         Statuses = Array.AsReadOnly(unit.statuses.Select(s => new BattleStatusState(s)).ToArray());
     }
 }
@@ -196,8 +197,8 @@ public sealed class BattleSession {
     private static CombatUnit Clone(CombatUnit u) => new() {
         side = u.side, id = u.id, name = u.name, level = u.level, formationSlot = u.formationSlot,
         biome = u.biome, classArchetype = u.classArchetype, role = u.role, maxHp = u.maxHp, hp = u.hp,
-        atk = u.atk, def = u.def, spd = u.spd, pot = u.pot, basicSkillId = u.basicSkillId, ultSkillId = u.ultSkillId,
-        ultCdRemaining = u.ultCdRemaining, energy = u.energy, maxEnergy = u.maxEnergy,
+        atk = u.atk, def = u.def, spd = u.spd, pot = u.pot, basicSkillId = u.basicSkillId, ultSkillId = u.ultSkillId, ultimateSkillId = u.ultimateSkillId,
+        ultCdRemaining = u.ultCdRemaining, ultimateCdRemaining = u.ultimateCdRemaining, energy = u.energy, maxEnergy = u.maxEnergy,
         actionGauge = u.actionGauge, shield = u.shield, turnsTaken = u.turnsTaken,
         passives = CombatEffectRules.ClonePassives(u.passives),
         statuses = u.statuses.Select(s => new StatusInstance {
