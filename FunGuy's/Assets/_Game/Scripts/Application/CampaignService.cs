@@ -116,6 +116,7 @@ public sealed class LocalCampaignService : ICampaignService
         if (save.tutorialBattleRewardClaimed || save.clearedStages.Count == 0) return false;
         checked { save.gold += 100; save.spores += 10; }
         save.tutorialBattleRewardClaimed = true;
+        if (Game.Equipment != null && !Game.Equipment.HasType("mycelium", save)) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("mycelium", 1, 1));
         store.Write(save);
         return true;
     }
