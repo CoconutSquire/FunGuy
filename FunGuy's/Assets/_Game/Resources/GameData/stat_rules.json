@@ -107,6 +107,11 @@
   ],
   "evolution": [
     {
+      "stars": 0,
+      "levelCap": 60,
+      "multiplier": 1
+    },
+    {
       "stars": 1,
       "levelCap": 100,
       "multiplier": 1
