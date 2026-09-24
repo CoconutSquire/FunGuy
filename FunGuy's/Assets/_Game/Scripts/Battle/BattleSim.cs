@@ -174,7 +174,7 @@ public partial class BattleSim {
       int stacks = Math.Max(1, s.stacks);
       string status = (s.status ?? string.Empty).Trim().ToLowerInvariant();
 
-      if (status == "regen") Heal(u, (int)MathF.Round(u.maxHp * s.potency * stacks));
+      if (status == "regen") Heal(u, u, (int)MathF.Round(u.maxHp * s.potency * stacks));
       if (status == "poison" || status == "burn") {
         int dot = (int)MathF.Round((status == "poison" ? u.maxHp : 1) * s.potency * stacks * s.damageMultiplier);
         DealPure(null, u, dot, status);
@@ -266,17 +266,18 @@ public partial class BattleSim {
       }
       case "Heal": {
         int amt = ScaledAmount(actor, target, eff, "POT");
-        Heal(target, amt);
+        Heal(actor, target, amt);
         break;
       }
       case "Shield": {
         int amt = ScaledAmount(actor, target, eff, "TargetMaxHP");
         target.shield += amt;
         Emit(BattleEventKind.Shield, actor, target, amt, skillContext);
+        if (amt > 0) GrantSupportEnergy(actor);
         break;
       }
       case "ApplyStatus": {
-        ApplyStatusFrom(actor, target, eff);
+        if (ApplyStatusFrom(actor, target, eff)) GrantSupportEnergy(actor);
         break;
       }
       default: ApplyUtility(actor, target, eff); break;
@@ -358,16 +359,20 @@ public partial class BattleSim {
     _ = DealDamage(source, t, Math.Max(0, dmg), reason);
   }
 
-  private void Heal(CombatUnit t, int amt) {
+  private void Heal(CombatUnit source, CombatUnit t, int amt) {
     if (t.hp <= 0 || HasStatus(t, "HealBlock") || HasStatus(t, "Intangible")) return;
     int before = t.hp;
     t.hp = Math.Min(t.maxHp, t.hp + Math.Max(0, (int)MathF.Round(amt * (1 + Bonus(t).HealingBonus))));
-    Emit(BattleEventKind.Heal, actingUnit, t, t.hp - before, skillContext ?? "Regen");
+    Emit(BattleEventKind.Heal, source ?? actingUnit, t, t.hp - before, skillContext ?? "Regen");
     if (t.hp > before) {
-      if (Bonus(t).Class("Support") >= 4) GainEnergy(t, 5);
+      GrantSupportEnergy(source ?? actingUnit);
       if (t.role == "Brawler" && Bonus(t).Pair("Brawler", "Medic")) ApplyStatusFrom(actingUnit ?? t, t,
         new EffectDef { status = "ATKUp", potency = .15f, duration = 1 });
     }
+  }
+
+  private void GrantSupportEnergy(CombatUnit source) {
+    if (source != null && source.hp > 0 && Bonus(source).Class("Support") >= 4) GainEnergy(source, 5);
   }
 
   private void GainEnergy(CombatUnit unit, int amount) {
