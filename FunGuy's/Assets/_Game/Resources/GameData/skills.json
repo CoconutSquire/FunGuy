@@ -1349,6 +1349,1314 @@
           "potency": 10
         }
       ]
+    },
+    {
+      "id": "char_1_ultimate",
+      "name": "Sunlight Barrier — Ultimate",
+      "description": "Ultimate for Golden Chanterelle. A high-impact finisher that expands on Sunlight Barrier.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_2_ultimate",
+      "name": "Forest Volley — Ultimate",
+      "description": "Ultimate for Indigo Archer. A high-impact finisher that expands on Forest Volley.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_3_ultimate",
+      "name": "Counter Bloom — Ultimate",
+      "description": "Ultimate for Lion's Mane Monk. A high-impact finisher that expands on Counter Bloom.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_4_ultimate",
+      "name": "Hallucinogen — Ultimate",
+      "description": "Ultimate for Fly Agaric Jester. A high-impact finisher that expands on Hallucinogen.",
+      "target": "AllEnemies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.2,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "ATKDown",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_5_ultimate",
+      "name": "Impenetrable Glaze — Ultimate",
+      "description": "Ultimate for Porcelain Guard. A high-impact finisher that expands on Impenetrable Glaze.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_6_ultimate",
+      "name": "Sanitizing Mist — Ultimate",
+      "description": "Ultimate for Birch Polypore. A high-impact finisher that expands on Sanitizing Mist.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_7_ultimate",
+      "name": "Sticky Overgrowth — Ultimate",
+      "description": "Ultimate for Honey Fungus. A high-impact finisher that expands on Sticky Overgrowth.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_8_ultimate",
+      "name": "Ethereal Shift — Ultimate",
+      "description": "Ultimate for Amethyst Deceiver. A high-impact finisher that expands on Ethereal Shift.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_9_ultimate",
+      "name": "Iridescent Burst — Ultimate",
+      "description": "Ultimate for Parrot Waxcap. A high-impact finisher that expands on Iridescent Burst.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_10_ultimate",
+      "name": "Sovereign's Decree — Ultimate",
+      "description": "Ultimate for King Bolete. A high-impact finisher that expands on Sovereign's Decree.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_11_ultimate",
+      "name": "Mesmerizing Wail — Ultimate",
+      "description": "Ultimate for Veiled Siren. A high-impact finisher that expands on Mesmerizing Wail.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_12_ultimate",
+      "name": "Drag to the Deep — Ultimate",
+      "description": "Ultimate for Bog Snatcher. A high-impact finisher that expands on Drag to the Deep.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_13_ultimate",
+      "name": "Tectonic Shift — Ultimate",
+      "description": "Ultimate for Slime-Mold Geologist. A high-impact finisher that expands on Tectonic Shift.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_14_ultimate",
+      "name": "Nature's Resurgence — Ultimate",
+      "description": "Ultimate for Peat-Moss Shaman. A high-impact finisher that expands on Nature's Resurgence.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_15_ultimate",
+      "name": "Abyssal Lure — Ultimate",
+      "description": "Ultimate for Bioluminescent Angler. A high-impact finisher that expands on Abyssal Lure.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_16_ultimate",
+      "name": "Toxic Film — Ultimate",
+      "description": "Ultimate for Swamp Truffle. A high-impact finisher that expands on Toxic Film.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_17_ultimate",
+      "name": "Pressure Explosion — Ultimate",
+      "description": "Ultimate for Black-Yeasted Diver. A high-impact finisher that expands on Pressure Explosion.",
+      "target": "AllEnemies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.5,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Poison",
+          "potency": 0.05,
+          "duration": 3,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_18_ultimate",
+      "name": "Boggy Trap — Ultimate",
+      "description": "Ultimate for Marsh Marasmius. A high-impact finisher that expands on Boggy Trap.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_19_ultimate",
+      "name": "Exorcism — Ultimate",
+      "description": "Ultimate for Candelabra Hunter. A high-impact finisher that expands on Exorcism.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_20_ultimate",
+      "name": "Mushroom Detonation — Ultimate",
+      "description": "Ultimate for Willow-Bracket. A high-impact finisher that expands on Mushroom Detonation.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_21_ultimate",
+      "name": "Fracture — Ultimate",
+      "description": "Ultimate for Xylaria Bone-Breaker. A high-impact finisher that expands on Fracture.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_22_ultimate",
+      "name": "Final Dissolve — Ultimate",
+      "description": "Ultimate for Inky Cap Assassin. A high-impact finisher that expands on Final Dissolve.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_23_ultimate",
+      "name": "Berserker's Call — Ultimate",
+      "description": "Ultimate for Dead Man's Fingers. A high-impact finisher that expands on Berserker's Call.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_24_ultimate",
+      "name": "Rotting Gas — Ultimate",
+      "description": "Ultimate for Scum-Layer Sentinel. A high-impact finisher that expands on Rotting Gas.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_25_ultimate",
+      "name": "Harvest Flare — Ultimate",
+      "description": "Ultimate for Jack O'Lantern. A high-impact finisher that expands on Harvest Flare.",
+      "target": "AllEnemies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.2,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "ATKDown",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_26_ultimate",
+      "name": "Cluster Bombard — Ultimate",
+      "description": "Ultimate for Bleeding Tooth. A high-impact finisher that expands on Cluster Bombard.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_27_ultimate",
+      "name": "Chromatic Wind — Ultimate",
+      "description": "Ultimate for Death Cap Alchemist. A high-impact finisher that expands on Chromatic Wind.",
+      "target": "AllEnemies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.4,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Freeze",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_28_ultimate",
+      "name": "Echo Location — Ultimate",
+      "description": "Ultimate for Devil's Urn. A high-impact finisher that expands on Echo Location.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_29_ultimate",
+      "name": "Vampiric Feast — Ultimate",
+      "description": "Ultimate for Black Trumpet. A high-impact finisher that expands on Vampiric Feast.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_30_ultimate",
+      "name": "Blackout — Ultimate",
+      "description": "Ultimate for Carbon Ball Ninja. A high-impact finisher that expands on Blackout.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_31_ultimate",
+      "name": "Zero-In — Ultimate",
+      "description": "Ultimate for Blue Lichen Sniper. A high-impact finisher that expands on Zero-In.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_32_ultimate",
+      "name": "Ice Wall — Ultimate",
+      "description": "Ultimate for Snow-Bank Hermit. A high-impact finisher that expands on Ice Wall.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_33_ultimate",
+      "name": "Flash Freeze — Ultimate",
+      "description": "Ultimate for Icicle-Tooth Rogue. A high-impact finisher that expands on Flash Freeze.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_34_ultimate",
+      "name": "Blizzard Aura — Ultimate",
+      "description": "Ultimate for Permafrost Sentinel. A high-impact finisher that expands on Blizzard Aura.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_35_ultimate",
+      "name": "Oxygen Depletion — Ultimate",
+      "description": "Ultimate for Alpine Puffball. A high-impact finisher that expands on Oxygen Depletion.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_36_ultimate",
+      "name": "Starlight Rush — Ultimate",
+      "description": "Ultimate for Star-Tip Scout. A high-impact finisher that expands on Starlight Rush.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_37_ultimate",
+      "name": "Frostbite Grip — Ultimate",
+      "description": "Ultimate for Bitter-Cold Oyster. A high-impact finisher that expands on Frostbite Grip.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_38_ultimate",
+      "name": "Refractive Shield — Ultimate",
+      "description": "Ultimate for Glassy Bracket. A high-impact finisher that expands on Refractive Shield.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_39_ultimate",
+      "name": "Cosmic Dance — Ultimate",
+      "description": "Ultimate for Aurora Mycena. A high-impact finisher that expands on Cosmic Dance.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_40_ultimate",
+      "name": "Flash Thaw — Ultimate",
+      "description": "Ultimate for Glacial Polypore. A high-impact finisher that expands on Flash Thaw.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_41_ultimate",
+      "name": "Spreading Ferment — Ultimate",
+      "description": "Ultimate for Bread Mold. A high-impact finisher that expands on Spreading Ferment.",
+      "target": "AllEnemies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 1.5,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Poison",
+          "potency": 0.05,
+          "duration": 3,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_42_ultimate",
+      "name": "Gourmet Platter — Ultimate",
+      "description": "Ultimate for Grey Oyster. A high-impact finisher that expands on Gourmet Platter.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_43_ultimate",
+      "name": "Over-Proofing — Ultimate",
+      "description": "Ultimate for Yeast Bud. A high-impact finisher that expands on Over-Proofing.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_44_ultimate",
+      "name": "Julienne Slash — Ultimate",
+      "description": "Ultimate for Crimini Cadet. A high-impact finisher that expands on Julienne Slash.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_45_ultimate",
+      "name": "Master's Recipe — Ultimate",
+      "description": "Ultimate for Shiitake Sensei. A high-impact finisher that expands on Master's Recipe.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "EnemyFront",
+          "status": "DEFDown",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_46_ultimate",
+      "name": "Golden Glaze — Ultimate",
+      "description": "Ultimate for Witch's Butter. A high-impact finisher that expands on Golden Glaze.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_47_ultimate",
+      "name": "Flavor Finder — Ultimate",
+      "description": "Ultimate for Morel Scout. A high-impact finisher that expands on Flavor Finder.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_48_ultimate",
+      "name": "Needle Rain — Ultimate",
+      "description": "Ultimate for Enoki Archer. A high-impact finisher that expands on Needle Rain.",
+      "target": "EnemyFront",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.4,
+          "target": "EnemyFront"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "Stealth",
+          "potency": 1,
+          "duration": 1,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "char_49_ultimate",
+      "name": "Pillow Wall — Ultimate",
+      "description": "Ultimate for Turkey Tail Guard. A high-impact finisher that expands on Pillow Wall.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Shield",
+          "scale": 0.35,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "Taunt",
+          "potency": 1,
+          "duration": 1,
+          "chance": 1
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "Self",
+          "status": "DEFUp",
+          "potency": 0.35,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_50_ultimate",
+      "name": "Butter Bath — Ultimate",
+      "description": "Ultimate for Lobster Fungus. A high-impact finisher that expands on Butter Bath.",
+      "target": "AllAllies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Heal",
+          "scale": 0.3,
+          "target": "AllAllies",
+          "stat": "POT"
+        },
+        {
+          "type": "Shield",
+          "scale": 0.18,
+          "target": "AllAllies",
+          "stat": "TargetMaxHP"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllAllies",
+          "status": "ATKUp",
+          "potency": 0.2,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "char_C1_ultimate",
+      "name": "Black Hole — Ultimate",
+      "description": "Ultimate for Nebula Cordyceps. A high-impact finisher that expands on Black Hole.",
+      "target": "AllEnemies",
+      "cooldown": 4,
+      "energyCost": 100,
+      "effects": [
+        {
+          "type": "Damage",
+          "scale": 2.2,
+          "target": "AllEnemies"
+        },
+        {
+          "type": "ApplyStatus",
+          "target": "AllEnemies",
+          "status": "ATKDown",
+          "potency": 0.15,
+          "duration": 2,
+          "chance": 1
+        }
+      ]
     }
   ]
 }
