@@ -87,7 +87,6 @@ public partial class BattleSim {
           actor.ultCdRemaining = 0;
           Emit(BattleEventKind.CooldownChanged, actor, actor, 0, "Spell Weaver");
         }
-        }
       }
       finally {
         // A status lasts through its owner's action, including a skipped turn.
