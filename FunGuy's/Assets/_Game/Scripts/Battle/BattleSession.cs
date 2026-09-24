@@ -136,7 +136,7 @@ public sealed class BattleSession {
     public bool QueueSignature(string fighterId) {
         var unit = FindPlayer(fighterId);
         if (Outcome != BattleOutcome.Running || unit == null || unit.hp <= 0 || queued.Contains(fighterId) ||
-            unit.ultSkillId == unit.basicSkillId || !data.Skills.ContainsKey(unit.ultSkillId ?? "")) return false;
+            unit.ultSkillId == unit.basicSkillId || unit.ultCdRemaining > 0 || !data.Skills.ContainsKey(unit.ultSkillId ?? "")) return false;
         queued.Add(fighterId);
         RecordCommand(BattleCommandKind.QueueSignature, fighterId);
         Record(BattleEventKind.SignatureQueued, unit, unit, 0, unit.ultSkillId);
