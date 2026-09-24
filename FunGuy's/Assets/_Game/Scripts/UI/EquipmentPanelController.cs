@@ -25,8 +25,9 @@ public sealed class EquipmentPanelController : MonoBehaviour
         if (selected < 0 || selected >= Game.Save.activeTeam.Count) return;
         string charId=Game.Save.activeTeam[selected];
         string slot=EquipmentService.Slots[Mathf.Clamp(slotIndex,0,EquipmentService.Slots.Length-1)];
-        var item=Game.Save.equipmentInventory.FirstOrDefault(x=>x.slotId==slot);
-        if (item != null) Game.Equipment.Equip(charId,item.itemId);
+        var equipped=Game.Save.units.First(u=>u.charId==charId).gearSlots?.FirstOrDefault(x=>x.slotId==slot);
+        if (equipped != null) Game.Equipment.Unequip(charId,slot);
+        else { var item=Game.Save.equipmentInventory.FirstOrDefault(x=>x.slotId==slot); if (item != null) Game.Equipment.Equip(charId,item.itemId); }
         Refresh();
     }
     public void Unequip(int slotIndex)
@@ -48,7 +49,7 @@ public sealed class EquipmentPanelController : MonoBehaviour
         for(int i=0;i<4;i++){
             string slot=EquipmentService.Slots[i]; var equipped=unit.gearSlots?.FirstOrDefault(x=>x.slotId==slot); var inv=save.equipmentInventory.FirstOrDefault(x=>x.slotId==slot);
             slotLabels[i].text=slot.ToUpperInvariant()+"\n"+(equipped==null?(inv==null?"Empty":"Equip "+EquipmentName(slot)):"Equipped "+EquipmentName(slot));
-            slotButtons[i].interactable=equipped==null && inv!=null;
+            slotButtons[i].interactable=equipped!=null || inv!=null;
         }
         detailsLabel.text="Tap an available piece to equip it.\nEach character can wear one of each slot.\n"+Describe(unit);
     }
