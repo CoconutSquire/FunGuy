@@ -17,10 +17,16 @@ public class TeamMenuController : MonoBehaviour
     private ITeamService Team { get { Game.EnsureInitialized(); return Game.Team; } }
     private int selectedSlot = -1;
     private Text[] formationLabels;
+    private Button[] formationButtons;
     private Button removeSlotButton;
+
+    private static readonly Color FormationEmptyColor = new Color(0.16f, 0.19f, 0.23f, 1f);
+    private static readonly Color FormationOccupiedColor = new Color(0.16f, 0.48f, 0.34f, 1f);
+    private static readonly Color FormationSelectedColor = new Color(0.76f, 0.58f, 0.16f, 1f);
 
     public void ConfigureFormation(Button[] buttons, Text[] labels, Button remove)
     {
+        formationButtons = buttons;
         formationLabels = labels;
         removeSlotButton = remove;
         for (int i = 0; i < buttons.Length; i++)
@@ -179,6 +185,7 @@ public class TeamMenuController : MonoBehaviour
                 string label = FormationRules.Label(i);
                 if (selectedSlot == i) label = $"> {label} <";
                 formationLabels[i].text = $"{label}\n{(placement == null ? "Empty" : ResolveName(placement.charId))}";
+                ApplyFormationSlotColor(i, placement != null, selectedSlot == i);
             }
         if (removeSlotButton != null) removeSlotButton.interactable = formation.Any(p => p.slot == selectedSlot);
 
@@ -198,6 +205,23 @@ public class TeamMenuController : MonoBehaviour
                 ? "Tap a position, then a fighter to place them.\nTap two positions to swap or move."
                 : $"Selected: {FormationRules.Label(selectedSlot)}.\nChoose a fighter, another position, or Remove.";
         }
+    }
+
+
+    private void ApplyFormationSlotColor(int slot, bool occupied, bool selected)
+    {
+        if (formationButtons == null || slot < 0 || slot >= formationButtons.Length || formationButtons[slot] == null) return;
+
+        var button = formationButtons[slot];
+        var colors = button.colors;
+        Color baseColor = selected ? FormationSelectedColor : (occupied ? FormationOccupiedColor : FormationEmptyColor);
+        colors.normalColor = baseColor;
+        colors.highlightedColor = Color.Lerp(baseColor, Color.white, 0.16f);
+        colors.pressedColor = Color.Lerp(baseColor, Color.black, 0.12f);
+        colors.selectedColor = baseColor;
+        colors.disabledColor = Color.Lerp(baseColor, Color.black, 0.35f);
+        colors.fadeDuration = 0.08f;
+        button.colors = colors;
     }
 
     private List<OwnedUnit> RankedOwnedUnits()
