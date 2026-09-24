@@ -18,6 +18,10 @@ public class CombatUnit {
   public int def;
   public int spd;
   public int pot;
+  public float critChance;
+  public float healingBonus;
+  public float shieldBonus;
+  public float burnChanceBonus;
 
   public string basicSkillId;
   public string ultSkillId;
