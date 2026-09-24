@@ -20,6 +20,7 @@ public class GearSlotState {
   public string itemId;
   public int rarity;      // 1-6
   public int level;       // 1-20
+  public int evolution;    // 0-1; unlocks levels 11-20
   public string rolledStat;       // Symbiote random stat: HP/ATK/DEF/SPD/POT
   public int rolledStatAmount;
   public string uniqueTrait;      // Symbiote unique skill trait
