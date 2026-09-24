@@ -14,6 +14,8 @@ public partial class BattleSim
     private readonly HashSet<CombatUnit> redirectedHit = new();
     private FormationBonuses Bonus(CombatUnit u) => bonuses[u.side];
     private int Stat(CombatUnit u, string stat) => Bonus(u).Stat(u, stat);
+    private static string OptionalOr(string value, string fallback) =>
+        string.IsNullOrWhiteSpace(value) ? fallback : value;
     internal IReadOnlyList<string> GetFormationBonuses(TeamSide side) => bonuses[side].Active;
 
     internal void Initialize(List<CombatUnit> player, List<CombatUnit> enemy)
@@ -62,7 +64,7 @@ public partial class BattleSim
                 var allies = all.Where(u => u.side == owner.side).ToList();
                 var enemies = all.Where(u => u.side != owner.side).ToList();
                 foreach (var effect in passive.effects)
-                    foreach (var target in SelectTargets(effect.target ?? passive.target, owner, allies, enemies))
+                    foreach (var target in SelectTargets(OptionalOr(effect.target, passive.target), owner, allies, enemies))
                         if (owner.hp > 0) ApplyEffect(owner, target, allies, enemies, effect);
             }
         } finally { passiveDepth--; actingUnit = previousActor; skillContext = previousContext; triggerOther = previousOther; }
@@ -99,7 +101,7 @@ public partial class BattleSim
         float ignore = effect.ignoreDefense;
         if (HasStatus(actor, "Stealth") && Bonus(actor).Pair("Stealth", "Stalker")) ignore = 1;
         int defense = (int)MathF.Round(Stat(target, "DEF") * (1 - Math.Clamp(ignore, 0, 1)));
-        int damage = DamageCalculator.Calculate(Stat(actor, effect.stat ?? "ATK"), defense, (decimal)effect.scale,
+        int damage = DamageCalculator.Calculate(Stat(actor, OptionalOr(effect.stat, "ATK")), defense, (decimal)effect.scale,
             BiomeRules.Parse(actor.biome), BiomeRules.Parse(target.biome));
         float multiplier = 1 + Bonus(actor).DamageBonus(actor, target);
         float crit = (Bonus(actor).Class("DPS") >= 2 ? .1f : 0) + CombatEffectRules.Amount(actor, "Luminescence") +
@@ -124,7 +126,7 @@ public partial class BattleSim
 
     private int ScaledAmount(CombatUnit actor, CombatUnit target, EffectDef effect, string fallback)
     {
-        string stat = effect.stat ?? fallback;
+        string stat = OptionalOr(effect.stat, fallback);
         float value = stat == "MaxHP" ? actor.maxHp : stat == "TargetMaxHP" ? target.maxHp : Stat(actor, stat);
         if (stat == "GrantedEnergy") value = actor.maxHp * grantedFraction;
         return (int)MathF.Round(value * effect.scale);

@@ -120,6 +120,29 @@ public class BattleSessionTests {
     }
 
     [Test]
+    public void UnityBlankOptionalEffectFieldsFallbackAfterStartTurnEnergyGeneration() {
+        var data = Data();
+        // ScriptableObject serialization produces empty strings for unset optional fields.
+        // The equivalent JSON skill omits them and therefore produces null.
+        data.Skills["basic"].effects[0].target = "";
+        data.Skills["basic"].effects[0].stat = "";
+
+        var p = Unit(TeamSide.Player);
+        var e = Unit(TeamSide.Enemy);
+        var session = new BattleSession(data, new() { p }, new() { e });
+
+        var step = session.Step();
+
+        var startEnergy = step.First(x => x.Kind == BattleEventKind.EnergyChanged &&
+            x.Target?.Side == TeamSide.Player);
+        Assert.AreEqual(20, startEnergy.Amount);
+        Assert.AreEqual("basic", step.Single(x => x.Kind == BattleEventKind.SkillUsed).Detail);
+        Assert.AreEqual(990, session.GetState().Single(x => x.Side == TeamSide.Enemy).Hp);
+        Assert.AreEqual(25, session.GetState().Single(x => x.Side == TeamSide.Player).Energy);
+        Assert.AreEqual(BattleOutcome.Running, session.Outcome);
+    }
+
+    [Test]
     public void HitEnergyIsPerDamagingEffectAndKillReplacesThatHitsDamageEnergy() {
         var data = Data(); data.Skills["basic"].effects.Add(new() { type = "Damage", scale = 1 });
         data.Skills["basic"].effects.Add(new() { type = "Damage", scale = 1 });

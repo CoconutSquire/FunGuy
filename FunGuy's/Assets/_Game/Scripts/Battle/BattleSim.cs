@@ -186,7 +186,7 @@ public partial class BattleSim {
     bool attacked = false;
     var targetSets = new Dictionary<string, List<CombatUnit>>();
     foreach (var eff in skill.effects) {
-      string rule = eff.target ?? skill.target;
+      string rule = OptionalOr(eff.target, skill.target);
       if (!targetSets.TryGetValue(rule, out var targets)) targetSets.Add(rule, targets = SelectTargets(rule, actor, allies, enemies));
       bool single = rule == "EnemyFront" || rule == "EnemyBack" || rule == "LowestHpEnemy";
       foreach (var t in targets) {
