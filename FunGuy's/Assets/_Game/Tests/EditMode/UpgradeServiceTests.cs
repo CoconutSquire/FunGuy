@@ -46,12 +46,12 @@ public class UpgradeServiceTests
     }
     [Test] public void AscensionMilestones_RequireSpores()
     {
-        store.state.gold = 10000; store.state.spores = 100; store.state.units[0].level = 59;
+        store.state.gold = 10000; store.state.spores = 100; store.state.units[0].level = 60; store.state.units[0].stars = 0;
         var preview = service.Preview(Id);
-        Assert.AreEqual(605, preview.GoldCost); Assert.AreEqual(100, preview.SporeCost); Assert.True(preview.RequiresAscension);
-        Assert.True(preview.CanAfford);
-        var result = service.LevelUp(Id, 59, preview.RulesVersion);
-        Assert.AreEqual(60, result.Level); Assert.AreEqual(9395, result.Gold); Assert.AreEqual(0, result.Spores);
+        Assert.AreEqual(60, preview.LevelCap); Assert.AreEqual(100, preview.SporeCost); Assert.True(preview.RequiresAscension);
+        Assert.True(preview.CanAscend);
+        var result = service.Ascend(Id, 60, preview.RulesVersion);
+        Assert.AreEqual(1, result.EvolutionStars); Assert.AreEqual(60, result.Level); Assert.AreEqual(0, result.Spores); Assert.AreEqual(100, result.LevelCap);
     }
     [Test] public void DuplicateOrStaleRequest_CannotBuyAnAdditionalLevel()
     {
