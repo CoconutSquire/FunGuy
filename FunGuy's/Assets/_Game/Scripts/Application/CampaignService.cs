@@ -84,10 +84,10 @@ public sealed class LocalCampaignService : ICampaignService
             CombatUnitFactory.Create(data.Characters[u.enemyId], u, TeamSide.Enemy, data.StatRules)).ToList()).ToList();
         var reward = new RewardDef { gold = stage.rewards.gold, spores = stage.rewards.spores, accountXp = stage.rewards.accountXp };
         return new CampaignSession(data, player, waves, seed ?? new Random().Next(), auto, maxActionsPerWave,
-            () => CommitFirstClear(stageId, reward), stage.encounterVersion ?? "legacy");
+            () => CommitFirstClear(stageId, reward, stage.boss), stage.encounterVersion ?? "legacy");
     }
 
-    private bool CommitFirstClear(string stageId, RewardDef reward)
+    private bool CommitFirstClear(string stageId, RewardDef reward, bool boss)
     {
         // Re-read at settlement so a long-running battle cannot overwrite newer team/summon/claim writes.
         var save = store.Read();
@@ -99,6 +99,11 @@ public sealed class LocalCampaignService : ICampaignService
                 save.accountXp += reward.accountXp;
             }
             save.clearedStages.Add(stageId);
+            if (Game.Equipment != null) {
+                if (boss) Game.Equipment.GrantIfMissing("stipe", 2, 1);
+                else if (save.clearedStages.Count == 1) Game.Equipment.GrantIfMissing("cap", 1, 1);
+                if (new Random().NextDouble() < .05) Game.Equipment.AddToInventory(Game.Equipment.Acquire("symbiote", 3, 1));
+            }
             store.Write(save);
             return true;
         }
