@@ -136,6 +136,7 @@ public partial class BattleSim
     {
         target.shield = checked(target.shield + amount);
         Emit(BattleEventKind.Shield, actor, target, amount, detail);
+        if (amount > 0) GrantSupportEnergy(actor);
     }
 
     private void ApplyStatusFrom(CombatUnit source, CombatUnit target, EffectDef effect)
@@ -143,19 +144,20 @@ public partial class BattleSim
         bool debuff = CombatEffectRules.Debuffs.Contains(effect.status);
         if (target.hp <= 0 || HasStatus(target, "Intangible") || (debuff && HasStatus(target, "Immunity")) ||
             (CombatEffectRules.Equals(effect.status, "Freeze") && target.shield > 0 && HasStatus(target, "FrostShield"))) {
-            Emit(BattleEventKind.EffectBlocked, source, target, 0, effect.status); return;
+            Emit(BattleEventKind.EffectBlocked, source, target, 0, effect.status); return false;
         }
         var applied = CombatEffectRules.Clone(effect);
         if (applied.duration != -1 && Bonus(source).Biome("Kitchen") >= 2 && (!debuff || CombatEffectRules.IsDot(applied.status))) applied.duration++;
         if (source.role == "Captain" && target.role == "Berserker" && !debuff && Bonus(source).Pair("Captain", "Berserker")) applied.potency *= 1.25f;
         if (target.statuses.Count(s => CombatEffectRules.Equals(s.status, applied.status)) >= 20) {
-            Emit(BattleEventKind.EffectBlocked, source, target, 0, "stack-cap:" + applied.status); return;
+            Emit(BattleEventKind.EffectBlocked, source, target, 0, "stack-cap:" + applied.status); return false;
         }
         ApplyStatus(source, target, applied);
         if (!debuff && source.side == target.side) {
             if (source.role == "Buffer" && Bonus(source).Pair("Buffer", "Battery")) GainEnergy(target, 10);
             if (source.role == "Captain" && Bonus(source).Pair("Captain", "Battery")) GainEnergy(target, 5);
         }
+        return true;
     }
 
     private void Consume(CombatUnit unit, string name)
