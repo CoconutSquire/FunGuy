@@ -293,14 +293,16 @@ public static class RuntimeSceneUiBootstrap
         var equipmentCharacter = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentCharacter", "Character", 34, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         SetRect(equipmentCharacter.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, 515), new Vector2(820, 80));
         var equipmentDetails = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentDetails", "", 23, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(equipmentDetails.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, -360), new Vector2(800, 180));
+        SetRect(equipmentDetails.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, -330), new Vector2(800, 180));
+        var equipmentUpgrade = EnsureButton(equipmentCard.transform, "Btn_EquipmentUpgrade", "Equip Equipment", new Vector2(0, -470), new Vector2(560, 90), IdleHuntressTheme.AccentFor(UiTone.Team), out var equipmentUpgradeLabel);
         var charButtons=new Button[5];
         for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,390),new Vector2(115,70),IdleHuntressTheme.AccentFor(UiTone.Team),out _); charButtons[i]=b; }
         var gearButtons=new Button[4]; var gearLabels=new Text[4];
         for(int i=0;i<4;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentSlot{i+1}",EquipmentService.Slots[i].ToUpperInvariant(),new Vector2(-300+i*200,80),new Vector2(175,150),IdleHuntressTheme.AccentFor(UiTone.Team),out var l); gearButtons[i]=b; gearLabels[i]=l; }
         var equipmentClose=EnsureButton(equipmentCard.transform,"Btn_EquipmentClose","Close",new Vector2(0,-570),new Vector2(400,80),IdleHuntressTheme.AccentFor(UiTone.Team),out _);
         var equipmentController=EnsureSceneComponent<EquipmentPanelController>(scene,equipmentRoot.transform);
-        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentDetails,charButtons,gearButtons,gearLabels);
+        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentDetails,charButtons,gearButtons,gearLabels,equipmentUpgrade,equipmentUpgradeLabel);
+        equipmentUpgrade.onClick.AddListener(equipmentController.UpgradeSelectedEquipment);
         for(int i=0;i<5;i++){ int index=i; charButtons[i].onClick.AddListener(()=>equipmentController.SelectCharacter(index)); }
         for(int i=0;i<4;i++){ int index=i; gearButtons[i].onClick.AddListener(()=>equipmentController.EquipFromSlot(index)); }
         equipmentClose.onClick.AddListener(equipmentController.Close);
