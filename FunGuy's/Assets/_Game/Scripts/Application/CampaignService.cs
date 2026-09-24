@@ -100,9 +100,9 @@ public sealed class LocalCampaignService : ICampaignService
             }
             save.clearedStages.Add(stageId);
             if (Game.Equipment != null) {
-                if (boss) Game.Equipment.GrantIfMissing("stipe", 2, 1);
-                else if (save.clearedStages.Count == 1) Game.Equipment.GrantIfMissing("cap", 1, 1);
-                if (new Random().NextDouble() < .05) Game.Equipment.AddToInventory(Game.Equipment.Acquire("symbiote", 3, 1));
+                if (boss) { if (!Game.Equipment.HasType("stipe", save)) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("stipe", 2, 1)); }
+                else if (save.clearedStages.Count == 1) { if (!Game.Equipment.HasType("cap", save)) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("cap", 1, 1)); }
+                if (new Random().NextDouble() < .05) Game.Equipment.AddToSave(save, Game.Equipment.Acquire("symbiote", 3, 1));
             }
             store.Write(save);
             return true;
