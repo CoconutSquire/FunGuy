@@ -59,13 +59,13 @@ public sealed class StatRulesCatalog
             classes.Add(c.id, new ClassStatRule { id = c.id, baseStats = Copy(c.baseStats), growth = new StatGrowth
                 { hp = c.growth.hp, atk = c.growth.atk, def = c.growth.def, spd = c.growth.spd, pot = c.growth.pot } });
         }
-        Require(file.evolution != null && file.evolution.Count == 6, "Six evolution rules required.");
-        decimal[] multipliers = { 1m, 1.2m, 1.5m, 2m, 2.5m, 3.5m };
+        Require(file.evolution != null && file.evolution.Count == 7, "Seven evolution rules required.");
+        decimal[] multipliers = { 1m, 1m, 1.2m, 1.5m, 2m, 2.5m, 3.5m };
         foreach (var e in file.evolution)
         {
-            Require(e != null && e.stars >= 1 && e.stars <= 6 && !evolution.ContainsKey(e.stars), "Invalid evolution stars.");
+            Require(e != null && e.stars >= 0 && e.stars <= 6 && !evolution.ContainsKey(e.stars), "Invalid evolution stars.");
             Require(!float.IsNaN(e.multiplier) && !float.IsInfinity(e.multiplier) &&
-                (decimal)e.multiplier == multipliers[e.stars - 1] && e.levelCap == 80 + e.stars * 20, "Invalid v1 evolution curve.");
+                (decimal)e.multiplier == multipliers[e.stars] && e.levelCap == (e.stars == 0 ? 60 : 80 + e.stars * 20), "Invalid v1 evolution curve.");
             evolution.Add(e.stars, new EvolutionStatRule { stars = e.stars, levelCap = e.levelCap, multiplier = e.multiplier });
         }
         Require(file.characters != null && file.characters.Count > 0, "Character stat references required.");
@@ -108,7 +108,7 @@ public sealed class StatRulesCatalog
 
     private StatBlock Calculate(StatBlock b, string classId, int level, int stars)
     {
-        if (level < 1 || level > LevelCap(stars)) throw new ArgumentOutOfRangeException(nameof(level), "Level exceeds evolution cap.");
+        if (stars < 0 || stars > 6 || level < 1 || level > LevelCap(stars)) throw new ArgumentOutOfRangeException(nameof(level), "Level exceeds evolution cap.");
         var g = classes[classId].growth;
         decimal multiplier = (decimal)evolution[stars].multiplier;
         return new StatBlock {
