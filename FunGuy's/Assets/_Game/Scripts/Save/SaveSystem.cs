@@ -206,6 +206,7 @@ public static class SaveSystem
             createdUtc = now,
             lastSavedUtc = now,
             idleLastClaimedUtc = now,
+            idleGoldProgress = 0d,
             idleEquipmentProgress = 0d,
 
             gold = 100,
@@ -304,6 +305,7 @@ public static class SaveSystem
         if (save.version < 6)
         {
             if (string.IsNullOrWhiteSpace(save.idleLastClaimedUtc)) save.idleLastClaimedUtc = string.IsNullOrWhiteSpace(save.lastSavedUtc) ? DateTime.UtcNow.ToString("o") : save.lastSavedUtc;
+            if (save.idleGoldProgress < 0d) save.idleGoldProgress = 0d;
             if (save.idleEquipmentProgress < 0d) save.idleEquipmentProgress = 0d;
             save.version = 6;
         }
