@@ -5,6 +5,7 @@ public interface IUpgradeService
 {
     UnitUpgradePreview Preview(string characterId);
     UnitUpgradePreview LevelUp(string characterId, int expectedLevel, string rulesVersion);
+    UnitUpgradePreview Ascend(string characterId, int expectedLevel, string rulesVersion);
 }
 
 public sealed class UnitStatPreview
@@ -30,12 +31,14 @@ public sealed class UnitUpgradePreview
     public int GoldCost { get; }
     public int Spores { get; }
     public int SporeCost { get; }
-    public bool RequiresAscension => SporeCost > 0;
+    public bool RequiresAscension => AtCap && EvolutionStars < 6;
+    public bool CanAscend => RequiresAscension && Spores >= SporeCost;
+    public int NextEvolutionStars => Math.Min(6, EvolutionStars + 1);
     public bool AtCap => Level >= LevelCap;
     public bool CanAfford => !AtCap && Gold >= GoldCost && Spores >= SporeCost;
     public UnitStatPreview Current { get; }
     public UnitStatPreview Next { get; }
-    internal UnitUpgradePreview(OwnedUnit unit, int cap, int gold, int cost, string version,
+    internal UnitUpgradePreview(OwnedUnit unit, int cap, int gold, int cost, int spores, int sporeCost, string version,
         UnitStatPreview current, UnitStatPreview next)
     {
         CharacterId = unit.charId; Level = unit.level; EvolutionStars = unit.stars; LevelCap = cap;
@@ -60,12 +63,27 @@ public sealed class LocalUpgradeService : IUpgradeService
         if (preview.Level != expectedLevel || preview.RulesVersion != rulesVersion)
             throw new InvalidOperationException("This upgrade has changed. Review the refreshed preview.");
         if (preview.AtCap) throw new InvalidOperationException("This fighter has reached the current level cap.");
-        if (!preview.CanAfford) throw new InvalidOperationException($"You need {preview.GoldCost} gold and {preview.SporeCost} spores for this level.");
+        if (!preview.CanAfford) throw new InvalidOperationException($"You need {preview.GoldCost} gold for this level.");
         var owned = save.units.Single(u => u.charId == characterId);
         save.gold = checked(save.gold - preview.GoldCost);
-        save.spores = checked(save.spores - preview.SporeCost);
         owned.level = checked(owned.level + 1);
         var result = Preview(save, characterId); // Validate the complete result before publishing it.
+        store.Write(save);
+        return result;
+    }
+
+    public UnitUpgradePreview Ascend(string characterId, int expectedLevel, string rulesVersion)
+    {
+        var save = store.Read();
+        var preview = Preview(save, characterId);
+        if (!preview.RequiresAscension || preview.Level != expectedLevel || preview.RulesVersion != rulesVersion)
+            throw new InvalidOperationException("This ascension is no longer available.");
+        if (!preview.CanAscend)
+            throw new InvalidOperationException($"You need {preview.SporeCost} spores to ascend.");
+        var owned = save.units.Single(u => u.charId == characterId);
+        save.spores = checked(save.spores - preview.SporeCost);
+        owned.stars = checked(owned.stars + 1);
+        var result = Preview(save, characterId);
         store.Write(save);
         return result;
     }
@@ -77,13 +95,14 @@ public sealed class LocalUpgradeService : IUpgradeService
         var matches = save.units.Where(u => u != null && u.charId == id).ToArray();
         if (matches.Length != 1) throw new InvalidOperationException("Select one owned fighter.");
         var owned = matches[0];
-        if (owned.level < 1 || owned.stars < 1 || owned.stars > 6 || save.gold < 0)
+        if (owned.level < 1 || owned.stars < 0 || owned.stars > 6 || save.gold < 0 || save.spores < 0)
             throw new InvalidOperationException("This fighter's progression could not be loaded.");
         int cap = Math.Min(data.LevelRules.LevelCap, data.StatRules.LevelCap(owned.stars));
         UnitStatPreview Stats(int level) => new(CombatUnitFactory.Create(definition, level, TeamSide.Player, owned.stars, data.StatRules));
         var current = Stats(owned.level);
         // Older saves above the slice cap retain their level; the workshop does not downgrade them.
         return new UnitUpgradePreview(owned, cap, save.gold, owned.level < cap ? data.LevelRules.Cost(owned.level) : 0,
-            save.spores, owned.level < cap ? data.LevelRules.SporeCost(owned.level) : 0, LevelProgressionRules.Version, current, owned.level < cap ? Stats(owned.level + 1) : null);
+            save.spores, owned.level >= cap && owned.stars < 6 ? data.LevelRules.SporeCost(owned.level) : 0,
+            LevelProgressionRules.Version, current, owned.level < cap ? Stats(owned.level + 1) : null);
     }
 }
