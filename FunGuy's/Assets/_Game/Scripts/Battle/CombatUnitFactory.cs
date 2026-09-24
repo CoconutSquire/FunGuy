@@ -61,7 +61,7 @@ public static class CombatUnitFactory
             id = id, name = name, biome = biome, classArchetype = archetype, role = role,
             side = side, level = level, maxHp = hp, hp = hp,
             atk = stats.atk, def = stats.def, spd = stats.spd, pot = stats.pot,
-            basicSkillId = skills.basic, ultSkillId = skills.ult, ultimateSkillId = skills.ultimate, maxEnergy = 200,
+            basicSkillId = skills.basic, ultSkillId = skills.ult, ultimateSkillId = skills.ultimate, maxEnergy = 100,
             statuses = new List<StatusInstance>(), passives = CombatEffectRules.ClonePassives(passives)
         };
     }
