@@ -69,3 +69,5 @@ MonoBehaviour:
   symbioteTraitPercentPerRarity: 0.05
   equipmentLevelStatGrowth: 0.1
   equipmentRarityStatGrowth: 0.2
+  equipmentEvolutionSporeCost: 100
+  equipmentEvolutionStatGrowth: 0.25
