@@ -4,7 +4,7 @@ using System.Linq;
 
 public partial class BattleSim {
   private const float ActionGaugeThreshold = 1000f;
-  private const int StartTurnEnergyGain = 20;
+  private const int StartTurnEnergyGain = 10;
   private const int DealDamageEnergyGain = 5;
   private const int TakeDamageEnergyGain = 10;
   private const int KillEnergyGain = 15;
