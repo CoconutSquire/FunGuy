@@ -285,7 +285,7 @@ public partial class BattleSim {
   }
 
   private float EffectiveStatusChance(CombatUnit actor, CombatUnit target, EffectDef eff) {
-    float baseChance = eff.chance;
+    float baseChance = eff.chance + (string.Equals(eff.status, "Burn", StringComparison.OrdinalIgnoreCase) ? actor.burnChanceBonus : 0f);
     if (baseChance <= 0f) return 0f;
     if (actor.side == target.side) return Clamp01(baseChance);
     float potencyBonus = Stat(actor, "POT") / 1000f;
