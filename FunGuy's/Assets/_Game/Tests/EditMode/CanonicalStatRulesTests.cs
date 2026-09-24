@@ -51,18 +51,18 @@ public class CanonicalStatRulesTests
     public void Evolution_EnforcesEveryCapAndUsesFlatSpeedRatherThanLevelGrowth()
     {
         var rules = Rules();
-        int[] caps = { 100, 120, 140, 160, 180, 200 };
-        int[] tankHpAtOne = { 150, 180, 225, 300, 375, 525 };
-        for (int stars = 1; stars <= 6; stars++)
+        int[] caps = { 60, 100, 120, 140, 160, 180, 200 };
+        int[] tankHpAtOne = { 150, 150, 180, 225, 300, 375, 525 };
+        for (int stars = 0; stars <= 6; stars++)
         {
             int s = stars;
-            Assert.AreEqual(caps[s - 1], rules.LevelCap(s));
-            Assert.AreEqual(tankHpAtOne[s - 1], rules.CalculateClass("Tank", 1, s).hp);
-            Assert.AreEqual(90 + 15 * s, rules.CalculateClass("Tank", caps[s - 1], s).spd);
-            Assert.Throws<ArgumentOutOfRangeException>(() => rules.CalculateClass("Tank", caps[s - 1] + 1, s));
+            Assert.AreEqual(caps[s], rules.LevelCap(s));
+            Assert.AreEqual(tankHpAtOne[s], rules.CalculateClass("Tank", 1, s).hp);
+            Assert.AreEqual(90 + 15 * s, rules.CalculateClass("Tank", caps[s], s).spd);
+            Assert.Throws<ArgumentOutOfRangeException>(() => rules.CalculateClass("Tank", caps[s] + 1, s));
         }
         Assert.Throws<ArgumentOutOfRangeException>(() => rules.CalculateClass("Tank", 0, 1));
-        Assert.Throws<ArgumentOutOfRangeException>(() => rules.CalculateClass("Tank", 1, 0));
+        Assert.DoesNotThrow(() => rules.CalculateClass("Tank", 1, 0));
         Assert.Throws<ArgumentOutOfRangeException>(() => rules.CalculateClass("Tank", 1, 7));
     }
 
