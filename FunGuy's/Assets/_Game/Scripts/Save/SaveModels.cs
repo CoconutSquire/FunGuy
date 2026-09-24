@@ -48,9 +48,11 @@ public class BannerHistoryEntry {
 
 [Serializable]
 public class PlayerSave {
-  public int version = 5;
+  public int version = 6;
   public string createdUtc;
   public string lastSavedUtc;
+  public string idleLastClaimedUtc;
+  public double idleEquipmentProgress;
 
   public int gold;
   public int spores;
