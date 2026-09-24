@@ -18,7 +18,7 @@ public sealed class LevelProgressionRules
     private readonly Dictionary<int, LevelCostDef> costs = new();
     public LevelProgressionRules(LevelProgressionFile file)
     {
-        if (file == null || file.schemaVersion != 2 || file.rulesVersion != Version || file.levelCap != 180 ||
+        if (file == null || file.schemaVersion != 2 || file.rulesVersion != Version || file.levelCap < 2 || file.levelCap > 180 ||
             file.costs == null || file.costs.Count != file.levelCap - 1)
             throw new InvalidOperationException("Invalid level progression catalog.");
         LevelCap = file.levelCap;
