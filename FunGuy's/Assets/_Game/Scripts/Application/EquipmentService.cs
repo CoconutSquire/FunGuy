@@ -19,7 +19,7 @@ public sealed class EquipmentService
         var def = Definition(equipmentId) ?? throw new ArgumentException("Unknown equipment: " + equipmentId);
         var item = new GearSlotState { slotId=def.slotId, itemId=Guid.NewGuid().ToString("N"), rarity=Math.Clamp(rarity,1,6), level=Math.Clamp(level,1,20) };
         if (def.randomStat) item.rolledStat = new[] { "HP", "ATK", "DEF", "SPD", "POT" }[rng.Next(5)];
-        if (def.randomStat) item.rolledStatAmount = rng.Next(20, 61) * item.rarity;
+        if (def.randomStat) item.rolledStatAmount = rng.Next(10, 31) * item.rarity;
         if (def.uniqueTrait) {
             item.uniqueTrait = new[] { "Healing", "Shield", "Burn" }[rng.Next(3)];
             item.traitAmount = item.uniqueTrait == "Burn" ? .05f * item.rarity : .05f * item.rarity;
@@ -27,7 +27,7 @@ public sealed class EquipmentService
         return item;
     }
 
-    public bool Equip(string charId, string itemInstanceId) {
+    public bool HasType(string slotId, PlayerSave save = null) { save ??= Game.Save ?? SaveSystem.LoadOrNew(); return (save.equipmentInventory ?? new List<GearSlotState>()).Any(x => x.slotId == slotId) || (save.units ?? new List<OwnedUnit>()).Any(u => (u.gearSlots ?? new List<GearSlotState>()).Any(x => x.slotId == slotId)); }\n\n    public void GrantIfMissing(string slotId, int rarity = 1, int level = 1) { if (!HasType(slotId)) AddToInventory(Acquire(slotId, rarity, level)); }\n\n    public bool Equip(string charId, string itemInstanceId) {
         var save = Game.Save ?? SaveSystem.LoadOrNew();
         var unit = save.units.FirstOrDefault(u => u.charId == charId);
         var item = save.equipmentInventory.FirstOrDefault(i => i.itemId == itemInstanceId);
@@ -53,7 +53,7 @@ public sealed class EquipmentService
         if (fighter == null || owned?.gearSlots == null) return;
         foreach (var item in owned.gearSlots) {
             if (item == null) continue;
-            float scale = Math.Max(1, item.level) * (0.8f + .2f * Math.Max(1, item.rarity));
+            float scale = (1f + .1f * (Math.Max(1, item.level) - 1)) * (1f + .2f * (Math.Max(1, item.rarity) - 1));
             switch (item.slotId) {
                 case "cap": fighter.maxHp += (int)Math.Round(250 * scale); fighter.hp += (int)Math.Round(250 * scale); fighter.pot += (int)Math.Round(20 * scale); break;
                 case "stipe": fighter.maxHp += (int)Math.Round(300 * scale); fighter.hp += (int)Math.Round(300 * scale); fighter.def += (int)Math.Round(35 * scale); break;
@@ -64,7 +64,7 @@ public sealed class EquipmentService
     }
 
     private static void ApplySymbiote(CombatUnit fighter, GearSlotState item) {
-        int amount = item.rolledStatAmount * Math.Max(1, item.level);
+        int amount = (int)Math.Round(item.rolledStatAmount * (1f + .1f * (Math.Max(1, item.level) - 1)));
         switch (item.rolledStat) { case "HP": fighter.maxHp += amount; fighter.hp += amount; break; case "ATK": fighter.atk += amount; break; case "DEF": fighter.def += amount; break; case "SPD": fighter.spd += amount; break; case "POT": fighter.pot += amount; break; }
         switch (item.uniqueTrait) { case "Healing": fighter.healingBonus += item.traitAmount; break; case "Shield": fighter.shieldBonus += item.traitAmount; break; case "Burn": fighter.burnChanceBonus += item.traitAmount; break; }
     }
