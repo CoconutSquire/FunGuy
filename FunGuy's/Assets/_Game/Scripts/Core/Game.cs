@@ -21,7 +21,8 @@ public static class Game {
     Summons ??= new LocalSummonService(Data, new LocalPlayerSaveStore(), Gacha);
     Team ??= new LocalTeamService(Data, new LocalPlayerSaveStore());
     Upgrades ??= new LocalUpgradeService(Data, new LocalPlayerSaveStore());
-    Equipment ??= new EquipmentService();
+    var balanceSettings = UnityEngine.Resources.Load<GameBalanceSettings>("GameData/GameBalanceSettings");
+    Equipment ??= new EquipmentService(balanceSettings);
     Idle ??= new IdleGenerationService(Data, Equipment);
   }
 }
