@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3f4f8a2b1c4e6d8f0a123456789abc, type: 3}
+  m_Name: GameBalanceSettings
+  m_EditorClassIdentifier:
+  maxStoredHours: 24
+  baseGoldPerHour: 50
+  goldPerStagePerHour: 10
+  baseEquipmentPerHour: 0.1
+  equipmentPerStagePerHour: 0.02
+  idleBaseRarity: 1
+  idleRarityStagesPerTier: 10
+  equipment:
+  - id: cap
+    name: Cap
+    slotId: cap
+    acquisition: Campaign rewards
+    hp: 250
+    def: 0
+    pot: 20
+    spd: 0
+    critChance: 0
+    randomStat: 0
+    uniqueTrait: 0
+  - id: stipe
+    name: Stipe
+    slotId: stipe
+    acquisition: Boss rewards
+    hp: 300
+    def: 35
+    pot: 0
+    spd: 0
+    critChance: 0
+    randomStat: 0
+    uniqueTrait: 0
+  - id: mycelium
+    name: Mycelium
+    slotId: mycelium
+    acquisition: Crafting / exploration
+    hp: 0
+    def: 0
+    pot: 0
+    spd: 25
+    critChance: 0.05
+    randomStat: 0
+    uniqueTrait: 0
+  - id: symbiote
+    name: Symbiote
+    slotId: symbiote
+    acquisition: Rare drops
+    hp: 0
+    def: 0
+    pot: 0
+    spd: 0
+    critChance: 0
+    randomStat: 1
+    uniqueTrait: 1
+  symbioteRandomStatMin: 10
+  symbioteRandomStatMax: 30
+  symbioteTraitPercentPerRarity: 0.05
+  equipmentLevelStatGrowth: 0.1
+  equipmentRarityStatGrowth: 0.2
