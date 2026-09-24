@@ -1,0 +1,56 @@
+{
+  "equipment": [
+    {
+      "id": "cap",
+      "name": "Cap",
+      "slotId": "cap",
+      "acquisition": "Campaign rewards",
+      "hp": 250,
+      "pot": 20,
+      "def": 0,
+      "spd": 0,
+      "critChance": 0,
+      "randomStat": false,
+      "uniqueTrait": false
+    },
+    {
+      "id": "stipe",
+      "name": "Stipe",
+      "slotId": "stipe",
+      "acquisition": "Boss rewards",
+      "hp": 300,
+      "def": 35,
+      "pot": 0,
+      "spd": 0,
+      "critChance": 0,
+      "randomStat": false,
+      "uniqueTrait": false
+    },
+    {
+      "id": "mycelium",
+      "name": "Mycelium",
+      "slotId": "mycelium",
+      "acquisition": "Crafting / exploration",
+      "hp": 0,
+      "def": 0,
+      "pot": 0,
+      "spd": 25,
+      "critChance": 0.05,
+      "randomStat": false,
+      "uniqueTrait": false
+    },
+    {
+      "id": "symbiote",
+      "name": "Symbiote",
+      "slotId": "symbiote",
+      "acquisition": "Rare drops",
+      "hp": 0,
+      "def": 0,
+      "pot": 0,
+      "spd": 0,
+      "critChance": 0,
+      "randomStat": true,
+      "uniqueTrait": true
+    }
+  ]
+}
