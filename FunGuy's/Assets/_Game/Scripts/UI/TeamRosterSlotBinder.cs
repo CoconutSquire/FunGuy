@@ -67,7 +67,10 @@ public class TeamRosterSlotBinder : MonoBehaviour
             string charId = ranked[index].charId;
             string name = Game.Data.Characters.TryGetValue(charId, out var def) ? def.name : charId;
             string tier = def?.rarityTier ?? "?";
-            SetLabel(i, $"{name}\n{tier}  •  Lv.{ranked[index].level}");
+            string className = def?.classArchetype ?? "Unknown Class";
+            string role = def?.role ?? "Unknown Role";
+            string biome = string.IsNullOrWhiteSpace(def?.biome) ? "Biome-less" : def.biome;
+            SetLabel(i, $"{name}\n{className} • {role}\n{biome}\n{tier} • Lv.{ranked[index].level}");
             button.onClick.AddListener(() =>
             {
                 teamController.ToggleUnitInTeam(charId);
@@ -79,7 +82,11 @@ public class TeamRosterSlotBinder : MonoBehaviour
     private void SetLabel(int index, string text)
     {
         if (slotLabels == null || index < 0 || index >= slotLabels.Length) return;
-        if (slotLabels[index] != null) slotLabels[index].text = text;
+        if (slotLabels[index] != null)
+        {
+            slotLabels[index].text = text;
+            slotLabels[index].fontSize = 17;
+        }
     }
 
     private void EnsureData()
