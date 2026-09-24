@@ -133,7 +133,7 @@ public class GachaService {
         charId = charId,
         level = 1,
         copies = 1,
-        stars = 1,
+        stars = 0,
         coreLevel = 1,
         xp = 0,
       });
