@@ -13,6 +13,7 @@ public sealed class EquipmentPanelController : MonoBehaviour
     private Button upgradeButton;
     private Text upgradeLabel;
     private int selected;
+    private int selectedSlot = 0;
 
     public void Initialize(GameObject panel, Text character, Text details, Button[] chars, Button[] slots, Text[] labels, Button upgrade, Text upgradeText)
     {
@@ -27,7 +28,8 @@ public sealed class EquipmentPanelController : MonoBehaviour
     {
         if (selected < 0 || selected >= Game.Save.activeTeam.Count) return;
         string charId=Game.Save.activeTeam[selected];
-        string slot=EquipmentService.Slots[Mathf.Clamp(slotIndex,0,EquipmentService.Slots.Length-1)];
+        selectedSlot=Mathf.Clamp(slotIndex,0,EquipmentService.Slots.Length-1);
+        string slot=EquipmentService.Slots[selectedSlot];
         var unit=Game.Save.units.First(u=>u.charId==charId);
         var equipped=unit.gearSlots?.FirstOrDefault(x=>x.slotId==slot);
         if (equipped != null) Game.Equipment.Unequip(charId,slot);
@@ -40,7 +42,7 @@ public sealed class EquipmentPanelController : MonoBehaviour
         if (selected < 0 || selected >= Game.Save.activeTeam.Count) return;
         var charId=Game.Save.activeTeam[selected];
         var unit=Game.Save.units.First(u=>u.charId==charId);
-        var item=unit.gearSlots?.FirstOrDefault();
+        var item=unit.gearSlots?.FirstOrDefault(x=>x.slotId==EquipmentService.Slots[selectedSlot]);
         if (item == null) { detailsLabel.text="Equip a piece first."; return; }
 
         bool changed = Game.Equipment.IsAtEvolutionGate(item)
@@ -77,7 +79,7 @@ public sealed class EquipmentPanelController : MonoBehaviour
             slotButtons[i].interactable=equipped!=null || inv!=null;
         }
         detailsLabel.text="Tap an equipment slot to equip/unequip it.\n"+Describe(unit);
-        var selectedItem=unit.gearSlots?.FirstOrDefault();
+        var selectedItem=unit.gearSlots?.FirstOrDefault(x=>x.slotId==EquipmentService.Slots[selectedSlot]);
         if(upgradeButton!=null) {
             upgradeButton.interactable=selectedItem!=null;
             if(selectedItem==null) upgradeLabel.text="Equip Equipment";
