@@ -7,10 +7,11 @@ public static class Game {
   public static ITeamService Team;
   public static IUpgradeService Upgrades;
   public static EquipmentService Equipment;
+  public static IdleGenerationService Idle;
   public static string SelectedStageId;
 
   [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
-  private static void Reset() { Data = null; Save = null; Gacha = null; Campaign = null; Summons = null; Team = null; Upgrades = null; Equipment = null; SelectedStageId = null; }
+  private static void Reset() { Data = null; Save = null; Gacha = null; Campaign = null; Summons = null; Team = null; Upgrades = null; Equipment = null; Idle = null; SelectedStageId = null; }
 
   public static void EnsureInitialized() {
     if (Data == null) { var data = new GameData(); data.LoadAll(); Data = data; }
@@ -21,5 +22,6 @@ public static class Game {
     Team ??= new LocalTeamService(Data, new LocalPlayerSaveStore());
     Upgrades ??= new LocalUpgradeService(Data, new LocalPlayerSaveStore());
     Equipment ??= new EquipmentService();
+    Idle ??= new IdleGenerationService(Data, Equipment);
   }
 }
