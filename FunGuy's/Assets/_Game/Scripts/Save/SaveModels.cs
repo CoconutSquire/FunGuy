@@ -52,6 +52,7 @@ public class PlayerSave {
   public string createdUtc;
   public string lastSavedUtc;
   public string idleLastClaimedUtc;
+  public double idleGoldProgress;
   public double idleEquipmentProgress;
 
   public int gold;
