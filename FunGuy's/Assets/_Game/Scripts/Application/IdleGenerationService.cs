@@ -27,11 +27,13 @@ public sealed class IdleGenerationService
     private readonly GameData data;
     private readonly EquipmentService equipmentService;
     private readonly Random rng = new();
+    private readonly GameBalanceSettings settings;
 
     public IdleGenerationService(GameData data, EquipmentService equipmentService)
     {
         this.data = data;
         this.equipmentService = equipmentService;
+        this.settings = Resources.Load<GameBalanceSettings>("GameData/GameBalanceSettings");
     }
 
     public IdleGenerationPreview Preview(PlayerSave save = null)
@@ -77,7 +79,7 @@ public sealed class IdleGenerationService
 
         if (itemCount > 0 && equipmentService != null)
         {
-            int rarity = Math.Clamp(1 + preview.campaignDepth / 10, 1, 6);
+            int rarity = Math.Clamp((settings?.idleBaseRarity ?? 1) + preview.campaignDepth / Math.Max(1, settings?.idleRarityStagesPerTier ?? 10), 1, 6);
             for (int i = 0; i < itemCount; i++)
             {
                 // Idle drops favor the common equipment pool while still allowing
@@ -104,7 +106,7 @@ public sealed class IdleGenerationService
         }
         var elapsed = DateTime.UtcNow - last.ToUniversalTime();
         if (elapsed < TimeSpan.Zero) elapsed = TimeSpan.Zero;
-        return elapsed > TimeSpan.FromHours(MaxStoredHours) ? TimeSpan.FromHours(MaxStoredHours) : elapsed;
+        return elapsed > TimeSpan.FromHours(settings?.maxStoredHours ?? MaxStoredHours) ? TimeSpan.FromHours(MaxStoredHours) : elapsed;
     }
 
     private int CampaignDepth(PlayerSave save)
@@ -120,6 +122,6 @@ public sealed class IdleGenerationService
         return depth;
     }
 
-    private static double GoldPerHour(int depth) => 50d + depth * 10d;
-    private static double EquipmentPerHour(int depth) => 0.10d + depth * 0.02d;
+    private double GoldPerHour(int depth) => (settings?.baseGoldPerHour ?? 50d) + depth * (settings?.goldPerStagePerHour ?? 10d);
+    private double EquipmentPerHour(int depth) => (settings?.baseEquipmentPerHour ?? 0.10d) + depth * (settings?.equipmentPerStagePerHour ?? 0.02d);
 }
