@@ -17,7 +17,7 @@ using System.Collections.Generic;
   public float pot;
 }
 
-[Serializable] public class SkillRefs { public string basic; public string ult; }
+[Serializable] public class SkillRefs { public string basic; public string ult; public string signature; public string ultimate; }
 
 [Serializable] public class CharacterDef {
   public string statModel; // class-growth-v1: authored bases with canonical class growth/evolution.
