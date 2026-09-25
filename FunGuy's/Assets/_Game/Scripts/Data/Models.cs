@@ -94,6 +94,9 @@ using System.Collections.Generic;
 [Serializable] public class WaveUnit { public string enemyId; public int level; public string slotId; }
 [Serializable] public class WaveDef { public List<WaveUnit> enemies; }
 [Serializable] public class StageDef {
+  public int chapter;
+  public string chapterName;
+  public string biome;
   public string description;
   public string encounterVersion;
   public bool boss;
