@@ -26,22 +26,37 @@ public static class UpgradePanelView
             label.alignment = TextAnchor.MiddleLeft; label.raycastTarget = false;
             label.horizontalOverflow = HorizontalWrapMode.Wrap; label.verticalOverflow = VerticalWrapMode.Truncate; return label;
         }
-        Button Button(string name, Transform owner, string text, float x, float y, float w, float h, int size = 24)
+        Button Button(string name, Transform owner, string text, float x, float y, float w, float h, int size = 24, Color? color = null)
         {
-            var image = Panel(name, owner, x, y, w, h, new Color(.22f, .32f, .23f));
+            var buttonColor = color ?? new Color(.22f, .32f, .23f);
+            var image = Panel(name, owner, x, y, w, h, buttonColor);
             var button = image.gameObject.AddComponent<Button>(); button.targetGraphic = image;
-            var colors = button.colors; colors.highlightedColor = new Color(1, .91f, .66f); colors.disabledColor = new Color(.45f, .45f, .45f); button.colors = colors;
-            var label = Label(name + "Label", image.transform, text, 0, 0, w - 24, h - 8, size, foreground); label.alignment = TextAnchor.MiddleCenter;
+            var colors = button.colors;
+            colors.normalColor = buttonColor;
+            colors.highlightedColor = Color.Lerp(buttonColor, Color.white, .18f);
+            colors.pressedColor = Color.Lerp(buttonColor, Color.black, .16f);
+            colors.selectedColor = Color.Lerp(buttonColor, Color.white, .08f);
+            colors.disabledColor = Color.Lerp(buttonColor, Color.black, .35f);
+            colors.fadeDuration = .08f;
+            button.colors = colors;
+            var label = Label(name + "Label", image.transform, text, 0, 0, w - 24, h - 8, size, Color.white); label.alignment = TextAnchor.MiddleCenter;
             return button;
         }
+
+        var rosterColor = new Color(.10f, .25f, .34f, 1f);
+        var navigationColor = new Color(.12f, .35f, .52f, 1f);
+        var upgradeColor = new Color(.12f, .52f, .25f, 1f);
+        var equipmentColor = new Color(.10f, .35f, .68f, 1f);
+        var backColor = new Color(.28f, .34f, .39f, 1f);
+
         var overlay = Panel("Panel_Upgrades", parent, 0, 0, 1600, 900, new Color(0, 0, 0, .94f));
         var shell = Panel("UpgradeShell", overlay.transform, 0, 0, 1480, 800, background);
         Label("UpgradeTitle", shell.transform, "GROW YOUR FIGHTERS", -360, 337, 650, 60, 34, gold);
         var wallet = Label("UpgradeGold", shell.transform, "", 430, 337, 370, 60, 30, gold);
         var roster = new Button[5];
-        for (int i = 0; i < roster.Length; i++) roster[i] = Button("Btn_UpgradeFighter" + (i + 1), shell.transform, "", -465, 230 - i * 102, 465, 88, 23);
-        var previous = Button("Btn_UpgradePrevious", shell.transform, "Previous", -590, -310, 205, 64, 22);
-        var next = Button("Btn_UpgradeNext", shell.transform, "Next", -350, -310, 205, 64, 22);
+        for (int i = 0; i < roster.Length; i++) roster[i] = Button("Btn_UpgradeFighter" + (i + 1), shell.transform, "", -465, 230 - i * 102, 465, 88, 23, rosterColor);
+        var previous = Button("Btn_UpgradePrevious", shell.transform, "Previous", -590, -310, 205, 64, 22, navigationColor);
+        var next = Button("Btn_UpgradeNext", shell.transform, "Next", -350, -310, 205, 64, 22, navigationColor);
         var page = Label("UpgradePage", shell.transform, "", -470, -369, 465, 45, 21, foreground); page.alignment = TextAnchor.MiddleCenter;
         var identity = Label("UpgradeIdentity", shell.transform, "", 155, 222, 730, 135, 25, foreground);
         var portrait = Rect("UpgradePortrait", shell.transform, 635, 222, 104, 116).gameObject.AddComponent<FungusPortrait>(); portrait.raycastTarget = false;
@@ -55,8 +70,15 @@ public static class UpgradePanelView
         var fit = skills.gameObject.AddComponent<ContentSizeFitter>(); fit.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         scroll.viewport = (RectTransform)viewport.transform; scroll.content = skills.rectTransform;
         var feedback = Label("UpgradeFeedback", shell.transform, "", 240, -248, 875, 86, 22, gold);
-        var upgrade = Button("Btn_ConfirmUpgrade", shell.transform, "Level up", 70, -345, 515, 72);
-        var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 545, -345, 330, 72);
+        var upgrade = Button("Btn_ConfirmUpgrade", shell.transform, "Level up", 70, -345, 515, 72, 24, upgradeColor);
+        var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 545, -345, 330, 72, 24, backColor);
+        var equipment = Button("Btn_UpgradeEquipment", shell.transform, "Equipment", 310, -378, 400, 52, 21, equipmentColor);
+
+        equipment.onClick.AddListener(() => {
+            var equipmentController = UnityEngine.Object.FindFirstObjectByType<EquipmentPanelController>();
+            if (equipmentController != null) equipmentController.Open();
+        });
+
         var controller = overlay.gameObject.AddComponent<UpgradePanelController>();
         controller.Configure(overlay.gameObject, wallet, identity, stats, skills, feedback, page, upgrade,
             previous, next, close, roster, portrait, onClosed);
