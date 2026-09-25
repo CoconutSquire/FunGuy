@@ -1,24 +1,27 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "stages": [
     {
       "id": "s_1_1",
-      "name": "Forager's Trial",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Forager's Path",
       "order": 1,
-      "description": "Learn the board against real roster fighters. Basics are automatic; queue signatures when ready.",
-      "encounterVersion": "garrett-roster-campaign-v2",
+      "description": "Forest encounter 1. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
       "boss": false,
-      "recommendedPower": 0,
+      "recommendedPower": 370,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "R01",
+              "enemyId": "5",
               "level": 1,
               "slotId": "front_1"
             },
             {
-              "enemyId": "R04",
+              "enemyId": "7",
               "level": 1,
               "slotId": "front_3"
             }
@@ -27,361 +30,2410 @@
         {
           "enemies": [
             {
-              "enemyId": "R10",
+              "enemyId": "5",
               "level": 1,
-              "slotId": "front_2"
-            },
-            {
-              "enemyId": "R03",
-              "level": 1,
-              "slotId": "rear_2"
-            }
-          ]
-        }
-      ],
-      "rewards": {
-        "gold": 50,
-        "spores": 10,
-        "accountXp": 5
-      }
-    },
-    {
-      "id": "s_1_2",
-      "name": "Mushroom Line",
-      "order": 2,
-      "description": "A tougher front line protects ranged roster fighters. Use formation and queued signatures to break through.",
-      "encounterVersion": "garrett-roster-campaign-v2",
-      "boss": false,
-      "recommendedPower": 0,
-      "waves": [
-        {
-          "enemies": [
-            {
-              "enemyId": "R10",
-              "level": 1,
-              "slotId": "front_2"
-            },
-            {
-              "enemyId": "R05",
-              "level": 1,
-              "slotId": "rear_1"
-            },
-            {
-              "enemyId": "R04",
-              "level": 1,
-              "slotId": "rear_4"
-            }
-          ]
-        },
-        {
-          "enemies": [
-            {
-              "enemyId": "R10",
-              "level": 2,
-              "slotId": "front_2"
-            },
-            {
-              "enemyId": "R01",
-              "level": 2,
-              "slotId": "rear_1"
-            },
-            {
-              "enemyId": "R05",
-              "level": 2,
-              "slotId": "rear_4"
-            }
-          ]
-        }
-      ],
-      "rewards": {
-        "gold": 150,
-        "spores": 12,
-        "accountXp": 6
-      }
-    },
-    {
-      "id": "s_1_3",
-      "name": "Spore Cupboard",
-      "order": 3,
-      "description": "Mixed Rare roster roles test sustain and target pressure. Use earned gold between stages if needed.",
-      "encounterVersion": "garrett-roster-campaign-v2",
-      "boss": false,
-      "recommendedPower": 0,
-      "waves": [
-        {
-          "enemies": [
-            {
-              "enemyId": "R11",
-              "level": 2,
               "slotId": "front_1"
             },
             {
-              "enemyId": "R13",
-              "level": 2,
+              "enemyId": "9",
+              "level": 1,
               "slotId": "front_3"
             },
             {
-              "enemyId": "R07",
-              "level": 2,
-              "slotId": "rear_2"
-            }
-          ]
-        },
-        {
-          "enemies": [
-            {
-              "enemyId": "R10",
-              "level": 3,
-              "slotId": "front_2"
-            },
-            {
-              "enemyId": "R11",
-              "level": 3,
-              "slotId": "middle_4"
-            },
-            {
-              "enemyId": "R04",
-              "level": 3,
-              "slotId": "rear_1"
-            },
-            {
-              "enemyId": "R13",
-              "level": 3,
-              "slotId": "rear_4"
+              "enemyId": "2",
+              "level": 1,
+              "slotId": "middle_2"
             }
           ]
         }
       ],
       "rewards": {
-        "gold": 200,
-        "spores": 15,
+        "gold": 100,
+        "spores": 8,
         "accountXp": 7
       }
     },
     {
-      "id": "s_1_4",
-      "name": "Frozen Shelf",
-      "order": 4,
-      "description": "Tundra roster fighters bring durable fronts and fast back-line pressure.",
-      "encounterVersion": "garrett-roster-campaign-v2",
+      "id": "s_1_2",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Mossy Crossing",
+      "order": 2,
+      "description": "Forest encounter 2. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
       "boss": false,
-      "recommendedPower": 0,
+      "recommendedPower": 440,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "34",
-              "level": 2,
-              "slotId": "front_2"
+              "enemyId": "8",
+              "level": 1,
+              "slotId": "front_1"
             },
             {
-              "enemyId": "31",
-              "level": 2,
-              "slotId": "rear_1"
-            },
-            {
-              "enemyId": "39",
-              "level": 2,
-              "slotId": "rear_4"
+              "enemyId": "4",
+              "level": 1,
+              "slotId": "front_3"
             }
           ]
         },
         {
           "enemies": [
             {
-              "enemyId": "38",
-              "level": 3,
+              "enemyId": "10",
+              "level": 2,
               "slotId": "front_1"
             },
             {
-              "enemyId": "31",
-              "level": 3,
-              "slotId": "middle_3"
+              "enemyId": "7",
+              "level": 2,
+              "slotId": "front_3"
             },
             {
-              "enemyId": "36",
-              "level": 3,
-              "slotId": "rear_4"
+              "enemyId": "4",
+              "level": 2,
+              "slotId": "middle_2"
             }
           ]
         }
       ],
       "rewards": {
-        "gold": 250,
-        "spores": 18,
-        "accountXp": 8
-      }
-    },
-    {
-      "id": "s_1_5",
-      "name": "Kitchen Muster",
-      "order": 5,
-      "description": "Kitchen roster fighters combine tanks, support and damage. Watch the formation before committing signatures.",
-      "encounterVersion": "garrett-roster-campaign-v2",
-      "boss": false,
-      "recommendedPower": 0,
-      "waves": [
-        {
-          "enemies": [
-            {
-              "enemyId": "42",
-              "level": 2,
-              "slotId": "front_2"
-            },
-            {
-              "enemyId": "41",
-              "level": 2,
-              "slotId": "rear_1"
-            },
-            {
-              "enemyId": "48",
-              "level": 2,
-              "slotId": "rear_4"
-            }
-          ]
-        },
-        {
-          "enemies": [
-            {
-              "enemyId": "49",
-              "level": 3,
-              "slotId": "front_1"
-            },
-            {
-              "enemyId": "43",
-              "level": 3,
-              "slotId": "middle_3"
-            },
-            {
-              "enemyId": "47",
-              "level": 3,
-              "slotId": "rear_2"
-            },
-            {
-              "enemyId": "48",
-              "level": 3,
-              "slotId": "rear_4"
-            }
-          ]
-        }
-      ],
-      "rewards": {
-        "gold": 300,
-        "spores": 22,
+        "gold": 155,
+        "spores": 8,
         "accountXp": 9
       }
     },
     {
-      "id": "s_1_6",
-      "name": "Before the Bloom",
-      "order": 6,
-      "description": "A full mixed roster wave prepares you for the final encounter.",
-      "encounterVersion": "garrett-roster-campaign-v2",
+      "id": "s_1_3",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Sporewood Trail",
+      "order": 3,
+      "description": "Forest encounter 3. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
       "boss": false,
-      "recommendedPower": 0,
+      "recommendedPower": 510,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "49",
+              "enemyId": "9",
+              "level": 2,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 2,
+              "slotId": "front_3"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
               "level": 3,
               "slotId": "front_1"
             },
             {
-              "enemyId": "42",
+              "enemyId": "1",
               "level": 3,
               "slotId": "front_3"
             },
             {
-              "enemyId": "43",
+              "enemyId": "8",
               "level": 3,
-              "slotId": "rear_2"
-            }
-          ]
-        },
-        {
-          "enemies": [
-            {
-              "enemyId": "42",
-              "level": 4,
-              "slotId": "front_2"
-            },
-            {
-              "enemyId": "48",
-              "level": 4,
-              "slotId": "middle_4"
-            },
-            {
-              "enemyId": "45",
-              "level": 4,
-              "slotId": "rear_1"
-            },
-            {
-              "enemyId": "50",
-              "level": 4,
-              "slotId": "rear_3"
+              "slotId": "middle_2"
             }
           ]
         }
       ],
       "rewards": {
-        "gold": 400,
-        "spores": 25,
-        "accountXp": 10
+        "gold": 210,
+        "spores": 8,
+        "accountXp": 11
       }
     },
     {
-      "id": "s_1_7",
-      "name": "Nebula Convergence",
-      "order": 7,
-      "description": "Final encounter: survive a reinforced roster wave, then face Nebula Cordyceps with Kitchen support.",
-      "encounterVersion": "garrett-roster-campaign-v2",
-      "boss": true,
-      "recommendedPower": 0,
+      "id": "s_1_4",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Chanterelle Hollow",
+      "order": 4,
+      "description": "Forest encounter 4. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 580,
       "waves": [
         {
           "enemies": [
             {
-              "enemyId": "42",
-              "level": 4,
-              "slotId": "front_2"
+              "enemyId": "5",
+              "level": 2,
+              "slotId": "front_1"
             },
             {
-              "enemyId": "48",
-              "level": 4,
-              "slotId": "rear_1"
+              "enemyId": "10",
+              "level": 2,
+              "slotId": "front_3"
             },
             {
-              "enemyId": "43",
-              "level": 4,
-              "slotId": "rear_4"
+              "enemyId": "2",
+              "level": 2,
+              "slotId": "middle_2"
             }
           ]
         },
         {
           "enemies": [
             {
-              "enemyId": "C1",
+              "enemyId": "6",
               "level": 4,
-              "slotId": "front_2"
+              "slotId": "front_1"
             },
             {
-              "enemyId": "49",
-              "level": 3,
-              "slotId": "rear_1"
+              "enemyId": "1",
+              "level": 4,
+              "slotId": "front_3"
             },
             {
-              "enemyId": "50",
-              "level": 3,
-              "slotId": "rear_4"
+              "enemyId": "10",
+              "level": 4,
+              "slotId": "middle_2"
             }
           ]
         }
       ],
       "rewards": {
-        "gold": 600,
-        "spores": 30,
-        "accountXp": 11
+        "gold": 265,
+        "spores": 8,
+        "accountXp": 13
+      }
+    },
+    {
+      "id": "s_1_5",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Birchshade Grove",
+      "order": 5,
+      "description": "Forest encounter 5. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 650,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 3,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 3,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 3,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 5,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 5,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 5,
+              "slotId": "middle_2"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 320,
+        "spores": 11,
+        "accountXp": 15
+      }
+    },
+    {
+      "id": "s_1_6",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Jester's Clearing",
+      "order": 6,
+      "description": "Forest encounter 6. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 720,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 4,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 4,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 4,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 6,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 6,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 6,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 6,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 375,
+        "spores": 11,
+        "accountXp": 17
+      }
+    },
+    {
+      "id": "s_1_7",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Waxcap Run",
+      "order": 7,
+      "description": "Forest encounter 7. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 790,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 5,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 5,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 5,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 7,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 7,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 7,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 7,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 430,
+        "spores": 11,
+        "accountXp": 19
+      }
+    },
+    {
+      "id": "s_1_8",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Bolete Ridge",
+      "order": 8,
+      "description": "Forest encounter 8. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 860,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 5,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 5,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 5,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 8,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 8,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 8,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "1",
+              "level": 8,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 485,
+        "spores": 11,
+        "accountXp": 21
+      }
+    },
+    {
+      "id": "s_1_9",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Amethyst Thicket",
+      "order": 9,
+      "description": "Forest encounter 9. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 930,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 6,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 6,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 6,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 9,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 9,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 9,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 9,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 540,
+        "spores": 14,
+        "accountXp": 23
+      }
+    },
+    {
+      "id": "s_1_10",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Guardian's Gate — Guardian Battle",
+      "order": 10,
+      "description": "Chapter 1 boss stage. King Bolete leads a reinforced Forest formation.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": true,
+      "recommendedPower": 1180,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 7,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 7,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 7,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 11,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 11,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 11,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 11,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 845,
+        "spores": 29,
+        "accountXp": 35
+      }
+    },
+    {
+      "id": "s_1_11",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Deeproot Passage",
+      "order": 11,
+      "description": "Forest encounter 11. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1070,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 7,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 7,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 7,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 11,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 11,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 11,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 11,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 650,
+        "spores": 14,
+        "accountXp": 27
+      }
+    },
+    {
+      "id": "s_1_12",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Honey Fungus Hollow",
+      "order": 12,
+      "description": "Forest encounter 12. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1140,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 8,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 8,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 8,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 12,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 12,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 12,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 12,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 705,
+        "spores": 14,
+        "accountXp": 29
+      }
+    },
+    {
+      "id": "s_1_13",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Archer's Canopy",
+      "order": 13,
+      "description": "Forest encounter 13. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1210,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 9,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 9,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 9,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 13,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 13,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 13,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 13,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 760,
+        "spores": 17,
+        "accountXp": 31
+      }
+    },
+    {
+      "id": "s_1_14",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Monk's Grove",
+      "order": 14,
+      "description": "Forest encounter 14. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1280,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 10,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 10,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 10,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 14,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 14,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 14,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "1",
+              "level": 14,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 815,
+        "spores": 17,
+        "accountXp": 33
+      }
+    },
+    {
+      "id": "s_1_15",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Polypore Marsh",
+      "order": 15,
+      "description": "Forest encounter 15. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1350,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 10,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 10,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 10,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 15,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 15,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 15,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 15,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 870,
+        "spores": 17,
+        "accountXp": 35
+      }
+    },
+    {
+      "id": "s_1_16",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Whispering Mycelium",
+      "order": 16,
+      "description": "Forest encounter 16. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1420,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 11,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 11,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 11,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 16,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 16,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 16,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 16,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 925,
+        "spores": 17,
+        "accountXp": 37
+      }
+    },
+    {
+      "id": "s_1_17",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Porcelain Watch",
+      "order": 17,
+      "description": "Forest encounter 17. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1490,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 12,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 12,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 12,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 17,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 17,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 17,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 17,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 980,
+        "spores": 20,
+        "accountXp": 39
+      }
+    },
+    {
+      "id": "s_1_18",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Golden Understory",
+      "order": 18,
+      "description": "Forest encounter 18. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1560,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 12,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 12,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 12,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 18,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 18,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 18,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 18,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1035,
+        "spores": 20,
+        "accountXp": 41
+      }
+    },
+    {
+      "id": "s_1_19",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "King's Grove",
+      "order": 19,
+      "description": "Forest encounter 19. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1630,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 13,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 13,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 13,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 19,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 19,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 19,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 19,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1090,
+        "spores": 20,
+        "accountXp": 43
+      }
+    },
+    {
+      "id": "s_1_20",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Forestheart Gate — Guardian Battle",
+      "order": 20,
+      "description": "Chapter 1 boss stage. Golden Chanterelle leads a reinforced Forest formation.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": true,
+      "recommendedPower": 1880,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 14,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 14,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 14,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 21,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 21,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 21,
+              "slotId": "middle_2"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1395,
+        "spores": 35,
+        "accountXp": 55
+      }
+    },
+    {
+      "id": "s_1_21",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Ancient Rootway",
+      "order": 21,
+      "description": "Forest encounter 21. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1770,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 15,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 15,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 15,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 21,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 21,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 21,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "2",
+              "level": 21,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1200,
+        "spores": 23,
+        "accountXp": 47
+      }
+    },
+    {
+      "id": "s_1_22",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Bluebell Rotwood",
+      "order": 22,
+      "description": "Forest encounter 22. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1840,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 15,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 15,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 15,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 22,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 22,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 22,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 22,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1255,
+        "spores": 23,
+        "accountXp": 49
+      }
+    },
+    {
+      "id": "s_1_23",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Fungal Watchtower",
+      "order": 23,
+      "description": "Forest encounter 23. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1910,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 16,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 16,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 16,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 23,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 23,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 23,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 23,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1310,
+        "spores": 23,
+        "accountXp": 51
+      }
+    },
+    {
+      "id": "s_1_24",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Moonlit Thicket",
+      "order": 24,
+      "description": "Forest encounter 24. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 1980,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 17,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 17,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 17,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 24,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 24,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 24,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 24,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1365,
+        "spores": 23,
+        "accountXp": 53
+      }
+    },
+    {
+      "id": "s_1_25",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Wild Spore Basin",
+      "order": 25,
+      "description": "Forest encounter 25. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2050,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 18,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 18,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 18,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 25,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 25,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 25,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 25,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1420,
+        "spores": 26,
+        "accountXp": 55
+      }
+    },
+    {
+      "id": "s_1_26",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Chanterelle Vale",
+      "order": 26,
+      "description": "Forest encounter 26. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2120,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 18,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 18,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 18,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 26,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 26,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 26,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 26,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1475,
+        "spores": 26,
+        "accountXp": 57
+      }
+    },
+    {
+      "id": "s_1_27",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Bolete Barrens",
+      "order": 27,
+      "description": "Forest encounter 27. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2190,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 19,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 19,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 19,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 27,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 27,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 27,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 27,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1530,
+        "spores": 26,
+        "accountXp": 59
+      }
+    },
+    {
+      "id": "s_1_28",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Amethyst Nightwood",
+      "order": 28,
+      "description": "Forest encounter 28. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2260,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 20,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 20,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 20,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 28,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 28,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 28,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 28,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1585,
+        "spores": 26,
+        "accountXp": 61
+      }
+    },
+    {
+      "id": "s_1_29",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Lion's Mane Rise",
+      "order": 29,
+      "description": "Forest encounter 29. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2330,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 20,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 20,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 20,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 29,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 29,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 29,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "2",
+              "level": 29,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1640,
+        "spores": 29,
+        "accountXp": 63
+      }
+    },
+    {
+      "id": "s_1_30",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Elder Grove Gate — Guardian Battle",
+      "order": 30,
+      "description": "Chapter 1 boss stage. Porcelain Guard leads a reinforced Forest formation.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": true,
+      "recommendedPower": 2580,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 21,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 21,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 21,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 31,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 31,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 31,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "3",
+              "level": 31,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1945,
+        "spores": 44,
+        "accountXp": 75
+      }
+    },
+    {
+      "id": "s_1_31",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Deep Forest Descent",
+      "order": 31,
+      "description": "Forest encounter 31. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2470,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 22,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 22,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 22,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 31,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 31,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 31,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 31,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1750,
+        "spores": 29,
+        "accountXp": 67
+      }
+    },
+    {
+      "id": "s_1_32",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Sporefall Ravine",
+      "order": 32,
+      "description": "Forest encounter 32. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2540,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 23,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 23,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 23,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 32,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 32,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 32,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 32,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1805,
+        "spores": 29,
+        "accountXp": 69
+      }
+    },
+    {
+      "id": "s_1_33",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "The Hidden Mycelium",
+      "order": 33,
+      "description": "Forest encounter 33. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2610,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 23,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 23,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 23,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 33,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 33,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 33,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 33,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1860,
+        "spores": 32,
+        "accountXp": 71
+      }
+    },
+    {
+      "id": "s_1_34",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Thorncap Passage",
+      "order": 34,
+      "description": "Forest encounter 34. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2680,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 24,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 24,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 24,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 34,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 34,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 34,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 34,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1915,
+        "spores": 32,
+        "accountXp": 73
+      }
+    },
+    {
+      "id": "s_1_35",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Old Growth Stronghold",
+      "order": 35,
+      "description": "Forest encounter 35. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2750,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 25,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 25,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 25,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 35,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 35,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 35,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 35,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 1970,
+        "spores": 32,
+        "accountXp": 75
+      }
+    },
+    {
+      "id": "s_1_36",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Golden Canopy",
+      "order": 36,
+      "description": "Forest encounter 36. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2820,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 25,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 25,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 25,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 36,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 36,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 36,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 36,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2025,
+        "spores": 32,
+        "accountXp": 77
+      }
+    },
+    {
+      "id": "s_1_37",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "The King's Approach",
+      "order": 37,
+      "description": "Forest encounter 37. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2890,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 26,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 26,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 26,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 37,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 37,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 37,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 37,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2080,
+        "spores": 35,
+        "accountXp": 79
+      }
+    },
+    {
+      "id": "s_1_38",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Forest Crown Trail",
+      "order": 38,
+      "description": "Forest encounter 38. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 2960,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 27,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 27,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 27,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 38,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 38,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 38,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 38,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2135,
+        "spores": 35,
+        "accountXp": 81
+      }
+    },
+    {
+      "id": "s_1_39",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "Heartwood Citadel",
+      "order": 39,
+      "description": "Forest encounter 39. Enemy levels rise gradually while roles rotate between frontline, damage and support.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": false,
+      "recommendedPower": 3030,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 28,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 28,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 28,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 39,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 39,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 39,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 39,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2190,
+        "spores": 35,
+        "accountXp": 83
+      }
+    },
+    {
+      "id": "s_1_40",
+      "chapter": 1,
+      "chapterName": "Chapter 1 — Forest Awakening",
+      "biome": "Forest",
+      "name": "The First Bloom — Guardian Battle",
+      "order": 40,
+      "description": "Chapter 1 boss stage. King Bolete leads a reinforced Forest formation.",
+      "encounterVersion": "forest-chapter-1-v1",
+      "boss": true,
+      "recommendedPower": 3280,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 28,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 28,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 28,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 41,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 41,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 41,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 41,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2495,
+        "spores": 50,
+        "accountXp": 95
       }
     }
   ]
