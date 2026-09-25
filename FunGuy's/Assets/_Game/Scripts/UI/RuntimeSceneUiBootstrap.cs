@@ -275,7 +275,7 @@ public static class RuntimeSceneUiBootstrap
         var next = EnsureButton(shell.transform, "Btn_RosterNext", "Next", new Vector2(300f, -330f), new Vector2(240f, 70f), IdleHuntressTheme.AccentFor(UiTone.Team), out var nextLabel);
         var pageLabel = EnsureLabel(shell.transform, "Lbl_RosterPage", "Roster", 22, FontStyle.Normal, TextAnchor.MiddleCenter, Color.white);
         SetRect(pageLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -330f), new Vector2(340f, 70f));
-        var remove = EnsureButton(shell.transform, "Btn_RemoveSelected", "Remove selected fighter", new Vector2(0f, -520f), new Vector2(500f, 70f), IdleHuntressTheme.AccentFor(UiTone.Team), out var removeLabel);
+        var remove = EnsureButton(shell.transform, "Btn_RemoveSelected", "Remove selected fighter", new Vector2(0f, -440f), new Vector2(500f, 70f), IdleHuntressTheme.AccentFor(UiTone.Team), out var removeLabel);
         controller.ConfigureFormation(formationButtons.ToArray(), formationLabels.ToArray(), remove);
         slotBinder.ConfigurePaging(previous, next, pageLabel);
 
@@ -284,8 +284,9 @@ public static class RuntimeSceneUiBootstrap
         var workshop = UpgradePanelView.Create(root.transform, slotBinder.RebindSlots);
         upgrades.onClick.RemoveAllListeners(); upgrades.onClick.AddListener(workshop.Open);
 
-        var equipmentButton = EnsureButton(shell.transform, "Btn_Equipment", "Equipment", new Vector2(0f, 70f),
-            new Vector2(400f, 55f), IdleHuntressTheme.AccentFor(UiTone.Team), out _);
+        var equipmentButton = EnsureButton(shell.transform, "Btn_Equipment", "Equipment", new Vector2(0f, -610f),
+            new Vector2(300f, 76f), new Color(0.10f, 0.35f, 0.68f, 1f), out var equipmentButtonLabel);
+        equipmentButtonLabel.color = Color.white;
         var equipmentRoot = EnsurePanel(root.transform, "EquipmentPanel", new Color(.05f,.08f,.1f,.98f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         var equipmentCard = EnsurePanel(equipmentRoot.transform, "Panel_EquipmentCard", WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Team), .99f), CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1450f));
         var equipmentTitle = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentTitle", "Equipment", 42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
@@ -309,19 +310,25 @@ public static class RuntimeSceneUiBootstrap
         equipmentRoot.SetActive(false);
         equipmentButton.onClick.AddListener(equipmentController.Open);
 
-        var autoFill = EnsureButton(shell.transform, "Btn_AutoFill", "Auto Fill", new Vector2(-210f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var autoFillLabel);
-        var clearTeam = EnsureButton(shell.transform, "Btn_ClearTeam", "Clear Team", new Vector2(50f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var clearLabel);
-        var startBattle = EnsureButton(shell.transform, "Btn_StartBattle", "Start Battle", new Vector2(310f, -610f), new Vector2(240f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var startBattleLabel);
-        var back = EnsureButton(shell.transform, "Btn_Back", "Back", new Vector2(0f, -720f), new Vector2(500f, 92f), IdleHuntressTheme.AccentFor(UiTone.Team), out var backLabel);
+        var autoFill = EnsureButton(shell.transform, "Btn_AutoFill", "Auto Fill", new Vector2(-310f, -520f), new Vector2(210f, 76f), new Color(0.00f, 0.47f, 0.45f, 1f), out var autoFillLabel);
+        var clearTeam = EnsureButton(shell.transform, "Btn_ClearTeam", "Clear Team", new Vector2(-80f, -520f), new Vector2(210f, 76f), new Color(0.78f, 0.34f, 0.05f, 1f), out var clearLabel);
+        var startBattle = EnsureButton(shell.transform, "Btn_StartBattle", "Start Battle", new Vector2(180f, -520f), new Vector2(210f, 76f), new Color(0.12f, 0.52f, 0.25f, 1f), out var startBattleLabel);
+        var back = EnsureButton(shell.transform, "Btn_Back", "Back", new Vector2(0f, -720f), new Vector2(500f, 76f), new Color(0.28f, 0.34f, 0.39f, 1f), out var backLabel);
+
+        SetAccessibleButton(autoFill, autoFillLabel, new Color(0.00f, 0.47f, 0.45f, 1f));
+        SetAccessibleButton(clearTeam, clearLabel, new Color(0.78f, 0.34f, 0.05f, 1f));
+        SetAccessibleButton(startBattle, startBattleLabel, new Color(0.12f, 0.52f, 0.25f, 1f));
+        SetAccessibleButton(back, backLabel, new Color(0.28f, 0.34f, 0.39f, 1f));
+        SetAccessibleButton(equipmentButton, equipmentButtonLabel, new Color(0.10f, 0.35f, 0.68f, 1f));
 
         ConfigureSkin(root, UiTone.Team,
             new[] { bg.GetComponent<Image>() },
             new[] { shell.GetComponent<Image>(), slotStrip.GetComponent<Image>() },
-            new[] { autoFill.GetComponent<Image>(), clearTeam.GetComponent<Image>(), startBattle.GetComponent<Image>(), back.GetComponent<Image>() }
+            new[] { autoFill.GetComponent<Image>(), clearTeam.GetComponent<Image>(), startBattle.GetComponent<Image>(), back.GetComponent<Image>(), equipmentButton.GetComponent<Image>() }
                 .Concat(slotButtons.Concat(formationButtons).Concat(new[] { previous, next, remove }).Select(b => b.GetComponent<Image>())).ToArray(),
             new[] { autoFill, clearTeam, startBattle, back, previous, next, remove }.Concat(slotButtons).Concat(formationButtons).ToArray(),
             new[] { teamStatus },
-            new[] { hint, roster, autoFillLabel, clearLabel, startBattleLabel, backLabel }
+            new[] { hint, roster, autoFillLabel, clearLabel, startBattleLabel, backLabel, equipmentButtonLabel }
                 .Concat(slotLabels).Concat(formationLabels).Concat(new[] { previousLabel, nextLabel, pageLabel, removeLabel }).ToArray());
 
         spotlight.Configure(
@@ -493,6 +500,23 @@ public static class RuntimeSceneUiBootstrap
         SetPrivateField(skin, "titleLabels", titles.Where(x => x != null).ToArray());
         SetPrivateField(skin, "bodyLabels", body.Where(x => x != null).ToArray());
         skin.ApplyTheme();
+    }
+
+    private static void SetAccessibleButton(Button button, Text label, Color color)
+    {
+        if (button == null) return;
+        var image = button.GetComponent<Image>();
+        if (image != null) image.color = color;
+        if (label != null) label.color = Color.white;
+
+        var colors = button.colors;
+        colors.normalColor = color;
+        colors.highlightedColor = Color.Lerp(color, Color.white, 0.18f);
+        colors.pressedColor = Color.Lerp(color, Color.black, 0.16f);
+        colors.selectedColor = Color.Lerp(color, Color.white, 0.08f);
+        colors.disabledColor = Color.Lerp(color, Color.black, 0.35f);
+        colors.fadeDuration = 0.08f;
+        button.colors = colors;
     }
 
     private static TutorialSpotlightTarget Target(TutorialStep step, Button button, string hint)
