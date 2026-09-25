@@ -121,13 +121,51 @@ public sealed class BattleScreenView : MonoBehaviour
         if (!fighters.TryGetValue(id, out var unit)) return;
         var state = unit.State;
         inspectorTitle.text = state.Name + " · " + FormationRules.Label(state.Slot);
-        data.Skills.TryGetValue(state.SignatureSkillId ?? "", out var skill);
-        inspectorBody.text = $"Health  {state.Hp} / {state.MaxHp}\nShield  {state.Shield}     Energy  {state.Energy} / {state.MaxEnergy}\n\nSignature  {skill?.name ?? "None"}\nCost  {skill?.energyCost ?? 0}     Cooldown remaining  {state.SignatureCooldown}\n\n" +
-            (state.Statuses.Count == 0 ? "No active status effects." : string.Join("\n", state.Statuses.GroupBy(s => s.Name).Select(g =>
-                g.Key + (g.Count() > 1 ? " ×" + g.Count() : "") + "  ·  " + string.Join(", ", g.Select(s => s.RemainingTurns < 0 ? "permanent" : s.RemainingTurns + " turns").Distinct()))));
+        inspectorBody.text = BuildInspectorText(state);
         inspectorPanel.SetActive(true);
         inspectorBody.rectTransform.sizeDelta = new(inspectorBody.rectTransform.sizeDelta.x, Mathf.Max(300, inspectorBody.preferredHeight + 20));
         inspectorScroll.verticalNormalizedPosition = 1;
+    }
+
+    private string BuildInspectorText(BattleFighterState state)
+    {
+        data.Skills.TryGetValue(state.BasicSkillId ?? "", out var basic);
+        data.Skills.TryGetValue(state.SignatureSkillId ?? "", out var signature);
+        data.Skills.TryGetValue(state.UltimateSkillId ?? "", out var ultimate);
+
+        var sections = new List<string>
+        {
+            $"Health  {state.Hp} / {state.MaxHp}\nShield  {state.Shield}     Energy  {state.Energy} / {state.MaxEnergy}",
+            BuildBattleSkill("BASIC", basic),
+            BuildBattleSkill("SIGNATURE", signature),
+            BuildBattleSkill("ULTIMATE", ultimate)
+        };
+
+        if (data.Characters.TryGetValue(state.ContentId, out var character))
+        {
+            var passives = character.passives == null
+                ? new List<PassiveDef>()
+                : character.passives.Where(p => p != null && !string.IsNullOrWhiteSpace(p.description)).ToList();
+            if (passives.Count > 0)
+                sections.Add("PASSIVES\n" + string.Join("\n\n", passives.Select(p => p.description)));
+            else
+                sections.Add("PASSIVES\nNo passive abilities listed for this character.");
+        }
+
+        sections.Add("ACTIVE STATUS EFFECTS\n" +
+            (state.Statuses.Count == 0 ? "None." : string.Join("\n", state.Statuses.GroupBy(s => s.Name).Select(g =>
+                g.Key + (g.Count() > 1 ? " ×" + g.Count() : "") + "  ·  " + string.Join(", ", g.Select(s => s.RemainingTurns < 0 ? "permanent" : s.RemainingTurns + " turns").Distinct())))));
+
+        return string.Join("\n\n", sections);
+    }
+
+    private static string BuildBattleSkill(string category, SkillDef skill)
+    {
+        if (skill == null) return category + "\nNot available for this fighter.";
+        var usage = skill.energyCost > 0 ? $"{skill.energyCost} energy" :
+            skill.cooldown > 0 ? $"{skill.cooldown} turn cooldown" : "No cooldown";
+        var target = string.IsNullOrWhiteSpace(skill.target) ? "" : $"  •  {skill.target}";
+        return $"{category} · {skill.name}\n{usage}{target}\n{skill.description}";
     }
     public void ShowResult(string title, string body, bool nextUnlocked)
     {
