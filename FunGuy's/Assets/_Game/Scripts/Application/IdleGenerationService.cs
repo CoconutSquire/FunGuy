@@ -27,7 +27,7 @@ public sealed class IdleGenerationService
     public const double MaxStoredHours = 24d;
     private readonly GameData data;
     private readonly EquipmentService equipmentService;
-    private readonly System.Random rng = new();
+    private readonly Random rng = new();
     private readonly GameBalanceSettings settings;
 
     public IdleGenerationService(GameData data, EquipmentService equipmentService)
