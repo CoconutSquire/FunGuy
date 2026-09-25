@@ -70,9 +70,9 @@ public static class UpgradePanelView
         var fit = skills.gameObject.AddComponent<ContentSizeFitter>(); fit.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         scroll.viewport = (RectTransform)viewport.transform; scroll.content = skills.rectTransform;
         var feedback = Label("UpgradeFeedback", shell.transform, "", 240, -248, 875, 86, 22, gold);
-        var upgrade = Button("Btn_ConfirmUpgrade", shell.transform, "Level up", 70, -345, 515, 72, 24, upgradeColor);
-        var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 545, -345, 330, 72, 24, backColor);
-        var equipment = Button("Btn_UpgradeEquipment", shell.transform, "Equipment", 310, -378, 400, 52, 21, equipmentColor);
+        var upgrade = Button("Btn_ConfirmUpgrade", shell.transform, "Level up", -200, -345, 330, 60, 22, upgradeColor);
+        var equipment = Button("Btn_UpgradeEquipment", shell.transform, "Equipment", 150, -345, 300, 60, 22, equipmentColor);
+        var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 480, -345, 300, 60, 22, backColor);
 
         equipment.onClick.AddListener(() => {
             var equipmentController = UnityEngine.Object.FindFirstObjectByType<EquipmentPanelController>();
