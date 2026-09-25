@@ -75,7 +75,7 @@ public static class UpgradePanelView
         var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 480, -345, 300, 60, 22, backColor);
 
         equipment.onClick.AddListener(() => {
-            var equipmentController = UnityEngine.Object.FindFirstObjectByType<EquipmentPanelController>();
+            var equipmentController = UnityEngine.Object.FindFirstObjectByType<EquipmentPanelController>(FindObjectsInactive.Include);
             if (equipmentController != null) equipmentController.Open();
         });
 
