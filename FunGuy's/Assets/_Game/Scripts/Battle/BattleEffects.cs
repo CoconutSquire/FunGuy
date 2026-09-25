@@ -139,7 +139,7 @@ public partial class BattleSim
         if (amount > 0) GrantSupportEnergy(actor);
     }
 
-    private void ApplyStatusFrom(CombatUnit source, CombatUnit target, EffectDef effect)
+    private bool ApplyStatusFrom(CombatUnit source, CombatUnit target, EffectDef effect)
     {
         bool debuff = CombatEffectRules.Debuffs.Contains(effect.status);
         if (target.hp <= 0 || HasStatus(target, "Intangible") || (debuff && HasStatus(target, "Immunity")) ||
