@@ -148,6 +148,8 @@ public sealed class BattleScreenView : MonoBehaviour
                 : character.passives.Where(p => p != null && !string.IsNullOrWhiteSpace(p.description)).ToList();
             if (passives.Count > 0)
                 sections.Add("PASSIVES\n" + string.Join("\n\n", passives.Select(p => p.description)));
+            else if (!string.IsNullOrWhiteSpace(character.passiveDescription))
+                sections.Add("PASSIVE · " + (string.IsNullOrWhiteSpace(character.passiveName) ? "Passive" : character.passiveName) + "\n" + character.passiveDescription);
             else
                 sections.Add("PASSIVES\nNo passive abilities listed for this character.");
         }
@@ -165,7 +167,56 @@ public sealed class BattleScreenView : MonoBehaviour
         var usage = skill.energyCost > 0 ? $"{skill.energyCost} energy" :
             skill.cooldown > 0 ? $"{skill.cooldown} turn cooldown" : "No cooldown";
         var target = string.IsNullOrWhiteSpace(skill.target) ? "" : $"  •  {skill.target}";
-        return $"{category} · {skill.name}\n{usage}{target}\n{skill.description}";
+
+        string description = skill.description;
+        if (string.IsNullOrWhiteSpace(description) ||
+            description.StartsWith("Ultimate for ", StringComparison.OrdinalIgnoreCase))
+            description = BuildEffectDescription(skill);
+        if (string.IsNullOrWhiteSpace(description))
+            description = "Skill mechanics are defined by this fighter's combat effects.";
+
+        return $"{category} · {skill.name}\n{usage}{target}\n{description}";
+    }
+
+    private static string BuildEffectDescription(SkillDef skill)
+    {
+        if (skill?.effects == null || skill.effects.Count == 0) return null;
+        var parts = new List<string>();
+        foreach (var effect in skill.effects)
+        {
+            if (effect == null || string.IsNullOrWhiteSpace(effect.type)) continue;
+            string target = string.IsNullOrWhiteSpace(effect.target) ? skill.target : effect.target;
+            string targetLabel = string.IsNullOrWhiteSpace(target) ? "the target" : target;
+            switch (effect.type)
+            {
+                case "Damage":
+                    parts.Add($"Deals {effect.scale * 100f:0.#}% damage to {targetLabel}.");
+                    if (effect.ignoreDefense > 0) parts.Add($"Ignores {effect.ignoreDefense * 100f:0.#}% defense.");
+                    if (effect.ignoreShield) parts.Add("Ignores shields.");
+                    if (effect.sureHit) parts.Add("Cannot miss.");
+                    break;
+                case "Heal":
+                    parts.Add($"Heals {targetLabel} for {effect.scale * 100f:0.#}% of {string.IsNullOrWhiteSpace(effect.stat) ? "POT" : effect.stat}.");
+                    break;
+                case "Shield":
+                    parts.Add($"Grants {targetLabel} a shield for {effect.scale * 100f:0.#}% of {string.IsNullOrWhiteSpace(effect.stat) ? "POT" : effect.stat}.");
+                    break;
+                case "ApplyStatus":
+                    string status = string.IsNullOrWhiteSpace(effect.status) ? "a status effect" : effect.status;
+                    string chance = effect.chance > 0 && effect.chance < 1 ? $" ({effect.chance * 100f:0.#}% chance)" : "";
+                    string duration = effect.duration > 0 ? $" for {effect.duration} turns" : "";
+                    parts.Add($"Applies {status} to {targetLabel}{duration}{chance}.");
+                    if (effect.potency > 0) parts.Add($"Potency {effect.potency * 100f:0.#}%.");
+                    break;
+                case "Cleanse": parts.Add($"Cleanses negative effects from {targetLabel}."); break;
+                case "Dispel": parts.Add($"Dispels positive effects from {targetLabel}."); break;
+                case "Energy": parts.Add($"Restores {effect.scale:0.#} energy to {targetLabel}."); break;
+                case "Gauge": parts.Add($"Changes turn gauge for {targetLabel} by {effect.scale * 100f:0.#}%."); break;
+                case "Move": parts.Add($"Moves {targetLabel} by {effect.slot} slot{(Math.Abs(effect.slot) == 1 ? "" : "s")}."); break;
+                default: parts.Add(effect.type + "."); break;
+            }
+        }
+        return parts.Count == 0 ? null : string.Join(" ", parts);
     }
     public void ShowResult(string title, string body, bool nextUnlocked)
     {
