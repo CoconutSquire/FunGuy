@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -107,7 +108,7 @@ public sealed class EquipmentPanelController : MonoBehaviour
     private string BuildStats(CharacterDef def, OwnedUnit unit)
     {
         if(def?.baseStats==null) return "Stats unavailable";
-        int level=Math.Max(1, unit.level);
+        int level = Math.Max(1, unit.level);
         int hp=def.baseStats.hp + Mathf.RoundToInt(def.growth.hp * (level-1));
         int atk=def.baseStats.atk + Mathf.RoundToInt(def.growth.atk * (level-1));
         int defense=def.baseStats.def + Mathf.RoundToInt(def.growth.def * (level-1));
