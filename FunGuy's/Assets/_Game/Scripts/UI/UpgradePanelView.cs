@@ -55,9 +55,12 @@ public static class UpgradePanelView
         var wallet = Label("UpgradeGold", shell.transform, "", 430, 337, 370, 60, 30, gold);
         var roster = new Button[5];
         for (int i = 0; i < roster.Length; i++) roster[i] = Button("Btn_UpgradeFighter" + (i + 1), shell.transform, "", -465, 230 - i * 102, 465, 88, 23, rosterColor);
-        var previous = Button("Btn_UpgradePrevious", shell.transform, "Previous", -590, -310, 205, 64, 22, navigationColor);
-        var next = Button("Btn_UpgradeNext", shell.transform, "Next", -350, -310, 205, 64, 22, navigationColor);
-        var page = Label("UpgradePage", shell.transform, "", -470, -369, 465, 45, 21, foreground); page.alignment = TextAnchor.MiddleCenter;
+
+        // Keep fighter navigation clearly above the lower action row.
+        var previous = Button("Btn_UpgradePrevious", shell.transform, "Previous", -590, -265, 205, 60, 22, navigationColor);
+        var next = Button("Btn_UpgradeNext", shell.transform, "Next", -350, -265, 205, 60, 22, navigationColor);
+        var page = Label("UpgradePage", shell.transform, "", -470, -319, 465, 42, 21, foreground); page.alignment = TextAnchor.MiddleCenter;
+
         var identity = Label("UpgradeIdentity", shell.transform, "", 155, 222, 730, 135, 25, foreground);
         var portrait = Rect("UpgradePortrait", shell.transform, 635, 222, 104, 116).gameObject.AddComponent<FungusPortrait>(); portrait.raycastTarget = false;
         var stats = Label("UpgradeStats", shell.transform, "", 25, -16, 410, 300, 25, foreground);
@@ -70,9 +73,11 @@ public static class UpgradePanelView
         var fit = skills.gameObject.AddComponent<ContentSizeFitter>(); fit.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         scroll.viewport = (RectTransform)viewport.transform; scroll.content = skills.rectTransform;
         var feedback = Label("UpgradeFeedback", shell.transform, "", 240, -248, 875, 86, 22, gold);
-        var upgrade = Button("Btn_ConfirmUpgrade", shell.transform, "Level up", -200, -345, 330, 60, 22, upgradeColor);
-        var equipment = Button("Btn_UpgradeEquipment", shell.transform, "Equipment", 150, -345, 300, 60, 22, equipmentColor);
-        var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 480, -345, 300, 60, 22, backColor);
+
+        // Compact lower action row so all three actions fit without touching each other.
+        var upgrade = Button("Btn_ConfirmUpgrade", shell.transform, "Level up", -245, -345, 250, 58, 21, upgradeColor);
+        var equipment = Button("Btn_UpgradeEquipment", shell.transform, "Equipment", 50, -345, 250, 58, 21, equipmentColor);
+        var close = Button("Btn_CloseUpgrades", shell.transform, "Back to team", 345, -345, 250, 58, 21, backColor);
 
         equipment.onClick.AddListener(() => {
             var equipmentController = UnityEngine.Object.FindFirstObjectByType<EquipmentPanelController>(FindObjectsInactive.Include);
