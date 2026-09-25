@@ -368,10 +368,11 @@ public static class RuntimeSceneUiBootstrap
         var equipmentRoot = EnsurePanel(root.transform, "EquipmentPanel", new Color(.05f,.08f,.1f,.98f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         // Keep the equipment UI above the formation UI even though both live on the same root canvas.
         // A nested canvas with overrideSorting gives the overlay an explicit draw order.
-        var equipmentCanvas = equipmentRoot.GetComponent<Canvas>() ?? equipmentRoot.AddComponent<Canvas>();
+        var equipmentCanvas = EnsureComponent<Canvas>(equipmentRoot);
+        equipmentCanvas.enabled = true;
         equipmentCanvas.overrideSorting = true;
         equipmentCanvas.sortingOrder = 100;
-        if (equipmentRoot.GetComponent<GraphicRaycaster>() == null) equipmentRoot.AddComponent<GraphicRaycaster>();
+        EnsureComponent<GraphicRaycaster>(equipmentRoot).enabled = true;
         var equipmentCard = EnsurePanel(equipmentRoot.transform, "Panel_EquipmentCard", WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Team), .99f), CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1450f));
         var equipmentTitle = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentTitle", "Equipment", 42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         SetRect(equipmentTitle.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, 620), new Vector2(820, 70));
