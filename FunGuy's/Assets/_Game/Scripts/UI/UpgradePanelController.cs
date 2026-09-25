@@ -109,9 +109,7 @@ public sealed class UpgradePanelController : MonoBehaviour
         stats.text = (after == null ? "CURRENT STATS" : "CURRENT  →  NEXT LEVEL") + "\nBefore formation bonuses\n\n" +
             string.Join("\n", new[] { Row("HP", now.HP, after?.HP), Row("ATK", now.ATK, after?.ATK),
                 Row("DEF", now.DEF, after?.DEF), Row("SPD", now.SPD, after?.SPD), Row("POT", now.POT, after?.POT) });
-        var basic = Game.Data.Skills[definition.skills.basic]; var signature = Game.Data.Skills[definition.skills.ult];
-        skills.text = $"BASIC · {basic.name}\n{basic.description}\n\nSIGNATURE · {signature.name}\n{signature.energyCost} energy  •  {signature.cooldown} turn cooldown\n{signature.description}\n\nPASSIVE\n" +
-            string.Join("\n", definition.passives.Select(p => p.description)) + "\n\nStatus chances are base chances, modified by POT and immunity.";
+        skills.text = BuildSkillDisplay(definition);
         portrait.variant = definition.classArchetype == "Tank" ? 0 :
             definition.classArchetype == "Support" || definition.classArchetype == "Mage" || definition.role == "Healer" ? 1 : 2;
         portrait.cap = definition.biome switch {
@@ -125,4 +123,40 @@ public sealed class UpgradePanelController : MonoBehaviour
             if (preview.Gold < preview.GoldCost) feedback.text += $"\nNeed {preview.GoldCost - preview.Gold} more gold.";
         if (preview.RequiresAscension && preview.Spores < preview.SporeCost) feedback.text += $"\nNeed {preview.SporeCost - preview.Spores} more Spores to ascend.";
     }
+    private string BuildSkillDisplay(CharacterDef definition)
+    {
+        var sections = new List<string>();
+
+        if (definition.skills != null && !string.IsNullOrWhiteSpace(definition.skills.basic) && Game.Data.Skills.TryGetValue(definition.skills.basic, out var basic))
+            sections.Add(FormatSkill("BASIC", basic));
+
+        var signatureId = !string.IsNullOrWhiteSpace(definition.skills?.signature) ? definition.skills.signature : definition.skills?.ult;
+        if (!string.IsNullOrWhiteSpace(signatureId) && Game.Data.Skills.TryGetValue(signatureId, out var signature))
+            sections.Add(FormatSkill("SIGNATURE", signature));
+
+        var ultimateId = definition.skills?.ultimate;
+        if (!string.IsNullOrWhiteSpace(ultimateId) && Game.Data.Skills.TryGetValue(ultimateId, out var ultimate))
+            sections.Add(FormatSkill("ULTIMATE", ultimate));
+        else if (definition.rarityTier == "R")
+            sections.Add("ULTIMATE\nUnlocked for SR and UR fighters.");
+
+        var passives = definition.passives == null
+            ? new List<PassiveDef>()
+            : definition.passives.Where(p => p != null && !string.IsNullOrWhiteSpace(p.description)).ToList();
+        if (passives.Count > 0)
+            sections.Add("PASSIVE\n" + string.Join("\n\n", passives.Select(p => p.description)));
+
+        sections.Add("Status chances are base chances, modified by POT and immunity.");
+        return string.Join("\n\n", sections);
+    }
+
+    private static string FormatSkill(string category, SkillDef skill)
+    {
+        var usage = skill.energyCost > 0
+            ? $"{skill.energyCost} energy"
+            : skill.cooldown > 0 ? $"{skill.cooldown} turn cooldown" : "No cooldown";
+        var target = string.IsNullOrWhiteSpace(skill.target) ? "" : $"  •  {skill.target}";
+        return $"{category} · {skill.name}\n{usage}{target}\n{skill.description}";
+    }
+
 }
