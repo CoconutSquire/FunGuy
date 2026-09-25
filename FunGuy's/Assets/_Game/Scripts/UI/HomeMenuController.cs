@@ -1,3 +1,4 @@
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Information;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,8 +31,14 @@ public class HomeMenuController : MonoBehaviour {
   }
 
   public void OnSummonPressed() { SceneManager.LoadScene("Summon"); }
-  public void OnTeamPressed() { OnFunguyPressed(); }\n  public void OnFunguyPressed() { FindObjectOfType<FunguyRosterController>()?.Open(); }
-  public void OnBattlePressed() { if (OpenCampaign != null) OpenCampaign(); else SceneManager.LoadScene("Battle"); }
+    public void OnTeamPressed()
+    {
+        OnFunguyPressed();
+    }
+        
+  public void OnFunguyPressed() { FindFirstObjectByType<FunguyRosterController>()?.Open(); }
+
+    public void OnBattlePressed() { if (OpenCampaign != null) OpenCampaign(); else SceneManager.LoadScene("Battle"); }
   public void OnOptionsPressed() { SceneManager.LoadScene("Options"); }
 
   private void RefreshHomeStats() {
