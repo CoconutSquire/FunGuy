@@ -317,6 +317,10 @@ public static class RuntimeSceneUiBootstrap
         var charButtons=new Button[5];
         for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,410),new Vector2(115,60),IdleHuntressTheme.AccentFor(UiTone.Team),out _); charButtons[i]=b; }
         var equipmentBack=EnsureButton(equipmentCard.transform,"Btn_EquipmentBack","Back to Formation",new Vector2(0,-570),new Vector2(460,80),new Color(.28f,.34f,.39f,1f),out var equipmentBackLabel);
+        choiceLabels.ToList().ForEach(x => x.color = Color.white);
+        gearLabels.ToList().ForEach(x => x.color = Color.white);
+        equipmentUpgradeLabel.color = Color.white;
+        equipmentBackLabel.color = Color.white;
         var equipmentController=EnsureSceneComponent<EquipmentPanelController>(scene,equipmentRoot.transform);
         equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentIdentity,statsLabel,equipmentDetails,charButtons,choiceButtons,choiceLabels,gearButtons,gearLabels,equipmentUpgrade,equipmentUpgradeLabel,equipmentBack);
         equipmentUpgrade.onClick.AddListener(equipmentController.UpgradeSelectedEquipment);
