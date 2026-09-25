@@ -95,7 +95,10 @@ public static class RuntimeSceneUiBootstrap
         var bg = FindInScene<Image>(scene).FirstOrDefault(x => x != null && x.gameObject.name == "Background");
         if (bg != null)
         {
+            // The authored artwork is the visual background. Do not run it through the
+            // theme skin: that would replace its sprite color with the flat Home palette.
             bg.raycastTarget = false;
+            bg.transform.SetAsFirstSibling();
         }
         else
         {
@@ -104,7 +107,7 @@ public static class RuntimeSceneUiBootstrap
                 Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero).GetComponent<Image>();
         }
         var shell = EnsurePanel(root.transform, "Panel_Main",
-            WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.96f),
+            WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.82f),
             CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1520f));
 
         var title = EnsureLabel(shell.transform, "Lbl_Welcome",
@@ -126,7 +129,7 @@ public static class RuntimeSceneUiBootstrap
         SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -360f), new Vector2(780f, 140f));
 
         ConfigureSkin(root, UiTone.Home,
-            new[] { bg },
+            Array.Empty<Image>(),
             new[] { shell.GetComponent<Image>() },
             new[] { start.GetComponent<Image>(), summon.GetComponent<Image>(), team.GetComponent<Image>(), battle.GetComponent<Image>(), options.GetComponent<Image>() },
             new[] { start, summon, team, battle, options },
