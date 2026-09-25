@@ -30,7 +30,7 @@ public class HomeMenuController : MonoBehaviour {
   }
 
   public void OnSummonPressed() { SceneManager.LoadScene("Summon"); }
-  public void OnTeamPressed() { SceneManager.LoadScene("Team"); }
+  public void OnTeamPressed() { OnFunguyPressed(); }\n  public void OnFunguyPressed() { FindObjectOfType<FunguyRosterController>()?.Open(); }
   public void OnBattlePressed() { if (OpenCampaign != null) OpenCampaign(); else SceneManager.LoadScene("Battle"); }
   public void OnOptionsPressed() { SceneManager.LoadScene("Options"); }
 
