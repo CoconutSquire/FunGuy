@@ -99,6 +99,21 @@ public static class RuntimeSceneUiBootstrap
     private static void EnsureHomeScene(Scene scene, Canvas canvas)
     {
         var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
+
+        // Home has legacy authored controls in the scene file as well as the runtime menu.
+        // Give the runtime Home UI its own sorting/raycast layer and disable the stale
+        // authored buttons so they cannot visually or interactively sit on top of it.
+        var homeCanvas = EnsureComponent<Canvas>(root);
+        homeCanvas.enabled = true;
+        homeCanvas.overrideSorting = true;
+        homeCanvas.sortingOrder = 20;
+        EnsureComponent<GraphicRaycaster>(root).enabled = true;
+        foreach (Transform child in canvas.transform)
+        {
+            if (child == root.transform || child.name == "Background") continue;
+            if (child.GetComponent<Button>() != null) child.gameObject.SetActive(false);
+        }
+
         var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
         var spotlight = EnsureComponent<TutorialSpotlightController>(root);
 
