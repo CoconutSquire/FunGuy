@@ -553,9 +553,17 @@ public static class RuntimeSceneUiBootstrap
 
     private static void ConfigureLandscapeCanvas(Canvas canvas)
     {
+        // Some authored scenes have a zero-scale Canvas. That makes every runtime
+        // control effectively invisible/non-interactable even though the hierarchy
+        // and EventSystem are present. Normalize the Canvas before building the UI.
+        canvas.transform.localScale = Vector3.one;
+        canvas.transform.localPosition = Vector3.zero;
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
         var scaler = EnsureComponent<CanvasScaler>(canvas.gameObject);
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1600, 900); scaler.matchWidthOrHeight = 1;
+        scaler.referenceResolution = new Vector2(1600, 900);
+        scaler.matchWidthOrHeight = 1;
     }
     private static void EnsureEventSystem(Scene scene)
     {
