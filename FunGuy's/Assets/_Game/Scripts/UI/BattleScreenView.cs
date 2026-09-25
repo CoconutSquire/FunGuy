@@ -104,7 +104,17 @@ public sealed class BattleScreenView : MonoBehaviour
             string availability = state.Hp <= 0 ? "DEFEATED" : queued ? "QUEUED · tap to cancel" :
                 state.SignatureCooldown > 0 ? $"Cooldown {state.SignatureCooldown} · queue" :
                 state.Energy >= (skill?.energyCost ?? 100) ? "READY · tap to cast" : "Tap to queue";
-            card.label.text = $"{state.Name}\n{skill?.name ?? "No signature"}\n{state.Energy}/{state.MaxEnergy} energy  ·  {availability}";
+            // The energy cards are the live character skill controls. Show the
+            // actual signature skill name and a concise mechanic description rather
+            // than the old generic placeholder/status copy.
+            string skillName = skill?.name ?? "No signature";
+            string skillDescription = skill == null ? "Skill not available." : skill.description;
+            if (skill != null && (string.IsNullOrWhiteSpace(skillDescription) ||
+                skillDescription.StartsWith("Ultimate for ", StringComparison.OrdinalIgnoreCase)))
+                skillDescription = BuildEffectDescription(skill);
+            if (string.IsNullOrWhiteSpace(skillDescription))
+                skillDescription = "Uses this character's signature skill.";
+            card.label.text = $"{state.Name}\n{skillName}\n{skillDescription}\n{state.Energy}/{state.MaxEnergy} energy  ·  {availability}";
             card.button.interactable = playing && run.Battle.Outcome == BattleOutcome.Running && state.Hp > 0 && skill != null && state.SignatureSkillId != state.BasicSkillId;
             card.energy.fillAmount = state.MaxEnergy > 0 ? state.Energy / (float)state.MaxEnergy : 0;
             card.button.GetComponent<Image>().color = queued ? new(.32f, .45f, .17f, .98f) : new(.12f, .17f, .14f, .98f);
