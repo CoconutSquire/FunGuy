@@ -90,8 +90,19 @@ public static class RuntimeSceneUiBootstrap
         var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
         var spotlight = EnsureComponent<TutorialSpotlightController>(root);
 
-        var bg = EnsurePanel(root.transform, "Img_Background", IdleHuntressTheme.BackgroundFor(UiTone.Home),
-            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        // The authored Home scene already contains the intended home artwork.
+        // Keep that scene background visible instead of covering it with a runtime-generated color panel.
+        var bg = FindInScene<Image>(scene).FirstOrDefault(x => x != null && x.gameObject.name == "Background");
+        if (bg != null)
+        {
+            bg.raycastTarget = false;
+        }
+        else
+        {
+            // Fallback for scenes created without the authored background.
+            bg = EnsurePanel(root.transform, "Img_Background", IdleHuntressTheme.BackgroundFor(UiTone.Home),
+                Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero).GetComponent<Image>();
+        }
         var shell = EnsurePanel(root.transform, "Panel_Main",
             WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.96f),
             CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1520f));
@@ -115,7 +126,7 @@ public static class RuntimeSceneUiBootstrap
         SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -360f), new Vector2(780f, 140f));
 
         ConfigureSkin(root, UiTone.Home,
-            new[] { bg.GetComponent<Image>() },
+            new[] { bg },
             new[] { shell.GetComponent<Image>() },
             new[] { start.GetComponent<Image>(), summon.GetComponent<Image>(), team.GetComponent<Image>(), battle.GetComponent<Image>(), options.GetComponent<Image>() },
             new[] { start, summon, team, battle, options },
