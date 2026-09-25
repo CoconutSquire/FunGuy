@@ -51,9 +51,10 @@ public partial class BattleSim
     }
 
     private void Heal(CombatUnit actor, int v)
-{
-    throw new NotImplementedException();
-        
+    {
+        throw new NotImplementedException();
+    }
+
     private void Trigger(CombatUnit owner, string trigger, CombatUnit other)
     {
         if (owner.hp <= 0 || passiveDepth > 0) return;
@@ -128,7 +129,7 @@ public partial class BattleSim
             ApplyStatusFrom(target, actor, new EffectDef { status = "Poison", potency = .02f, duration = 2 });
     }
 
-    private int ScaledAmount(CombatUnit actor, CombatUnit target, EffectDef effect, string fallback)
+    int ScaledAmount(CombatUnit actor, CombatUnit target, EffectDef effect, string fallback)
     {
         string stat = OptionalOr(effect.stat, fallback);
         float value = stat == "MaxHP" ? actor.maxHp : stat == "TargetMaxHP" ? target.maxHp : Stat(actor, stat);
@@ -136,14 +137,14 @@ public partial class BattleSim
         return (int)MathF.Round(value * effect.scale);
     }
 
-    private void AddShield(CombatUnit actor, CombatUnit target, int amount, string detail)
+    void AddShield(CombatUnit actor, CombatUnit target, int amount, string detail)
     {
         target.shield = checked(target.shield + amount);
         Emit(BattleEventKind.Shield, actor, target, amount, detail);
         if (amount > 0) GrantSupportEnergy(actor);
     }
 
-    private bool ApplyStatusFrom(CombatUnit source, CombatUnit target, EffectDef effect)
+    bool ApplyStatusFrom(CombatUnit source, CombatUnit target, EffectDef effect)
     {
         bool debuff = CombatEffectRules.Debuffs.Contains(effect.status);
         if (target.hp <= 0 || HasStatus(target, "Intangible") || (debuff && HasStatus(target, "Immunity")) ||
@@ -164,21 +165,21 @@ public partial class BattleSim
         return true;
     }
 
-    private void Consume(CombatUnit unit, string name)
+    void Consume(CombatUnit unit, string name)
     {
         var status = unit.statuses.First(s => CombatEffectRules.Equals(s.status, name));
         if (status.stacks > 1) { status.stacks--; Emit(BattleEventKind.StatusTicked, unit, unit, status.stacks, name); }
         else { unit.statuses.Remove(status); Emit(BattleEventKind.StatusExpired, unit, unit, 0, name); }
     }
 
-    private void RemoveStatus(CombatUnit unit, string name)
+    void RemoveStatus(CombatUnit unit, string name)
     {
         foreach (var s in unit.statuses.Where(s => CombatEffectRules.Equals(s.status, name)).ToArray()) {
             unit.statuses.Remove(s); Emit(BattleEventKind.StatusExpired, actingUnit, unit, 0, name);
         }
     }
 
-    private void ApplyUtility(CombatUnit actor, CombatUnit target, EffectDef effect)
+    void ApplyUtility(CombatUnit actor, CombatUnit target, EffectDef effect)
     {
         switch (effect.type) {
             case "Energy": {
