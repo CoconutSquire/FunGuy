@@ -127,16 +127,17 @@ public sealed class UpgradePanelController : MonoBehaviour
     {
         var sections = new List<string>();
 
-        if (definition.skills != null && !string.IsNullOrWhiteSpace(definition.skills.basic) && Game.Data.Skills.TryGetValue(definition.skills.basic, out var basic))
-            sections.Add(FormatSkill("BASIC", basic));
+        if (definition.skills != null && !string.IsNullOrWhiteSpace(definition.skills.basic) &&
+            Game.Data.Skills.TryGetValue(definition.skills.basic, out var basic))
+            sections.Add(FormatSkill("BASIC", basic, "Deals damage to the front enemy."));
 
         var signatureId = !string.IsNullOrWhiteSpace(definition.skills?.signature) ? definition.skills.signature : definition.skills?.ult;
         if (!string.IsNullOrWhiteSpace(signatureId) && Game.Data.Skills.TryGetValue(signatureId, out var signature))
-            sections.Add(FormatSkill("SIGNATURE", signature));
+            sections.Add(FormatSkill("SIGNATURE", signature, definition.signatureSkillDescription));
 
         var ultimateId = definition.skills?.ultimate;
         if (!string.IsNullOrWhiteSpace(ultimateId) && Game.Data.Skills.TryGetValue(ultimateId, out var ultimate))
-            sections.Add(FormatSkill("ULTIMATE", ultimate));
+            sections.Add(FormatSkill("ULTIMATE", ultimate, null));
         else if (definition.rarityTier == "R")
             sections.Add("ULTIMATE\nUnlocked for SR and UR fighters.");
 
@@ -145,18 +146,77 @@ public sealed class UpgradePanelController : MonoBehaviour
             : definition.passives.Where(p => p != null && !string.IsNullOrWhiteSpace(p.description)).ToList();
         if (passives.Count > 0)
             sections.Add("PASSIVE\n" + string.Join("\n\n", passives.Select(p => p.description)));
+        else if (!string.IsNullOrWhiteSpace(definition.passiveName) || !string.IsNullOrWhiteSpace(definition.passiveDescription))
+            sections.Add($"PASSIVE · {definition.passiveName}\n{definition.passiveDescription}");
 
-        sections.Add("Status chances are base chances, modified by POT and immunity.");
         return string.Join("\n\n", sections);
     }
 
-    private static string FormatSkill(string category, SkillDef skill)
+    private static string FormatSkill(string category, SkillDef skill, string fallbackDescription)
     {
         var usage = skill.energyCost > 0
             ? $"{skill.energyCost} energy"
             : skill.cooldown > 0 ? $"{skill.cooldown} turn cooldown" : "No cooldown";
         var target = string.IsNullOrWhiteSpace(skill.target) ? "" : $"  •  {skill.target}";
-        return $"{category} · {skill.name}\n{usage}{target}\n{skill.description}";
+        var description = skill.description;
+
+        // Several legacy skill records have the mechanics in effects but no description.
+        // Build a readable description from those actual effects instead of showing a placeholder.
+        if (string.IsNullOrWhiteSpace(description) || description.StartsWith("Ultimate for ", StringComparison.OrdinalIgnoreCase))
+            description = BuildEffectDescription(skill);
+
+        if (string.IsNullOrWhiteSpace(description))
+            description = fallbackDescription;
+
+        if (string.IsNullOrWhiteSpace(description))
+            description = "Skill mechanics are defined by this fighter's combat effects.";
+
+        return $"{category} · {skill.name}\n{usage}{target}\n{description}";
+    }
+
+    private static string BuildEffectDescription(SkillDef skill)
+    {
+        if (skill.effects == null || skill.effects.Count == 0) return "";
+
+        var parts = new List<string>();
+        foreach (var effect in skill.effects)
+        {
+            if (effect == null || string.IsNullOrWhiteSpace(effect.type)) continue;
+            var target = string.IsNullOrWhiteSpace(effect.target) ? "" : $" {effect.target}";
+            switch (effect.type)
+            {
+                case "Damage":
+                    parts.Add($"Deals {effect.scale * 100:0}% damage to{target}.");
+                    break;
+                case "Heal":
+                    parts.Add($"Heals{target} for {effect.scale * 100:0}% of {effect.stat}.");
+                    break;
+                case "Shield":
+                    parts.Add($"Grants a shield to{target} for {effect.scale * 100:0}% of {effect.stat}.");
+                    break;
+                case "ApplyStatus":
+                    var chance = effect.chance >= 1f ? "" : $" ({effect.chance * 100:0}% chance)";
+                    var duration = effect.duration > 0 ? $" for {effect.duration} turn(s)" : "";
+                    parts.Add($"Applies {effect.status} to{target}{duration}{chance}.");
+                    break;
+                case "Cleanse":
+                    parts.Add($"Cleanses {effect.potency:0} debuff(s) from{target}.");
+                    break;
+                case "Dispel":
+                    parts.Add($"Dispels {effect.potency:0} buff(s) from{target}.");
+                    break;
+                case "Energy":
+                    parts.Add($"Grants {effect.potency:0} energy to{target}.");
+                    break;
+                case "Gauge":
+                    parts.Add($"Advances turn gauge for{target}.");
+                    break;
+                case "Move":
+                    parts.Add($"Moves{target}.");
+                    break;
+            }
+        }
+        return string.Join(" ", parts);
     }
 
 }
