@@ -50,6 +50,10 @@ public partial class BattleSim
             AddShield(actor, actor, (int)MathF.Round(actor.maxHp * .15f), "Unbreakable");
     }
 
+    private void Heal(CombatUnit actor, int v)
+{
+    throw new NotImplementedException();
+        
     private void Trigger(CombatUnit owner, string trigger, CombatUnit other)
     {
         if (owner.hp <= 0 || passiveDepth > 0) return;
