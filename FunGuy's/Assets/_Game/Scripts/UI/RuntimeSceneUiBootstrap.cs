@@ -315,12 +315,6 @@ public static class RuntimeSceneUiBootstrap
         var startBattle = EnsureButton(shell.transform, "Btn_StartBattle", "Start Battle", new Vector2(180f, -520f), new Vector2(210f, 76f), new Color(0.12f, 0.52f, 0.25f, 1f), out var startBattleLabel);
         var back = EnsureButton(shell.transform, "Btn_Back", "Back", new Vector2(0f, -720f), new Vector2(500f, 76f), new Color(0.28f, 0.34f, 0.39f, 1f), out var backLabel);
 
-        SetAccessibleButton(autoFill, autoFillLabel, new Color(0.00f, 0.47f, 0.45f, 1f));
-        SetAccessibleButton(clearTeam, clearLabel, new Color(0.78f, 0.34f, 0.05f, 1f));
-        SetAccessibleButton(startBattle, startBattleLabel, new Color(0.12f, 0.52f, 0.25f, 1f));
-        SetAccessibleButton(back, backLabel, new Color(0.28f, 0.34f, 0.39f, 1f));
-        SetAccessibleButton(equipmentButton, equipmentButtonLabel, new Color(0.10f, 0.35f, 0.68f, 1f));
-
         ConfigureSkin(root, UiTone.Team,
             new[] { bg.GetComponent<Image>() },
             new[] { shell.GetComponent<Image>(), slotStrip.GetComponent<Image>() },
@@ -330,6 +324,14 @@ public static class RuntimeSceneUiBootstrap
             new[] { teamStatus },
             new[] { hint, roster, autoFillLabel, clearLabel, startBattleLabel, backLabel, equipmentButtonLabel }
                 .Concat(slotLabels).Concat(formationLabels).Concat(new[] { previousLabel, nextLabel, pageLabel, removeLabel }).ToArray());
+
+        SetAccessibleButton(autoFill, autoFillLabel, new Color(0.00f, 0.47f, 0.45f, 1f));
+        SetAccessibleButton(clearTeam, clearLabel, new Color(0.78f, 0.34f, 0.05f, 1f));
+        SetAccessibleButton(startBattle, startBattleLabel, new Color(0.12f, 0.52f, 0.25f, 1f));
+        SetAccessibleButton(back, backLabel, new Color(0.28f, 0.34f, 0.39f, 1f));
+        SetAccessibleButton(equipmentButton, equipmentButtonLabel, new Color(0.10f, 0.35f, 0.68f, 1f));
+
+        SetAccessibleButton(remove, removeLabel, new Color(0.70f, 0.10f, 0.12f, 1f));
 
         spotlight.Configure(
             null, // Team controller owns persistent placement instructions; tutorial uses its overlay.
