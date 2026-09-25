@@ -366,6 +366,12 @@ public static class RuntimeSceneUiBootstrap
             new Vector2(300f, 76f), new Color(0.10f, 0.35f, 0.68f, 1f), out var equipmentButtonLabel);
         equipmentButtonLabel.color = Color.white;
         var equipmentRoot = EnsurePanel(root.transform, "EquipmentPanel", new Color(.05f,.08f,.1f,.98f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        // Keep the equipment UI above the formation UI even though both live on the same root canvas.
+        // A nested canvas with overrideSorting gives the overlay an explicit draw order.
+        var equipmentCanvas = equipmentRoot.GetComponent<Canvas>() ?? equipmentRoot.AddComponent<Canvas>();
+        equipmentCanvas.overrideSorting = true;
+        equipmentCanvas.sortingOrder = 100;
+        if (equipmentRoot.GetComponent<GraphicRaycaster>() == null) equipmentRoot.AddComponent<GraphicRaycaster>();
         var equipmentCard = EnsurePanel(equipmentRoot.transform, "Panel_EquipmentCard", WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Team), .99f), CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1450f));
         var equipmentTitle = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentTitle", "Equipment", 42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         SetRect(equipmentTitle.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, 620), new Vector2(820, 70));
@@ -394,7 +400,7 @@ public static class RuntimeSceneUiBootstrap
         var equipmentUpgrade = EnsureButton(equipmentCard.transform, "Btn_EquipmentUpgrade", "Equip Equipment", new Vector2(0, -440), new Vector2(420, 80), IdleHuntressTheme.AccentFor(UiTone.Team), out var equipmentUpgradeLabel);
         var charButtons=new Button[5];
         for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,410),new Vector2(115,60),IdleHuntressTheme.AccentFor(UiTone.Team),out _); charButtons[i]=b; }
-        var equipmentBack=EnsureButton(equipmentCard.transform,"Btn_EquipmentBack","Back to Formation",new Vector2(0,-570),new Vector2(460,80),new Color(.28f,.34f,.39f,1f),out var equipmentBackLabel);
+        var equipmentBack=EnsureButton(equipmentCard.transform,"Btn_EquipmentBack","Back to Formation",new Vector2(-300,-570),new Vector2(300,80),new Color(.28f,.34f,.39f,1f),out var equipmentBackLabel);
         choiceLabels.ToList().ForEach(x => x.color = Color.white);
         gearLabels.ToList().ForEach(x => x.color = Color.white);
         equipmentUpgradeLabel.color = Color.white;
