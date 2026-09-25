@@ -193,6 +193,11 @@ public static class RuntimeSceneUiBootstrap
         overlay.SetActive(false);
     }
 
+    private static GameObject EnsureChild(GameObject scrollGo, string v)
+    {
+        throw new NotImplementedException();
+    }
+
     private static void EnsureSummonScene(Scene scene, Canvas canvas)
     {
         var root = EnsureSceneRoot(scene, canvas.transform, "SummonRoot");
