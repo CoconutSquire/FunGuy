@@ -239,6 +239,9 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case TutorialStep.StartFirstBattle:
+                // The tutorial battle is the real Chapter 1 Stage 1 encounter.
+                // Do not carry an older/stale stage selection into the first battle.
+                Game.SelectedStageId = "s_1_1";
                 Present(
                     "Start battle. Basic attacks are automatic; tap a signature to queue it, or turn Auto on.",
                     null
