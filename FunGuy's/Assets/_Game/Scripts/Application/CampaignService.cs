@@ -85,6 +85,13 @@ public sealed class LocalCampaignService : ICampaignService
             player.Add(fighter);
         }
         if (player.Count != selected.Count) throw new InvalidOperationException("Your team contains an unavailable unit.");
+        // Enemy formations are capped at five units. From Chapter 3 onward, campaign
+        // encounters are intentionally full formations of exactly five enemies per wave.
+        if (stage.waves.Any(w => w.enemies.Count > 5))
+            throw new InvalidOperationException("Enemy formations cannot contain more than five units.");
+        if (stage.chapter >= 3 && stage.waves.Any(w => w.enemies.Count != 5))
+            throw new InvalidOperationException("Chapter 3+ requires exactly five enemies in every wave.");
+
         var waves = stage.waves.Select(w => w.enemies.Select(u =>
             CombatUnitFactory.Create(data.Characters[u.enemyId], u, TeamSide.Enemy, data.StatRules)).ToList()).ToList();
         var reward = new RewardDef { gold = stage.rewards.gold, spores = stage.rewards.spores, accountXp = stage.rewards.accountXp };
