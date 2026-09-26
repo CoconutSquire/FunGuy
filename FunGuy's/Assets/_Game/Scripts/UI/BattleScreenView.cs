@@ -54,6 +54,7 @@ public sealed class BattleScreenView : MonoBehaviour
     {
         var incoming = states.Select(s => s.InstanceId).ToHashSet();
         foreach (string id in fighters.Keys.Where(id => !incoming.Contains(id)).ToArray()) {
+            keywordVisuals?.ClearFighter(id);
             fighters[id].gameObject.SetActive(false); Destroy(fighters[id].gameObject); fighters.Remove(id);
         }
         foreach (var state in states) {
@@ -81,7 +82,7 @@ public sealed class BattleScreenView : MonoBehaviour
     {
         if (e.Target != null && fighters.TryGetValue(e.Target.InstanceId, out var target)) {
             target.Apply(e.Target, reducedMotion); target.Animate(e, reducedMotion);
-            if (e.Kind == BattleEventKind.Moved) RefreshCellLabels();
+            if (e.Kind == BattleEventKind.Moved) { RefreshCellLabels(); keywordVisuals?.RefreshCellVisuals(fighters); }
         }
         if (e.Kind == BattleEventKind.SkillUsed && e.ActorId != null && fighters.TryGetValue(e.ActorId, out var actor)) {
             string name = data.Skills.TryGetValue(e.Detail, out var skill) ? skill.name : e.Detail;
