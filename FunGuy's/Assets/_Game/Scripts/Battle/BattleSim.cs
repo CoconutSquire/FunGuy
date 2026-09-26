@@ -154,9 +154,13 @@ public partial class BattleSim {
     if (basicSkill == null && signatureSkill == null && ultimateSkill == null) return false;
 
     bool silenced = HasStatus(actor, "Silence");
+    // Ultimate readiness is always the canonical 100-energy threshold. Some
+    // authored legacy rows contain other energyCost values; the combat contract
+    // requires exactly 100 energy to activate and exactly 100 to consume.
+    const int ultimateEnergyCost = 100;
     bool canCastUltimate = wantsSignature && !silenced &&
       ultimateSkill != null && ultimateSkill != basicSkill &&
-      actor.energy >= ultimateSkill.energyCost;
+      actor.energy >= ultimateEnergyCost;
     bool canCastSignature = wantsSignature && !silenced &&
       signatureSkill != null && signatureSkill != basicSkill &&
       actor.ultCdRemaining <= 0;
