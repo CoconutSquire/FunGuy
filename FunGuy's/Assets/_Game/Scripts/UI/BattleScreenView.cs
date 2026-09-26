@@ -105,9 +105,13 @@ public sealed class BattleScreenView : MonoBehaviour
             data.Skills.TryGetValue(state.SignatureSkillId ?? "", out var signature);
             data.Skills.TryGetValue(state.UltimateSkillId ?? "", out var ultimate);
 
+            bool ultimateReady = ultimate != null && state.Energy >= Math.Max(0, ultimate.energyCost);
+            bool signatureReady = signature != null && state.SignatureCooldown <= 0 && state.SignatureSkillId != state.BasicSkillId;
             string availability = state.Hp <= 0 ? "DEFEATED" : queued ? "QUEUED · tap to cancel" :
-                state.SignatureCooldown > 0 ? $"Cooldown {state.SignatureCooldown} · queue" :
-                state.Energy >= (ultimate?.energyCost ?? 100) ? "ULTIMATE READY" : "Building ultimate";
+                ultimateReady ? "ULTIMATE READY · tap to queue" :
+                signatureReady ? "Signature ready · tap to queue" :
+                ultimate != null ? $"Building ultimate · {state.Energy}/{Math.Max(0, ultimate.energyCost)}" :
+                "ULTIMATE UNAVAILABLE";
 
             // The live energy bar now presents the fighter's actual Ultimate while
             // retaining the existing energy accumulation/fill behavior and card
@@ -121,7 +125,7 @@ public sealed class BattleScreenView : MonoBehaviour
                 skillDescription = "Ultimate mechanics are defined by this fighter's combat effects.";
 
             card.label.text = $"{state.Name}\nULTIMATE · {skillName}\n{skillDescription}\n{state.Energy}/{state.MaxEnergy} energy  ·  {availability}";
-            card.button.interactable = playing && run.Battle.Outcome == BattleOutcome.Running && state.Hp > 0 && signature != null && state.SignatureSkillId != state.BasicSkillId;
+            card.button.interactable = playing && run.Battle.Outcome == BattleOutcome.Running && state.Hp > 0 && (ultimateReady || signatureReady);
             card.energy.fillAmount = state.MaxEnergy > 0 ? state.Energy / (float)state.MaxEnergy : 0;
             card.button.GetComponent<Image>().color = queued ? new(.32f, .45f, .17f, .98f) : new(.12f, .17f, .14f, .98f);
         }
