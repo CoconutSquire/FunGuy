@@ -10,7 +10,9 @@ public sealed class EquipmentPanelController : MonoBehaviour
     private Text identityLabel;
     private Text statsLabel;
     private Text detailsLabel;
+    private RectTransform characterContent;
     private Button[] characterButtons;
+    private string selectedCharacterId;
     private Button[] slotButtons;
     private Text[] slotLabels;
     private Button upgradeButton;
@@ -21,20 +23,22 @@ public sealed class EquipmentPanelController : MonoBehaviour
     private int selected;
     private int selectedSlot = 0;
 
-    public void Initialize(GameObject panel, Text character, Text identity, Text stats, Text details, Button[] chars, Button[] choices, Text[] choiceTexts, Button[] slots, Text[] labels, Button upgrade, Text upgradeText, Button back)
+    public void Initialize(GameObject panel, Text character, Text identity, Text stats, Text details, RectTransform characterList, Button[] choices, Text[] choiceTexts, Button[] slots, Text[] labels, Button upgrade, Text upgradeText, Button back)
     {
-        root=panel; characterLabel=character; identityLabel=identity; statsLabel=stats; detailsLabel=details; characterButtons=chars; choiceButtons=choices; choiceLabels=choiceTexts; slotButtons=slots; slotLabels=labels; upgradeButton=upgrade; upgradeLabel=upgradeText; backButton=back;
+        root=panel; characterLabel=character; identityLabel=identity; statsLabel=stats; detailsLabel=details; characterContent=characterList; choiceButtons=choices; choiceLabels=choiceTexts; slotButtons=slots; slotLabels=labels; upgradeButton=upgrade; upgradeLabel=upgradeText; backButton=back;
         Refresh();
     }
     public void Open() { root.SetActive(true); Refresh(); }
     public void Close() { root.SetActive(false); }
     public void BackToFormation() { Close(); }
-    public void SelectCharacter(int index) { selected=Mathf.Clamp(index,0,characterButtons.Length-1); Refresh(); }
+    public void SelectCharacter(int index) { var owned=Owned(); if(index<0 || index>=owned.Count) return; selected=index; selectedCharacterId=owned[index].charId; Refresh(); }
+
+    private System.Collections.Generic.List<OwnedUnit> Owned() => Game.Save.units.Where(u=>u!=null && Game.Data.Characters.ContainsKey(u.charId)).OrderBy(u=>Game.Data.Characters[u.charId].name,StringComparer.OrdinalIgnoreCase).ToList();
 
     public void EquipFromSlot(int slotIndex)
     {
-        if (selected < 0 || selected >= Game.Save.activeTeam.Count) return;
-        string charId=Game.Save.activeTeam[selected];
+        string charId=selectedCharacterId;
+        if (string.IsNullOrEmpty(charId)) return;
         selectedSlot=Mathf.Clamp(slotIndex,0,EquipmentService.Slots.Length-1);
         string slot=EquipmentService.Slots[selectedSlot];
         var unit=Game.Save.units.First(u=>u.charId==charId);
@@ -46,8 +50,8 @@ public sealed class EquipmentPanelController : MonoBehaviour
 
     public void UpgradeSelectedEquipment()
     {
-        if (selected < 0 || selected >= Game.Save.activeTeam.Count) return;
-        var charId=Game.Save.activeTeam[selected];
+        var charId=selectedCharacterId;
+        if (string.IsNullOrEmpty(charId)) return;
         var unit=Game.Save.units.First(u=>u.charId==charId);
         var item=unit.gearSlots?.FirstOrDefault(x=>x.slotId==EquipmentService.Slots[selectedSlot]);
         if (item == null) { detailsLabel.text="Equip a piece first."; return; }
@@ -67,20 +71,32 @@ public sealed class EquipmentPanelController : MonoBehaviour
 
     public void Unequip(int slotIndex)
     {
-        if (selected < 0 || selected >= Game.Save.activeTeam.Count) return;
-        Game.Equipment.Unequip(Game.Save.activeTeam[selected], EquipmentService.Slots[Mathf.Clamp(slotIndex,0,3)]); Refresh();
+        var charId=selectedCharacterId;
+        if (string.IsNullOrEmpty(charId)) return;
+        Game.Equipment.Unequip(charId, EquipmentService.Slots[Mathf.Clamp(slotIndex,0,3)]); Refresh();
     }
 
     private void Refresh()
     {
         Game.EnsureInitialized(); var save=Game.Save;
-        if (characterButtons==null) return;
-        for(int i=0;i<characterButtons.Length;i++){
-            bool exists=i<save.activeTeam.Count; characterButtons[i].interactable=exists;
-            if(exists){ var id=save.activeTeam[i]; characterButtons[i].GetComponentInChildren<Text>().text=Game.Data.Characters.TryGetValue(id,out var d)?d.name:id; }
+        var owned=Owned();
+        if(characterContent==null) return;
+        foreach(Transform child in characterContent) UnityEngine.Object.Destroy(child.gameObject);
+        characterButtons=new Button[owned.Count];
+        selectedCharacterId = string.IsNullOrEmpty(selectedCharacterId) || owned.All(u=>u.charId!=selectedCharacterId)
+            ? (owned.Count>0 ? owned[0].charId : null) : selectedCharacterId;
+        selected=owned.FindIndex(u=>u.charId==selectedCharacterId);
+        for(int i=0;i<owned.Count;i++){
+            var entry=owned[i]; var def=Game.Data.Characters[entry.charId];
+            var go=new GameObject("EquipmentCharacterEntry",typeof(RectTransform),typeof(Image),typeof(Button)); go.transform.SetParent(characterContent,false);
+            var rt=go.GetComponent<RectTransform>(); rt.anchorMin=new Vector2(0,.5f); rt.anchorMax=new Vector2(0,.5f); rt.pivot=new Vector2(.5f,.5f); rt.anchoredPosition=new Vector2(i*170f,0); rt.sizeDelta=new Vector2(155,60);
+            var image=go.GetComponent<Image>(); image.color=entry.charId==selectedCharacterId?new Color(.76f,.58f,.16f,1f):new Color(.12f,.35f,.52f,1f);
+            var button=go.GetComponent<Button>(); button.targetGraphic=image; int index=i; button.onClick.AddListener(()=>SelectCharacter(index)); characterButtons[i]=button;
+            var label=new GameObject("Label",typeof(RectTransform),typeof(Text)).GetComponent<Text>(); label.transform.SetParent(go.transform,false); label.rectTransform.anchorMin=Vector2.zero; label.rectTransform.anchorMax=Vector2.one; label.rectTransform.offsetMin=Vector2.zero; label.rectTransform.offsetMax=Vector2.zero; label.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); label.fontSize=15; label.color=Color.white; label.alignment=TextAnchor.MiddleCenter; label.text=$"{def.name}\\n{def.rarityTier} • Lv.{entry.level}"; label.raycastTarget=false;
         }
-        if(save.activeTeam.Count==0){characterLabel.text="No characters on the team"; if(identityLabel!=null) identityLabel.text=""; if(statsLabel!=null) statsLabel.text=""; detailsLabel.text="Add a character to the team first."; if(upgradeButton!=null) upgradeButton.interactable=false; return;}
-        selected=Mathf.Clamp(selected,0,save.activeTeam.Count-1); string charId=save.activeTeam[selected]; var unit=save.units.First(u=>u.charId==charId);
+        characterContent.sizeDelta=new Vector2(Mathf.Max(800f,owned.Count*170f),70f);
+        if(owned.Count==0){characterLabel.text="No characters owned"; if(identityLabel!=null) identityLabel.text=""; if(statsLabel!=null) statsLabel.text=""; detailsLabel.text="Acquire a character to manage their equipment."; if(upgradeButton!=null) upgradeButton.interactable=false; return;}
+        selected=Mathf.Clamp(selected,0,owned.Count-1); string charId=selectedCharacterId; var unit=save.units.First(u=>u.charId==charId);
         var def = Game.Data.Characters.TryGetValue(charId,out var characterDef) ? characterDef : null;
         characterLabel.text=def?.name ?? charId;
         if(identityLabel!=null) identityLabel.text=def==null ? "" : $"{def.classArchetype} • {def.role}\n{def.biome} • Rarity {def.rarity} • Lv.{unit.level}";
