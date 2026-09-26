@@ -66,7 +66,7 @@ public class HomeMenuController : MonoBehaviour {
     var host = transform.parent != null ? transform.parent : transform;
     if (host.Find("IdleGenerationPanel") != null) return;
     var panelGo = new GameObject("IdleGenerationPanel", typeof(RectTransform), typeof(Image));
-    panelGo.transform.SetParent(homeUi, false);
+    panelGo.transform.SetParent(host, false);
     var panel = panelGo.GetComponent<Image>();
     panel.color = new Color(.08f, .12f, .16f, .98f);
     var panelRect = panelGo.GetComponent<RectTransform>();
