@@ -18,6 +18,34 @@ public class SummonMenuController : MonoBehaviour
     private const int MultiPullCount = 10;
     private bool _busy;
 
+    public void Initialize(
+        Text result,
+        Text spores,
+        Text banner,
+        SummonRevealController reveal,
+        Button pullOne,
+        Button pullTen,
+        Button back)
+    {
+        resultLabel = result;
+        sporesLabel = spores;
+        bannerLabel = banner;
+        revealController = reveal;
+        pullOneButton = pullOne;
+        pullTenButton = pullTen;
+
+        pullOneButton.onClick.RemoveListener(OnPullOnePressed);
+        pullOneButton.onClick.AddListener(OnPullOnePressed);
+        pullTenButton.onClick.RemoveListener(OnPullTenPressed);
+        pullTenButton.onClick.AddListener(OnPullTenPressed);
+
+        if (back != null)
+        {
+            back.onClick.RemoveListener(OnBackPressed);
+            back.onClick.AddListener(OnBackPressed);
+        }
+    }
+
     private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
 
     private void Start()
