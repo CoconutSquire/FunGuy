@@ -123,24 +123,16 @@ public sealed class EquipmentPanelController : MonoBehaviour
     }
     private string BuildStats(CharacterDef def, OwnedUnit unit)
     {
-        if(def?.baseStats==null) return "Stats unavailable";
-        int level = Math.Max(1, unit.level);
-        int hp=def.baseStats.hp + Mathf.RoundToInt(def.growth.hp * (level-1));
-        int atk=def.baseStats.atk + Mathf.RoundToInt(def.growth.atk * (level-1));
-        int defense=def.baseStats.def + Mathf.RoundToInt(def.growth.def * (level-1));
-        int spd=def.baseStats.spd + Mathf.RoundToInt(def.growth.spd * (level-1));
-        int pot=def.baseStats.pot + Mathf.RoundToInt(def.growth.pot * (level-1));
-        foreach(var item in unit.gearSlots ?? new System.Collections.Generic.List<GearSlotState>())
-        {
-            float scale=(1f+0.1f*(Mathf.Max(1,item.level)-1))*(1f+0.2f*(Mathf.Max(1,item.rarity)-1))*(1f+0.25f*Mathf.Max(0,item.evolution));
-            switch(item.slotId){
-                case "cap": hp+=Mathf.RoundToInt(250*scale); pot+=Mathf.RoundToInt(20*scale); break;
-                case "stipe": hp+=Mathf.RoundToInt(300*scale); defense+=Mathf.RoundToInt(35*scale); break;
-                case "mycelium": spd+=Mathf.RoundToInt(25*scale); break;
-                case "symbiote": var amount=Mathf.RoundToInt(item.rolledStatAmount*scale); switch(item.rolledStat){case "HP":hp+=amount;break;case "ATK":atk+=amount;break;case "DEF":defense+=amount;break;case "SPD":spd+=amount;break;case "POT":pot+=amount;break;} break;
-            }
-        }
-        return $"HP\n{hp}\n\nATK\n{atk}\n\nDEF\n{defense}\n\nSPD\n{spd}\n\nPOT\n{pot}";
+        if (def == null || unit == null) return "Stats unavailable";
+
+        // Use the same canonical stat calculator as battle/upgrade previews instead
+        // of rebuilding level/evolution formulas locally. Equipment is then applied
+        // through EquipmentService so this screen cannot drift from combat stats.
+        var fighter = CombatUnitFactory.Create(def, Math.Max(1, unit.level), TeamSide.Player,
+            Math.Max(1, unit.stars), Game.Data.StatRules);
+        EquipmentService.ApplyTo(fighter, unit);
+
+        return $"HP\n{fighter.maxHp}\n\nATK\n{fighter.atk}\n\nDEF\n{fighter.def}\n\nSPD\n{fighter.spd}\n\nPOT\n{fighter.pot}";
     }
 
     private string EquipmentName(string slot)=>Game.Equipment.Definition(slot)?.name ?? slot;
