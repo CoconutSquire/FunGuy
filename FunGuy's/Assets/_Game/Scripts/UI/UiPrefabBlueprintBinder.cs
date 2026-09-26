@@ -22,7 +22,7 @@ public class UiPrefabBlueprintBinder : MonoBehaviour
     [SerializeField] private bool skipAlreadyAssigned = true;
     [SerializeField] private bool logSummary = true;
     [SerializeField] private bool logMissing = true;
-    [SerializeField] private bool autoWireButtons = true;
+    [SerializeField] private bool autoWireButtons = false;
     [SerializeField] private bool clearRuntimeListenersBeforeWire = false;
     [SerializeField] private bool logButtonWiring = true;
     [SerializeField] private List<UiButtonWireRule> customButtonRules = new();
