@@ -2,7 +2,7 @@
   "banners": [
     {
       "id": "b_standard",
-      "name": "Standard Mycelium Banner",
+      "name": "Standard Summon Banner",
       "bannerType": "standard_character",
       "currency": "summonTickets",
       "costPerPull": 1,
