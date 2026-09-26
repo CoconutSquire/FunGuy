@@ -49,7 +49,7 @@ public class BannerHistoryEntry {
 
 [Serializable]
 public class PlayerSave {
-  public int version = 6;
+  public int version = 7;
   public string createdUtc;
   public string lastSavedUtc;
   public string idleLastClaimedUtc;
@@ -68,7 +68,8 @@ public class PlayerSave {
 
   public bool tutorialCompleted;
   public int tutorialStep;     // 0..N
-  public int tutorialTickets;  // scripted first-time summon pacing
+  public int summonTickets;    // Mycelial Tickets used for character summons
+  public int tutorialTickets;  // legacy field retained for save migration only
 
   public List<OwnedUnit> units = new();
   public List<GearSlotState> equipmentInventory = new();
