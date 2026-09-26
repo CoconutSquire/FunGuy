@@ -2435,6 +2435,2506 @@
         "spores": 50,
         "accountXp": 95
       }
+    },
+    {
+      "id": "s_2_1",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frozen Sporeway",
+      "order": 1,
+      "description": "Tundra encounter 1. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3362,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 41,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 41,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 41,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 54,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 54,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 54,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 54,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2762,
+        "spores": 50,
+        "accountXp": 101
+      }
+    },
+    {
+      "id": "s_2_2",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frostcap Pass",
+      "order": 2,
+      "description": "Tundra encounter 2. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3444,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 41,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 41,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 41,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 54,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 54,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 54,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "2",
+              "level": 54,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2824,
+        "spores": 50,
+        "accountXp": 104
+      }
+    },
+    {
+      "id": "s_2_3",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Glacierroot Trail",
+      "order": 3,
+      "description": "Tundra encounter 3. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3526,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 42,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 42,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 42,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 55,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 55,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 55,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 55,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2886,
+        "spores": 50,
+        "accountXp": 107
+      }
+    },
+    {
+      "id": "s_2_4",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Snowmelt Hollow",
+      "order": 4,
+      "description": "Tundra encounter 4. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3608,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 43,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 43,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 43,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 56,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 56,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 56,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 56,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 2948,
+        "spores": 50,
+        "accountXp": 110
+      }
+    },
+    {
+      "id": "s_2_5",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Iceveil Crossing",
+      "order": 5,
+      "description": "Tundra encounter 5. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3690,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 44,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 44,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 44,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 57,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 57,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 57,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 57,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3010,
+        "spores": 54,
+        "accountXp": 113
+      }
+    },
+    {
+      "id": "s_2_6",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Whitepine Shelf",
+      "order": 6,
+      "description": "Tundra encounter 6. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3772,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 45,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 45,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 45,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 58,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 58,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 58,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 58,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3072,
+        "spores": 54,
+        "accountXp": 116
+      }
+    },
+    {
+      "id": "s_2_7",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Crystal Frostwood",
+      "order": 7,
+      "description": "Tundra encounter 7. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3854,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 46,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 46,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 46,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 59,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 59,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 59,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "3",
+              "level": 59,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3134,
+        "spores": 54,
+        "accountXp": 119
+      }
+    },
+    {
+      "id": "s_2_8",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Rimebound Path",
+      "order": 8,
+      "description": "Tundra encounter 8. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 3936,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 47,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 47,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 47,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 60,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 60,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 60,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "1",
+              "level": 60,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3196,
+        "spores": 54,
+        "accountXp": 122
+      }
+    },
+    {
+      "id": "s_2_9",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Aurora Grove",
+      "order": 9,
+      "description": "Tundra encounter 9. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4018,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 48,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 48,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 48,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 61,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 61,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 61,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 61,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3258,
+        "spores": 54,
+        "accountXp": 125
+      }
+    },
+    {
+      "id": "s_2_10",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frostfang Gate — Guardian Battle",
+      "order": 10,
+      "description": "Chapter 2 boss stage. A reinforced Tundra formation guards the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": true,
+      "recommendedPower": 3700,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 49,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 49,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 49,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 62,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 62,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 62,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 62,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 62,
+              "slotId": "rear_3"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3820,
+        "spores": 73,
+        "accountXp": 140
+      }
+    },
+    {
+      "id": "s_2_11",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Permafrost Basin",
+      "order": 11,
+      "description": "Tundra encounter 11. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4182,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 50,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 50,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 50,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 63,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 63,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 63,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 63,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3382,
+        "spores": 58,
+        "accountXp": 131
+      }
+    },
+    {
+      "id": "s_2_12",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Glaciercap Ravine",
+      "order": 12,
+      "description": "Tundra encounter 12. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4264,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 51,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 51,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 51,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 64,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 64,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 64,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "2",
+              "level": 64,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3444,
+        "spores": 58,
+        "accountXp": 134
+      }
+    },
+    {
+      "id": "s_2_13",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Winterbloom Pass",
+      "order": 13,
+      "description": "Tundra encounter 13. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4346,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 52,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 52,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 52,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 65,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 65,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 65,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 65,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3506,
+        "spores": 58,
+        "accountXp": 137
+      }
+    },
+    {
+      "id": "s_2_14",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Shiverstone Hollow",
+      "order": 14,
+      "description": "Tundra encounter 14. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4428,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 53,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 53,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 53,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 66,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 66,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 66,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 66,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3568,
+        "spores": 58,
+        "accountXp": 140
+      }
+    },
+    {
+      "id": "s_2_15",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Coldroot Crossing",
+      "order": 15,
+      "description": "Tundra encounter 15. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4510,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 54,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 54,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 54,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 67,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 67,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 67,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 67,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3630,
+        "spores": 62,
+        "accountXp": 143
+      }
+    },
+    {
+      "id": "s_2_16",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Moonfrost Ridge",
+      "order": 16,
+      "description": "Tundra encounter 16. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4592,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 55,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 55,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 55,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 68,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 68,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 68,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 68,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3692,
+        "spores": 62,
+        "accountXp": 146
+      }
+    },
+    {
+      "id": "s_2_17",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Iceshard Grove",
+      "order": 17,
+      "description": "Tundra encounter 17. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4674,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 56,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 56,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 56,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 69,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 69,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 69,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "3",
+              "level": 69,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3754,
+        "spores": 62,
+        "accountXp": 149
+      }
+    },
+    {
+      "id": "s_2_18",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Snowdrift Watch",
+      "order": 18,
+      "description": "Tundra encounter 18. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4756,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 57,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 57,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 57,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 70,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 70,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 70,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "1",
+              "level": 70,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3816,
+        "spores": 62,
+        "accountXp": 152
+      }
+    },
+    {
+      "id": "s_2_19",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Aurora Crown",
+      "order": 19,
+      "description": "Tundra encounter 19. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 4838,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 58,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 58,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 58,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 71,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 71,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 71,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 71,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 3878,
+        "spores": 62,
+        "accountXp": 155
+      }
+    },
+    {
+      "id": "s_2_20",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Glacierheart Gate — Guardian Battle",
+      "order": 20,
+      "description": "Chapter 2 boss stage. A reinforced Tundra formation guards the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": true,
+      "recommendedPower": 4120,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 59,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 59,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 59,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 72,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 72,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 72,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 72,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 72,
+              "slotId": "rear_3"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4440,
+        "spores": 81,
+        "accountXp": 170
+      }
+    },
+    {
+      "id": "s_2_21",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frozen Mycelium",
+      "order": 21,
+      "description": "Tundra encounter 21. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5002,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 60,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 60,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 60,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 73,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 73,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 73,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 73,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4002,
+        "spores": 66,
+        "accountXp": 161
+      }
+    },
+    {
+      "id": "s_2_22",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Rimewood Expanse",
+      "order": 22,
+      "description": "Tundra encounter 22. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5084,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 60,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 60,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 60,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 73,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 73,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 73,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "2",
+              "level": 73,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4064,
+        "spores": 66,
+        "accountXp": 164
+      }
+    },
+    {
+      "id": "s_2_23",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Crystal Tundra",
+      "order": 23,
+      "description": "Tundra encounter 23. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5166,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 61,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 61,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 61,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 74,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 74,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 74,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 74,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4126,
+        "spores": 66,
+        "accountXp": 167
+      }
+    },
+    {
+      "id": "s_2_24",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Winterveil Basin",
+      "order": 24,
+      "description": "Tundra encounter 24. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5248,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 62,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 62,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 62,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 75,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 75,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 75,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 75,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4188,
+        "spores": 66,
+        "accountXp": 170
+      }
+    },
+    {
+      "id": "s_2_25",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frostspire Pass",
+      "order": 25,
+      "description": "Tundra encounter 25. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5330,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 63,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 63,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 63,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 76,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 76,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 76,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 76,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4250,
+        "spores": 70,
+        "accountXp": 173
+      }
+    },
+    {
+      "id": "s_2_26",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Blue Ice Hollow",
+      "order": 26,
+      "description": "Tundra encounter 26. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5412,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 64,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 64,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 64,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 77,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 77,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 77,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 77,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4312,
+        "spores": 70,
+        "accountXp": 176
+      }
+    },
+    {
+      "id": "s_2_27",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Glacial Watch",
+      "order": 27,
+      "description": "Tundra encounter 27. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5494,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 65,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 65,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 65,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 78,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 78,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 78,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "3",
+              "level": 78,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4374,
+        "spores": 70,
+        "accountXp": 179
+      }
+    },
+    {
+      "id": "s_2_28",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Whiteout Ridge",
+      "order": 28,
+      "description": "Tundra encounter 28. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5576,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 66,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 66,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 66,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 79,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 79,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 79,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "1",
+              "level": 79,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4436,
+        "spores": 70,
+        "accountXp": 182
+      }
+    },
+    {
+      "id": "s_2_29",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Aurora Throne",
+      "order": 29,
+      "description": "Tundra encounter 29. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5658,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 67,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 67,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 67,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 80,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 80,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 80,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 80,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4498,
+        "spores": 70,
+        "accountXp": 185
+      }
+    },
+    {
+      "id": "s_2_30",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Permafrost Citadel — Guardian Battle",
+      "order": 30,
+      "description": "Chapter 2 boss stage. A reinforced Tundra formation guards the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": true,
+      "recommendedPower": 4540,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 68,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 68,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 68,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 81,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 81,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 81,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 81,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 81,
+              "slotId": "rear_3"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 5060,
+        "spores": 89,
+        "accountXp": 200
+      }
+    },
+    {
+      "id": "s_2_31",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Ancient Iceway",
+      "order": 31,
+      "description": "Tundra encounter 31. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5822,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 69,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 69,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 69,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 82,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 82,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 82,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "9",
+              "level": 82,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4622,
+        "spores": 74,
+        "accountXp": 191
+      }
+    },
+    {
+      "id": "s_2_32",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frostbound Vale",
+      "order": 32,
+      "description": "Tundra encounter 32. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5904,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 70,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 70,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 70,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 83,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 83,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 83,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "2",
+              "level": 83,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4684,
+        "spores": 74,
+        "accountXp": 194
+      }
+    },
+    {
+      "id": "s_2_33",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Glacier Warden's Trail",
+      "order": 33,
+      "description": "Tundra encounter 33. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 5986,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "8",
+              "level": 71,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "6",
+              "level": 71,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 71,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 84,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 84,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 84,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "8",
+              "level": 84,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4746,
+        "spores": 74,
+        "accountXp": 197
+      }
+    },
+    {
+      "id": "s_2_34",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Shiverpeak Hollow",
+      "order": 34,
+      "description": "Tundra encounter 34. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 6068,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "4",
+              "level": 72,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 72,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "7",
+              "level": 72,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 85,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 85,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 85,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "4",
+              "level": 85,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4808,
+        "spores": 74,
+        "accountXp": 200
+      }
+    },
+    {
+      "id": "s_2_35",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Frozen Crown",
+      "order": 35,
+      "description": "Tundra encounter 35. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 6150,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 73,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 73,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 73,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 86,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 86,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 86,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "10",
+              "level": 86,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4870,
+        "spores": 78,
+        "accountXp": 203
+      }
+    },
+    {
+      "id": "s_2_36",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Crystalstorm Basin",
+      "order": 36,
+      "description": "Tundra encounter 36. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 6232,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 74,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "5",
+              "level": 74,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 74,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 87,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 87,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 87,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "6",
+              "level": 87,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4932,
+        "spores": 78,
+        "accountXp": 206
+      }
+    },
+    {
+      "id": "s_2_37",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Winter's Edge",
+      "order": 37,
+      "description": "Tundra encounter 37. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 6314,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "3",
+              "level": 75,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 75,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 75,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 88,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 88,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 88,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "3",
+              "level": 88,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 4994,
+        "spores": 78,
+        "accountXp": 209
+      }
+    },
+    {
+      "id": "s_2_38",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Aurora Summit",
+      "order": 38,
+      "description": "Tundra encounter 38. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 6396,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 76,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "9",
+              "level": 76,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "4",
+              "level": 76,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 89,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 89,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 89,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "1",
+              "level": 89,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 5056,
+        "spores": 78,
+        "accountXp": 212
+      }
+    },
+    {
+      "id": "s_2_39",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "Eternal Rime",
+      "order": 39,
+      "description": "Tundra encounter 39. Enemy levels and formation pressure rise from the final Forest chapter into the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": false,
+      "recommendedPower": 6478,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "5",
+              "level": 77,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 77,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 77,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 90,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 90,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 90,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "5",
+              "level": 90,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 5118,
+        "spores": 78,
+        "accountXp": 215
+      }
+    },
+    {
+      "id": "s_2_40",
+      "chapter": 2,
+      "chapterName": "Chapter 2 — Tundra's Frozen Bloom",
+      "biome": "Tundra",
+      "name": "The Frozen Bloom — Guardian Battle",
+      "order": 40,
+      "description": "Chapter 2 boss stage. A reinforced Tundra formation guards the frozen frontier.",
+      "encounterVersion": "tundra-chapter-2-v1",
+      "boss": true,
+      "recommendedPower": 4960,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "7",
+              "level": 78,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 78,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 78,
+              "slotId": "middle_2"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 91,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "10",
+              "level": 91,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "3",
+              "level": 91,
+              "slotId": "middle_2"
+            },
+            {
+              "enemyId": "7",
+              "level": 91,
+              "slotId": "rear_1"
+            },
+            {
+              "enemyId": "1",
+              "level": 91,
+              "slotId": "rear_3"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 5680,
+        "spores": 97,
+        "accountXp": 230
+      }
     }
   ]
 }
