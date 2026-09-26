@@ -92,7 +92,10 @@ public partial class BattleSim
 
     private void Heal(CombatUnit actor, int v)
     {
-        throw new NotImplementedException();
+        // Formation/biome bonuses sometimes heal the actor directly. Route these
+        // through the same authoritative heal implementation used by skills so
+        // healing bonuses, HealBlock, events, and support-energy rules stay unified.
+        Heal(actor, actor, v);
     }
 
     private void Trigger(CombatUnit owner, string trigger, CombatUnit other)
