@@ -6,7 +6,7 @@ using UnityEngine;
 public static class SaveSystem
 {
     // Bump this when you change PlayerSave schema in a breaking way
-    private const int CurrentVersion = 6;
+    private const int CurrentVersion = 7;
 
     // Primary + backup keys
     private const string Key = "FUNGI_SAVE_V2";
@@ -129,7 +129,7 @@ public static class SaveSystem
     /// <summary>
     /// Debug helper: grants currencies and persists.
     /// </summary>
-    public static PlayerSave GrantDebugResources(int gold = 0, int spores = 0, int sporeEssence = 0, int coreFragments = 0, int primeSpores = 0)
+    public static PlayerSave GrantDebugResources(int gold = 0, int spores = 0, int sporeEssence = 0, int coreFragments = 0, int primeSpores = 0, int summonTickets = 0)
     {
         var save = LoadOrNew();
         save.gold = Math.Max(0, save.gold + Math.Max(0, gold));
@@ -137,6 +137,7 @@ public static class SaveSystem
         save.sporeEssence = Math.Max(0, save.sporeEssence + Math.Max(0, sporeEssence));
         save.coreFragments = Math.Max(0, save.coreFragments + Math.Max(0, coreFragments));
         save.primeSpores = Math.Max(0, save.primeSpores + Math.Max(0, primeSpores));
+        save.summonTickets = Math.Max(0, save.summonTickets + Math.Max(0, summonTickets));
         Save(save);
         return save;
     }
@@ -218,7 +219,8 @@ public static class SaveSystem
 
             tutorialCompleted = false,
             tutorialStep = 0,
-            tutorialTickets = 1,
+            summonTickets = 1,
+            tutorialTickets = 0,
 
             units = new List<OwnedUnit>(),
             activeTeam = new List<string>(),
@@ -234,6 +236,7 @@ public static class SaveSystem
         if (save.accountLevel <= 0) save.accountLevel = 1;
         if (save.gold < 0) save.gold = 0;
         if (save.spores < 0) save.spores = 0;
+        if (save.summonTickets < 0) save.summonTickets = 0;
         if (save.tutorialTickets < 0) save.tutorialTickets = 0;
 
         if (save.units == null) save.units = new List<OwnedUnit>();
@@ -308,6 +311,15 @@ public static class SaveSystem
             if (save.idleGoldProgress < 0d) save.idleGoldProgress = 0d;
             if (save.idleEquipmentProgress < 0d) save.idleEquipmentProgress = 0d;
             save.version = 6;
+        }
+
+        if (save.version < 7)
+        {
+            // Summons now use Mycelial Tickets instead of spores. Preserve the old
+            // tutorial ticket as the first normal summon ticket for existing saves.
+            if (save.summonTickets <= 0 && save.tutorialTickets > 0) save.summonTickets = save.tutorialTickets;
+            save.tutorialTickets = 0;
+            save.version = 7;
         }
 
         // After migrations, ensure lists again
