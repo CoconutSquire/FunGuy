@@ -114,8 +114,8 @@ public static class RuntimeSceneUiBootstrap
             30, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(sporesLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 520f), new Vector2(840f, 90f));
 
-        var pullOne = EnsureButton(shell.transform, "Btn_PullOne", "Pull x1", new Vector2(0f, 350f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullOneLabel);
-        var pullTen = EnsureButton(shell.transform, "Btn_PullTen", "Pull x10", new Vector2(0f, 220f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullTenLabel);
+        var pullOne = EnsureButton(shell.transform, "Btn_PullOne", "Summon x1  ·  1 Ticket", new Vector2(0f, 350f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullOneLabel);
+        var pullTen = EnsureButton(shell.transform, "Btn_PullTen", "Summon x10  ·  10 Tickets", new Vector2(0f, 220f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullTenLabel);
         var back = EnsureButton(shell.transform, "Btn_Back", "Back", new Vector2(0f, 90f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var backLabel);
 
         var result = EnsureLabel(shell.transform, "Lbl_Result",
