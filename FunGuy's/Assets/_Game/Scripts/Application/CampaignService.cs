@@ -48,7 +48,12 @@ public sealed class LocalCampaignService : ICampaignService
 
     private bool IsUnlocked(PlayerSave save, string stageId)
     {
-        var stages = data.Stages.Values.OrderBy(s => s.order).ToList();
+        // Stage order restarts at 1 for each chapter, so unlock progression must be
+        // chapter-aware rather than sorting by the per-chapter order alone.
+        var stages = data.Stages.Values
+            .OrderBy(s => s.chapter)
+            .ThenBy(s => s.order)
+            .ToList();
         int index = stages.FindIndex(s => s.id == stageId);
         return index >= 0 && (index == 0 || save.clearedStages.Contains(stages[index - 1].id));
     }
