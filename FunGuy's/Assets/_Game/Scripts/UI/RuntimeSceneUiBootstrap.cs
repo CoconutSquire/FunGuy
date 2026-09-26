@@ -501,6 +501,9 @@ public static class RuntimeSceneUiBootstrap
         Text[] body)
     {
         var skin = EnsureComponent<IdleHuntressSkin>(root);
+        // RuntimeSceneUiBootstrap is the owner of runtime screen styling.
+        // Keep the skin passive so OnEnable cannot race with this configuration.
+        SetPrivateField(skin, "applyOnEnable", false);
         SetPrivateField(skin, "tone", tone);
         SetPrivateField(skin, "backgroundLayers", backgrounds.Where(x => x != null).ToArray());
         SetPrivateField(skin, "panelLayers", panels.Where(x => x != null).ToArray());
