@@ -29,7 +29,7 @@ public sealed class UpgradePanelController : MonoBehaviour
     {
         this.panel = panel; this.wallet = wallet; this.identity = identity; this.stats = stats;
         this.skills = skills; this.feedback = feedback; this.pageLabel = pageLabel; this.upgrade = upgrade;
-        this.previous = previous; this.next = next; this.roster = roster; this.portrait = portrait; this.onClosed = onClosed;
+        this.previous = previous; this.next = next; this.roster = roster; this.portrait = portrait; this.biomeFilter = biomeFilter; this.classFilter = classFilter; this.onClosed = onClosed;
         rosterLabels = roster.Select(b => b.GetComponentInChildren<Text>()).ToArray();
         upgradeLabel = upgrade.GetComponentInChildren<Text>();
         upgrade.onClick.AddListener(OnUpgradePressed);
