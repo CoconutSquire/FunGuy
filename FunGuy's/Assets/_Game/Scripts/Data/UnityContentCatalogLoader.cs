@@ -45,6 +45,10 @@ public static class UnityContentCatalogLoader
                 return false;
         }
 
+        var banners = asset.banners?.banners;
+        if (banners == null || banners.Count == 0 || banners.Any(b => b == null || b.currency != "summonTickets" || b.costPerPull != 1))
+            return false;
+
         // Explicitly reject the old imported placeholder skill that previously made
         // the runtime display generic signatures instead of authored kits.
         if (skills.Any(s => s != null && s.id == "imported_character_signature" &&
