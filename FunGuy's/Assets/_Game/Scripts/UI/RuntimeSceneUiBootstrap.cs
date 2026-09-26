@@ -110,7 +110,7 @@ public static class RuntimeSceneUiBootstrap
             40, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         SetRect(bannerLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 610f), new Vector2(840f, 120f));
 
-        var sporesLabel = EnsureLabel(shell.transform, "Lbl_Spores", "Spores: 50",
+        var sporesLabel = EnsureLabel(shell.transform, "Lbl_Spores", "Mycelial Tickets: 1",
             30, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(sporesLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 520f), new Vector2(840f, 90f));
 
