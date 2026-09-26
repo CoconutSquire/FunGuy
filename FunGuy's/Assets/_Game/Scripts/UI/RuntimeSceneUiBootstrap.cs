@@ -156,6 +156,18 @@ public static class RuntimeSceneUiBootstrap
             revealFrame.GetComponent<Image>(), revealGlow.GetComponent<Image>(), revealNext);
         revealRoot.SetActive(false);
 
+        // Runtime-created controls must be explicitly handed to the existing
+        // controller. Without this binding the screen renders correctly but
+        // Pull/Back buttons have no controller listeners.
+        controller.Initialize(
+            result,
+            sporesLabel,
+            bannerLabel,
+            revealController,
+            pullOne,
+            pullTen,
+            back);
+
         ConfigureSkin(root, UiTone.Summon,
             new[] { bg.GetComponent<Image>() },
             new[] { shell.GetComponent<Image>(), revealCard.GetComponent<Image>() },
