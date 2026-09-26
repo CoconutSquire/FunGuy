@@ -68,7 +68,7 @@ public class PlayerSave {
 
   public bool tutorialCompleted;
   public int tutorialStep;     // 0..N
-  public int summonTickets;    // Mycelial Tickets used for character summons
+  public int summonTickets;    // Basidiospores used for character summons
   public int tutorialTickets;  // legacy field retained for save migration only
 
   public List<OwnedUnit> units = new();
