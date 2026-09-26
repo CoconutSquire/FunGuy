@@ -192,10 +192,12 @@ public static class RuntimeSceneUiBootstrap
         if (root == null) return;
 
         var runtimePanel = root.transform.Find("Panel_Main");
+        var idlePanel = root.transform.Find("IdleGenerationPanel");
         foreach (var button in root.GetComponentsInChildren<Button>(true))
         {
             if (button == null) continue;
-            var isRuntimeButton = runtimePanel != null && button.transform.IsChildOf(runtimePanel);
+            var isRuntimeButton = (runtimePanel != null && button.transform.IsChildOf(runtimePanel)) ||
+                                  (idlePanel != null && button.transform.IsChildOf(idlePanel));
             if (!isRuntimeButton)
             {
                 button.gameObject.SetActive(false);
@@ -214,7 +216,8 @@ public static class RuntimeSceneUiBootstrap
         {
             if (image == null) continue;
             var isBackground = image.gameObject.name == "Background";
-            var isRuntimePanel = runtimePanel != null && image.transform.IsChildOf(runtimePanel);
+            var isRuntimePanel = (runtimePanel != null && image.transform.IsChildOf(runtimePanel)) ||
+                                  (idlePanel != null && image.transform.IsChildOf(idlePanel));
             if (!isBackground && !isRuntimePanel && image.transform != root.transform)
                 image.raycastTarget = false;
         }
