@@ -9,7 +9,7 @@ public class SummonMenuController : MonoBehaviour
 {
     [SerializeField] private string defaultBannerId = "b_event_starspore";
     [SerializeField] private Text resultLabel;
-    [SerializeField] private Text sporesLabel;
+    [SerializeField] private Text ticketsLabel;
     [SerializeField] private Text bannerLabel;
     [SerializeField] private SummonRevealController revealController;
     [SerializeField] private Button pullOneButton;
@@ -20,7 +20,7 @@ public class SummonMenuController : MonoBehaviour
 
     public void Initialize(
         Text result,
-        Text spores,
+        Text tickets,
         Text banner,
         SummonRevealController reveal,
         Button pullOne,
@@ -28,7 +28,7 @@ public class SummonMenuController : MonoBehaviour
         Button back)
     {
         resultLabel = result;
-        sporesLabel = spores;
+        ticketsLabel = tickets;
         bannerLabel = banner;
         revealController = reveal;
         pullOneButton = pullOne;
@@ -99,7 +99,7 @@ public class SummonMenuController : MonoBehaviour
             .Select(id => Game.Data.Characters.TryGetValue(id, out var c) ? $"{c.name} ({c.rarityTier})" : id)
             .ToList();
 
-        string prefix = usedTicket ? "Tutorial ticket used.\n" : string.Empty;
+        string prefix = usedTicket ? "Tutorial Mycelial Ticket used.\n" : string.Empty;
         return $"{prefix}Pulled {pulledIds.Count}:\n{string.Join(", ", names)}";
     }
 
@@ -110,9 +110,9 @@ public class SummonMenuController : MonoBehaviour
             bannerLabel.text = banner.name;
         }
 
-        if (sporesLabel != null)
+        if (ticketsLabel != null)
         {
-            sporesLabel.text = $"Spores: {Save.spores}";
+            ticketsLabel.text = $"Mycelial Tickets: {Save.summonTickets}";
         }
     }
 
