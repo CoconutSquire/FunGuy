@@ -49,7 +49,77 @@ public class TutorialManager : MonoBehaviour
         if (!string.IsNullOrEmpty(currentMessage)) overlay.Say(currentMessage, currentContinue);
     }
 
-    private void OnDestroy() { if (I == this) I = null; }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (I == this) I = null;
+    }
+
+    public bool IsActive => save != null && !save.tutorialCompleted;
+
+    public bool IsSceneAllowed(string sceneName)
+    {
+        if (!IsActive) return true;
+        if (string.IsNullOrWhiteSpace(sceneName)) return false;
+
+        switch ((TutorialStep)save.tutorialStep)
+        {
+            case TutorialStep.Welcome:
+                return string.Equals(sceneName, "Tutorial", System.StringComparison.OrdinalIgnoreCase);
+            case TutorialStep.ShowSummonPool:
+            case TutorialStep.GiveTicket:
+            case TutorialStep.DoFirstSummon:
+                return string.Equals(sceneName, "Summon", System.StringComparison.OrdinalIgnoreCase);
+            case TutorialStep.GoToTeamBuilder:
+            case TutorialStep.PlaceFirstUnit:
+            case TutorialStep.PlaceTankFrontDpsBack:
+                return string.Equals(sceneName, "Team", System.StringComparison.OrdinalIgnoreCase);
+            case TutorialStep.StartFirstBattle:
+            case TutorialStep.BattleWinRewards:
+            case TutorialStep.ExplainTankDps:
+                return string.Equals(sceneName, "Battle", System.StringComparison.OrdinalIgnoreCase);
+            case TutorialStep.Complete:
+                return string.Equals(sceneName, "Home", System.StringComparison.OrdinalIgnoreCase);
+            default:
+                return string.Equals(sceneName, "Tutorial", System.StringComparison.OrdinalIgnoreCase);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!IsActive)
+        {
+            // A completed save can never re-enter the onboarding scene.
+            if (string.Equals(scene.name, "Tutorial", System.StringComparison.OrdinalIgnoreCase))
+                OpenScene("Home");
+            return;
+        }
+
+        if (!IsSceneAllowed(scene.name))
+        {
+            var expected = ExpectedScene();
+            if (!string.IsNullOrEmpty(expected) && !string.Equals(scene.name, expected, System.StringComparison.OrdinalIgnoreCase))
+                OpenScene(expected);
+        }
+    }
+
+    private string ExpectedScene()
+    {
+        switch ((TutorialStep)save.tutorialStep)
+        {
+            case TutorialStep.Welcome: return "Tutorial";
+            case TutorialStep.ShowSummonPool:
+            case TutorialStep.GiveTicket:
+            case TutorialStep.DoFirstSummon: return "Summon";
+            case TutorialStep.GoToTeamBuilder:
+            case TutorialStep.PlaceFirstUnit:
+            case TutorialStep.PlaceTankFrontDpsBack: return "Team";
+            case TutorialStep.StartFirstBattle:
+            case TutorialStep.BattleWinRewards:
+            case TutorialStep.ExplainTankDps: return "Battle";
+            default: return "Tutorial";
+        }
+    }
 
     private static void OpenScene(string name)
     {
