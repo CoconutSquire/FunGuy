@@ -25,12 +25,11 @@ public sealed class LocalSummonService : ISummonService
         if (count != 1 && count != 10) throw new ArgumentOutOfRangeException(nameof(count));
         if (!data.Banners.TryGetValue(bannerId, out var banner)) throw new InvalidOperationException("Banner unavailable.");
         var save = store.Read();
-        bool ticket = count == 1 && !save.tutorialCompleted && save.tutorialTickets > 0;
-        int cost = ticket ? 0 : checked(banner.costPerPull * count);
-        if (save.spores < cost) throw new InvalidOperationException($"You need {cost} spores for this summon.");
-        var result = new SummonResult { usedTutorialTicket = ticket };
-        for (int i = 0; i < count; i++) result.characterIds.Add(gacha.PullOne(save, bannerId, !ticket));
-        if (ticket) save.tutorialTickets--;
+        int cost = checked(banner.costPerPull * count);
+        if (save.summonTickets < cost) throw new InvalidOperationException($"You need {cost} Mycelial Tickets for this summon.");
+        bool tutorialPull = count == 1 && !save.tutorialCompleted;
+        var result = new SummonResult { usedTutorialTicket = tutorialPull };
+        for (int i = 0; i < count; i++) result.characterIds.Add(gacha.PullOne(save, bannerId, true));
         store.Write(save);
         return result;
     }
