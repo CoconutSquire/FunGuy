@@ -72,7 +72,7 @@ public partial class BattleSim {
         if (usedUlt) {
           signatureUsed(actor);
           if (selectedSkill.id == actor.ultimateSkillId) {
-            SpendEnergy(actor, Math.Max(0, selectedSkill.energyCost));
+            SpendEnergy(actor, 100);
           } else {
             actor.ultCdRemaining = Bonus(actor).Biome("Kitchen") >= 5 && selectedSkill.cooldown > 0
               ? Math.Max(2, selectedSkill.cooldown - 1)
