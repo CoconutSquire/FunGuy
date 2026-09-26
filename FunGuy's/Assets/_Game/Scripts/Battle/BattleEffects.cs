@@ -13,7 +13,47 @@ public partial class BattleSim
     private float grantedFraction;
     private readonly HashSet<CombatUnit> redirectedHit = new();
     private FormationBonuses Bonus(CombatUnit u) => bonuses[u.side];
-    private int Stat(CombatUnit u, string stat) => Bonus(u).Stat(u, stat);
+    private int Stat(CombatUnit u, string stat)
+    {
+        int value = Bonus(u).Stat(u, stat);
+        if (u == null || u.statuses == null) return value;
+
+        float multiplier = 1f;
+        foreach (var status in u.statuses)
+        {
+            string name = status.status ?? string.Empty;
+            float stacks = Math.Max(1, status.stacks);
+            float potency = status.potency;
+
+            if (string.Equals(name, "Burn", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(stat, "DEF", StringComparison.OrdinalIgnoreCase))
+                multiplier -= KeywordRules.BurnDefenseReductionPerStack * stacks;
+
+            if (string.Equals(stat, "ATK", StringComparison.OrdinalIgnoreCase))
+            {
+                if (string.Equals(name, "ATKUp", StringComparison.OrdinalIgnoreCase)) multiplier += potency * stacks;
+                if (string.Equals(name, "ATKDown", StringComparison.OrdinalIgnoreCase)) multiplier -= potency * stacks;
+            }
+            else if (string.Equals(stat, "DEF", StringComparison.OrdinalIgnoreCase))
+            {
+                if (string.Equals(name, "DEFUp", StringComparison.OrdinalIgnoreCase)) multiplier += potency * stacks;
+                if (string.Equals(name, "DEFDown", StringComparison.OrdinalIgnoreCase)) multiplier -= potency * stacks;
+            }
+            else if (string.Equals(stat, "POT", StringComparison.OrdinalIgnoreCase))
+            {
+                if (string.Equals(name, "POTUp", StringComparison.OrdinalIgnoreCase)) multiplier += potency * stacks;
+                if (string.Equals(name, "POTDown", StringComparison.OrdinalIgnoreCase)) multiplier -= potency * stacks;
+            }
+            else if (string.Equals(stat, "SPD", StringComparison.OrdinalIgnoreCase))
+            {
+                if (string.Equals(name, "SPDUp", StringComparison.OrdinalIgnoreCase)) multiplier += potency * stacks;
+                if (string.Equals(name, "SPDDown", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(name, "Slow", StringComparison.OrdinalIgnoreCase)) multiplier -= potency * stacks;
+            }
+        }
+
+        return Math.Max(1, (int)MathF.Round(value * Math.Max(.1f, multiplier)));
+    }
     private static string OptionalOr(string value, string fallback) =>
         string.IsNullOrWhiteSpace(value) ? fallback : value;
     internal IReadOnlyList<string> GetFormationBonuses(TeamSide side) => bonuses[side].Active;
@@ -109,8 +149,10 @@ public partial class BattleSim
         int damage = DamageCalculator.Calculate(Stat(actor, OptionalOr(effect.stat, "ATK")), defense, (decimal)effect.scale,
             BiomeRules.Parse(actor.biome), BiomeRules.Parse(target.biome));
         float multiplier = 1 + Bonus(actor).DamageBonus(actor, target);
-        float crit = (Bonus(actor).Class("DPS") >= 2 ? .1f : 0) + CombatEffectRules.Amount(actor, "Luminescence") +
-            (HasStatus(target, "Brittle") ? .25f : 0);
+        float crit = (Bonus(actor).Class("DPS") >= 2 ? .1f : 0) +
+            CombatEffectRules.Amount(actor, "Luminescence") +
+            (HasStatus(actor, "Luminescence") && CombatEffectRules.Amount(actor, "Luminescence") <= 0f ? KeywordRules.LuminescenceCritBonus : 0f) +
+            (HasStatus(target, "Brittle") ? KeywordRules.BrittleCritTakenBonus : 0);
         if (crit > 0 && _rng.NextDouble() < Math.Clamp(crit, 0, 1)) {
             multiplier *= 1.5f + (Bonus(actor).Class("Assassin") >= 2 ? .2f : 0);
             Emit(BattleEventKind.Critical, actor, target, 0, skillContext);
@@ -146,7 +188,9 @@ public partial class BattleSim
 
     bool ApplyStatusFrom(CombatUnit source, CombatUnit target, EffectDef effect)
     {
-        bool debuff = CombatEffectRules.Debuffs.Contains(effect.status);
+        if (!CombatEffectRules.IsKnownStatus(effect.status))
+            throw new InvalidOperationException("Unknown combat keyword/status: " + effect.status);
+        bool debuff = CombatEffectRules.Debuffs.Contains(effect.status) || KeywordRules.IsCsvBackedStatus(effect.status);
         if (target.hp <= 0 || HasStatus(target, "Intangible") || (debuff && HasStatus(target, "Immunity")) ||
             (CombatEffectRules.Equals(effect.status, "Freeze") && target.shield > 0 && HasStatus(target, "FrostShield"))) {
             Emit(BattleEventKind.EffectBlocked, source, target, 0, effect.status); return false;
