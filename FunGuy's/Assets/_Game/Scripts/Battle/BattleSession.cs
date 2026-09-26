@@ -135,11 +135,20 @@ public sealed class BattleSession {
 
     public bool QueueSignature(string fighterId) {
         var unit = FindPlayer(fighterId);
-        if (Outcome != BattleOutcome.Running || unit == null || unit.hp <= 0 || queued.Contains(fighterId) ||
-            unit.ultSkillId == unit.basicSkillId || unit.ultCdRemaining > 0 || !data.Skills.ContainsKey(unit.ultSkillId ?? "")) return false;
+        if (Outcome != BattleOutcome.Running || unit == null || unit.hp <= 0 || queued.Contains(fighterId)) return false;
+
+        data.Skills.TryGetValue(unit.ultimateSkillId ?? "", out var ultimate);
+        data.Skills.TryGetValue(unit.ultSkillId ?? "", out var signature);
+        bool ultimateReady = ultimate != null && ultimate != data.Skills.GetValueOrDefault(unit.basicSkillId) &&
+            unit.energy >= Math.Max(0, ultimate.energyCost);
+        bool signatureReady = signature != null && signature != data.Skills.GetValueOrDefault(unit.basicSkillId) &&
+            unit.ultCdRemaining <= 0;
+
+        if (!ultimateReady && !signatureReady) return false;
+
         queued.Add(fighterId);
         RecordCommand(BattleCommandKind.QueueSignature, fighterId);
-        Record(BattleEventKind.SignatureQueued, unit, unit, 0, unit.ultSkillId);
+        Record(BattleEventKind.SignatureQueued, unit, unit, 0, ultimateReady ? unit.ultimateSkillId : unit.ultSkillId);
         return true;
     }
 
