@@ -25,6 +25,10 @@ public sealed class BattleSceneController : MonoBehaviour
     public void Configure(BattleScreenView screen)
     {
         view = screen; Game.EnsureInitialized(); view.Initialize(Game.Data);
+        // During onboarding, the first battle is always the real Chapter 1 Stage 1.
+        // This prevents a stale campaign selection from hijacking the tutorial battle.
+        if (!Game.Save.tutorialCompleted && Game.Save.tutorialStep == (int)TutorialStep.StartFirstBattle)
+            Game.SelectedStageId = "s_1_1";
         if (Game.Campaign.IsUnlocked(Game.SelectedStageId)) stageId = Game.SelectedStageId;
         ReducedMotion = PlayerPrefs.GetInt("FUNGUY_REDUCED_MOTION", 0) == 1;
         view.start.onClick.AddListener(OnRunBattlePressed); view.home.onClick.AddListener(OnBackPressed);
@@ -152,7 +156,7 @@ public sealed class BattleSceneController : MonoBehaviour
     private void RefreshControls() { if (view != null) view.RefreshControls(run, playing, IsPaused, autoEnabled, PlaybackSpeed, ReducedMotion, settlementPending); }
     private string NextStageId()
     {
-        var ordered = Game.Data.Stages.Values.OrderBy(s => s.order).Select(s => s.id).ToList(); int index = ordered.IndexOf(stageId);
+        var ordered = Game.Data.Stages.Values.OrderBy(s => s.chapter).ThenBy(s => s.order).Select(s => s.id).ToList(); int index = ordered.IndexOf(stageId);
         return index >= 0 && index + 1 < ordered.Count && Game.Campaign.IsUnlocked(ordered[index + 1]) ? ordered[index + 1] : null;
     }
     public void OnNextStagePressed() { if (playing || settlementPending) return; string next = NextStageId(); if (next == null) return; stageId = Game.SelectedStageId = next; run = null; ShowPreview(); }
