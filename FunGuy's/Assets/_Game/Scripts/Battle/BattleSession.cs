@@ -139,9 +139,9 @@ public sealed class BattleSession {
 
         data.Skills.TryGetValue(unit.ultimateSkillId ?? "", out var ultimate);
         data.Skills.TryGetValue(unit.ultSkillId ?? "", out var signature);
-        bool ultimateReady = ultimate != null && ultimate != data.Skills.GetValueOrDefault(unit.basicSkillId) &&
+        bool ultimateReady = ultimate != null && unit.ultimateSkillId != unit.basicSkillId &&
             unit.energy >= Math.Max(0, ultimate.energyCost);
-        bool signatureReady = signature != null && signature != data.Skills.GetValueOrDefault(unit.basicSkillId) &&
+        bool signatureReady = signature != null && unit.ultSkillId != unit.basicSkillId &&
             unit.ultCdRemaining <= 0;
 
         if (!ultimateReady && !signatureReady) return false;
