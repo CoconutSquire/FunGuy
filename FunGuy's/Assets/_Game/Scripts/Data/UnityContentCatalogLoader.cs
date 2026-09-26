@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public static class UnityContentCatalogLoader
@@ -92,8 +93,7 @@ public static class UnityContentCatalogLoader
         if (value == null) return null;
         string json = JsonUtility.ToJson(value);
         var clone = JsonUtility.FromJson<T>(json);
-        if (clone == null) throw new InvalidOperationException($"Failed to clone Unity content section {typeof(T).Name}.");
-        return clone;
+        return clone == null ? throw new InvalidOperationException($"Failed to clone Unity content section {typeof(T).Name}.") : clone;
     }
 
     private sealed class Snapshot

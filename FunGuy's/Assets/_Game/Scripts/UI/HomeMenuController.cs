@@ -11,7 +11,7 @@ public class HomeMenuController : MonoBehaviour {
 
   private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
   private Text idleLabel;
-  private Button idleClaimButton;
+  private readonly Button idleClaimButton;
   private Text homeStatsLabel;
   private Text homeHintLabel;
   private FunguyRosterController funguyRoster;

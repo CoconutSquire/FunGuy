@@ -243,8 +243,7 @@ public static class RuntimeSceneUiBootstrap
         controller.ConfigureFormation(formationButtons.ToArray(), formationLabels.ToArray(), remove);
 
         var hint = EnsureLabel(formationPanel.transform, "Lbl_Hint",
-            "Select a position, then choose a fighter.
-Select two positions to swap or move.",
+            "Select a position, then choose a fighter. Select two positions to swap or move.",
             18, FontStyle.Italic, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -155f), new Vector2(610f, 70f));
 
@@ -626,7 +625,7 @@ Select two positions to swap or move.",
 
     private static TutorialSpotlightTarget Target(TutorialStep step, Button button, string hint)
     {
-        var graphic = button == null ? null : (button.targetGraphic ?? button.GetComponent<Graphic>());
+        var graphic = button == null ? null : (button.targetGraphic != null ? button.targetGraphic : button.GetComponent<Graphic>());
         return new TutorialSpotlightTarget
         {
             step = step,
@@ -764,7 +763,7 @@ Select two positions to swap or move.",
     private static T EnsureComponent<T>(GameObject go) where T : Component
     {
         var existing = go.GetComponent<T>();
-        return existing != null ? existing : go.AddComponent<T>();
+        return existing ?? go.AddComponent<T>();
     }
 
     private static Font ResolveFont()
