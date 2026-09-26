@@ -65,20 +65,29 @@ public class HomeMenuController : MonoBehaviour {
   private void BuildIdlePanel() {
     var host = transform.parent != null ? transform.parent : transform;
     if (host.Find("IdleGenerationPanel") != null) return;
-    var panelGo = new GameObject("IdleGenerationPanel", typeof(RectTransform), typeof(Image));
+
+    // Keep the idle widget compact and make the whole window the collection control.
+    // There is no separate claim button to compete for space or leave a dead area.
+    var panelGo = new GameObject("IdleGenerationPanel", typeof(RectTransform), typeof(Image), typeof(Button));
     panelGo.transform.SetParent(host, false);
+
     var panel = panelGo.GetComponent<Image>();
     panel.color = new Color(.08f, .12f, .16f, .98f);
+    panel.raycastTarget = true;
+
     var panelRect = panelGo.GetComponent<RectTransform>();
     panelRect.anchorMin = panelRect.anchorMax = new Vector2(.5f, .5f);
     panelRect.pivot = new Vector2(.5f, .5f);
-    panelRect.anchoredPosition = new Vector2(0f, -430f);
-    panelRect.sizeDelta = new Vector2(820f, 300f);
+    panelRect.anchoredPosition = new Vector2(0f, -420f);
+    panelRect.sizeDelta = new Vector2(700f, 220f);
 
-    var title = MakeLabel(panelGo.transform, "Idle Generation", 30, new Vector2(0, 105), new Vector2(760, 55), FontStyle.Bold);
-    idleLabel = MakeLabel(panelGo.transform, "", 22, new Vector2(0, 25), new Vector2(760, 105), FontStyle.Normal);
-    idleClaimButton = MakeButton(panelGo.transform, "Claim Idle Rewards", new Vector2(0, -100), new Vector2(430, 70));
-    idleClaimButton.onClick.AddListener(ClaimIdleRewards);
+    var collectButton = panelGo.GetComponent<Button>();
+    collectButton.targetGraphic = panel;
+    collectButton.onClick.RemoveListener(ClaimIdleRewards);
+    collectButton.onClick.AddListener(ClaimIdleRewards);
+
+    var title = MakeLabel(panelGo.transform, "Idle Generation", 27, new Vector2(0, 72), new Vector2(640, 45), FontStyle.Bold);
+    idleLabel = MakeLabel(panelGo.transform, "", 20, new Vector2(0, 0), new Vector2(640, 115), FontStyle.Normal);
     RefreshIdlePanel();
   }
 
@@ -115,9 +124,9 @@ public class HomeMenuController : MonoBehaviour {
       return;
     }
 
-    // Claim() persists the same save instance and updates Game.Save. Re-read it
-    // so the account display and idle panel both reflect the committed balances.
-    Game.Save = SaveSystem.LoadOrNew();
+    // Claim() commits the rewards and resets the accumulation timestamp. Keep
+    // using that same save instance so the account and idle widget update together.
+    Game.Save = save;
     RefreshHomeStats();
     RefreshIdlePanel();
   }
