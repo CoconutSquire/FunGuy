@@ -10,6 +10,46 @@ public static class UnityContentCatalogLoader
         asset = Resources.Load<ContentCatalogAsset>(ResourcesPath);
         if (asset == null) return false;
         asset.ValidateSchema();
+
+        // The catalog is an authored cache of the JSON content. If an older catalog
+        // is still present, do not let it silently replace the current 71-character
+        // roster with legacy imported/placeholder skill references. A complete
+        // catalog remains authoritative; an incomplete/stale one falls back to the
+        // normal JSON path in GameData.LoadAll().
+        return IsCurrentCompleteCatalog(asset);
+    }
+
+    private static bool IsCurrentCompleteCatalog(ContentCatalogAsset asset)
+    {
+        var characters = asset.characters?.characters;
+        var skills = asset.skills?.skills;
+        if (characters == null || skills == null || characters.Count < 71) return false;
+
+        var skillIds = new System.Collections.Generic.HashSet<string>(
+            skills.Where(s => s != null && !string.IsNullOrWhiteSpace(s.id)).Select(s => s.id),
+            StringComparer.Ordinal);
+
+        foreach (var character in characters)
+        {
+            if (character == null || character.skills == null) return false;
+            if (!skillIds.Contains(character.skills.basic)) return false;
+
+            var signature = string.IsNullOrWhiteSpace(character.skills.signature)
+                ? character.skills.ult
+                : character.skills.signature;
+            if (!skillIds.Contains(signature)) return false;
+
+            if ((character.rarityTier == "SR" || character.rarityTier == "UR") &&
+                (string.IsNullOrWhiteSpace(character.skills.ultimate) || !skillIds.Contains(character.skills.ultimate)))
+                return false;
+        }
+
+        // Explicitly reject the old imported placeholder skill that previously made
+        // the runtime display generic signatures instead of authored kits.
+        if (skills.Any(s => s != null && s.id == "imported_character_signature" &&
+                            string.Equals(s.name, "Signature Placeholder", StringComparison.OrdinalIgnoreCase)))
+            return false;
+
         return true;
     }
 
