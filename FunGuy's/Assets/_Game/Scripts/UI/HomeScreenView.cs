@@ -17,8 +17,12 @@ public static class HomeScreenView
         var existing = canvasRoot.Find("HomeRuntimeUI");
         if (existing != null) UnityEngine.Object.Destroy(existing.gameObject);
 
-        // The authored Home scene is the source of truth for the background. Disable
-        // legacy buttons so there is only one interactive Home UI.
+        // Keep the existing Home art as a dedicated, non-interactive background layer.
+        // It fills the entire canvas, preserves the 1672x941 artwork aspect ratio, and
+        // sits behind HomeRuntimeUI so every existing button remains fully clickable.
+        EnsureHomeBackground(canvasRoot);
+
+        // Disable legacy buttons so there is only one interactive Home UI.
         foreach (var button in canvasRoot.GetComponentsInChildren<Button>(true))
         {
             if (button == null) continue;
@@ -58,6 +62,34 @@ public static class HomeScreenView
 
         controller.BindHomeView(stats, hint);
         BuildFunguyOverlay(root.transform, controller);
+    }
+
+    private static void EnsureHomeBackground(Transform canvasRoot)
+    {
+        if (canvasRoot == null) return;
+
+        var existing = canvasRoot.Find("HomeArtBackground");
+        GameObject background = existing != null ? existing.gameObject : new GameObject("HomeArtBackground", typeof(RectTransform), typeof(RawImage), typeof(AspectRatioFitter));
+        background.transform.SetParent(canvasRoot, false);
+
+        var rect = background.GetComponent<RectTransform>();
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = Vector2.zero;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+        rect.SetAsFirstSibling();
+
+        var image = background.GetComponent<RawImage>();
+        image.texture = Resources.Load<Texture2D>("Presentation/kitchen-battlefield-v1");
+        image.color = Color.white;
+        image.raycastTarget = false;
+        image.uvRect = new Rect(0f, 0f, 1f, 1f);
+
+        var fitter = background.GetComponent<AspectRatioFitter>();
+        fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+        fitter.aspectRatio = 1672f / 941f;
     }
 
     private static void BuildFunguyOverlay(Transform parent, HomeMenuController controller)
