@@ -190,7 +190,7 @@ public partial class BattleSim
     {
         if (!CombatEffectRules.IsKnownStatus(effect.status))
             throw new InvalidOperationException("Unknown combat keyword/status: " + effect.status);
-        bool debuff = CombatEffectRules.Debuffs.Contains(effect.status) || KeywordRules.IsCsvBackedStatus(effect.status);
+        bool debuff = CombatEffectRules.Debuffs.Contains(effect.status);
         if (target.hp <= 0 || HasStatus(target, "Intangible") || (debuff && HasStatus(target, "Immunity")) ||
             (CombatEffectRules.Equals(effect.status, "Freeze") && target.shield > 0 && HasStatus(target, "FrostShield"))) {
             Emit(BattleEventKind.EffectBlocked, source, target, 0, effect.status); return false;
