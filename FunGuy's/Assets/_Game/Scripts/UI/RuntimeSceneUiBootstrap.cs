@@ -58,12 +58,6 @@ public static class RuntimeSceneUiBootstrap
 
         if (scene.name == "Tutorial" && !Game.Save.tutorialCompleted) EnsureTutorialScene(scene, canvas);
 
-        // While onboarding is active, navigation controls cannot take the player
-        // to unrelated screens. Gameplay controls remain available so the player
-        // can complete the current tutorial step.
-        if (TutorialManager.EnsureInstance().IsActive)
-            ApplyTutorialNavigationLock(scene);
-
         LandscapeMenuLayout.Apply(scene, canvas);
 
         foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
@@ -360,29 +354,6 @@ public static class RuntimeSceneUiBootstrap
         var controller = EnsureSceneComponent<BattleSceneController>(scene, screen.transform);
         controller.Configure(screen);
     }
-    private static void ApplyTutorialNavigationLock(Scene scene)
-    {
-        if (scene.name == "Tutorial") return;
-
-        foreach (var button in FindInScene<Button>(scene))
-        {
-            if (button == null || !button.interactable) continue;
-            var name = button.gameObject.name;
-            bool navigation = name == "Btn_Back" ||
-                              name == "Btn_Home" ||
-                              name == "Btn_Options" ||
-                              name == "Btn_Equipment" ||
-                              name == "Btn_Upgrades" ||
-                              name == "Btn_RemoveSelected" ||
-                              name == "Btn_RosterPrevious" ||
-                              name == "Btn_RosterNext" ||
-                              name == "Btn_UpgradesBack" ||
-                              name == "Btn_BackHome";
-
-            if (navigation) button.interactable = false;
-        }
-    }
-
     private static void EnsureTutorialScene(Scene scene, Canvas canvas)
     {
         var manager = TutorialManager.EnsureInstance();
