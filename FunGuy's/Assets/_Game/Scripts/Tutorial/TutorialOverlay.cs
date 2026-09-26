@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialOverlay : MonoBehaviour
 {
@@ -16,6 +17,34 @@ public class TutorialOverlay : MonoBehaviour
         root = panel; messageLabel = label; continueButton = next;
         continueButton.onClick.RemoveListener(HandleContinuePressed);
         continueButton.onClick.AddListener(HandleContinuePressed);
+    }
+
+    public static void ApplyNavigationLock(Scene scene)
+    {
+        if (!scene.IsValid() || !scene.isLoaded) return;
+        if (string.Equals(scene.name, "Tutorial", StringComparison.OrdinalIgnoreCase)) return;
+
+        foreach (var rootObject in scene.GetRootGameObjects())
+        {
+            foreach (var button in rootObject.GetComponentsInChildren<Button>(true))
+            {
+                if (button == null) continue;
+
+                var name = button.gameObject.name;
+                bool navigation = name == "Btn_Back" ||
+                                  name == "Btn_Home" ||
+                                  name == "Btn_Options" ||
+                                  name == "Btn_Equipment" ||
+                                  name == "Btn_Upgrades" ||
+                                  name == "Btn_RemoveSelected" ||
+                                  name == "Btn_RosterPrevious" ||
+                                  name == "Btn_RosterNext" ||
+                                  name == "Btn_UpgradesBack" ||
+                                  name == "Btn_BackHome";
+
+                if (navigation) button.interactable = false;
+            }
+        }
     }
 
     public void Show()
