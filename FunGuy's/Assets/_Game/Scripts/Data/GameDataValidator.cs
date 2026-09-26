@@ -31,7 +31,7 @@ public static class GameDataValidator
                 BiomeRules.Parse(c.biome);
                 statRules.CalculateAuthored(c.baseStats, c.classArchetype, 1, 1);
                 Require(c.bst == c.baseStats.hp + c.baseStats.atk + c.baseStats.def + c.baseStats.spd + c.baseStats.pot, $"Unit {c.id}: incorrect BST.");
-                Require(c.skills != null && skillIds.Contains(c.skills.basic) && skillIds.Contains(c.skills.ult), $"Unit {c.id}: missing skill reference.");
+                ValidateSkillRefs(c, skillIds);
             }
             else if (string.IsNullOrEmpty(c.statProfileId)) ValidateUnit(c.id, c.baseStats, c.growth, c.skills, skillIds);
             else
@@ -41,7 +41,7 @@ public static class GameDataValidator
                 Require(c.name == profile.name && c.biome == profile.biome && c.classArchetype == profile.classArchetype &&
                     c.rarityTier == profile.rarityTier && c.role == profile.role, $"Unit {c.id}: identity conflicts with stat profile.");
                 Require(HasNoStatOverrides(c), $"Unit {c.id}: canonical stats must come only from the profile.");
-                Require(c.skills != null && skillIds.Contains(c.skills.basic) && skillIds.Contains(c.skills.ult), $"Unit {c.id}: missing skill reference.");
+                ValidateSkillRefs(c, skillIds);
             }
         }
 
@@ -55,7 +55,9 @@ public static class GameDataValidator
         foreach (var skill in skills.skills)
             ValidateSkill(skill);
 
-        Require(stages.stages.All(s => s.order > 0) && stages.stages.Select(s => s.order).Distinct().Count() == stages.stages.Count, "Stages require unique positive order values.");
+        Require(stages.stages.All(s => s.order > 0), "Stages require positive order values.");
+        Require(stages.stages.GroupBy(s => s.chapter).All(g => g.Select(s => s.order).Distinct().Count() == g.Count()),
+            "Stages require unique order values within each chapter.");
 
         foreach (var stage in stages.stages ?? new List<StageDef>())
         {
@@ -113,6 +115,17 @@ public static class GameDataValidator
     public static bool HasNoStatOverrides(CharacterDef c) =>
         (c.baseStats == null || new[] { c.baseStats.hp, c.baseStats.atk, c.baseStats.def, c.baseStats.spd, c.baseStats.pot }.All(v => v == 0)) &&
         (c.growth == null || new[] { c.growth.hp, c.growth.atk, c.growth.def, c.growth.spd, c.growth.pot }.All(v => v == 0));
+
+    private static void ValidateSkillRefs(CharacterDef c, HashSet<string> skills)
+    {
+        Require(c?.skills != null && skills.Contains(c.skills.basic), $"Unit {c?.id}: missing basic skill reference.");
+        string signature = string.IsNullOrWhiteSpace(c.skills.signature) ? c.skills.ult : c.skills.signature;
+        Require(skills.Contains(signature), $"Unit {c.id}: missing signature skill reference.");
+
+        if (c.rarityTier == "SR" || c.rarityTier == "UR")
+            Require(!string.IsNullOrWhiteSpace(c.skills.ultimate) && skills.Contains(c.skills.ultimate),
+                $"Unit {c.id}: SR/UR fighter is missing an ultimate skill reference.");
+    }
 
     private static void ValidateUnit(string id, StatBlock stats, StatGrowth growth, SkillRefs refs, HashSet<string> skills)
     {
