@@ -19,7 +19,7 @@ public class DebugProgressionController : MonoBehaviour
 
     public void OnGrantStarterResourcesPressed()
     {
-        var save = SaveSystem.GrantDebugResources(gold: 10000, spores: 500, sporeEssence: 1000, coreFragments: 500, primeSpores: 100);
+        var save = SaveSystem.GrantDebugResources(gold: 10000, spores: 500, sporeEssence: 1000, coreFragments: 500, primeSpores: 100, summonTickets: 20);
         Game.Save = save;
         SetStatus("Granted starter debug resources.");
     }
