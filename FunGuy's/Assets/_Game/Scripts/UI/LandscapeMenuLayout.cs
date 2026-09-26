@@ -26,6 +26,33 @@ public static class LandscapeMenuLayout
             root.localScale = Vector3.one;
         }
 
+        // HomeScreenView intentionally owns Home construction, so its runtime root
+        // is named HomeRuntimeUI rather than HomeRoot. Keep that ownership boundary
+        // intact, but put the finished Home UI on the same 1600x900 design surface
+        // as the other landscape screens. The artwork remains on the Canvas itself
+        // and can therefore bleed to the screen edges without being scaled by the
+        // safe-area content.
+        if (scene.name == "Home")
+        {
+            var homeRoot = canvas.transform.Find("HomeRuntimeUI") as RectTransform;
+            if (homeRoot == null)
+            {
+                homeRoot = canvas.GetComponentsInChildren<RectTransform>(true)
+                    .FirstOrDefault(r => r.name == "HomeRuntimeUI");
+            }
+
+            if (homeRoot != null)
+            {
+                var content = SafeContent(canvas.transform, "MenuSafeArea");
+                homeRoot.SetParent(content, false);
+                homeRoot.anchorMin = Vector2.zero;
+                homeRoot.anchorMax = Vector2.one;
+                homeRoot.offsetMin = Vector2.zero;
+                homeRoot.offsetMax = Vector2.zero;
+                homeRoot.localScale = Vector3.one;
+            }
+        }
+
         var overlay = canvas.GetComponentsInChildren<TutorialOverlay>(true).FirstOrDefault();
         if (overlay == null) return;
 
