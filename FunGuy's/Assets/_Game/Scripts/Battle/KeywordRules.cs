@@ -30,8 +30,12 @@ public static class KeywordRules
     public static string Description(string name)
     {
         EnsureLoaded();
-        return string.IsNullOrWhiteSpace(name) || !rules.TryGetValue(Normalize(name), out var rule)
-            ? null : rule.Description;
+        if (string.IsNullOrWhiteSpace(name)) return null;
+        var key = Normalize(name);
+        if (rules.TryGetValue(key, out var rule)) return rule.Description;
+        if ((key == "poison" || key == "burn" || key == "bleed") &&
+            rules.TryGetValue(key + " (dot)", out rule)) return rule.Description;
+        return null;
     }
 
     public static float LuminescenceCritBonus => .10f;
@@ -43,7 +47,7 @@ public static class KeywordRules
 
     public static bool IsCsvBackedStatus(string name)
     {
-        return IsDefined(name) && CsvStatuses.Contains(Normalize(name));
+        return !string.IsNullOrWhiteSpace(name) && CsvStatuses.Contains(Normalize(name));
     }
 
     private static readonly HashSet<string> CsvStatuses = new(StringComparer.OrdinalIgnoreCase)
