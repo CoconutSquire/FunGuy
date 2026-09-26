@@ -212,10 +212,10 @@ public sealed class BattleScreenView : MonoBehaviour
                     if (effect.sureHit) parts.Add("Cannot miss.");
                     break;
                 case "Heal":
-                    parts.Add($"Heals {targetLabel} for {effect.scale * 100f:0.#}% of {string.IsNullOrWhiteSpace(effect.stat) ? "POT" : effect.stat}.");
+                    parts.Add($"Heals {targetLabel} for {effect.scale * 100f:0.#}% of {(string.IsNullOrWhiteSpace(effect.stat) ? "POT" : effect.stat)}.");
                     break;
                 case "Shield":
-                    parts.Add($"Grants {targetLabel} a shield for {effect.scale * 100f:0.#}% of {string.IsNullOrWhiteSpace(effect.stat) ? "POT" : effect.stat}.");
+                    parts.Add($"Grants {targetLabel} a shield for {effect.scale * 100f:0.#}% of {(string.IsNullOrWhiteSpace(effect.stat) ? "POT" : effect.stat)}.");
                     break;
                 case "ApplyStatus":
                     string status = string.IsNullOrWhiteSpace(effect.status) ? "a status effect" : effect.status;
