@@ -11,7 +11,6 @@ public class HomeMenuController : MonoBehaviour {
 
   private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
   private Text idleLabel;
-  private readonly Button idleClaimButton;
   private Text homeStatsLabel;
   private Text homeHintLabel;
   private FunguyRosterController funguyRoster;
@@ -109,7 +108,6 @@ public class HomeMenuController : MonoBehaviour {
                      $"Stored: {preview.gold} Gold + {preview.equipmentCount} equipment\\n" +
                      $"Accumulating: {preview.goldPerHour}/hr Gold • {preview.equipmentPerHour:0.##}/hr equipment\\n" +
                      $"Time: {FormatDuration(preview.elapsed)}";
-    idleClaimButton.interactable = preview.gold > 0 || preview.equipmentCount > 0;
   }
 
   private void ClaimIdleRewards() {
