@@ -303,7 +303,8 @@ public partial class BattleSim {
     if (existing == null || stackable) {
       // Each application owns its potency and duration; stacks add linearly.
       target.statuses.Add(new StatusInstance {
-        status = name, remainingTurns = eff.duration == -1 ? -1 : Math.Max(1, eff.duration),
+        status = name,
+        remainingTurns = eff.duration == -1 ? -1 : Math.Max(1, eff.duration <= 0 && CombatEffectRules.Equals(name, "Regen") ? KeywordRules.RegenDefaultTurns : eff.duration),
         potency = eff.potency, stacks = 1, sourceId = source.instanceId, sourceRole = source.role,
         damageMultiplier = 1 + Bonus(source).DotBonus,
       });
