@@ -1004,7 +1004,7 @@
     {
       "id": "char_c1_signature",
       "target": "AllEnemies",
-      "cooldown": 0,
+      "cooldown": 3,
       "energyCost": 100,
       "effects": [
         {
@@ -1017,7 +1017,9 @@
           "target": "AllEnemies",
           "slot": -1
         }
-      ]
+      ],
+      "name": "Black Hole",
+      "description": "Pulls enemies together; massive True Damage."
     },
     {
       "id": "char_r01_signature",
@@ -2754,8 +2756,8 @@
     },
     {
       "id": "char_C1_ultimate",
-      "name": "Black Hole — Ultimate",
-      "description": "Ultimate for Nebula Cordyceps. A high-impact finisher that expands on Black Hole.",
+      "name": "Event Horizon Link",
+      "description": "Links the entire enemy team together (sharing 100% of damage taken). Summons a massive black hole that deals catastrophic True Damage that hits all enemies",
       "target": "AllEnemies",
       "cooldown": 4,
       "energyCost": 200,
