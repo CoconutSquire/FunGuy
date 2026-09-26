@@ -21,8 +21,8 @@ public class GachaService {
 
   public string PullOne(PlayerSave save, string bannerId, bool consumeCurrency) {
     if (!_data.Banners.TryGetValue(bannerId, out var banner)) throw new Exception($"Unknown banner: {bannerId}");
-    if (consumeCurrency && banner.currency == "spores" && save.spores < banner.costPerPull) throw new Exception("Not enough spores.");
-    if (consumeCurrency && banner.currency == "spores") save.spores -= banner.costPerPull;
+    if (consumeCurrency && banner.currency == "summonTickets" && save.summonTickets < banner.costPerPull) throw new Exception("Not enough Mycelial Tickets.");
+    if (consumeCurrency && banner.currency == "summonTickets") save.summonTickets -= banner.costPerPull;
 
     int pityCount = SaveMapUtils.GetInt(save.bannerPity, bannerId, 0) + 1;
     SaveMapUtils.SetInt(save.bannerPity, bannerId, pityCount);
