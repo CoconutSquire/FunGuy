@@ -72,7 +72,7 @@ public partial class BattleSim {
         if (usedUlt) {
           signatureUsed(actor);
           if (selectedSkill.id == actor.ultimateSkillId) {
-            SpendEnergy(actor, 100);
+            SpendEnergy(actor, Math.Max(0, selectedSkill.energyCost));
           } else {
             actor.ultCdRemaining = Bonus(actor).Biome("Kitchen") >= 5 && selectedSkill.cooldown > 0
               ? Math.Max(2, selectedSkill.cooldown - 1)
@@ -156,7 +156,7 @@ public partial class BattleSim {
     bool silenced = HasStatus(actor, "Silence");
     bool canCastUltimate = wantsSignature && !silenced &&
       ultimateSkill != null && ultimateSkill != basicSkill &&
-      actor.energy >= 100;
+      actor.energy >= ultimateSkill.energyCost;
     bool canCastSignature = wantsSignature && !silenced &&
       signatureSkill != null && signatureSkill != basicSkill &&
       actor.ultCdRemaining <= 0;
