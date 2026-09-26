@@ -4935,6 +4935,3086 @@
         "spores": 97,
         "accountXp": 230
       }
+    },
+    {
+      "id": "s_3_1",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Rotroot Crossing",
+      "order": 1,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 6550,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 92,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 92,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 92,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 92,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 92,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 105,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 105,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 105,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 105,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 105,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 6235,
+        "spores": 85,
+        "accountXp": 247
+      }
+    },
+    {
+      "id": "s_3_2",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Withered Grove",
+      "order": 2,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 6659,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 93,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 93,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 93,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 93,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 93,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 106,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 106,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 106,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 106,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 106,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 6370,
+        "spores": 85,
+        "accountXp": 254
+      }
+    },
+    {
+      "id": "s_3_3",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Ashen Mycelium",
+      "order": 3,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 6768,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 94,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 94,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 94,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 94,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 94,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 107,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 107,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 107,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 107,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 107,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 6505,
+        "spores": 85,
+        "accountXp": 261
+      }
+    },
+    {
+      "id": "s_3_4",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Blightfen Trail",
+      "order": 4,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 6877,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 95,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 95,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 95,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 95,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 95,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 108,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 108,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 108,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 108,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 108,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 6640,
+        "spores": 86,
+        "accountXp": 268
+      }
+    },
+    {
+      "id": "s_3_5",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Carrioncap Hollow",
+      "order": 5,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 6986,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 96,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 96,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 96,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 96,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 96,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 109,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 109,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 109,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 109,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 109,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 6775,
+        "spores": 86,
+        "accountXp": 275
+      }
+    },
+    {
+      "id": "s_3_6",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Rotbloom Pass",
+      "order": 6,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7095,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 97,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 97,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 97,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 97,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 97,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 110,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 110,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 110,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 110,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 110,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 6910,
+        "spores": 86,
+        "accountXp": 282
+      }
+    },
+    {
+      "id": "s_3_7",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Duskroot Thicket",
+      "order": 7,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7204,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 98,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 98,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 98,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 98,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 98,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 111,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 111,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 111,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 111,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 111,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7045,
+        "spores": 86,
+        "accountXp": 289
+      }
+    },
+    {
+      "id": "s_3_8",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Moldering Rise",
+      "order": 8,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7313,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 99,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 99,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 99,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 99,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 99,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 112,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 112,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 112,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 112,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 112,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7180,
+        "spores": 87,
+        "accountXp": 296
+      }
+    },
+    {
+      "id": "s_3_9",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Gravecap Basin",
+      "order": 9,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7422,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 100,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 100,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 100,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 100,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 100,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 113,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 113,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 113,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 113,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 113,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7315,
+        "spores": 87,
+        "accountXp": 303
+      }
+    },
+    {
+      "id": "s_3_10",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "The Blightgate",
+      "order": 10,
+      "description": "Chapter 3 boss stage. A full five-unit Decay formation guards the corrupted heart of the biome.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": true,
+      "recommendedPower": 7531,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 101,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 101,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 101,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 101,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 101,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 114,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 114,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 114,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 114,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 114,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8150,
+        "spores": 112,
+        "accountXp": 340
+      }
+    },
+    {
+      "id": "s_3_11",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Witherwood Path",
+      "order": 11,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7640,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 102,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 102,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 102,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 102,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 102,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 115,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 115,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 115,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 115,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 115,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7585,
+        "spores": 87,
+        "accountXp": 317
+      }
+    },
+    {
+      "id": "s_3_12",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Sporeshade Mire",
+      "order": 12,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7749,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 103,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 103,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 103,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 103,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 103,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 116,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 116,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 116,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 116,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 116,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7720,
+        "spores": 88,
+        "accountXp": 324
+      }
+    },
+    {
+      "id": "s_3_13",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Rotting Canopy",
+      "order": 13,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7858,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 104,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 104,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 104,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 104,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 104,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 117,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 117,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 117,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 117,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 117,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7855,
+        "spores": 88,
+        "accountXp": 331
+      }
+    },
+    {
+      "id": "s_3_14",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Fallen Huskway",
+      "order": 14,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 7967,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 105,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 105,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 105,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 105,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 105,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 118,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 118,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 118,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 118,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 118,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 7990,
+        "spores": 88,
+        "accountXp": 338
+      }
+    },
+    {
+      "id": "s_3_15",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Blackroot Vale",
+      "order": 15,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8076,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 106,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 106,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 106,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 106,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 106,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 119,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 119,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 119,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 119,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 119,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8125,
+        "spores": 88,
+        "accountXp": 345
+      }
+    },
+    {
+      "id": "s_3_16",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Blightwater Crossing",
+      "order": 16,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8185,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 107,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 107,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 107,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 107,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 107,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 120,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 120,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 120,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 120,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 120,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8260,
+        "spores": 89,
+        "accountXp": 352
+      }
+    },
+    {
+      "id": "s_3_17",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Decayveil Hollow",
+      "order": 17,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8294,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 108,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 108,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 108,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 108,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 108,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 121,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 121,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 121,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 121,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 121,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8395,
+        "spores": 89,
+        "accountXp": 359
+      }
+    },
+    {
+      "id": "s_3_18",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Murkspore Trail",
+      "order": 18,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8403,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 109,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 109,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 109,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 109,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 109,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 122,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 122,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 122,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 122,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 122,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8530,
+        "spores": 89,
+        "accountXp": 366
+      }
+    },
+    {
+      "id": "s_3_19",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Wilted Crown",
+      "order": 19,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8512,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 110,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 110,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 110,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 110,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 110,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 123,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 123,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 123,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 123,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 123,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8665,
+        "spores": 89,
+        "accountXp": 373
+      }
+    },
+    {
+      "id": "s_3_20",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "The Rotbound Gate",
+      "order": 20,
+      "description": "Chapter 3 boss stage. A full five-unit Decay formation guards the corrupted heart of the biome.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": true,
+      "recommendedPower": 8621,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 111,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 111,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 111,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 111,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 111,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 124,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 124,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 124,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 124,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 124,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9500,
+        "spores": 115,
+        "accountXp": 410
+      }
+    },
+    {
+      "id": "s_3_21",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Carrion Grove",
+      "order": 21,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8729,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 112,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 112,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 112,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 112,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 112,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 125,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 125,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 125,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 125,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 125,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 8935,
+        "spores": 90,
+        "accountXp": 387
+      }
+    },
+    {
+      "id": "s_3_22",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Hollowstem Marsh",
+      "order": 22,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8838,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 113,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 113,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 113,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 113,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 113,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 126,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 126,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 126,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 126,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 126,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9070,
+        "spores": 90,
+        "accountXp": 394
+      }
+    },
+    {
+      "id": "s_3_23",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Blightroot Ravine",
+      "order": 23,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 8947,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 114,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 114,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 114,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 114,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 114,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 127,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 127,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 127,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 127,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 127,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9205,
+        "spores": 90,
+        "accountXp": 401
+      }
+    },
+    {
+      "id": "s_3_24",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Dreadcap Crossing",
+      "order": 24,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9056,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 115,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 115,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 115,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 115,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 115,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 128,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 128,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 128,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 128,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 128,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9340,
+        "spores": 91,
+        "accountXp": 408
+      }
+    },
+    {
+      "id": "s_3_25",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Moldveil Basin",
+      "order": 25,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9165,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 116,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 116,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 116,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 116,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 116,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 129,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 129,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 129,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 129,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 129,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9475,
+        "spores": 91,
+        "accountXp": 415
+      }
+    },
+    {
+      "id": "s_3_26",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Withered Crownlands",
+      "order": 26,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9274,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 117,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 117,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 117,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 117,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 117,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 130,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 130,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 130,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 130,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 130,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9610,
+        "spores": 91,
+        "accountXp": 422
+      }
+    },
+    {
+      "id": "s_3_27",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Decayspire Trail",
+      "order": 27,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9383,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 118,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 118,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 118,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 118,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 118,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 131,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 131,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 131,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 131,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 131,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9745,
+        "spores": 91,
+        "accountXp": 429
+      }
+    },
+    {
+      "id": "s_3_28",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Gravebloom Reach",
+      "order": 28,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9492,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 119,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 119,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 119,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 119,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 119,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 132,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 132,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 132,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 132,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 132,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 9880,
+        "spores": 92,
+        "accountXp": 436
+      }
+    },
+    {
+      "id": "s_3_29",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Rotheart Hollow",
+      "order": 29,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9601,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 120,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 120,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 120,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 120,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 120,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 133,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 133,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 133,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 133,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 133,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10015,
+        "spores": 92,
+        "accountXp": 443
+      }
+    },
+    {
+      "id": "s_3_30",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "The Decay Citadel",
+      "order": 30,
+      "description": "Chapter 3 boss stage. A full five-unit Decay formation guards the corrupted heart of the biome.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": true,
+      "recommendedPower": 9710,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 121,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 121,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 121,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 121,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 121,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 134,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 134,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 134,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 134,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 134,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10850,
+        "spores": 117,
+        "accountXp": 480
+      }
+    },
+    {
+      "id": "s_3_31",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Fungal Graveway",
+      "order": 31,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9819,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 122,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 122,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 122,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 122,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 122,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 135,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 135,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 135,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 135,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 135,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10285,
+        "spores": 92,
+        "accountXp": 457
+      }
+    },
+    {
+      "id": "s_3_32",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Blackspore Vale",
+      "order": 32,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 9928,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 123,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 123,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 123,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 123,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 123,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 136,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 136,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 136,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 136,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 136,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10420,
+        "spores": 93,
+        "accountXp": 464
+      }
+    },
+    {
+      "id": "s_3_33",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Witherfall Basin",
+      "order": 33,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10037,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 124,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 124,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 124,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 124,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 124,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 137,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 137,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 137,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 137,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 137,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10555,
+        "spores": 93,
+        "accountXp": 471
+      }
+    },
+    {
+      "id": "s_3_34",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Rotting Crown",
+      "order": 34,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10146,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 125,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 125,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 125,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 125,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 125,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 138,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 138,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 138,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 138,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 138,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10690,
+        "spores": 93,
+        "accountXp": 478
+      }
+    },
+    {
+      "id": "s_3_35",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Blightroot Depths",
+      "order": 35,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10255,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 126,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 126,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 126,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 126,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 126,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 139,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 139,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 139,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 139,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 139,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10825,
+        "spores": 93,
+        "accountXp": 485
+      }
+    },
+    {
+      "id": "s_3_36",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Decaystorm Ridge",
+      "order": 36,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10364,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 127,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 127,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 127,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 127,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 127,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 140,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 140,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 140,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 140,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 140,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 10960,
+        "spores": 94,
+        "accountXp": 492
+      }
+    },
+    {
+      "id": "s_3_37",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Moldering Throne",
+      "order": 37,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10473,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 128,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 128,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 128,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 128,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 128,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 141,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 141,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 141,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 141,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 141,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 11095,
+        "spores": 94,
+        "accountXp": 499
+      }
+    },
+    {
+      "id": "s_3_38",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "Gravecap Summit",
+      "order": 38,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10582,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "10",
+              "level": 129,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 129,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 129,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 129,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "2",
+              "level": 129,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 142,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 142,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 142,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 142,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 142,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 11230,
+        "spores": 94,
+        "accountXp": 506
+      }
+    },
+    {
+      "id": "s_3_39",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "The Last Bloom",
+      "order": 39,
+      "description": "Decay encounter. Enemy levels and formation pressure rise steadily through the corrupted frontier.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": false,
+      "recommendedPower": 10691,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "9",
+              "level": 130,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 130,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 130,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 130,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "1",
+              "level": 130,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "1",
+              "level": 143,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 143,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "6",
+              "level": 143,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "8",
+              "level": 143,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 143,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 11365,
+        "spores": 94,
+        "accountXp": 513
+      }
+    },
+    {
+      "id": "s_3_40",
+      "chapter": 3,
+      "chapterName": "Chapter 3 — Decay's Withered Heart",
+      "biome": "Decay",
+      "name": "The Heart of Decay — Guardian Battle",
+      "order": 40,
+      "description": "Chapter 3 boss stage. A full five-unit Decay formation guards the corrupted heart of the biome.",
+      "encounterVersion": "decay-chapter-3-v1",
+      "boss": true,
+      "recommendedPower": 10800,
+      "waves": [
+        {
+          "enemies": [
+            {
+              "enemyId": "6",
+              "level": 131,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "2",
+              "level": 131,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "8",
+              "level": 131,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "4",
+              "level": 131,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "10",
+              "level": 131,
+              "slotId": "rear_1"
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemyId": "2",
+              "level": 144,
+              "slotId": "front_1"
+            },
+            {
+              "enemyId": "3",
+              "level": 144,
+              "slotId": "front_3"
+            },
+            {
+              "enemyId": "5",
+              "level": 144,
+              "slotId": "middle_1"
+            },
+            {
+              "enemyId": "7",
+              "level": 144,
+              "slotId": "middle_3"
+            },
+            {
+              "enemyId": "9",
+              "level": 144,
+              "slotId": "rear_1"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "gold": 12200,
+        "spores": 120,
+        "accountXp": 550
+      }
     }
   ]
 }
