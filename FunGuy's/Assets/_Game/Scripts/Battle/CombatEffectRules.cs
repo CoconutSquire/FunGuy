@@ -24,7 +24,12 @@ public static class CombatEffectRules
     public static readonly HashSet<string> Triggers = new(StringComparer.Ordinal) {
         "BattleStart", "TurnStart", "BasicHit", "DamageDealt", "DamageTaken", "EnergyGranted"
     };
-    public static bool IsStatus(string name) => name != null && (Buffs.Contains(name) || Debuffs.Contains(name));
+    public static bool IsStatus(string name) => name != null && (Buffs.Contains(name) || Debuffs.Contains(name) || KeywordRules.IsCsvBackedStatus(name));
+    public static bool IsKnownStatus(string name) => IsStatus(name) || InternalStatuses.Contains(name ?? string.Empty);
+    private static readonly HashSet<string> InternalStatuses = new(StringComparer.OrdinalIgnoreCase) {
+        "Thorns", "Taunt", "Cover", "DamageReduction", "RedirectReduction", "Marked", "Slow", "ATKUp", "ATKDown",
+        "DEFUp", "DEFDown", "POTUp", "POTDown", "SPDUp", "SPDDown", "HealBlock", "Immunity"
+    };
     public static bool IsDot(string name) => Equals(name, "Poison") || Equals(name, "Burn") || Equals(name, "Bleed");
     public static bool Equals(string a, string b) => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
     public static bool Has(CombatUnit u, string name) => u.statuses.Any(s => Equals(s.status, name));
