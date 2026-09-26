@@ -26,6 +26,9 @@ public sealed class BattleScreenView : MonoBehaviour
     public TMP_Text resultTitle, resultBody, inspectorTitle, inspectorBody;
     public Button retry, next, resultTeam, inspectorClose;
     public ScrollRect inspectorScroll;
+    [Header("Keyword Visuals")]
+    [Tooltip("Optional manually authored keyword visual library. Add one editable template GameObject per keyword/status.")]
+    public KeywordVisualLibrary keywordVisuals;
     private readonly Dictionary<string, BattleFighterView> fighters = new();
     private readonly List<string> playerIds = new();
     private GameData data;
@@ -84,6 +87,10 @@ public sealed class BattleScreenView : MonoBehaviour
             string name = data.Skills.TryGetValue(e.Detail, out var skill) ? skill.name : e.Detail;
             feedLabel.text = actor.State.Name + "  ·  " + name;
         }
+        if ((e.Kind == BattleEventKind.StatusApplied || e.Kind == BattleEventKind.StatusRefreshed) && e.Target != null)
+            keywordVisuals?.Apply(e.Target, e.Detail, fighters);
+        if (e.Kind == BattleEventKind.StatusExpired && e.Target != null)
+            keywordVisuals?.Remove(e.Target.InstanceId, KeywordVisualLibrary.StatusNameFromEvent(e.Detail));
         if (e.Kind == BattleEventKind.Redirected && e.Target != null) feedLabel.text = e.Target.Name + " protects an ally";
         if (e.Kind == BattleEventKind.ActionSkipped && e.Target != null) feedLabel.text = e.Target.Name + " cannot act";
     }
