@@ -15,7 +15,7 @@ public static class LandscapeMenuLayout
         // stretched to that content region. Repositioning individual controls here
         // created a second layout owner and could overwrite newer screen builders.
         var root = canvas.transform.Find(scene.name + "Root") as RectTransform;
-        if (root != null && scene.name != "Battle")
+        if (root != null)
         {
             var content = SafeContent(canvas.transform, "MenuSafeArea");
             root.SetParent(content, false);
