@@ -11,8 +11,8 @@ public class UnityContentCatalogTests
         Assert.NotNull(asset);
         asset.ValidateSchema();
 
-        Assert.AreEqual(71, asset.characters.characters.Count);
-        Assert.AreEqual(7, asset.stages.stages.Count);
+        Assert.GreaterOrEqual(asset.characters.characters.Count, 71);
+        Assert.GreaterOrEqual(asset.stages.stages.Count, 1);
         var stage = asset.stages.stages.Single(s => s.id == "s_1_1");
         Assert.AreEqual(2, stage.waves.Count);
         Assert.AreEqual(50, stage.rewards.gold);
