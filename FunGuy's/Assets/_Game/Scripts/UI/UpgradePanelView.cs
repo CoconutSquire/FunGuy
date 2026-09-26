@@ -101,6 +101,10 @@ public static class UpgradePanelView
         var roster = new Button[5];
         for (int i = 0; i < roster.Length; i++) roster[i] = Button("Btn_UpgradeFighter" + (i + 1), shell.transform, "", -465, 230 - i * 102, 465, 88, 23, rosterColor);
 
+        // Filters sit directly above the fighter-name results they control.
+        var biomeFilter = Dropdown("Dropdown_BiomeFilter", shell.transform, "All Biomes", -585, 292, 220, 52, navigationColor);
+        var classFilter = Dropdown("Dropdown_ClassFilter", shell.transform, "All Classes", -345, 292, 220, 52, navigationColor);
+
         // Keep fighter navigation clearly above the lower action row.
         var previous = Button("Btn_UpgradePrevious", shell.transform, "Previous", -590, -265, 205, 60, 22, navigationColor);
         var next = Button("Btn_UpgradeNext", shell.transform, "Next", -350, -265, 205, 60, 22, navigationColor);
@@ -131,7 +135,7 @@ public static class UpgradePanelView
 
         var controller = overlay.gameObject.AddComponent<UpgradePanelController>();
         controller.Configure(overlay.gameObject, wallet, identity, stats, skills, feedback, page, upgrade,
-            previous, next, close, roster, portrait, onClosed);
+            previous, next, close, roster, biomeFilter, classFilter, portrait, onClosed);
         return controller;
     }
 }
