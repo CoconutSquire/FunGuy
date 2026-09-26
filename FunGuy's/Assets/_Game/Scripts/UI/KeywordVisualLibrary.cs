@@ -40,6 +40,8 @@ public sealed class KeywordVisualLibrary : MonoBehaviour
     }
 
     [SerializeField] private List<Entry> entries = new();
+    [Tooltip("Use the same RectTransform as BattleScreenView.fighterLayer so grid visuals share the exact battle coordinates.")]
+    public RectTransform battleLayer;
     private readonly List<ActiveVisual> active = new();
 
     public IReadOnlyList<Entry> Entries => entries;
@@ -57,7 +59,7 @@ public sealed class KeywordVisualLibrary : MonoBehaviour
             fighters != null && fighters.TryGetValue(target.InstanceId, out var fighter))
             parent = fighter.transform;
         else
-            parent = transform;
+            parent = battleLayer != null ? battleLayer : transform;
 
         GameObject visual = Instantiate(entry.template, parent);
         visual.name = "KeywordVisual_" + keyword;
