@@ -507,15 +507,14 @@ public static class RuntimeSceneUiBootstrap
 
     private static T EnsureSceneComponent<T>(Scene scene, Transform parent) where T : Component
     {
-        var existing = FindInScene<T>(scene).FirstOrDefault();
-        if (existing != null)
-        {
-            if (parent != null && existing.transform != parent && existing.transform.parent != parent)
-            {
-                existing.transform.SetParent(parent, false);
-            }
-            return existing;
-        }
+        // Screen controllers belong to the root that owns their screen. Do not search
+        // the whole scene and reparent an unrelated instance: that can steal a
+        // controller from another UI root and create the kind of cross-screen
+        // conflicts that are especially hard to diagnose at runtime.
+        if (parent == null) return null;
+
+        var existing = parent.GetComponent<T>();
+        if (existing != null) return existing;
 
         return parent.gameObject.AddComponent<T>();
     }
