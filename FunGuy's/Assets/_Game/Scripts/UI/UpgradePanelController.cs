@@ -31,6 +31,15 @@ public sealed class UpgradePanelController : MonoBehaviour
         this.panel = panel; this.wallet = wallet; this.identity = identity; this.stats = stats;
         this.skills = skills; this.feedback = feedback; this.pageLabel = pageLabel; this.upgrade = upgrade;
         this.previous = previous; this.next = next; this.roster = roster; this.biomeFilter = biomeFilter; this.classFilter = classFilter; this.portrait = portrait; this.onClosed = onClosed;
+        // Configure owns these listeners. Clear them first so a defensive
+        // reconfigure cannot stack callbacks on the same workshop controls.
+        this.biomeFilter.onValueChanged.RemoveAllListeners();
+        this.classFilter.onValueChanged.RemoveAllListeners();
+        upgrade.onClick.RemoveAllListeners();
+        previous.onClick.RemoveAllListeners();
+        next.onClick.RemoveAllListeners();
+        close.onClick.RemoveAllListeners();
+
         PopulateFilters();
         this.biomeFilter.onValueChanged.AddListener(_ => { page = 0; Refresh(); });
         this.classFilter.onValueChanged.AddListener(_ => { page = 0; Refresh(); });
