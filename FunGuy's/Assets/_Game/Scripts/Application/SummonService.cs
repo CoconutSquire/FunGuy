@@ -26,7 +26,7 @@ public sealed class LocalSummonService : ISummonService
         if (!data.Banners.TryGetValue(bannerId, out var banner)) throw new InvalidOperationException("Banner unavailable.");
         var save = store.Read();
         int cost = checked(banner.costPerPull * count);
-        if (save.summonTickets < cost) throw new InvalidOperationException($"You need {cost} Mycelial Tickets for this summon.");
+        if (save.summonTickets < cost) throw new InvalidOperationException($"You need {cost} Basidiospores for this summon.");
         bool tutorialPull = count == 1 && !save.tutorialCompleted;
         var result = new SummonResult { usedTutorialTicket = tutorialPull };
         for (int i = 0; i < count; i++) result.characterIds.Add(gacha.PullOne(save, bannerId, true));
