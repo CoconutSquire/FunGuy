@@ -17,6 +17,7 @@ public class HomeMenuController : MonoBehaviour {
   private FunguyRosterController funguyRoster;
 
   private void Start() {
+    Game.EnsureInitialized();
     var canvas = GetComponentInParent<Canvas>();
     if (canvas != null) HomeScreenView.Build(canvas.transform, this);
     if (autoLaunchTutorialOnFirstOpen && !Save.tutorialCompleted && Save.tutorialStep <= 0) {
@@ -93,12 +94,32 @@ public class HomeMenuController : MonoBehaviour {
   }
 
   private void ClaimIdleRewards() {
-    var result = Game.Idle?.Claim(Save);
-    if (result != null) {
-      Game.Save = Save;
-      RefreshHomeStats();
+    Game.EnsureInitialized();
+
+    var save = Game.Save ?? SaveSystem.LoadOrNew();
+    var idle = Game.Idle;
+    if (idle == null) {
       RefreshIdlePanel();
+      return;
     }
+
+    var preview = idle.Preview(save);
+    if (preview == null || (preview.gold <= 0 && preview.equipmentCount <= 0)) {
+      RefreshIdlePanel();
+      return;
+    }
+
+    var result = idle.Claim(save);
+    if (result == null) {
+      RefreshIdlePanel();
+      return;
+    }
+
+    // Claim() persists the same save instance and updates Game.Save. Re-read it
+    // so the account display and idle panel both reflect the committed balances.
+    Game.Save = SaveSystem.LoadOrNew();
+    RefreshHomeStats();
+    RefreshIdlePanel();
   }
 
   private static string FormatDuration(TimeSpan span) {
