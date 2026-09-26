@@ -4,8 +4,8 @@
       "id": "b_standard",
       "name": "Standard Spore Banner",
       "bannerType": "standard_character",
-      "currency": "spores",
-      "costPerPull": 10,
+      "currency": "summonTickets",
+      "costPerPull": 1,
       "rates": [
         {
           "rarity": 3,
