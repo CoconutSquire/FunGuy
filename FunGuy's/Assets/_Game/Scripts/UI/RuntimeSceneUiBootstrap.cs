@@ -461,7 +461,7 @@ public static class RuntimeSceneUiBootstrap
         SetRect(equipmentDetails.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, -320), new Vector2(820, 120));
         var equipmentUpgrade = EnsureButton(equipmentCard.transform, "Btn_EquipmentUpgrade", "Equip Equipment", new Vector2(190, -390), new Vector2(300, 80), new Color(.12f, .52f, .25f, 1f), out var equipmentUpgradeLabel);
         var charButtons=new Button[5];
-        for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,410),new Vector2(115,60),IdleHuntressTheme.AccentFor(UiTone.Team),out _); charButtons[i]=b; }
+        for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,410),new Vector2(115,60),new Color(.12f,.35f,.52f,1f),out _); charButtons[i]=b; }
         var equipmentBack=EnsureButton(equipmentCard.transform,"Btn_EquipmentBack","Back to Formation",new Vector2(-190,-390),new Vector2(300,80),new Color(.28f,.34f,.39f,1f),out var equipmentBackLabel);
         choiceLabels.ToList().ForEach(x => x.color = Color.white);
         gearLabels.ToList().ForEach(x => x.color = Color.white);
