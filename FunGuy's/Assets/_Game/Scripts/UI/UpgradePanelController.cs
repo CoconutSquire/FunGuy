@@ -9,6 +9,7 @@ public sealed class UpgradePanelController : MonoBehaviour
 {
     private GameObject panel;
     private Text wallet, identity, stats, skills, feedback, pageLabel, upgradeLabel;
+    private Dropdown biomeFilter, classFilter;
     private Button upgrade, previous, next;
     private Button[] roster;
     private Text[] rosterLabels;
@@ -25,11 +26,14 @@ public sealed class UpgradePanelController : MonoBehaviour
 
     public void Configure(GameObject panel, Text wallet, Text identity, Text stats, Text skills, Text feedback,
         Text pageLabel, Button upgrade, Button previous, Button next, Button close, Button[] roster,
-        FungusPortrait portrait, Action onClosed)
+        Dropdown biomeFilter, Dropdown classFilter, FungusPortrait portrait, Action onClosed)
     {
         this.panel = panel; this.wallet = wallet; this.identity = identity; this.stats = stats;
         this.skills = skills; this.feedback = feedback; this.pageLabel = pageLabel; this.upgrade = upgrade;
-        this.previous = previous; this.next = next; this.roster = roster; this.portrait = portrait; this.biomeFilter = biomeFilter; this.classFilter = classFilter; this.onClosed = onClosed;
+        this.previous = previous; this.next = next; this.roster = roster; this.biomeFilter = biomeFilter; this.classFilter = classFilter; this.portrait = portrait; this.onClosed = onClosed;
+        PopulateFilters();
+        this.biomeFilter.onValueChanged.AddListener(_ => { page = 0; Refresh(); });
+        this.classFilter.onValueChanged.AddListener(_ => { page = 0; Refresh(); });
         rosterLabels = roster.Select(b => b.GetComponentInChildren<Text>()).ToArray();
         upgradeLabel = upgrade.GetComponentInChildren<Text>();
         upgrade.onClick.AddListener(OnUpgradePressed);
@@ -42,14 +46,54 @@ public sealed class UpgradePanelController : MonoBehaviour
     public void Open()
     {
         Game.EnsureInitialized(); panel.SetActive(true); panel.transform.SetAsLastSibling();
+        PopulateFilters();
         message = "Spend gold to level up; Spores unlock the major ascension milestones.";
         Refresh();
         TutorialManager.I?.SetWorkshopVisible(true);
     }
     public void Close() { panel.SetActive(false); onClosed?.Invoke(); TutorialManager.I?.SetWorkshopVisible(false); }
 
-    private List<OwnedUnit> Owned() => Game.Save.units.Where(u => u != null && Game.Data.Characters.ContainsKey(u.charId))
-        .OrderBy(u => u.charId, StringComparer.Ordinal).ToList(); // Levels never reshuffle the selection under a tap.
+    private List<OwnedUnit> Owned()
+    {
+        var biome = SelectedFilter(biomeFilter);
+        var className = SelectedFilter(classFilter);
+        return Game.Save.units.Where(u => u != null && Game.Data.Characters.ContainsKey(u.charId))
+            .Where(u => string.IsNullOrEmpty(biome) || biome == "All Biomes" || Game.Data.Characters[u.charId].biome == biome)
+            .Where(u => string.IsNullOrEmpty(className) || className == "All Classes" || Game.Data.Characters[u.charId].classArchetype == className)
+            .OrderBy(u => Game.Data.Characters[u.charId].name, StringComparer.Ordinal)
+            .ThenBy(u => u.charId, StringComparer.Ordinal).ToList();
+    }
+
+    private static string SelectedFilter(Dropdown dropdown)
+    {
+        if (dropdown == null || dropdown.options == null || dropdown.options.Count == 0) return "";
+        return dropdown.options[Mathf.Clamp(dropdown.value, 0, dropdown.options.Count - 1)].text;
+    }
+
+    private void PopulateFilters()
+    {
+        if (biomeFilter == null || classFilter == null) return;
+        var units = Game.Save?.units == null ? new List<OwnedUnit>() : Game.Save.units
+            .Where(u => u != null && Game.Data.Characters.ContainsKey(u.charId)).ToList();
+        var biomes = units.Select(u => Game.Data.Characters[u.charId].biome).Where(v => !string.IsNullOrWhiteSpace(v)).Distinct().OrderBy(v => v, StringComparer.Ordinal).ToList();
+        var classes = units.Select(u => Game.Data.Characters[u.charId].classArchetype).Where(v => !string.IsNullOrWhiteSpace(v)).Distinct().OrderBy(v => v, StringComparer.Ordinal).ToList();
+        SetFilterOptions(biomeFilter, "All Biomes", biomes);
+        SetFilterOptions(classFilter, "All Classes", classes);
+    }
+
+    private static void SetFilterOptions(Dropdown dropdown, string allLabel, List<string> values)
+    {
+        var current = dropdown.options != null && dropdown.options.Count > 0
+            ? dropdown.options[Mathf.Clamp(dropdown.value, 0, dropdown.options.Count - 1)].text
+            : allLabel;
+        dropdown.ClearOptions();
+        var options = new List<Dropdown.OptionData> { new Dropdown.OptionData(allLabel) };
+        options.AddRange(values.Select(v => new Dropdown.OptionData(v)));
+        dropdown.AddOptions(options);
+        var index = Mathf.Max(0, options.FindIndex(o => o.text == current));
+        dropdown.SetValueWithoutNotify(index);
+        dropdown.RefreshShownValue();
+    }
 
     public void Select(string id)
     {
