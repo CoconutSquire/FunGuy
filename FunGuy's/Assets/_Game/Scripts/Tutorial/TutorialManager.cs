@@ -49,6 +49,12 @@ public class TutorialManager : MonoBehaviour
         if (!string.IsNullOrEmpty(currentMessage)) overlay.Say(currentMessage, currentContinue);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -99,8 +105,26 @@ public class TutorialManager : MonoBehaviour
         {
             var expected = ExpectedScene();
             if (!string.IsNullOrEmpty(expected) && !string.Equals(scene.name, expected, System.StringComparison.OrdinalIgnoreCase))
+            {
                 OpenScene(expected);
+                return;
+            }
         }
+
+        // RuntimeSceneUiBootstrap also listens to sceneLoaded. Wait one frame so
+        // the scene UI has been constructed, then let TutorialOverlay own the
+        // navigation lock for the current onboarding step.
+        StartCoroutine(ApplyTutorialUiPolicyNextFrame(scene));
+    }
+
+    private System.Collections.IEnumerator ApplyTutorialUiPolicyNextFrame(Scene scene)
+    {
+        yield return null;
+
+        if (!IsActive || !scene.IsValid() || !scene.isLoaded) yield break;
+        if (!IsSceneAllowed(scene.name)) yield break;
+
+        TutorialOverlay.ApplyNavigationLock(scene);
     }
 
     private string ExpectedScene()
