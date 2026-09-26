@@ -281,17 +281,29 @@ public static class RuntimeSceneUiBootstrap
         var equipmentDetails = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentDetails", "", 20, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(equipmentDetails.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, -320), new Vector2(820, 120));
         var equipmentUpgrade = EnsureButton(equipmentCard.transform, "Btn_EquipmentUpgrade", "Equip Equipment", new Vector2(190, -390), new Vector2(300, 80), new Color(.12f, .52f, .25f, 1f), out var equipmentUpgradeLabel);
-        var charButtons=new Button[5];
-        for(int i=0;i<5;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentCharacter{i+1}","Character",new Vector2(-250+i*125,410),new Vector2(115,60),new Color(.12f,.35f,.52f,1f),out _); charButtons[i]=b; }
+        var characterStrip = EnsurePanel(equipmentCard.transform, "Panel_EquipmentCharacters", new Color(.05f,.08f,.10f,.88f),
+            CenterAnchor, CenterAnchor, new Vector2(0, 410), new Vector2(820, 82));
+        var characterViewport = EnsureChild(characterStrip.transform, "Viewport");
+        var characterViewportRt = EnsureRectTransform(characterViewport);
+        SetRect(characterViewportRt, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        var characterMask = EnsureComponent<RectMask2D>(characterViewport);
+        var characterContent = EnsureChild(characterViewport.transform, "Content");
+        var characterContentRt = EnsureRectTransform(characterContent);
+        characterContentRt.anchorMin = new Vector2(0, .5f); characterContentRt.anchorMax = new Vector2(0, .5f);
+        characterContentRt.pivot = new Vector2(0, .5f); characterContentRt.anchoredPosition = Vector2.zero;
+        var characterScroll = EnsureComponent<ScrollRect>(characterStrip);
+        characterScroll.horizontal = true; characterScroll.vertical = false; characterScroll.movementType = ScrollRect.MovementType.Clamped;
+        characterScroll.viewport = characterViewportRt; characterScroll.content = characterContentRt;
+        var characterHeader = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentCharacterList", "SELECT CHARACTER", 18, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
+        SetRect(characterHeader.rectTransform, CenterAnchor, CenterAnchor, new Vector2(-360, 458), new Vector2(260, 45));
         var equipmentBack=EnsureButton(equipmentCard.transform,"Btn_EquipmentBack","Back to Formation",new Vector2(-190,-390),new Vector2(300,80),new Color(.28f,.34f,.39f,1f),out var equipmentBackLabel);
         choiceLabels.ToList().ForEach(x => x.color = Color.white);
         gearLabels.ToList().ForEach(x => x.color = Color.white);
         equipmentUpgradeLabel.color = Color.white;
         equipmentBackLabel.color = Color.white;
         var equipmentController=EnsureSceneComponent<EquipmentPanelController>(scene,equipmentRoot.transform);
-        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentIdentity,statsLabel,equipmentDetails,charButtons,choiceButtons,choiceLabels,gearButtons,gearLabels,equipmentUpgrade,equipmentUpgradeLabel,equipmentBack);
+        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentIdentity,statsLabel,equipmentDetails,characterContentRt,choiceButtons,choiceLabels,gearButtons,gearLabels,equipmentUpgrade,equipmentUpgradeLabel,equipmentBack);
         equipmentUpgrade.onClick.AddListener(equipmentController.UpgradeSelectedEquipment);
-        for(int i=0;i<5;i++){ int index=i; charButtons[i].onClick.AddListener(()=>equipmentController.SelectCharacter(index)); }
         for(int i=0;i<4;i++){ int index=i; gearButtons[i].onClick.AddListener(()=>equipmentController.EquipFromSlot(index)); choiceButtons[i].onClick.AddListener(()=>equipmentController.EquipChoice(index)); }
         equipmentBack.onClick.AddListener(equipmentController.BackToFormation);
         equipmentRoot.SetActive(false);
