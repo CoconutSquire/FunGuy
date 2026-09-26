@@ -64,9 +64,8 @@ public class TutorialOverlay : MonoBehaviour
             case TutorialStep.StartFirstBattle:
                 return objectName == "Btn_StartBattle";
             case TutorialStep.PlaceTankFrontDpsBack:
-                return objectName == "Btn_Upgrades" || objectName == "Btn_UpgradesBack" ||
-                       objectName == "Btn_Upgrade" || objectName == "Btn_LevelUp" ||
-                       objectName == "Btn_EquipmentUpgrade" || objectName == "Btn_EquipmentBack";
+                return objectName == "Btn_Upgrades" || objectName == "Btn_ConfirmUpgrade" ||
+                       objectName == "Btn_UpgradeEquipment" || objectName == "Btn_CloseUpgrades";
             default:
                 return false;
         }
