@@ -71,27 +71,42 @@ public sealed class IdleGenerationService
             equipmentCount = preview.equipmentCount,
         };
 
+        // Convert the preview into a single claim transaction. Everything earned
+        // up to this moment is granted first, then the fractional progress and
+        // claim timestamp are reset so the same rewards cannot be claimed twice.
         save.gold = Math.Max(0, save.gold + result.gold);
+
         var totalGoldProgress = save.idleGoldProgress + preview.elapsed.TotalHours * preview.goldPerHour;
         var totalEquipmentProgress = save.idleEquipmentProgress + preview.elapsed.TotalHours * preview.equipmentPerHour;
         var itemCount = (int)Math.Floor(totalEquipmentProgress);
+
         save.idleGoldProgress = Math.Max(0d, totalGoldProgress - result.gold);
         save.idleEquipmentProgress = Math.Max(0d, totalEquipmentProgress - itemCount);
 
-        if (itemCount > 0 && equipmentService != null)
+        if (itemCount > 0)
         {
-            int rarity = Math.Clamp((settings?.idleBaseRarity ?? 1) + preview.campaignDepth / Math.Max(1, settings?.idleRarityStagesPerTier ?? 10), 1, 6);
+            if (equipmentService == null)
+                throw new InvalidOperationException("Idle equipment rewards cannot be claimed because EquipmentService is unavailable.");
+
+            int rarity = Math.Clamp(
+                (settings?.idleBaseRarity ?? 1) +
+                preview.campaignDepth / Math.Max(1, settings?.idleRarityStagesPerTier ?? 10),
+                1, 6);
+
             for (int i = 0; i < itemCount; i++)
             {
-                // Idle drops favor the common equipment pool while still allowing
-                // deeper campaign progress to improve item rarity.
                 string slot = new[] { "cap", "stipe", "mycelium", "symbiote" }[rng.Next(4)];
                 var item = equipmentService.Acquire(slot, rarity, 1);
+                if (item == null)
+                    throw new InvalidOperationException("Idle equipment generation returned no item.");
+
                 equipmentService.AddToSave(save, item);
                 result.equipment.Add(item);
             }
         }
 
+        // Reset the accumulation clock only after all rewards have been added
+        // to the same PlayerSave that is persisted below.
         save.idleLastClaimedUtc = DateTime.UtcNow.ToString("o");
         SaveSystem.Save(save);
         Game.Save = save;
