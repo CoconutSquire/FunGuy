@@ -39,9 +39,6 @@ public static class RuntimeSceneUiBootstrap
 
         switch (scene.name)
         {
-            case "Home":
-                EnsureHomeScene(scene, canvas);
-                break;
             case "Summon":
                 EnsureSummonScene(scene, canvas);
                 break;
@@ -59,7 +56,7 @@ public static class RuntimeSceneUiBootstrap
                 break;
         }
 
-        if (!Game.Save.tutorialCompleted) EnsureTutorialScene(scene, canvas);
+        if (scene.name == "Tutorial" && !Game.Save.tutorialCompleted) EnsureTutorialScene(scene, canvas);
         LandscapeMenuLayout.Apply(scene, canvas);
 
         foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
@@ -94,133 +91,6 @@ public static class RuntimeSceneUiBootstrap
         SetAccessibleButton(begin, beginLabel, new Color(.10f, .35f, .68f, 1f));
         begin.onClick.RemoveAllListeners();
         begin.onClick.AddListener(() => TutorialManager.EnsureInstance().ContinueTutorial());
-    }
-
-    private static void EnsureHomeScene(Scene scene, Canvas canvas)
-    {
-        var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
-
-        // Home has legacy authored controls in the scene file as well as the runtime menu.
-        // Give the runtime Home UI its own sorting/raycast layer and disable the stale
-        // authored buttons so they cannot visually or interactively sit on top of it.
-        var homeCanvas = EnsureComponent<Canvas>(root);
-        homeCanvas.enabled = true;
-        homeCanvas.overrideSorting = true;
-        homeCanvas.sortingOrder = 20;
-        EnsureComponent<GraphicRaycaster>(root).enabled = true;
-        foreach (Transform child in canvas.transform)
-        {
-            if (child == root.transform || child.name == "Background") continue;
-            if (child.GetComponent<Button>() != null) child.gameObject.SetActive(false);
-        }
-
-        var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
-        var spotlight = EnsureComponent<TutorialSpotlightController>(root);
-
-        // The authored Home scene already contains the intended home artwork.
-        // Keep that scene background visible instead of covering it with a runtime-generated color panel.
-        var bg = FindInScene<Image>(scene).FirstOrDefault(x => x != null && x.gameObject.name == "Background");
-        if (bg != null)
-        {
-            // The authored artwork is the visual background. Do not run it through the
-            // theme skin: that would replace its sprite color with the flat Home palette.
-            bg.raycastTarget = false;
-            bg.transform.SetAsFirstSibling();
-        }
-        else
-        {
-            // Fallback for scenes created without the authored background.
-            bg = EnsurePanel(root.transform, "Img_Background", IdleHuntressTheme.BackgroundFor(UiTone.Home),
-                Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero).GetComponent<Image>();
-        }
-        var shell = EnsurePanel(root.transform, "Panel_Main",
-            WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.82f),
-            CenterAnchor, CenterAnchor, Vector2.zero, new Vector2(900f, 1520f));
-
-        var title = EnsureLabel(shell.transform, "Lbl_Welcome",
-            "Welcome, Commander. Build your squad and clear the frontier.",
-            42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
-        SetRect(title.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 600f), new Vector2(820f, 150f));
-
-        var stats = EnsureLabel(shell.transform, "Lbl_AccountStats",
-            "Lv.1  Gold:100  Spores:50", 30, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(stats.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 500f), new Vector2(820f, 100f));
-
-        var start = EnsureButton(shell.transform, "Btn_Start", "Start", new Vector2(0f, 320f), new Vector2(560f, 108f), IdleHuntressTheme.AccentFor(UiTone.Home), out var startLabel);
-        var summon = EnsureButton(shell.transform, "Btn_Summon", "Summon", new Vector2(0f, 190f), new Vector2(560f, 108f), IdleHuntressTheme.AccentFor(UiTone.Home), out var summonLabel);
-        var team = EnsureButton(shell.transform, "Btn_Team", "Funguy", new Vector2(0f, 60f), new Vector2(560f, 108f), IdleHuntressTheme.AccentFor(UiTone.Home), out var teamLabel);
-        var battle = EnsureButton(shell.transform, "Btn_Battle", "Battle", new Vector2(0f, -70f), new Vector2(560f, 108f), IdleHuntressTheme.AccentFor(UiTone.Home), out var battleLabel);
-        var options = EnsureButton(shell.transform, "Btn_Options", "Options", new Vector2(0f, -200f), new Vector2(560f, 108f), IdleHuntressTheme.AccentFor(UiTone.Home), out var optionsLabel);
-
-        var hint = EnsureLabel(shell.transform, "Lbl_TutorialHint", string.Empty, 24, FontStyle.Italic, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(hint.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, -360f), new Vector2(780f, 140f));
-
-        ConfigureSkin(root, UiTone.Home,
-            Array.Empty<Image>(),
-            new[] { shell.GetComponent<Image>() },
-            new[] { start.GetComponent<Image>(), summon.GetComponent<Image>(), team.GetComponent<Image>(), battle.GetComponent<Image>(), options.GetComponent<Image>() },
-            new[] { start, summon, team, battle, options },
-            new[] { title },
-            new[] { stats, hint, startLabel, summonLabel, teamLabel, battleLabel, optionsLabel });
-
-        spotlight.Configure(
-            hint,
-            new[]
-            {
-                Target(TutorialStep.Welcome, start, "Tutorial begins automatically for new players."),
-            });
-
-        // Keep the home controller on root so binder can wire all local controls.
-        var campaign = CampaignPanelController.Create(root.transform);
-        controller.OpenCampaign = campaign.Open;
-        battleLabel.text = "Campaign";
-        team.onClick.RemoveAllListeners();
-        team.onClick.AddListener(controller.OnFunguyPressed);
-        BuildFunguyRosterOverlay(scene, canvas);
-
-        // The authored Home scene still contains legacy UI objects. Some of those
-        // controls are nested under the authored HomeMenuController and can remain
-        // active even after the runtime menu is created, causing them to cover the
-        // runtime controls or intercept pointer events. Keep only the runtime menu
-        // interactive and visible above the authored background.
-        SanitizeHomeRuntimeUi(root);
-        Canvas.ForceUpdateCanvases();
-    }
-
-    private static void SanitizeHomeRuntimeUi(GameObject root)
-    {
-        if (root == null) return;
-
-        var runtimePanel = root.transform.Find("Panel_Main");
-        var idlePanel = root.transform.Find("IdleGenerationPanel");
-        foreach (var button in root.GetComponentsInChildren<Button>(true))
-        {
-            if (button == null) continue;
-            var isRuntimeButton = (runtimePanel != null && button.transform.IsChildOf(runtimePanel)) ||
-                                  (idlePanel != null && button.transform.IsChildOf(idlePanel));
-            if (!isRuntimeButton)
-            {
-                button.gameObject.SetActive(false);
-                continue;
-            }
-
-            button.interactable = true;
-            button.enabled = true;
-            if (button.targetGraphic != null)
-                button.targetGraphic.raycastTarget = true;
-        }
-
-        // Non-button legacy Images can also intercept raycasts. Only the authored
-        // background and runtime menu need to remain as active Home visuals.
-        foreach (var image in root.GetComponentsInChildren<Image>(true))
-        {
-            if (image == null) continue;
-            var isBackground = image.gameObject.name == "Background";
-            var isRuntimePanel = (runtimePanel != null && image.transform.IsChildOf(runtimePanel)) ||
-                                  (idlePanel != null && image.transform.IsChildOf(idlePanel));
-            if (!isBackground && !isRuntimePanel && image.transform != root.transform)
-                image.raycastTarget = false;
-        }
     }
 
     private static void BuildFunguyRosterOverlay(Scene scene, Canvas canvas)
