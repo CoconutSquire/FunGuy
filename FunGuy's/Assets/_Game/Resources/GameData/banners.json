@@ -2,7 +2,7 @@
   "banners": [
     {
       "id": "b_standard",
-      "name": "Standard Spore Banner",
+      "name": "Standard Mycelium Banner",
       "bannerType": "standard_character",
       "currency": "summonTickets",
       "costPerPull": 1,
@@ -35,8 +35,8 @@
       "id": "b_event_starspore",
       "name": "Nebula Cordyceps Event Banner",
       "bannerType": "limited_character",
-      "currency": "spores",
-      "costPerPull": 10,
+      "currency": "summonTickets",
+      "costPerPull": 1,
       "rates": [
         {
           "rarity": 3,
