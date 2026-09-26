@@ -87,12 +87,12 @@ public sealed class EquipmentPanelController : MonoBehaviour
             ? (owned.Count>0 ? owned[0].charId : null) : selectedCharacterId;
         selected=owned.FindIndex(u=>u.charId==selectedCharacterId);
         for(int i=0;i<owned.Count;i++){
-            var entry=owned[i]; var def=Game.Data.Characters[entry.charId];
+            var entry=owned[i]; var rosterDef=Game.Data.Characters[entry.charId];
             var go=new GameObject("EquipmentCharacterEntry",typeof(RectTransform),typeof(Image),typeof(Button)); go.transform.SetParent(characterContent,false);
             var rt=go.GetComponent<RectTransform>(); rt.anchorMin=new Vector2(0,.5f); rt.anchorMax=new Vector2(0,.5f); rt.pivot=new Vector2(.5f,.5f); rt.anchoredPosition=new Vector2(i*170f,0); rt.sizeDelta=new Vector2(155,60);
             var image=go.GetComponent<Image>(); image.color=entry.charId==selectedCharacterId?new Color(.76f,.58f,.16f,1f):new Color(.12f,.35f,.52f,1f);
             var button=go.GetComponent<Button>(); button.targetGraphic=image; int index=i; button.onClick.AddListener(()=>SelectCharacter(index)); characterButtons[i]=button;
-            var label=new GameObject("Label",typeof(RectTransform),typeof(Text)).GetComponent<Text>(); label.transform.SetParent(go.transform,false); label.rectTransform.anchorMin=Vector2.zero; label.rectTransform.anchorMax=Vector2.one; label.rectTransform.offsetMin=Vector2.zero; label.rectTransform.offsetMax=Vector2.zero; label.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); label.fontSize=15; label.color=Color.white; label.alignment=TextAnchor.MiddleCenter; label.text=$"{def.name}\\n{def.rarityTier} • Lv.{entry.level}"; label.raycastTarget=false;
+            var label=new GameObject("Label",typeof(RectTransform),typeof(Text)).GetComponent<Text>(); label.transform.SetParent(go.transform,false); label.rectTransform.anchorMin=Vector2.zero; label.rectTransform.anchorMax=Vector2.one; label.rectTransform.offsetMin=Vector2.zero; label.rectTransform.offsetMax=Vector2.zero; label.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); label.fontSize=15; label.color=Color.white; label.alignment=TextAnchor.MiddleCenter; label.text=$"{rosterDef.name}\\n{rosterDef.rarityTier} • Lv.{entry.level}"; label.raycastTarget=false;
         }
         characterContent.sizeDelta=new Vector2(Mathf.Max(800f,owned.Count*170f),70f);
         if(owned.Count==0){characterLabel.text="No characters owned"; if(identityLabel!=null) identityLabel.text=""; if(statsLabel!=null) statsLabel.text=""; detailsLabel.text="Acquire a character to manage their equipment."; if(upgradeButton!=null) upgradeButton.interactable=false; return;}

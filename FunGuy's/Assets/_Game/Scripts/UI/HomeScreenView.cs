@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public static class HomeScreenView
 {
-    private static readonly Color HomePanel = new Color(.08f, .12f, .10f, .82f);
-    private static readonly Color Navigation = new Color(.12f, .35f, .52f, 1f);
-    private static readonly Color Action = new Color(.12f, .52f, .25f, 1f);
-    private static readonly Color Summon = new Color(.42f, .24f, .56f, 1f);
-    private static readonly Color Back = new Color(.28f, .34f, .39f, 1f);
+    private static readonly Color HomePanel = new(.08f, .12f, .10f, .82f);
+    private static readonly Color Navigation = new(.12f, .35f, .52f, 1f);
+    private static readonly Color Action = new(.12f, .52f, .25f, 1f);
+    private static readonly Color Summon = new(.42f, .24f, .56f, 1f);
+    private static readonly Color Back = new(.28f, .34f, .39f, 1f);
 
     public static void Build(Transform canvasRoot, HomeMenuController controller)
     {
@@ -63,29 +63,57 @@ public static class HomeScreenView
         var rt = root.GetComponent<RectTransform>();
         rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one; rt.offsetMin = rt.offsetMax = Vector2.zero;
 
-        var overlay = Panel(root.transform, "Overlay", new Color(.035f,.055f,.065f,.97f), Vector2.zero, new Vector2(1600,900));
-        Label(overlay.transform, "Title", "FUNGUY", new Vector2(0,430), new Vector2(1600,90), 44, FontStyle.Bold);
+        var overlay = Panel(root.transform, "Overlay", new Color(.035f, .055f, .065f, .97f), Vector2.zero, new Vector2(1600, 900));
+        Label(overlay.transform, "Title", "FUNGUY", new Vector2(0, 430), new Vector2(1600, 90), 44, FontStyle.Bold);
 
-        var listPanel = Panel(overlay.transform, "RosterPanel", new Color(.07f,.11f,.13f,1), new Vector2(-560,-10), new Vector2(520,820));
-        Label(listPanel.transform, "Header", "CHARACTERS", new Vector2(0,370), new Vector2(460,60), 26, FontStyle.Bold);
+        var listPanel = Panel(overlay.transform, "RosterPanel", new Color(.07f, .11f, .13f, 1), new Vector2(-560, -10), new Vector2(520, 820));
+        Label(listPanel.transform, "Header", "CHARACTERS", new Vector2(0, 370), new Vector2(460, 60), 26, FontStyle.Bold);
+
+        // 1. Setup ScrollView Root
         var scrollGo = new GameObject("ScrollView", typeof(RectTransform), typeof(Image), typeof(ScrollRect));
         scrollGo.transform.SetParent(listPanel.transform, false);
-        var scrollRt=scrollGo.GetComponent<RectTransform>(); scrollRt.anchorMin=scrollRt.anchorMax=scrollRt.pivot=new Vector2(.5f,.5f); scrollRt.anchoredPosition=new Vector2(0,-20); scrollRt.sizeDelta=new Vector2(480,700);
-        scrollGo.GetComponent<Image>().color=new Color(0,0,0,.12f);
-        var scroll=scrollGo.GetComponent<ScrollRect>(); scroll.horizontal=false; scroll.vertical=true; scroll.movementType=ScrollRect.MovementType.Clamped;
-        var viewport=Child(scrollGo.transform,"Viewport"); var vp=viewport.GetComponent<RectTransform>(); vp.anchorMin=Vector2.zero; vp.anchorMax=Vector2.one; vp.offsetMin=vp.offsetMax=Vector2.zero;
-        var vpImage=viewport.gameObject.AddComponent<Image>(); vpImage.color=Color.white; vpImage.raycastTarget=true; viewport.gameObject.AddComponent<Mask>().showMaskGraphic=false;
-        var content=Child(viewport,"Content"); var cr=content.GetComponent<RectTransform>(); cr.anchorMin=new Vector2(0,1); cr.anchorMax=new Vector2(1,1); cr.pivot=new Vector2(.5f,1); cr.anchoredPosition=Vector2.zero; cr.sizeDelta=new Vector2(0,600);
-        scroll.viewport=vp; scroll.content=cr;
+        var scrollRt = scrollGo.GetComponent<RectTransform>();
+        scrollRt.anchorMin = scrollRt.anchorMax = scrollRt.pivot = new Vector2(.5f, .5f);
+        scrollRt.anchoredPosition = new Vector2(0, -20);
+        scrollRt.sizeDelta = new Vector2(480, 700);
+        scrollGo.GetComponent<Image>().color = new Color(0, 0, 0, .12f);
 
-        var detail=Panel(overlay.transform,"DetailPanel",new Color(.07f,.11f,.13f,1),new Vector2(430,-10),new Vector2(1050,820));
-        var name=Label(detail.transform,"CharacterName","Select a Funguy",new Vector2(0,350),new Vector2(900,80),42,FontStyle.Bold);
-        var identity=Label(detail.transform,"Identity","",new Vector2(0,285),new Vector2(900,90),24,FontStyle.Normal);
-        var stats=Label(detail.transform,"Stats","",new Vector2(-210,40),new Vector2(430,360),24,FontStyle.Normal);
-        var gear=Label(detail.transform,"Equipment","",new Vector2(230,40),new Vector2(430,360),22,FontStyle.Normal);
-        var back=Button(detail.transform,"Back","Back",new Vector2(0,-350),new Vector2(460,80),Back);
-        var roster=root.AddComponent<FunguyRosterController>();
-        roster.Initialize(root,cr,name,identity,stats,gear,back);
+        var scroll = scrollGo.GetComponent<ScrollRect>();
+        scroll.horizontal = false;
+        scroll.vertical = true;
+        scroll.movementType = ScrollRect.MovementType.Clamped;
+        scroll.scrollSensitivity = 35f; // Ensures mouse wheel scrolling actually works
+
+        // 2. Explicitly Create Viewport (Replaced Mask + Image with RectMask2D)
+        var viewportObj = new GameObject("Viewport", typeof(RectTransform), typeof(RectMask2D));
+        viewportObj.transform.SetParent(scrollGo.transform, false);
+        var vp = viewportObj.GetComponent<RectTransform>();
+        vp.anchorMin = Vector2.zero; vp.anchorMax = Vector2.one;
+        vp.offsetMin = vp.offsetMax = Vector2.zero;
+
+        // 3. Explicitly Create Content
+        var contentObj = new GameObject("Content", typeof(RectTransform));
+        contentObj.transform.SetParent(viewportObj.transform, false);
+        var cr = contentObj.GetComponent<RectTransform>();
+        cr.anchorMin = new Vector2(0, 1); cr.anchorMax = new Vector2(1, 1);
+        cr.pivot = new Vector2(.5f, 1); cr.anchoredPosition = Vector2.zero;
+        cr.sizeDelta = new Vector2(0, 600); // Note: See scroll lock warning below
+
+        scroll.viewport = vp;
+        scroll.content = cr;
+
+        // 4. Setup Details Panel
+        var detail = Panel(overlay.transform, "DetailPanel", new Color(.07f, .11f, .13f, 1), new Vector2(430, -10), new Vector2(1050, 820));
+        var name = Label(detail.transform, "CharacterName", "Select a Funguy", new Vector2(0, 350), new Vector2(900, 80), 42, FontStyle.Bold);
+        var identity = Label(detail.transform, "Identity", "", new Vector2(0, 285), new Vector2(900, 90), 24, FontStyle.Normal);
+        var stats = Label(detail.transform, "Stats", "", new Vector2(-210, 40), new Vector2(430, 360), 24, FontStyle.Normal);
+        var gear = Label(detail.transform, "Equipment", "", new Vector2(230, 40), new Vector2(430, 360), 22, FontStyle.Normal);
+
+        // Assumes 'Back' is a valid static method in this class scope
+        var back = Button(detail.transform, "Back", "Back", new Vector2(0, -350), new Vector2(460, 80), Back);
+
+        var roster = root.AddComponent<FunguyRosterController>();
+        roster.Initialize(root, cr, name, identity, stats, gear, back);
         root.SetActive(false);
         controller.BindFunguyRoster(roster);
     }
