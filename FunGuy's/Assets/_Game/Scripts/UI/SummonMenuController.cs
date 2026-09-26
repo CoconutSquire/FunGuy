@@ -99,7 +99,7 @@ public class SummonMenuController : MonoBehaviour
             .Select(id => Game.Data.Characters.TryGetValue(id, out var c) ? $"{c.name} ({c.rarityTier})" : id)
             .ToList();
 
-        string prefix = usedTicket ? "Tutorial Mycelial Ticket used.\n" : string.Empty;
+        string prefix = usedTicket ? "Tutorial Basidiospore used.\n" : string.Empty;
         return $"{prefix}Pulled {pulledIds.Count}:\n{string.Join(", ", names)}";
     }
 
@@ -112,7 +112,7 @@ public class SummonMenuController : MonoBehaviour
 
         if (ticketsLabel != null)
         {
-            ticketsLabel.text = $"Mycelial Tickets: {Save.summonTickets}";
+            ticketsLabel.text = $"Basidiospores: {Save.summonTickets}";
         }
     }
 
