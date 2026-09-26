@@ -177,6 +177,47 @@ public static class RuntimeSceneUiBootstrap
         team.onClick.RemoveAllListeners();
         team.onClick.AddListener(controller.OnFunguyPressed);
         BuildFunguyRosterOverlay(scene, canvas);
+
+        // The authored Home scene still contains legacy UI objects. Some of those
+        // controls are nested under the authored HomeMenuController and can remain
+        // active even after the runtime menu is created, causing them to cover the
+        // runtime controls or intercept pointer events. Keep only the runtime menu
+        // interactive and visible above the authored background.
+        SanitizeHomeRuntimeUi(root);
+        Canvas.ForceUpdateCanvases();
+    }
+
+    private static void SanitizeHomeRuntimeUi(GameObject root)
+    {
+        if (root == null) return;
+
+        var runtimePanel = root.transform.Find("Panel_Main");
+        foreach (var button in root.GetComponentsInChildren<Button>(true))
+        {
+            if (button == null) continue;
+            var isRuntimeButton = runtimePanel != null && button.transform.IsChildOf(runtimePanel);
+            if (!isRuntimeButton)
+            {
+                button.gameObject.SetActive(false);
+                continue;
+            }
+
+            button.interactable = true;
+            button.enabled = true;
+            if (button.targetGraphic != null)
+                button.targetGraphic.raycastTarget = true;
+        }
+
+        // Non-button legacy Images can also intercept raycasts. Only the authored
+        // background and runtime menu need to remain as active Home visuals.
+        foreach (var image in root.GetComponentsInChildren<Image>(true))
+        {
+            if (image == null) continue;
+            var isBackground = image.gameObject.name == "Background";
+            var isRuntimePanel = runtimePanel != null && image.transform.IsChildOf(runtimePanel);
+            if (!isBackground && !isRuntimePanel && image.transform != root.transform)
+                image.raycastTarget = false;
+        }
     }
 
     private static void BuildFunguyRosterOverlay(Scene scene, Canvas canvas)
