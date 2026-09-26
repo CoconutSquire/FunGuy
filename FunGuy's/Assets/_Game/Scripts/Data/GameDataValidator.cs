@@ -97,7 +97,7 @@ public static class GameDataValidator
 
         foreach (var banner in banners.banners)
         {                      
-            Require(banner.currency == "spores" && banner.costPerPull > 0, $"Banner {banner.id}: unsupported currency/cost.");
+            Require(banner.currency == "summonTickets" && banner.costPerPull == 1, $"Banner {banner.id}: summons require exactly one Mycelial Ticket per pull.");
             Require(banner.rates != null && banner.rates.Count > 0, $"Banner {banner.id}: missing rates.");
             Require(banner.rates.All(r => r != null && FiniteNonnegative(r.rate)), $"Banner {banner.id}: invalid rate.");
             Require(banner.rates.Select(r => r.rarity).Distinct().Count() == banner.rates.Count && Math.Abs(banner.rates.Sum(r => r.rate) - 1f) < 0.0001f,
