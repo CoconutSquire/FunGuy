@@ -19,7 +19,14 @@ public class HomeMenuController : MonoBehaviour {
   private void Start() {
     Game.EnsureInitialized();
     var canvas = GetComponentInParent<Canvas>();
-    if (canvas != null) HomeScreenView.Build(canvas.transform, this);
+    if (canvas != null)
+    {
+      // HomeScreenView remains the owner of Home construction. Once it has built
+      // that UI, run the shared safe-area adapter so Home receives the same
+      // 1600x900 design-surface scaling as the other landscape scenes.
+      HomeScreenView.Build(canvas.transform, this);
+      LandscapeMenuLayout.Apply(SceneManager.GetActiveScene(), canvas);
+    }
     if (autoLaunchTutorialOnFirstOpen && !Save.tutorialCompleted && Save.tutorialStep <= 0) {
       SceneManager.LoadScene("Tutorial");
       return;
@@ -63,7 +70,10 @@ public class HomeMenuController : MonoBehaviour {
   }
 
   private void BuildIdlePanel() {
-    var host = transform.parent != null ? transform.parent : transform;
+    var canvas = GetComponentInParent<Canvas>();
+    var host = canvas != null
+      ? (canvas.transform.Find("HomeRuntimeUI") ?? canvas.transform)
+      : (transform.parent != null ? transform.parent : transform);
     if (host.Find("IdleGenerationPanel") != null) return;
 
     // Keep the idle widget compact and make the whole window the collection control.
