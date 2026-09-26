@@ -26,7 +26,11 @@ public static class HomeScreenView
         }
 
         var root = new GameObject("HomeRuntimeUI", typeof(RectTransform));
-        root.transform.SetParent(canvasRoot, false);
+        // LandscapeMenuLayout creates this safe-area content before Home starts.
+        // Reuse it so Home follows the same safe-area contract without a second
+        // layout system repositioning the screen later.
+        var safeContent = canvasRoot.Find("MenuSafeArea/Content");
+        root.transform.SetParent(safeContent != null ? safeContent : canvasRoot, false);
         var rootRect = root.GetComponent<RectTransform>();
         rootRect.anchorMin = Vector2.zero; rootRect.anchorMax = Vector2.one;
         rootRect.offsetMin = Vector2.zero; rootRect.offsetMax = Vector2.zero;
