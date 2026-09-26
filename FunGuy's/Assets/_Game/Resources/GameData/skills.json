@@ -2760,7 +2760,7 @@
       "description": "Links the entire enemy team together (sharing 100% of damage taken). Summons a massive black hole that deals catastrophic True Damage that hits all enemies",
       "target": "AllEnemies",
       "cooldown": 4,
-      "energyCost": 200,
+      "energyCost": 100,
       "effects": [
         {
           "type": "Damage",
