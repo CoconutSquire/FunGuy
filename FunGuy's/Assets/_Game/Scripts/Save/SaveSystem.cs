@@ -315,7 +315,7 @@ public static class SaveSystem
 
         if (save.version < 7)
         {
-            // Summons now use Mycelial Tickets instead of spores. Preserve the old
+            // Summons now use Basidiospores instead of spores. Preserve the old
             // tutorial ticket as the first normal summon ticket for existing saves.
             if (save.summonTickets <= 0 && save.tutorialTickets > 0) save.summonTickets = save.tutorialTickets;
             if (save.summonTickets <= 0) save.summonTickets = 1;
