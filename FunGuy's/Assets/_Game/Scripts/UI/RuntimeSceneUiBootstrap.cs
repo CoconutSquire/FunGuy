@@ -110,12 +110,12 @@ public static class RuntimeSceneUiBootstrap
             40, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         SetRect(bannerLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 610f), new Vector2(840f, 120f));
 
-        var sporesLabel = EnsureLabel(shell.transform, "Lbl_Spores", "Mycelial Tickets: 1",
+        var sporesLabel = EnsureLabel(shell.transform, "Lbl_Spores", "Basidiospores: 1",
             30, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(sporesLabel.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0f, 520f), new Vector2(840f, 90f));
 
-        var pullOne = EnsureButton(shell.transform, "Btn_PullOne", "Summon x1  ·  1 Ticket", new Vector2(0f, 350f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullOneLabel);
-        var pullTen = EnsureButton(shell.transform, "Btn_PullTen", "Summon x10  ·  10 Tickets", new Vector2(0f, 220f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullTenLabel);
+        var pullOne = EnsureButton(shell.transform, "Btn_PullOne", "Summon x1  ·  1 Basidiospore", new Vector2(0f, 350f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullOneLabel);
+        var pullTen = EnsureButton(shell.transform, "Btn_PullTen", "Summon x10  ·  10 Basidiospores", new Vector2(0f, 220f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var pullTenLabel);
         var back = EnsureButton(shell.transform, "Btn_Back", "Back", new Vector2(0f, 90f), new Vector2(540f, 108f), IdleHuntressTheme.AccentFor(UiTone.Summon), out var backLabel);
 
         var result = EnsureLabel(shell.transform, "Lbl_Result",
