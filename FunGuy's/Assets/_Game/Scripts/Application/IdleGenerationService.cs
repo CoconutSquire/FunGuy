@@ -128,7 +128,9 @@ public sealed class IdleGenerationService
     private int CampaignDepth(PlayerSave save)
     {
         if (data?.Stages == null || data.Stages.Count == 0) return save.clearedStages?.Count ?? 0;
-        var stages = data.Stages.Values.OrderBy(s => s.order).ToList();
+        // Orders restart at 1 for every chapter. Idle progression must therefore
+        // use the same chapter-aware ordering as campaign unlocks.
+        var stages = data.Stages.Values.OrderBy(s => s.chapter).ThenBy(s => s.order).ToList();
         int depth = 0;
         foreach (var stage in stages)
         {
