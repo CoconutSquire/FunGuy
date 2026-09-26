@@ -33,7 +33,13 @@ public static class CombatEffectRules
     public static bool IsDot(string name) => Equals(name, "Poison") || Equals(name, "Burn") || Equals(name, "Bleed");
     public static bool Equals(string a, string b) => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
     public static bool Has(CombatUnit u, string name) => u.statuses.Any(s => Equals(s.status, name));
-    public static float Amount(CombatUnit u, string name) => u.statuses.Where(s => Equals(s.status, name)).Sum(s => s.potency * Math.Max(1, s.stacks));
+    public static float Amount(CombatUnit u, string name)
+    {
+        float amount = u.statuses.Where(s => Equals(s.status, name)).Sum(s => s.potency * Math.Max(1, s.stacks));
+        if (amount > 0f) return amount;
+        if (Equals(name, "Vulnerability") && Has(u, "Vulnerability")) return KeywordRules.VulnerabilityDamageTakenBonus;
+        return amount;
+    }
     public static EffectDef Clone(EffectDef e) => new() { type = e.type, scale = e.scale, status = e.status,
         chance = e.chance, duration = e.duration, potency = e.potency, target = e.target, stat = e.stat,
         ignoreDefense = e.ignoreDefense, ignoreShield = e.ignoreShield, sureHit = e.sureHit, slot = e.slot };
