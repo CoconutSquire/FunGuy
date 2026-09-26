@@ -7,6 +7,15 @@ public static class UpgradePanelView
 {
     public static UpgradePanelController Create(Transform parent, Action onClosed)
     {
+        if (parent == null) return null;
+
+        // Team UI is rebuilt defensively when the scene bootstrap runs again.
+        // Reuse the existing workshop controller instead of creating a second
+        // overlay and a second set of button listeners.
+        var existing = parent.GetComponentInChildren<UpgradePanelController>(true);
+        if (existing != null)
+            return existing;
+
         var gold = new Color(1, .82f, .42f);
         var foreground = new Color(.96f, .93f, .83f);
         var background = new Color(.08f, .12f, .10f, 1);
