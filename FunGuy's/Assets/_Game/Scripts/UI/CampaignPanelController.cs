@@ -9,7 +9,7 @@ public sealed class CampaignPanelController : MonoBehaviour
 {
     private Text details;
     private Button enter;
-    private Dropdown chapterDropdown;
+    private readonly Dictionary<int, Button> chapterButtons = new();
     private string selected;
     private int selectedChapter;
     private readonly Dictionary<string, Button> buttons = new();
@@ -63,21 +63,9 @@ public sealed class CampaignPanelController : MonoBehaviour
         }
 
         Label("CampaignTitle", "CAMPAIGN", 0, 368, 1440, 65, 38);
-        Label("ChapterLabel", "CHAPTER", -390, 300, 260, 45, 24);
-
-        var chapterObject = new GameObject("ChapterDropdown", typeof(RectTransform), typeof(Image), typeof(Dropdown));
-        chapterObject.transform.SetParent(root.transform, false);
-        var chapterRect = (RectTransform)chapterObject.transform;
-        chapterRect.anchoredPosition = new(-80, 300);
-        chapterRect.sizeDelta = new(520, 58);
-        var chapterImage = chapterObject.GetComponent<Image>();
-        chapterImage.color = new(.22f, .32f, .23f);
-        view.chapterDropdown = chapterObject.GetComponent<Dropdown>();
-        view.chapterDropdown.targetGraphic = chapterImage;
-        view.chapterDropdown.onValueChanged.AddListener(index => view.SelectChapterByIndex(index));
-
-        Label("StageLabel", "STAGES", -390, 250, 650, 40, 24);
-        Label("StageHint", "Select a chapter above, then choose one of its stages.", -390, 218, 650, 35, 18);
+        Label("ChapterLabel", "CHAPTERS", -660, 300, 260, 45, 24);
+        Label("StageLabel", "STAGES", -660, 250, 650, 40, 24);
+        Label("StageHint", "Select a chapter above, then choose one of its stages.", -660, 218, 650, 35, 18);
 
         var stages = Game.Data.Stages.Values
             .OrderBy(s => s.chapter)
@@ -89,10 +77,23 @@ public sealed class CampaignPanelController : MonoBehaviour
             .OrderBy(g => g.Key)
             .ToArray();
 
-        view.chapterDropdown.ClearOptions();
-        view.chapterDropdown.AddOptions(chapters
-            .Select(g => g.First().chapterName ?? $"Chapter {g.Key}")
-            .ToList());
+        const float chapterStartX = -470f;
+        const float chapterWidth = 300f;
+        const float chapterGap = 12f;
+        for (int i = 0; i < chapters.Length; i++)
+        {
+            var chapter = chapters[i];
+            int chapterNumber = chapter.Key;
+            var chapterButton = Button(
+                "Btn_CampaignChapter" + chapterNumber,
+                chapter.First().chapterName ?? $"Chapter {chapterNumber}",
+                chapterStartX + i * (chapterWidth + chapterGap),
+                300,
+                chapterWidth,
+                58);
+            chapterButton.onClick.AddListener(() => view.SelectChapter(chapterNumber));
+            view.chapterButtons.Add(chapterNumber, chapterButton);
+        }
 
         for (int n = 0; n < stages.Length; n++)
         {
@@ -138,42 +139,24 @@ public sealed class CampaignPanelController : MonoBehaviour
 
         selected = preferred;
         selectedChapter = Game.Data.Stages[selected].chapter;
-        SetChapterDropdown();
         Refresh();
     }
 
-    private void SelectChapterByIndex(int index)
+    private void SelectChapter(int chapterNumber)
     {
-        var chapters = Game.Data.Stages.Values
-            .GroupBy(s => s.chapter)
-            .OrderBy(g => g.Key)
-            .ToArray();
-
-        if (index < 0 || index >= chapters.Length) return;
-
-        selectedChapter = chapters[index].Key;
-
-        var currentChapterStage = chapters[index]
+        var chapterStages = Game.Data.Stages.Values
+            .Where(s => s.chapter == chapterNumber)
             .OrderBy(s => s.order)
-            .FirstOrDefault(s => Game.Campaign.IsUnlocked(s.id) &&
-                                 !Game.Save.clearedStages.Contains(s.id))
-            ?? chapters[index].OrderBy(s => s.order).First();
-
-        selected = currentChapterStage.id;
-        Refresh();
-    }
-
-    private void SetChapterDropdown()
-    {
-        if (chapterDropdown == null) return;
-
-        var chapters = Game.Data.Stages.Values
-            .GroupBy(s => s.chapter)
-            .OrderBy(g => g.Key)
             .ToArray();
 
-        int index = System.Array.FindIndex(chapters, g => g.Key == selectedChapter);
-        if (index >= 0) chapterDropdown.SetValueWithoutNotify(index);
+        if (chapterStages.Length == 0) return;
+
+        selectedChapter = chapterNumber;
+        selected = chapterStages
+            .FirstOrDefault(s => Game.Campaign.IsUnlocked(s.id) &&
+                                 !Game.Save.clearedStages.Contains(s.id))?.id
+            ?? chapterStages.First().id;
+        Refresh();
     }
 
     private void Refresh()
@@ -192,6 +175,15 @@ public sealed class CampaignPanelController : MonoBehaviour
         const float cellHeight = 62f;
         const float gapX = 10f;
         const float gapY = 8f;
+
+        foreach (var chapterPair in chapterButtons)
+        {
+            bool active = chapterPair.Key == selectedChapter;
+            chapterPair.Value.interactable = true;
+            chapterPair.Value.GetComponent<Image>().color = active
+                ? new(.32f, .48f, .30f)
+                : new(.22f, .32f, .23f);
+        }
 
         var visibleIds = new HashSet<string>(chapterStages.Select(s => s.id));
         foreach (var pair in buttons)
