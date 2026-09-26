@@ -12,8 +12,13 @@ public class HomeMenuController : MonoBehaviour {
   private PlayerSave Save => Game.Save ??= SaveSystem.LoadOrNew();
   private Text idleLabel;
   private Button idleClaimButton;
+  private Text homeStatsLabel;
+  private Text homeHintLabel;
+  private FunguyRosterController funguyRoster;
 
   private void Start() {
+    var canvas = GetComponentInParent<Canvas>();
+    if (canvas != null) HomeScreenView.Build(canvas.transform, this);
     if (autoLaunchTutorialOnFirstOpen && !Save.tutorialCompleted && Save.tutorialStep <= 0) {
       SceneManager.LoadScene("Tutorial");
       return;
@@ -35,10 +40,14 @@ public class HomeMenuController : MonoBehaviour {
         OnFunguyPressed();
     }
         
-  public void OnFunguyPressed() { FindFirstObjectByType<FunguyRosterController>()?.Open(); }
+  public void OnFunguyPressed() { funguyRoster?.Open(); }
 
     public void OnBattlePressed() { if (OpenCampaign != null) OpenCampaign(); else SceneManager.LoadScene("Battle"); }
   public void OnOptionsPressed() { SceneManager.LoadScene("Options"); }
+
+  public void BindHomeView(Text stats, Text hint) { homeStatsLabel = stats; homeHintLabel = hint; RefreshHomeStats(); }
+
+  public void BindFunguyRoster(FunguyRosterController roster) { funguyRoster = roster; }
 
   private void RefreshHomeStats() {
     if (welcomeLabel != null) {
@@ -46,13 +55,17 @@ public class HomeMenuController : MonoBehaviour {
         ? "Welcome back, Commander."
         : "Welcome, new Commander. Begin onboarding to claim your first unit.";
     }
-    if (accountStatsLabel != null) accountStatsLabel.text = $"Lv.{Save.accountLevel}  Gold:{Save.gold}  Spores:{Save.spores}";
+    var stats = $"Lv.{Save.accountLevel}  Gold:{Save.gold}  Spores:{Save.spores}";
+    if (accountStatsLabel != null) accountStatsLabel.text = stats;
+    if (homeStatsLabel != null) homeStatsLabel.text = stats;
+    if (homeHintLabel != null) homeHintLabel.text = Save.tutorialCompleted ? "Choose an activity to continue." : "Start will continue your onboarding.";
   }
 
   private void BuildIdlePanel() {
-    if (transform.Find("IdleGenerationPanel") != null) return;
+    var host = transform.parent != null ? transform.parent : transform;
+    if (host.Find("IdleGenerationPanel") != null) return;
     var panelGo = new GameObject("IdleGenerationPanel", typeof(RectTransform), typeof(Image));
-    panelGo.transform.SetParent(transform, false);
+    panelGo.transform.SetParent(host, false);
     var panel = panelGo.GetComponent<Image>();
     panel.color = new Color(.08f, .12f, .16f, .98f);
     var panelRect = panelGo.GetComponent<RectTransform>();
