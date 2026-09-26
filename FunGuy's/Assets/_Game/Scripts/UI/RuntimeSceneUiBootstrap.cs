@@ -93,55 +93,6 @@ public static class RuntimeSceneUiBootstrap
         begin.onClick.AddListener(() => TutorialManager.EnsureInstance().ContinueTutorial());
     }
 
-    private static void BuildFunguyRosterOverlay(Scene scene, Canvas canvas)
-    {
-        var root = EnsureSceneRoot(scene, canvas.transform, "FunguyRosterRoot");
-        var overlay = EnsurePanel(root.transform, "FunguyRosterOverlay", new Color(.035f,.055f,.065f,.97f),
-            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        var controller = EnsureSceneComponent<FunguyRosterController>(scene, root.transform);
-        var title = EnsureLabel(overlay.transform, "Title", "FUNGUY", 44, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
-        SetRect(title.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0, 430), new Vector2(1600, 90));
-        var listPanel = EnsurePanel(overlay.transform, "RosterPanel", new Color(.07f,.11f,.13f,1f), CenterAnchor, CenterAnchor, new Vector2(-560,-10), new Vector2(520,820));
-        var listHeader = EnsureLabel(listPanel.transform, "RosterHeader", "CHARACTERS", 26, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(listHeader.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0,370), new Vector2(460,60));
-
-        var scrollGo = EnsureChild(listPanel.transform, "ScrollView");
-        var scrollRectTransform = EnsureRectTransform(scrollGo);
-        SetRect(scrollRectTransform, CenterAnchor, CenterAnchor, new Vector2(0,-20), new Vector2(480,700));
-        var scrollImage = EnsureComponent<Image>(scrollGo); scrollImage.color = new Color(0,0,0,.12f); scrollImage.raycastTarget = true;
-        var scroll = EnsureComponent<ScrollRect>(scrollGo); scroll.horizontal = false; scroll.vertical = true; scroll.movementType = ScrollRect.MovementType.Clamped; scroll.inertia = true; scroll.scrollSensitivity = 35f;
-        var viewport = EnsureChild(scrollGo, "Viewport");
-        var viewportRt = EnsureRectTransform(viewport); viewportRt.anchorMin = Vector2.zero; viewportRt.anchorMax = Vector2.one; viewportRt.offsetMin = Vector2.zero; viewportRt.offsetMax = Vector2.zero;
-        var maskImage = EnsureComponent<Image>(viewport); maskImage.color = new Color(1,1,1,1); maskImage.raycastTarget = true;
-        var mask = EnsureComponent<Mask>(viewport); mask.showMaskGraphic = false;
-        var contentGo = EnsureChild(viewport, "Content");
-        var contentRt = EnsureRectTransform(contentGo); contentRt.anchorMin = new Vector2(0,1); contentRt.anchorMax = new Vector2(1,1); contentRt.pivot = new Vector2(.5f,1); contentRt.anchoredPosition = Vector2.zero; contentRt.sizeDelta = new Vector2(0,600);
-        scroll.viewport = viewportRt; scroll.content = contentRt;
-
-        var detail = EnsurePanel(overlay.transform, "DetailPanel", new Color(.07f,.11f,.13f,1f), CenterAnchor, CenterAnchor, new Vector2(430,-10), new Vector2(1050,820));
-        var name = EnsureLabel(detail.transform, "CharacterName", "Select a Funguy", 42, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
-        SetRect(name.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0,350), new Vector2(900,80));
-        var identity = EnsureLabel(detail.transform, "Identity", "", 24, FontStyle.Normal, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(identity.rectTransform, CenterAnchor, CenterAnchor, new Vector2(0,270), new Vector2(900,100));
-        var statsHeader = EnsureLabel(detail.transform, "StatsHeader", "STATS", 25, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(statsHeader.rectTransform, CenterAnchor, CenterAnchor, new Vector2(-250,160), new Vector2(380,60));
-        var stats = EnsureLabel(detail.transform, "Stats", "", 26, FontStyle.Normal, TextAnchor.MiddleLeft, Color.white);
-        SetRect(stats.rectTransform, CenterAnchor, CenterAnchor, new Vector2(-250,-30), new Vector2(380,350));
-        var gearHeader = EnsureLabel(detail.transform, "EquipmentHeader", "EQUIPMENT", 25, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
-        SetRect(gearHeader.rectTransform, CenterAnchor, CenterAnchor, new Vector2(260,160), new Vector2(480,60));
-        var equipment = EnsureLabel(detail.transform, "Equipment", "", 22, FontStyle.Normal, TextAnchor.MiddleLeft, Color.white);
-        SetRect(equipment.rectTransform, CenterAnchor, CenterAnchor, new Vector2(260,-30), new Vector2(480,350));
-        var back = EnsureButton(overlay.transform, "Back", "Back", new Vector2(0,-445), new Vector2(440,80), new Color(.28f,.32f,.35f,1f), out var backLabel);
-        backLabel.color = Color.white;
-        controller.Initialize(overlay, contentRt, name, identity, stats, equipment, back);
-        overlay.SetActive(false);
-    }
-
-    private static GameObject EnsureChild(GameObject scrollGo, string v)
-    {
-        throw new NotImplementedException();
-    }
-
     private static void EnsureSummonScene(Scene scene, Canvas canvas)
     {
         var root = EnsureSceneRoot(scene, canvas.transform, "SummonRoot");
