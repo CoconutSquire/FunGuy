@@ -8,7 +8,7 @@ public static class GameDataValidator
     public static void Validate(CharactersFile characters, SkillsFile skills, StagesFile stages, BannersFile banners, StatRulesCatalog statRules = null)
     {
         Require(characters != null && skills != null && stages != null && banners != null, "Missing content file.");
-        Require(stages.schemaVersion == 2, "stages.json requires schemaVersion 2 and wave objects with enemies lists.");
+        Require(stages.schemaVersion == 1, "stages.json requires schemaVersion 1 and wave objects with enemies lists.");
         var characterIds = Ids(characters.characters, x => x.id, "characters");
         var skillIds = Ids(skills.skills, x => x.id, "skills");
         Ids(stages.stages, x => x.id, "stages");
