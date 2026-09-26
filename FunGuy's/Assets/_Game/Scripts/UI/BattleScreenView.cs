@@ -92,6 +92,8 @@ public sealed class BattleScreenView : MonoBehaviour
             keywordVisuals?.Apply(e.Target, e.Detail, fighters);
         if (e.Kind == BattleEventKind.StatusExpired && e.Target != null)
             keywordVisuals?.Remove(e.Target.InstanceId, KeywordVisualLibrary.StatusNameFromEvent(e.Detail));
+        if (e.Kind == BattleEventKind.UnitDied && e.Target != null)
+            keywordVisuals?.ClearFighter(e.Target.InstanceId);
         if (e.Kind == BattleEventKind.Redirected && e.Target != null) feedLabel.text = e.Target.Name + " protects an ally";
         if (e.Kind == BattleEventKind.ActionSkipped && e.Target != null) feedLabel.text = e.Target.Name + " cannot act";
     }
