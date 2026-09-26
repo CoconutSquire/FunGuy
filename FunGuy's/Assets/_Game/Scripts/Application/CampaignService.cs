@@ -109,6 +109,7 @@ public sealed class LocalCampaignService : ICampaignService
                 save.gold += reward.gold;
                 save.spores += reward.spores;
                 save.accountXp += reward.accountXp;
+                if (boss) save.summonTickets += 5;
             }
             save.clearedStages.Add(stageId);
             if (Game.Equipment != null) {
