@@ -58,7 +58,7 @@ public static class RuntimeSceneUiBootstrap
 
         // Both the sceneLoaded event and the first-scene callback can legitimately
         // reach this method. Build each scene exactly once per play session.
-        if (!_builtSceneHandles.Add(scene.handle)) return;
+        if (_builtSceneHandles.Contains(scene.handle)) return;
 
         try
         {
@@ -117,6 +117,8 @@ public static class RuntimeSceneUiBootstrap
                         $"RuntimeSceneUiBootstrap failed to bind UI references in scene '{scene.name}'.", ex));
                 }
             }
+
+            _builtSceneHandles.Add(scene.handle);
         }
         catch (Exception ex)
         {
