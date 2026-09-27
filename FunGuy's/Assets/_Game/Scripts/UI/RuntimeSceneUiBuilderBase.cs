@@ -9,8 +9,9 @@ public abstract class RuntimeSceneUiBuilderBase
 {
     protected static readonly Vector2 CenterAnchor = new(0.5f, 0.5f);
     protected static readonly Color SoftWhite = new(0.92f, 0.92f, 0.92f, 1f);
+    private static object _cachedFont;
 
-protected static GameObject EnsureSceneRoot(Scene scene, Transform canvas, string rootName)
+    protected static GameObject EnsureSceneRoot(Scene scene, Transform canvas, string rootName)
     {
         var root = EnsureChild(canvas, rootName);
         root.SetActive(true);
@@ -308,7 +309,7 @@ protected static T EnsureComponent<T>(GameObject go) where T : Component
 
 protected static Font ResolveFont()
     {
-        if (_cachedFont != null) return _cachedFont;
+        if (_cachedFont != null) return (Font)_cachedFont;
 
         _cachedFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (_cachedFont == null)
@@ -316,7 +317,7 @@ protected static Font ResolveFont()
             _cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
         }
 
-        return _cachedFont;
+        return (Font)_cachedFont;
     }
 
 protected static Color WithAlpha(Color color, float alpha)

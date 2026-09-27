@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -86,25 +87,35 @@ private static Canvas EnsureCanvas(Scene scene)
         return canvas;
     }
 
-private static void ConfigureLandscapeCanvas(Canvas canvas)
+    private static void ConfigureLandscapeCanvas(Canvas canvas)
     {
         if (canvas == null) return;
         canvas.gameObject.SetActive(true);
         canvas.enabled = true;
-        // Some authored scenes have a zero-scale Canvas. That makes every runtime
-        // control effectively invisible/non-interactable even though the hierarchy
-        // and EventSystem are present. Normalize the Canvas before building the UI.
+
+        // Normalize canvas scale and position
         canvas.transform.localScale = Vector3.one;
         canvas.transform.localPosition = Vector3.zero;
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-        var scaler = EnsureComponent<CanvasScaler>(canvas.gameObject);
+        // Get existing CanvasScaler or add one if missing
+        var scaler = canvas.GetComponent<CanvasScaler>();
+        if (scaler == null)
+        {
+            scaler = canvas.gameObject.AddComponent<CanvasScaler>();
+        }
+
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1600, 900);
-        scaler.matchWidthOrHeight = 1;
+        scaler.matchWidthOrHeight = 1f;
     }
 
-private static void EnsureEventSystem(Scene scene)
+    private static object EnsureComponent<T>(GameObject gameObject)
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void EnsureEventSystem(Scene scene)
     {
         var existing = FindInScene<EventSystem>(scene).FirstOrDefault();
         if (existing != null)
