@@ -11,7 +11,6 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         if (canvas == null) return;
 
         var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
-        var overlay = EnsureHomeOverlayCanvas(root.transform);
 
         // Reuse the authored HomeMenuController when one already exists. The
         // authored scene currently contains one, and creating a second controller
@@ -42,6 +41,7 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         // A partial/legacy build is unsafe: remove only generated children and
         // reconstruct the complete menu as one hierarchy.
         ClearGeneratedHomeChildren(root.transform, controller);
+        var overlay = EnsureHomeOverlayCanvas(root.transform);
 
         // The old working Home was a runtime navigation menu: five clear,
         // colored buttons over the full-screen Home artwork. Make that layout
