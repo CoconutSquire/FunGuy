@@ -106,7 +106,7 @@ private static void ConfigureLandscapeCanvas(Canvas canvas)
 
 private static void EnsureEventSystem(Scene scene)
     {
-        var existing = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
+        var existing = FindInScene<EventSystem>(scene).FirstOrDefault();
         if (existing != null)
         {
             existing.gameObject.SetActive(true);
