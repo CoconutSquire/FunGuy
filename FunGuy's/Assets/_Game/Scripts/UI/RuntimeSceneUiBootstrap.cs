@@ -352,8 +352,15 @@ public static class RuntimeSceneUiBootstrap
         var choiceHeader = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentChoices", "AVAILABLE EQUIPMENT",
             22, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(choiceHeader.rectTransform, CenterAnchor, CenterAnchor, new Vector2(-290, 300), new Vector2(250, 55));
-        var choiceButtons=new Button[4]; var choiceLabels=new Text[4];
-        for(int i=0;i<4;i++){ var b=EnsureButton(equipmentCard.transform,$"Btn_EquipmentChoice{i+1}","Equipment",new Vector2(-290,210-i*125),new Vector2(250,105),new Color(.10f,.25f,.34f,1f),out var l); l.fontSize=17; choiceButtons[i]=b; choiceLabels[i]=l; }
+        var choiceDropdowns=new Dropdown[4];
+        for(int i=0;i<4;i++){
+            var dropdown=EnsureDropdown(equipmentCard.transform,$"Dropdown_EquipmentChoice{i+1}",
+                $"{EquipmentService.Slots[i].ToUpperInvariant()} • No equipment available",
+                new Vector2(-290,210-i*125),new Vector2(250,105),
+                new Color(.10f,.25f,.34f,1f),out var dropdownLabel);
+            dropdownLabel.fontSize=17;
+            choiceDropdowns[i]=dropdown;
+        }
 
         var centerHeader = EnsureLabel(equipmentCard.transform, "Lbl_EquipmentSlots", "EQUIPMENT SLOTS",
             22, FontStyle.Bold, TextAnchor.MiddleCenter, SoftWhite);
@@ -394,14 +401,13 @@ public static class RuntimeSceneUiBootstrap
         var equipmentBack=EnsureButton(equipmentCard.transform,"Btn_EquipmentBack","Back to Formation",
             new Vector2(-190,-390),new Vector2(300,80),new Color(.28f,.34f,.39f,1f),out var equipmentBackLabel);
 
-        choiceLabels.ToList().ForEach(x => x.color = Color.white);
         gearLabels.ToList().ForEach(x => x.color = Color.white);
         equipmentUpgradeLabel.color = Color.white;
         equipmentBackLabel.color = Color.white;
         var equipmentController=EnsureSceneComponent<EquipmentPanelController>(scene,equipmentRoot.transform);
-        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentIdentity,statsLabel,equipmentDetails,characterContentRt,choiceButtons,choiceLabels,gearButtons,gearLabels,equipmentUpgrade,equipmentUpgradeLabel,equipmentBack);
+        equipmentController.Initialize(equipmentRoot,equipmentCharacter,equipmentIdentity,statsLabel,equipmentDetails,characterContentRt,choiceDropdowns,gearButtons,gearLabels,equipmentUpgrade,equipmentUpgradeLabel,equipmentBack);
         equipmentUpgrade.onClick.AddListener(equipmentController.UpgradeSelectedEquipment);
-        for(int i=0;i<4;i++){ int index=i; gearButtons[i].onClick.AddListener(()=>equipmentController.EquipFromSlot(index)); choiceButtons[i].onClick.AddListener(()=>equipmentController.EquipChoice(index)); }
+        for(int i=0;i<4;i++){ int index=i; gearButtons[i].onClick.AddListener(()=>equipmentController.EquipFromSlot(index)); }
         equipmentBack.onClick.AddListener(equipmentController.BackToFormation);
         equipmentRoot.SetActive(false);
         equipmentButton.onClick.RemoveAllListeners();
@@ -670,6 +676,95 @@ public static class RuntimeSceneUiBootstrap
         image.color = color;
         image.raycastTarget = false;
         return go;
+    }
+
+    private static Dropdown EnsureDropdown(
+        Transform parent,
+        string name,
+        string label,
+        Vector2 anchoredPosition,
+        Vector2 sizeDelta,
+        Color color,
+        out Text labelText)
+    {
+        var go = EnsureChild(parent, name);
+        var rt = EnsureRectTransform(go);
+        SetRect(rt, CenterAnchor, CenterAnchor, anchoredPosition, sizeDelta);
+
+        var image = EnsureComponent<Image>(go);
+        image.color = color;
+        image.raycastTarget = true;
+
+        var dropdown = EnsureComponent<Dropdown>(go);
+        dropdown.targetGraphic = image;
+        dropdown.options.Clear();
+
+        labelText = EnsureLabel(go.transform, "Label", label, 22, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+        StretchToParent(labelText.rectTransform);
+        labelText.rectTransform.offsetMin = new Vector2(14f, 0f);
+        labelText.rectTransform.offsetMax = new Vector2(-14f, 0f);
+
+        var template = EnsureChild(go.transform, "Template");
+        var templateRt = EnsureRectTransform(template);
+        templateRt.anchorMin = new Vector2(0f, 0f);
+        templateRt.anchorMax = new Vector2(1f, 0f);
+        templateRt.pivot = new Vector2(.5f, 1f);
+        templateRt.anchoredPosition = Vector2.zero;
+        templateRt.sizeDelta = new Vector2(0f, 320f);
+
+        var templateImage = EnsureComponent<Image>(template);
+        templateImage.color = new Color(.07f,.11f,.14f,.98f);
+        var scroll = EnsureComponent<ScrollRect>(template);
+        scroll.horizontal = false;
+        scroll.vertical = true;
+        scroll.movementType = ScrollRect.MovementType.Clamped;
+
+        var viewport = EnsureChild(template.transform, "Viewport");
+        var viewportRt = EnsureRectTransform(viewport);
+        StretchToParent(viewportRt);
+        var mask = EnsureComponent<Mask>(viewport);
+        mask.showMaskGraphic = false;
+        EnsureComponent<Image>(viewport).color = Color.white;
+
+        var content = EnsureChild(viewport.transform, "Content");
+        var contentRt = EnsureRectTransform(content);
+        contentRt.anchorMin = new Vector2(0f, 1f);
+        contentRt.anchorMax = new Vector2(1f, 1f);
+        contentRt.pivot = new Vector2(.5f, 1f);
+        contentRt.anchoredPosition = Vector2.zero;
+        contentRt.sizeDelta = new Vector2(0f, 0f);
+        var layout = EnsureComponent<VerticalLayoutGroup>(content);
+        layout.childAlignment = TextAnchor.UpperCenter;
+        layout.childControlWidth = true;
+        layout.childControlHeight = false;
+        layout.childForceExpandWidth = true;
+        layout.childForceExpandHeight = false;
+        layout.spacing = 2f;
+        var fitter = EnsureComponent<ContentSizeFitter>(content);
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        scroll.viewport = viewportRt;
+        scroll.content = contentRt;
+
+        var item = EnsureChild(content.transform, "Item");
+        var itemRt = EnsureRectTransform(item);
+        itemRt.anchorMin = new Vector2(0f, 1f);
+        itemRt.anchorMax = new Vector2(1f, 1f);
+        itemRt.pivot = new Vector2(.5f, 1f);
+        itemRt.anchoredPosition = Vector2.zero;
+        itemRt.sizeDelta = new Vector2(0f, 64f);
+        var itemImage = EnsureComponent<Image>(item);
+        itemImage.color = new Color(.12f,.25f,.32f,1f);
+        var toggle = EnsureComponent<Toggle>(item);
+        toggle.targetGraphic = itemImage;
+        var itemLabel = EnsureLabel(item.transform, "Item Label", "Equipment", 20, FontStyle.Normal, TextAnchor.MiddleLeft, Color.white);
+        itemLabel.rectTransform.offsetMin = new Vector2(16f, 0f);
+        itemLabel.rectTransform.offsetMax = new Vector2(-16f, 0f);
+
+        dropdown.template = templateRt;
+        dropdown.captionText = labelText;
+        dropdown.itemText = itemLabel;
+        template.SetActive(false);
+        return dropdown;
     }
 
     private static Button EnsureButton(
