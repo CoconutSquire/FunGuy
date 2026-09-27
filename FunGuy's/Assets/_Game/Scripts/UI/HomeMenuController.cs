@@ -63,7 +63,7 @@ public class HomeMenuController : MonoBehaviour {
   private void BuildIdlePanel() {
     var canvas = GetComponentInParent<Canvas>();
     var host = canvas != null
-      ? (canvas.transform.Find("HomeRuntimeUI") ?? canvas.transform)
+      ? (canvas.transform.Find("MenuSafeArea/Content/HomeRoot/HomeRuntimeUI") ?? canvas.transform.Find("MenuSafeArea/Content/HomeRoot") ?? canvas.transform)
       : (transform.parent != null ? transform.parent : transform);
     if (host.Find("IdleGenerationPanel") != null) return;
 
