@@ -46,10 +46,10 @@ public partial class GameData {
       c.passives ??= new List<PassiveDef>();
       NormalizePassives(c.passives);
       if (!string.IsNullOrEmpty(c.statProfileId) || !string.IsNullOrEmpty(c.statModel)) continue; // Authored content is explicit and validated.
-      if (c.baseStats == null) c.baseStats = new StatBlock();
-      if (c.growth == null) c.growth = new StatGrowth();
-      if (c.skills == null) c.skills = new SkillRefs();
-      if (c.synergyTags == null) c.synergyTags = new List<string>();
+      c.baseStats ??= new StatBlock();
+      c.growth ??= new StatGrowth();
+      c.skills ??= new SkillRefs();
+      c.synergyTags ??= new List<string>();
 
       c.element ??= c.biome;
       c.biome = string.IsNullOrWhiteSpace(c.biome) ? MapElementToBiome(c.element) : c.biome;
@@ -68,8 +68,8 @@ public partial class GameData {
     foreach (var e in enemies) {
       e.passives ??= new List<PassiveDef>();
       NormalizePassives(e.passives);
-      if (e.baseStats == null) e.baseStats = new StatBlock();
-      if (e.skills == null) e.skills = new SkillRefs();
+      e.baseStats ??= new StatBlock();
+      e.skills ??= new SkillRefs();
       if (e.baseStats.pot <= 0) e.baseStats.pot = Math.Max(1, e.baseStats.atk);
       e.biome = string.IsNullOrWhiteSpace(e.biome) ? "Kitchen" : e.biome;
       e.classArchetype ??= "Enemy";
@@ -81,7 +81,7 @@ public partial class GameData {
     if (skills == null) return;
 
     foreach (var s in skills) {
-      if (s.effects == null) s.effects = new List<EffectDef>();
+      s.effects ??= new List<EffectDef>();
       foreach (var effect in s.effects) NormalizeEffect(effect);
       if (s.energyCost <= 0) s.energyCost = s.cooldown > 0 ? 100 : 0;
       if (s.cooldown < 0) s.cooldown = 0;
@@ -111,9 +111,9 @@ public partial class GameData {
 
     foreach (var b in banners) {
       b.bannerType ??= "standard_character";
-      if (b.rates == null) b.rates = new List<RateEntry>();
-      if (b.pity == null) b.pity = new PityDef();
-      if (b.featuredCharacterIds == null) b.featuredCharacterIds = new List<string>();
+      b.rates ??= new List<RateEntry>();
+      b.pity ??= new PityDef();
+      b.featuredCharacterIds ??= new List<string>();
       if (b.featuredRateUp <= 0f) b.featuredRateUp = 0.5f;
 
       if (b.pity.guaranteeRarity <= 0) b.pity.guaranteeRarity = 5;
@@ -135,7 +135,7 @@ public partial class GameData {
 
       if (Math.Abs(total - 1f) > 0.0001f) {
         foreach (var entry in b.rates) {
-          entry.rate = entry.rate / total;
+          entry.rate /= total;
         }
       }
     }
