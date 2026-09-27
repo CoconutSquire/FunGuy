@@ -82,9 +82,20 @@ public static class LandscapeMenuLayout
 
     private static RectTransform SafeContent(Transform parent, string name)
     {
-        var existing = parent.Find(name); if (existing != null) return (RectTransform)existing.GetChild(0);
+        var existing = parent.Find(name);
+        if (existing != null)
+        {
+            existing.gameObject.SetActive(true);
+            var existingContent = existing.GetComponentInChildren<RectTransform>(true);
+            if (existingContent != null) existingContent.gameObject.SetActive(true);
+            return (RectTransform)existing.GetChild(0);
+        }
         var safe = new GameObject(name, typeof(RectTransform), typeof(LandscapeSafeArea)); safe.transform.SetParent(parent, false);
         var content = new GameObject("Content", typeof(RectTransform)).GetComponent<RectTransform>(); content.SetParent(safe.transform, false);
-        safe.GetComponent<LandscapeSafeArea>().content = content; safe.GetComponent<LandscapeSafeArea>().Refresh(); return content;
+        safe.GetComponent<LandscapeSafeArea>().content = content;
+        safe.SetActive(true);
+        content.gameObject.SetActive(true);
+        safe.GetComponent<LandscapeSafeArea>().Refresh();
+        return content;
     }
 }
