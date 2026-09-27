@@ -1,101 +1,52 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-// Landscape adaptation for the existing menu adapter. Battle uses separately authored prefabs.
 public static class LandscapeMenuLayout
 {
+    // Compatibility shim for older callers. Screen builders now own their
+    // hierarchy and parent directly to MenuSafeArea/Content, so this method
+    // must never reparent or reposition a completed screen.
     public static void Apply(Scene scene, Canvas canvas)
     {
         if (canvas == null) return;
-
-        // RuntimeSceneUiBootstrap owns screen construction and control geometry.
-        // This adapter only provides the safe-area parent and keeps the screen root
-        // stretched to that content region. Repositioning individual controls here
-        // created a second layout owner and could overwrite newer screen builders.
-        var root = canvas.transform.Find(scene.name + "Root") as RectTransform;
-        if (root != null)
-        {
-            var content = SafeContent(canvas.transform, "MenuSafeArea");
-            root.SetParent(content, false);
-            root.anchorMin = Vector2.zero;
-            root.anchorMax = Vector2.one;
-            root.offsetMin = Vector2.zero;
-            root.offsetMax = Vector2.zero;
-            root.localScale = Vector3.one;
-        }
-
-        // HomeScreenView intentionally owns Home construction, so its runtime root
-        // is named HomeRuntimeUI rather than HomeRoot. Keep that ownership boundary
-        // intact, but put the finished Home UI on the same 1600x900 design surface
-        // as the other landscape screens. The artwork remains on the Canvas itself
-        // and can therefore bleed to the screen edges without being scaled by the
-        // safe-area content.
-        if (scene.name == "Home")
-        {
-            var homeRoot = canvas.transform.Find("HomeRuntimeUI") as RectTransform;
-            if (homeRoot == null)
-            {
-                homeRoot = canvas.GetComponentsInChildren<RectTransform>(true)
-                    .FirstOrDefault(r => r.name == "HomeRuntimeUI");
-            }
-
-            if (homeRoot != null)
-            {
-                var content = SafeContent(canvas.transform, "MenuSafeArea");
-                homeRoot.SetParent(content, false);
-                homeRoot.anchorMin = Vector2.zero;
-                homeRoot.anchorMax = Vector2.one;
-                homeRoot.offsetMin = Vector2.zero;
-                homeRoot.offsetMax = Vector2.zero;
-                homeRoot.localScale = Vector3.one;
-            }
-        }
-
-        var overlay = canvas.GetComponentsInChildren<TutorialOverlay>(true).FirstOrDefault();
-        if (overlay == null) return;
-
-        var tutorialContent = SafeContent(canvas.transform, "TutorialSafeArea");
-        var r = (RectTransform)overlay.transform;
-        r.SetParent(tutorialContent, false);
-        r.anchorMin = r.anchorMax = r.pivot = new(.5f, .5f);
-        r.anchoredPosition = new(0, 370);
-        r.sizeDelta = new(1100, 130);
-
-        var text = overlay.GetComponentInChildren<Text>(true);
-        if (text != null)
-        {
-            text.fontSize = 23;
-            text.rectTransform.anchoredPosition = new(-140, 0);
-            text.rectTransform.sizeDelta = new(760, 110);
-        }
-
-        var button = overlay.GetComponentInChildren<Button>(true);
-        if (button != null)
-        {
-            var buttonRect = (RectTransform)button.transform;
-            buttonRect.anchoredPosition = new(415, 0);
-            buttonRect.sizeDelta = new(230, 70);
-        }
+        EnsureSafeContent(canvas.transform);
     }
 
-    private static RectTransform SafeContent(Transform parent, string name)
+    private static RectTransform EnsureSafeContent(Transform parent)
     {
-        var existing = parent.Find(name);
+        var existing = parent.Find("MenuSafeArea");
         if (existing != null)
         {
-            existing.gameObject.SetActive(true);
-            var existingContent = existing.GetComponentInChildren<RectTransform>(true);
-            if (existingContent != null) existingContent.gameObject.SetActive(true);
-            return (RectTransform)existing.GetChild(0);
+            var existingContent = existing.Find("Content") as RectTransform;
+            if (existingContent != null)
+            {
+                existing.gameObject.SetActive(true);
+                existingContent.gameObject.SetActive(true);
+                return existingContent;
+            }
         }
-        var safe = new GameObject(name, typeof(RectTransform), typeof(LandscapeSafeArea)); safe.transform.SetParent(parent, false);
-        var content = new GameObject("Content", typeof(RectTransform)).GetComponent<RectTransform>(); content.SetParent(safe.transform, false);
-        safe.GetComponent<LandscapeSafeArea>().content = content;
+
+        var safe = new GameObject("MenuSafeArea", typeof(RectTransform), typeof(LandscapeSafeArea));
+        safe.transform.SetParent(parent, false);
+        var safeRect = (RectTransform)safe.transform;
+        safeRect.anchorMin = Vector2.zero;
+        safeRect.anchorMax = Vector2.one;
+        safeRect.offsetMin = Vector2.zero;
+        safeRect.offsetMax = Vector2.zero;
+
+        var contentGo = new GameObject("Content", typeof(RectTransform));
+        contentGo.transform.SetParent(safe.transform, false);
+        var content = (RectTransform)contentGo.transform;
+        content.anchorMin = Vector2.zero;
+        content.anchorMax = Vector2.one;
+        content.offsetMin = Vector2.zero;
+        content.offsetMax = Vector2.zero;
+
+        var safeArea = safe.GetComponent<LandscapeSafeArea>();
+        safeArea.content = content;
         safe.SetActive(true);
         content.gameObject.SetActive(true);
-        safe.GetComponent<LandscapeSafeArea>().Refresh();
+        safeArea.Refresh();
         return content;
     }
 }
