@@ -29,19 +29,24 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
             controller.transform.localScale = Vector3.one;
         }
 
+        // Resolve the overlay before checking for a complete menu so the
+        // already-built path can normalize it without referencing a variable
+        // declared later in this method.
+        Transform overlay = root.Find("HomeOverlayCanvas");
+
         // HomeRoot is the single owner of generated Home navigation. If the
         // complete generated menu is already present, leave it alone so the
         // bootstrap and controller lifecycle cannot rebuild it twice.
         if (IsCompleteHomeMenu(root.transform))
         {
-            NormalizeHomeHierarchy(canvas.transform, root.transform, overlay.transform);
+            NormalizeHomeHierarchy(canvas.transform, root.transform, overlay);
             return;
         }
 
         // A partial/legacy build is unsafe: remove only generated children and
         // reconstruct the complete menu as one hierarchy.
         ClearGeneratedHomeChildren(root.transform, controller);
-        var overlay = EnsureHomeOverlayCanvas(root.transform);
+        overlay = EnsureHomeOverlayCanvas(root.transform).transform;
 
         // The old working Home was a runtime navigation menu: five clear,
         // colored buttons over the full-screen Home artwork. Make that layout
