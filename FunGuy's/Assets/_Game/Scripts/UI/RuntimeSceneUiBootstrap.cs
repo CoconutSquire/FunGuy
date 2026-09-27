@@ -36,6 +36,7 @@ public static class RuntimeSceneUiBootstrap
 
         Game.EnsureInitialized();
         var canvas = EnsureCanvas(scene);
+        Canvas.ForceUpdateCanvases();
 
         switch (scene.name)
         {
@@ -58,6 +59,7 @@ public static class RuntimeSceneUiBootstrap
 
         if (scene.name == "Tutorial" && !Game.Save.tutorialCompleted) EnsureTutorialScene(scene, canvas);
 
+        Canvas.ForceUpdateCanvases();
         LandscapeMenuLayout.Apply(scene, canvas);
 
         foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
