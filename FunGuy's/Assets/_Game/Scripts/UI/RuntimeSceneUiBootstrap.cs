@@ -11,11 +11,19 @@ public static class RuntimeSceneUiBootstrap
 {
     private static Font _cachedFont;
     private static bool _registered;
+    private static readonly HashSet<int> _builtSceneHandles = new HashSet<int>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStatics() { _registered = false; _cachedFont = null; }
+    private static void ResetStatics()
+    {
+        _registered = false;
+        _cachedFont = null;
+        _builtSceneHandles.Clear();
+    }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    // Subscribe before the first scene finishes loading so every subsequent
+    // SceneManager.LoadScene call is handled by the same scene-owned builder.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     private static void Register()
     {
         if (_registered) return;
@@ -24,40 +32,96 @@ public static class RuntimeSceneUiBootstrap
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    // sceneLoaded is the normal path for later scene transitions. The explicit
+    // AfterSceneLoad callback is the deterministic path for the first scene.
+    // This matters when the initial scene is already loading while static
+    // registration is being established.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void BootstrapFirstScene()
+    {
+        if (!Application.isPlaying) return;
+        var scene = SceneManager.GetActiveScene();
+        ProcessScene(scene, LoadSceneMode.Single);
+    }
+
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ProcessScene(scene, mode);
+    }
+
+    private static void ProcessScene(Scene scene, LoadSceneMode mode)
     {
         if (!scene.IsValid() || !scene.isLoaded) return;
         if (scene.name != "Boot" && scene.name != "Home" && scene.name != "Summon" &&
             scene.name != "Team" && scene.name != "Battle" && scene.name != "Tutorial" &&
             scene.name != "Options") return;
 
-        EnsureEventSystem(scene);
-        if (scene.name == "Boot") return;
+        // Both the sceneLoaded event and the first-scene callback can legitimately
+        // reach this method. Build each scene exactly once per play session.
+        if (!_builtSceneHandles.Add(scene.handle)) return;
 
-        Game.EnsureInitialized();
-        var canvas = EnsureCanvas(scene);
-        Canvas.ForceUpdateCanvases();
-
-        switch (scene.name)
+        try
         {
-            case "Home": new HomeSceneUiBuilder().Build(scene, canvas); break;
-            case "Summon": new SummonSceneUiBuilder().Build(scene, canvas); break;
-            case "Team": new TeamSceneUiBuilder().Build(scene, canvas); break;
-            case "Battle": new BattleSceneUiBuilder().Build(scene, canvas); break;
-            case "Tutorial":
-                new WelcomeSceneUiBuilder().Build(scene, canvas);
-                if (!Game.Save.tutorialCompleted)
-                    new TutorialSceneUiBuilder().Build(scene, canvas);
-                break;
-            case "Options": new OptionsSceneUiBuilder().Build(scene, canvas); break;
+            EnsureEventSystem(scene);
+            if (scene.name == "Boot") return;
+
+            try
+            {
+                Game.EnsureInitialized();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(new InvalidOperationException(
+                    $"RuntimeSceneUiBootstrap could not initialize Game before building scene '{scene.name}'.", ex));
+                return;
+            }
+
+            var canvas = EnsureCanvas(scene);
+            Canvas.ForceUpdateCanvases();
+
+            try
+            {
+                switch (scene.name)
+                {
+                    case "Home": new HomeSceneUiBuilder().Build(scene, canvas); break;
+                    case "Summon": new SummonSceneUiBuilder().Build(scene, canvas); break;
+                    case "Team": new TeamSceneUiBuilder().Build(scene, canvas); break;
+                    case "Battle": new BattleSceneUiBuilder().Build(scene, canvas); break;
+                    case "Tutorial":
+                        new WelcomeSceneUiBuilder().Build(scene, canvas);
+                        if (!Game.Save.tutorialCompleted)
+                            new TutorialSceneUiBuilder().Build(scene, canvas);
+                        break;
+                    case "Options": new OptionsSceneUiBuilder().Build(scene, canvas); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(new InvalidOperationException(
+                    $"RuntimeSceneUiBootstrap failed while building scene '{scene.name}'.", ex));
+                return;
+            }
+
+            Canvas.ForceUpdateCanvases();
+
+            foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
+            {
+                if (binder == null) continue;
+                try
+                {
+                    binder.AutoBindCommonReferences();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(new InvalidOperationException(
+                        $"RuntimeSceneUiBootstrap failed to bind UI references in scene '{scene.name}'.", ex));
+                }
+            }
         }
-
-        Canvas.ForceUpdateCanvases();
-
-        foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
+        catch (Exception ex)
         {
-            if (binder == null) continue;
-            binder.AutoBindCommonReferences();
+            Debug.LogException(new InvalidOperationException(
+                $"RuntimeSceneUiBootstrap failed during setup of scene '{scene.name}'.", ex));
         }
     }
 
