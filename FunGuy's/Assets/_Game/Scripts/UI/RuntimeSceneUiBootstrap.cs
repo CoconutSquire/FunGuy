@@ -529,12 +529,18 @@ public static class RuntimeSceneUiBootstrap
     private static Canvas EnsureCanvas(Scene scene)
     {
         var existing = FindInScene<Canvas>(scene).FirstOrDefault();
-        if (existing != null) { ConfigureLandscapeCanvas(existing); return existing; }
+        if (existing != null)
+        {
+            existing.gameObject.SetActive(true);
+            ConfigureLandscapeCanvas(existing);
+            return existing;
+        }
 
         var canvasGo = new GameObject("Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
         SceneManager.MoveGameObjectToScene(canvasGo, scene);
 
         var canvas = canvasGo.GetComponent<Canvas>();
+        canvas.enabled = true;
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
         var scaler = canvasGo.GetComponent<CanvasScaler>();
@@ -547,6 +553,9 @@ public static class RuntimeSceneUiBootstrap
 
     private static void ConfigureLandscapeCanvas(Canvas canvas)
     {
+        if (canvas == null) return;
+        canvas.gameObject.SetActive(true);
+        canvas.enabled = true;
         // Some authored scenes have a zero-scale Canvas. That makes every runtime
         // control effectively invisible/non-interactable even though the hierarchy
         // and EventSystem are present. Normalize the Canvas before building the UI.
@@ -561,7 +570,15 @@ public static class RuntimeSceneUiBootstrap
     }
     private static void EnsureEventSystem(Scene scene)
     {
-        if (UnityEngine.Object.FindFirstObjectByType<EventSystem>() != null) return;
+        var existing = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
+        if (existing != null)
+        {
+            existing.gameObject.SetActive(true);
+            existing.enabled = true;
+            var input = existing.GetComponent<InputSystemUIInputModule>();
+            if (input != null) input.enabled = true;
+            return;
+        }
         var es = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
         SceneManager.MoveGameObjectToScene(es, scene);
     }
@@ -569,6 +586,7 @@ public static class RuntimeSceneUiBootstrap
     private static GameObject EnsureSceneRoot(Scene scene, Transform canvas, string rootName)
     {
         var root = EnsureChild(canvas, rootName);
+        root.SetActive(true);
         StretchToParent(EnsureRectTransform(root));
         EnsureComponent<UiPrefabBlueprintBinder>(root);
         return root;
