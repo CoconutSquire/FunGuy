@@ -11,7 +11,23 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         if (canvas == null) return;
 
         var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
-        var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
+
+        // Reuse the authored HomeMenuController when one already exists. The
+        // authored scene currently contains one, and creating a second controller
+        // here would give both controllers a Start() lifecycle and compete for the
+        // same Home UI. Only add one when a scene truly has none.
+        var controller = root.GetComponent<HomeMenuController>();
+        if (controller == null)
+            controller = FindInScene<HomeMenuController>(scene).FirstOrDefault();
+        if (controller == null)
+            controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
+        else if (controller.transform != root.transform)
+        {
+            controller.transform.SetParent(root.transform, false);
+            controller.transform.localPosition = Vector3.zero;
+            controller.transform.localRotation = Quaternion.identity;
+            controller.transform.localScale = Vector3.one;
+        }
 
         // HomeRoot is the single owner of generated Home navigation. Rebuild its
         // generated children cleanly so a partial/legacy runtime build can never
