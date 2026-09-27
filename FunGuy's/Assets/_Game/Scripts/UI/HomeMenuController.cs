@@ -18,14 +18,6 @@ public class HomeMenuController : MonoBehaviour {
   private void Start() {
     Game.EnsureInitialized();
     var canvas = GetComponentInParent<Canvas>();
-    if (canvas != null)
-    {
-      // HomeScreenView remains the owner of Home construction. Once it has built
-      // that UI, run the shared safe-area adapter so Home receives the same
-      // 1600x900 design-surface scaling as the other landscape scenes.
-      HomeScreenView.Build(canvas.transform, this);
-      LandscapeMenuLayout.Apply(SceneManager.GetActiveScene(), canvas);
-    }
     if (autoLaunchTutorialOnFirstOpen && !Save.tutorialCompleted && Save.tutorialStep <= 0) {
       SceneManager.LoadScene("Tutorial");
       return;
