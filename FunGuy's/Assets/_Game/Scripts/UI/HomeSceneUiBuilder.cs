@@ -11,6 +11,7 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         if (canvas == null) return;
 
         var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
+        var overlay = EnsureHomeOverlayCanvas(root.transform);
 
         // Reuse the authored HomeMenuController when one already exists. The
         // authored scene currently contains one, and creating a second controller
@@ -34,7 +35,7 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         // bootstrap and controller lifecycle cannot rebuild it twice.
         if (IsCompleteHomeMenu(root.transform))
         {
-            NormalizeHomeHierarchy(canvas.transform, root.transform);
+            NormalizeHomeHierarchy(canvas.transform, root.transform, overlay.transform);
             return;
         }
 
@@ -62,7 +63,7 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         if (authoredBackground != null)
             authoredBackground.gameObject.SetActive(false);
 
-        var shell = EnsurePanel(root.transform, "Panel_Main",
+        var shell = EnsurePanel(overlay.transform, "Panel_Main",
             WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.82f),
             CenterAnchor, CenterAnchor, new Vector2(-360f, 0f), new Vector2(760f, 760f));
         shell.GetComponent<Image>().raycastTarget = true;
@@ -142,7 +143,30 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         options.onClick.AddListener(controller.OnOptionsPressed);
 
         controller.BindHomeView(stats, hint);
-        NormalizeHomeHierarchy(canvas.transform, root.transform);
+        NormalizeHomeHierarchy(canvas.transform, root.transform, overlay.transform);
+    }
+
+    private static Canvas EnsureHomeOverlayCanvas(Transform root)
+    {
+        var existing = root.Find("HomeOverlayCanvas");
+        GameObject go;
+        if (existing != null)
+            go = existing.gameObject;
+        else
+        {
+            go = new GameObject("HomeOverlayCanvas", typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster));
+            go.transform.SetParent(root, false);
+        }
+
+        var rect = go.GetComponent<RectTransform>();
+        StretchToParent(rect);
+
+        var canvas = go.GetComponent<Canvas>();
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = 100;
+        canvas.enabled = true;
+        go.SetActive(true);
+        return canvas;
     }
 
     private static void EnsureHomeBackground(Transform canvasRoot)
@@ -182,14 +206,16 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         background.transform.SetAsFirstSibling();
     }
 
-    private static void NormalizeHomeHierarchy(Transform canvas, Transform root)
+    private static void NormalizeHomeHierarchy(Transform canvas, Transform root, Transform overlay)
     {
-        if (canvas == null || root == null) return;
+        if (canvas == null || root == null || overlay == null) return;
 
         root.gameObject.SetActive(true);
         root.SetAsLastSibling();
+        overlay.gameObject.SetActive(true);
+        overlay.SetAsLastSibling();
 
-        var panel = root.Find("Panel_Main");
+        var panel = overlay.Find("Panel_Main");
         if (panel != null)
         {
             panel.gameObject.SetActive(true);
@@ -217,7 +243,9 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
     private static bool IsCompleteHomeMenu(Transform root)
     {
         if (root == null) return false;
-        var panel = root.Find("Panel_Main");
+        var overlay = root.Find("HomeOverlayCanvas");
+        if (overlay == null || overlay.GetComponent<Canvas>() == null) return false;
+        var panel = overlay.Find("Panel_Main");
         if (panel == null) return false;
 
         string[] required = { "Btn_Start", "Btn_Summon", "Btn_Funguy", "Btn_Campaign", "Btn_Options" };
