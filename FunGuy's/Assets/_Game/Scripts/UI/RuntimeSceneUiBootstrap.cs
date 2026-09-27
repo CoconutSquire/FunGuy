@@ -53,7 +53,6 @@ public static class RuntimeSceneUiBootstrap
         }
 
         Canvas.ForceUpdateCanvases();
-        LandscapeMenuLayout.Apply(scene, canvas);
 
         foreach (var binder in FindInScene<UiPrefabBlueprintBinder>(scene))
         {
@@ -62,7 +61,7 @@ public static class RuntimeSceneUiBootstrap
         }
     }
 
-private static Canvas EnsureCanvas(Scene scene)
+    private static Canvas EnsureCanvas(Scene scene)
     {
         var existing = FindInScene<Canvas>(scene).FirstOrDefault();
         if (existing != null)
@@ -92,27 +91,17 @@ private static Canvas EnsureCanvas(Scene scene)
         if (canvas == null) return;
         canvas.gameObject.SetActive(true);
         canvas.enabled = true;
-
-        // Normalize canvas scale and position
         canvas.transform.localScale = Vector3.one;
         canvas.transform.localPosition = Vector3.zero;
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-        // Get existing CanvasScaler or add one if missing
         var scaler = canvas.GetComponent<CanvasScaler>();
         if (scaler == null)
-        {
             scaler = canvas.gameObject.AddComponent<CanvasScaler>();
-        }
 
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1600, 900);
         scaler.matchWidthOrHeight = 1f;
-    }
-
-    private static object EnsureComponent<T>(GameObject gameObject)
-    {
-        throw new NotImplementedException();
     }
 
     private static void EnsureEventSystem(Scene scene)
@@ -126,25 +115,16 @@ private static Canvas EnsureCanvas(Scene scene)
             if (input != null) input.enabled = true;
             return;
         }
+
         var es = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
         SceneManager.MoveGameObjectToScene(es, scene);
     }
 
-private static List<T> FindInScene<T>(Scene scene) where T : Component
+    private static List<T> FindInScene<T>(Scene scene) where T : Component
     {
         var found = new List<T>();
         foreach (var root in scene.GetRootGameObjects())
-        {
             found.AddRange(root.GetComponentsInChildren<T>(true));
-        }
         return found;
-    }
-
-    private static Font ResolveFont()
-    {
-        if (_cachedFont != null) return _cachedFont;
-        _cachedFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        if (_cachedFont == null) _cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        return _cachedFont;
     }
 }
