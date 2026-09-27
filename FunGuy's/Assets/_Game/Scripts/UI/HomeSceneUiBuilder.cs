@@ -9,12 +9,8 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         if (canvas == null) return;
         EnsureMenuSafeContent(canvas.transform);
 
-        var controller = FindInScene<HomeMenuController>(scene).FirstOrDefault();
-        if (controller == null)
-        {
-            var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
-            controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
-        }
-        HomeScreenView.Build(controller.transform, controller);
+        var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
+        var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
+        HomeScreenView.Build(root.transform, controller);
     }
 }
