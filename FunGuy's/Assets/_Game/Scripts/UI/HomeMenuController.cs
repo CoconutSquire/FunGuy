@@ -140,7 +140,7 @@ public class HomeMenuController : MonoBehaviour {
   private static Text MakeLabel(Transform parent, string text, int size, Vector2 pos, Vector2 dimensions, FontStyle style) {
     var go = new GameObject("Label", typeof(RectTransform), typeof(Text)); go.transform.SetParent(parent, false);
     var rt = go.GetComponent<RectTransform>(); rt.anchorMin = rt.anchorMax = new Vector2(.5f,.5f); rt.pivot = new Vector2(.5f,.5f); rt.anchoredPosition = pos; rt.sizeDelta = dimensions;
-    var label = go.GetComponent<Text>(); label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); label.text = text; label.fontSize = size; label.fontStyle = style; label.alignment = TextAnchor.MiddleCenter; label.color = Color.white; label.horizontalOverflow = HorizontalWrapMode.Wrap; label.verticalOverflow = VerticalWrapMode.Overflow;
+    var label = go.GetComponent<Text>(); label.font = Resources.GetBuiltinResource<Font>("Arial.ttf") ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); label.text = text; label.fontSize = size; label.fontStyle = style; label.alignment = TextAnchor.MiddleCenter; label.color = Color.white; label.horizontalOverflow = HorizontalWrapMode.Wrap; label.verticalOverflow = VerticalWrapMode.Overflow;
     return label;
   }
 
