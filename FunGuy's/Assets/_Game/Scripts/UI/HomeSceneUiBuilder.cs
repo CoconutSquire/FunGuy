@@ -33,7 +33,10 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         // complete generated menu is already present, leave it alone so the
         // bootstrap and controller lifecycle cannot rebuild it twice.
         if (IsCompleteHomeMenu(root.transform))
+        {
+            NormalizeHomeHierarchy(canvas.transform, root.transform);
             return;
+        }
 
         // A partial/legacy build is unsafe: remove only generated children and
         // reconstruct the complete menu as one hierarchy.
@@ -95,6 +98,14 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
             new Vector2(0f, -205f), new Vector2(500f, 76f),
             new Color(.28f, .34f, .39f, 1f), out var optionsLabel);
 
+        shell.SetActive(true);
+        shell.transform.SetAsLastSibling();
+        start.gameObject.SetActive(true);
+        summon.gameObject.SetActive(true);
+        funguy.gameObject.SetActive(true);
+        campaign.gameObject.SetActive(true);
+        options.gameObject.SetActive(true);
+
         var hint = EnsureLabel(shell.transform, "Lbl_TutorialHint",
             "", 24, FontStyle.Italic, TextAnchor.MiddleCenter, SoftWhite);
         SetRect(hint.rectTransform, CenterAnchor, CenterAnchor,
@@ -131,6 +142,7 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         options.onClick.AddListener(controller.OnOptionsPressed);
 
         controller.BindHomeView(stats, hint);
+        NormalizeHomeHierarchy(canvas.transform, root.transform);
     }
 
     private static void EnsureHomeBackground(Transform canvasRoot)
@@ -168,6 +180,38 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         image.uvRect = new Rect(0f, 0f, 1f, 1f);
         background.SetActive(true);
         background.transform.SetAsFirstSibling();
+    }
+
+    private static void NormalizeHomeHierarchy(Transform canvas, Transform root)
+    {
+        if (canvas == null || root == null) return;
+
+        root.gameObject.SetActive(true);
+        root.SetAsLastSibling();
+
+        var panel = root.Find("Panel_Main");
+        if (panel != null)
+        {
+            panel.gameObject.SetActive(true);
+            panel.SetAsLastSibling();
+
+            string[] names = { "Btn_Start", "Btn_Summon", "Btn_Funguy", "Btn_Campaign", "Btn_Options" };
+            foreach (var name in names)
+            {
+                var button = panel.Find(name);
+                if (button == null) continue;
+                button.gameObject.SetActive(true);
+                button.SetAsLastSibling();
+            }
+        }
+
+        var staleText = canvas.Find("Text (TMP)");
+        if (staleText != null)
+            staleText.gameObject.SetActive(false);
+
+        var authoredBackground = canvas.Find("Background");
+        if (authoredBackground != null)
+            authoredBackground.gameObject.SetActive(false);
     }
 
     private static bool IsCompleteHomeMenu(Transform root)
