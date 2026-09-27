@@ -12,8 +12,11 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
 
         var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
         var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
-        if (root.transform.Find("Panel_Main") != null)
-            return;
+
+        // HomeRoot is the single owner of generated Home navigation. Rebuild its
+        // generated children cleanly so a partial/legacy runtime build can never
+        // leave a panel without its buttons or a second Home UI underneath it.
+        ClearGeneratedHomeChildren(root.transform, controller);
 
         // The old working Home was a runtime navigation menu: five clear,
         // colored buttons over the full-screen Home artwork. Make that layout
@@ -28,6 +31,12 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
             if (button.transform.IsChildOf(root.transform)) continue;
             button.gameObject.SetActive(false);
         }
+
+        // The authored Home scene also contains an obsolete decorative Background
+        // Image. It must not sit above or beside the authoritative runtime artwork.
+        var authoredBackground = canvas.transform.Find("Background");
+        if (authoredBackground != null)
+            authoredBackground.gameObject.SetActive(false);
 
         var shell = EnsurePanel(root.transform, "Panel_Main",
             WithAlpha(IdleHuntressTheme.PanelFor(UiTone.Home), 0.82f),
@@ -136,5 +145,18 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         image.color = Color.white;
         image.raycastTarget = false;
         image.uvRect = new Rect(0f, 0f, 1f, 1f);
+        background.SetActive(true);
+        background.transform.SetAsFirstSibling();
+    }
+
+    private static void ClearGeneratedHomeChildren(Transform root, HomeMenuController controller)
+    {
+        for (int i = root.childCount - 1; i >= 0; i--)
+        {
+            var child = root.GetChild(i);
+            if (child == null) continue;
+            if (child.GetComponent<HomeMenuController>() == controller) continue;
+            UnityEngine.Object.Destroy(child.gameObject);
+        }
     }
 }
