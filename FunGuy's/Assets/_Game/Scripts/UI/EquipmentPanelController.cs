@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public sealed class EquipmentPanelController : MonoBehaviour
 {
@@ -18,14 +19,13 @@ public sealed class EquipmentPanelController : MonoBehaviour
     private Button upgradeButton;
     private Text upgradeLabel;
     private Button backButton;
-    private Button[] choiceButtons;
-    private Text[] choiceLabels;
+    private Dropdown[] choiceDropdowns;
     private int selected;
     private int selectedSlot = 0;
 
-    public void Initialize(GameObject panel, Text character, Text identity, Text stats, Text details, RectTransform characterList, Button[] choices, Text[] choiceTexts, Button[] slots, Text[] labels, Button upgrade, Text upgradeText, Button back)
+    public void Initialize(GameObject panel, Text character, Text identity, Text stats, Text details, RectTransform characterList, Dropdown[] choices, Button[] slots, Text[] labels, Button upgrade, Text upgradeText, Button back)
     {
-        root=panel; characterLabel=character; identityLabel=identity; statsLabel=stats; detailsLabel=details; characterContent=characterList; choiceButtons=choices; choiceLabels=choiceTexts; slotButtons=slots; slotLabels=labels; upgradeButton=upgrade; upgradeLabel=upgradeText; backButton=back;
+        root=panel; characterLabel=character; identityLabel=identity; statsLabel=stats; detailsLabel=details; characterContent=characterList; choiceDropdowns=choices; slotButtons=slots; slotLabels=labels; upgradeButton=upgrade; upgradeLabel=upgradeText; backButton=back;
         Refresh();
     }
     public void Open() { root.SetActive(true); Refresh(); }
@@ -67,7 +67,23 @@ public sealed class EquipmentPanelController : MonoBehaviour
         Refresh();
     }
 
-    public void EquipChoice(int slotIndex) { EquipFromSlot(slotIndex); }
+
+    public void SelectAvailableEquipment(int slotIndex, int optionIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= EquipmentService.Slots.Length) return;
+        var charId = selectedCharacterId;
+        if (string.IsNullOrEmpty(charId)) return;
+        var inventory = (Game.Save.equipmentInventory ?? new List<GearSlotState>())
+            .Where(x => x != null && x.slotId == EquipmentService.Slots[slotIndex])
+            .OrderByDescending(x => x.rarity)
+            .ThenByDescending(x => x.level)
+            .ThenBy(x => x.itemId, StringComparer.Ordinal)
+            .ToList();
+        if (optionIndex < 0 || optionIndex >= inventory.Count) return;
+        Game.Equipment.Equip(charId, inventory[optionIndex].itemId);
+        selectedSlot = slotIndex;
+        Refresh();
+    }
 
     public void Unequip(int slotIndex)
     {
@@ -101,10 +117,38 @@ public sealed class EquipmentPanelController : MonoBehaviour
         characterLabel.text=def?.name ?? charId;
         if(identityLabel!=null) identityLabel.text=def==null ? "" : $"{def.classArchetype} • {def.role}\n{def.biome} • Rarity {def.rarity} • Lv.{unit.level}";
         if(statsLabel!=null) statsLabel.text=BuildStats(def, unit);
-        if(choiceButtons!=null) for(int i=0;i<choiceButtons.Length;i++){
-            string slot=EquipmentService.Slots[i]; var inv=save.equipmentInventory.FirstOrDefault(x=>x.slotId==slot);
-            choiceButtons[i].interactable=inv!=null;
-            if(choiceLabels!=null && i<choiceLabels.Length) choiceLabels[i].text=inv==null ? $"{slot.ToUpperInvariant()}\nNo equipment available" : $"{EquipmentName(slot)}\nRarity {inv.rarity} • Lv.{inv.level}";
+        if(choiceDropdowns!=null) for(int i=0;i<choiceDropdowns.Length;i++){
+            if (choiceDropdowns[i] == null) continue;
+            int slotIndex = i;
+            string slot=EquipmentService.Slots[i];
+            var inventory = (save.equipmentInventory ?? new List<GearSlotState>())
+                .Where(x => x != null && x.slotId == slot)
+                .OrderByDescending(x => x.rarity)
+                .ThenByDescending(x => x.level)
+                .ThenBy(x => x.itemId, StringComparer.Ordinal)
+                .ToList();
+            var dropdown = choiceDropdowns[i];
+            dropdown.onValueChanged.RemoveAllListeners();
+            dropdown.ClearOptions();
+            var equippedId = unit.gearSlots?.FirstOrDefault(g => g.slotId == slot)?.itemId;
+            var options = inventory.Select(x => new Dropdown.OptionData(
+                $"{EquipmentName(slot)} • R{x.rarity} • Lv.{x.level}" +
+                (x.evolution > 0 ? " • Evolved" : "") +
+                (x.itemId == equippedId ? " • Equipped" : ""))).ToList();
+            if (options.Count == 0)
+            {
+                options.Add(new Dropdown.OptionData($"{slot.ToUpperInvariant()} • No equipment available"));
+                dropdown.interactable = false;
+            }
+            else
+            {
+                dropdown.interactable = true;
+                dropdown.onValueChanged.AddListener(value => SelectAvailableEquipment(slotIndex, value));
+            }
+            dropdown.AddOptions(options);
+            var selectedIndex = equippedId == null ? 0 : inventory.FindIndex(x => x.itemId == equippedId);
+            dropdown.value = selectedIndex >= 0 ? selectedIndex : 0;
+            dropdown.RefreshShownValue();
         }
         for(int i=0;i<4;i++){
             string slot=EquipmentService.Slots[i]; var equipped=unit.gearSlots?.FirstOrDefault(x=>x.slotId==slot); var inv=save.equipmentInventory.FirstOrDefault(x=>x.slotId==slot);
