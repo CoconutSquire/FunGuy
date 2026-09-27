@@ -15,6 +15,6 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
             var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
             controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
         }
-        HomeScreenView.Build(canvas.transform, controller);
+        HomeScreenView.Build(controller.transform, controller);
     }
 }
