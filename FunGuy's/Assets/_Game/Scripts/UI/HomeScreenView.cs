@@ -11,10 +11,12 @@ public static class HomeScreenView
     private static readonly Color Summon = new(.42f, .24f, .56f, 1f);
     private static readonly Color Back = new(.28f, .34f, .39f, 1f);
 
-    public static void Build(Transform canvasRoot, HomeMenuController controller)
+    public static void Build(Transform homeRoot, HomeMenuController controller)
     {
-        if (canvasRoot == null || controller == null) return;
-        var existing = canvasRoot.Find("HomeRuntimeUI");
+        if (homeRoot == null || controller == null) return;
+        var canvasRoot = homeRoot.GetComponentInParent<Canvas>()?.transform;
+        if (canvasRoot == null) canvasRoot = homeRoot;
+        var existing = homeRoot.Find("HomeRuntimeUI");
         if (existing != null) UnityEngine.Object.Destroy(existing.gameObject);
 
         // Keep the existing Home art as a dedicated, non-interactive background layer.
@@ -33,8 +35,7 @@ public static class HomeScreenView
         // LandscapeMenuLayout creates this safe-area content before Home starts.
         // Reuse it so Home follows the same safe-area contract without a second
         // layout system repositioning the screen later.
-        var safeContent = canvasRoot.Find("MenuSafeArea/Content");
-        root.transform.SetParent(safeContent != null ? safeContent : canvasRoot, false);
+        root.transform.SetParent(homeRoot, false);
         var rootRect = root.GetComponent<RectTransform>();
         rootRect.anchorMin = Vector2.zero; rootRect.anchorMax = Vector2.one;
         rootRect.offsetMin = Vector2.zero; rootRect.offsetMax = Vector2.zero;
