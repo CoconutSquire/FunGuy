@@ -12,6 +12,8 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
 
         var root = EnsureSceneRoot(scene, canvas.transform, "HomeRoot");
         var controller = EnsureSceneComponent<HomeMenuController>(scene, root.transform);
+        if (root.transform.Find("Panel_Main") != null)
+            return;
 
         // The old working Home was a runtime navigation menu: five clear,
         // colored buttons over the full-screen Home artwork. Make that layout
