@@ -32,7 +32,7 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         // Resolve the overlay before checking for a complete menu so the
         // already-built path can normalize it without referencing a variable
         // declared later in this method.
-        Transform overlay = root.Find("HomeOverlayCanvas");
+        Transform overlay = root.transform.Find("HomeOverlayCanvas");
 
         // HomeRoot is the single owner of generated Home navigation. If the
         // complete generated menu is already present, leave it alone so the
