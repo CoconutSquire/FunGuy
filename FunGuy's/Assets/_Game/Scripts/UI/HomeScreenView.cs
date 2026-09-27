@@ -39,17 +39,17 @@ public static class HomeScreenView
         rootRect.anchorMin = Vector2.zero; rootRect.anchorMax = Vector2.one;
         rootRect.offsetMin = Vector2.zero; rootRect.offsetMax = Vector2.zero;
 
-        var shell = Panel(root.transform, "HomePanel", HomePanel, new Vector2(0,0), new Vector2(900,1520));
+        var shell = Panel(root.transform, "HomePanel", HomePanel, new Vector2(-360,0), new Vector2(760,760));
         Label(shell.transform, "Welcome", "Welcome, Commander. Build your squad and clear the frontier.",
-            new Vector2(0,600), new Vector2(820,150), 42, FontStyle.Bold);
-        var stats = Label(shell.transform, "AccountStats", "", new Vector2(0,500), new Vector2(820,100), 30, FontStyle.Normal);
+            new Vector2(0,315), new Vector2(700,90), 42, FontStyle.Bold);
+        var stats = Label(shell.transform, "AccountStats", "", new Vector2(0,245), new Vector2(700,60), 30, FontStyle.Normal);
 
-        var start = Button(shell.transform, "Start", "Start", new Vector2(0,320), new Vector2(560,108), Action);
-        var summon = Button(shell.transform, "Summon", "Summon", new Vector2(0,190), new Vector2(560,108), Summon);
-        var funguy = Button(shell.transform, "Funguy", "Funguy", new Vector2(0,60), new Vector2(560,108), Navigation);
-        var campaign = Button(shell.transform, "Campaign", "Campaign", new Vector2(0,-70), new Vector2(560,108), Action);
-        var options = Button(shell.transform, "Options", "Options", new Vector2(0,-200), new Vector2(560,108), Back);
-        var hint = Label(shell.transform, "Hint", "", new Vector2(0,-360), new Vector2(780,140), 24, FontStyle.Italic);
+        var start = Button(shell.transform, "Start", "Start", new Vector2(0,155), new Vector2(500,76), Action);
+        var summon = Button(shell.transform, "Summon", "Summon", new Vector2(0,65), new Vector2(500,76), Summon);
+        var funguy = Button(shell.transform, "Funguy", "Funguy", new Vector2(0,-25), new Vector2(500,76), Navigation);
+        var campaign = Button(shell.transform, "Campaign", "Campaign", new Vector2(0,-115), new Vector2(500,76), Action);
+        var options = Button(shell.transform, "Options", "Options", new Vector2(0,-205), new Vector2(500,76), Back);
+        var hint = Label(shell.transform, "Hint", "", new Vector2(0,-315), new Vector2(680,70), 24, FontStyle.Italic);
 
         start.onClick.AddListener(controller.OnStartPressed);
         summon.onClick.AddListener(controller.OnSummonPressed);
@@ -87,9 +87,11 @@ public static class HomeScreenView
         image.raycastTarget = false;
         image.uvRect = new Rect(0f, 0f, 1f, 1f);
 
+        // The CanvasScaler already fits the landscape design surface. Keep the artwork
+        // stretched to that surface instead of combining stretched anchors with an
+        // AspectRatioFitter, which can shrink the background into a small rectangle.
         var fitter = background.GetComponent<AspectRatioFitter>();
-        fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
-        fitter.aspectRatio = 1672f / 941f;
+        fitter.enabled = false;
     }
 
     private static void BuildFunguyOverlay(Transform parent, HomeMenuController controller)
