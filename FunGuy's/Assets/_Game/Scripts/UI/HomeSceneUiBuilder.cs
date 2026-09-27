@@ -29,9 +29,14 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
             controller.transform.localScale = Vector3.one;
         }
 
-        // HomeRoot is the single owner of generated Home navigation. Rebuild its
-        // generated children cleanly so a partial/legacy runtime build can never
-        // leave a panel without its buttons or a second Home UI underneath it.
+        // HomeRoot is the single owner of generated Home navigation. If the
+        // complete generated menu is already present, leave it alone so the
+        // bootstrap and controller lifecycle cannot rebuild it twice.
+        if (IsCompleteHomeMenu(root.transform))
+            return;
+
+        // A partial/legacy build is unsafe: remove only generated children and
+        // reconstruct the complete menu as one hierarchy.
         ClearGeneratedHomeChildren(root.transform, controller);
 
         // The old working Home was a runtime navigation menu: five clear,
@@ -163,6 +168,23 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         image.uvRect = new Rect(0f, 0f, 1f, 1f);
         background.SetActive(true);
         background.transform.SetAsFirstSibling();
+    }
+
+    private static bool IsCompleteHomeMenu(Transform root)
+    {
+        if (root == null) return false;
+        var panel = root.Find("Panel_Main");
+        if (panel == null) return false;
+
+        string[] required = { "Btn_Start", "Btn_Summon", "Btn_Funguy", "Btn_Campaign", "Btn_Options" };
+        foreach (var name in required)
+        {
+            var button = panel.Find(name);
+            if (button == null || button.GetComponent<Button>() == null)
+                return false;
+        }
+
+        return true;
     }
 
     private static void ClearGeneratedHomeChildren(Transform root, HomeMenuController controller)
