@@ -39,7 +39,7 @@ public class HomeMenuController : MonoBehaviour {
         OnFunguyPressed();
     }
         
-  public void OnFunguyPressed() { funguyRoster?.Open(); }
+  public void OnFunguyPressed() { if (funguyRoster != null) funguyRoster.Open(); else SceneManager.LoadScene("Team"); }
 
     public void OnBattlePressed() { if (OpenCampaign != null) OpenCampaign(); else SceneManager.LoadScene("Battle"); }
   public void OnOptionsPressed() { SceneManager.LoadScene("Options"); }
