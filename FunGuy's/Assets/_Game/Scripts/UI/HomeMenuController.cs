@@ -16,8 +16,15 @@ public class HomeMenuController : MonoBehaviour {
   private FunguyRosterController funguyRoster;
 
   private void Start() {
-    Game.EnsureInitialized();
+    // HomeMenuController already exists in the authored Home scene, so use this
+    // existing lifecycle entry point to hand Home ownership to the same
+    // HomeSceneUiBuilder used by RuntimeSceneUiBootstrap. This avoids maintaining
+    // a second, competing Home UI implementation.
     var canvas = GetComponentInParent<Canvas>();
+    if (canvas != null)
+      new HomeSceneUiBuilder().Build(gameObject.scene, canvas);
+
+    Game.EnsureInitialized();
     if (autoLaunchTutorialOnFirstOpen && !Save.tutorialCompleted && Save.tutorialStep <= 0) {
       SceneManager.LoadScene("Tutorial");
       return;
