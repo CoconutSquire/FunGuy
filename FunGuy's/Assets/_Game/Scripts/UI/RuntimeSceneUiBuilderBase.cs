@@ -265,8 +265,10 @@ public abstract class RuntimeSceneUiBuilderBase
     protected static Font ResolveFont()
     {
         if (_cachedFont != null) return (Font)_cachedFont;
-        _cachedFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        if (_cachedFont == null) _cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        _cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        if (_cachedFont == null) _cachedFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        if (_cachedFont == null)
+            _cachedFont = Resources.FindObjectsOfTypeAll<Font>().FirstOrDefault();
         return (Font)_cachedFont;
     }
 
