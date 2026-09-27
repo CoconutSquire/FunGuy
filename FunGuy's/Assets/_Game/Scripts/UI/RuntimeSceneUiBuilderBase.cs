@@ -13,40 +13,57 @@ public abstract class RuntimeSceneUiBuilderBase
 
     protected static GameObject EnsureSceneRoot(Scene scene, Transform canvas, string rootName)
     {
-        var root = EnsureChild(canvas, rootName);
+        var content = EnsureMenuSafeContent(canvas);
+        var root = EnsureChild(content, rootName);
         root.SetActive(true);
         StretchToParent(EnsureRectTransform(root));
         EnsureComponent<UiPrefabBlueprintBinder>(root);
         return root;
     }
 
-protected static T EnsureSceneComponent<T>(Scene scene, Transform parent) where T : Component
+    protected static RectTransform EnsureMenuSafeContent(Transform canvas)
     {
-        // Screen controllers belong to the root that owns their screen. Do not search
-        // the whole scene and reparent an unrelated instance: that can steal a
-        // controller from another UI root and create the kind of cross-screen
-        // conflicts that are especially hard to diagnose at runtime.
-        if (parent == null) return null;
+        if (canvas == null) return null;
+        var existing = canvas.Find("MenuSafeArea");
+        if (existing != null)
+        {
+            var existingContent = existing.Find("Content") as RectTransform;
+            if (existingContent != null)
+            {
+                existing.gameObject.SetActive(true);
+                existingContent.gameObject.SetActive(true);
+                return existingContent;
+            }
+        }
 
+        var safe = new GameObject("MenuSafeArea", typeof(RectTransform), typeof(LandscapeSafeArea));
+        safe.transform.SetParent(canvas, false);
+        StretchToParent((RectTransform)safe.transform);
+
+        var contentGo = new GameObject("Content", typeof(RectTransform));
+        contentGo.transform.SetParent(safe.transform, false);
+        var content = (RectTransform)contentGo.transform;
+        StretchToParent(content);
+
+        var safeArea = safe.GetComponent<LandscapeSafeArea>();
+        safeArea.content = content;
+        safe.SetActive(true);
+        content.gameObject.SetActive(true);
+        safeArea.Refresh();
+        return content;
+    }
+
+    protected static T EnsureSceneComponent<T>(Scene scene, Transform parent) where T : Component
+    {
+        if (parent == null) return null;
         var existing = parent.GetComponent<T>();
         if (existing != null) return existing;
-
         return parent.gameObject.AddComponent<T>();
     }
 
-protected static void ConfigureSkin(
-        GameObject root,
-        UiTone tone,
-        Image[] backgrounds,
-        Image[] panels,
-        Image[] accents,
-        Button[] buttons,
-        Text[] titles,
-        Text[] body)
+    protected static void ConfigureSkin(GameObject root, UiTone tone, Image[] backgrounds, Image[] panels, Image[] accents, Button[] buttons, Text[] titles, Text[] body)
     {
         var skin = EnsureComponent<IdleHuntressSkin>(root);
-        // RuntimeSceneUiBootstrap is the owner of runtime screen styling.
-        // Keep the skin passive so OnEnable cannot race with this configuration.
         SetPrivateField(skin, "applyOnEnable", false);
         SetPrivateField(skin, "tone", tone);
         SetPrivateField(skin, "backgroundLayers", backgrounds.Where(x => x != null).ToArray());
@@ -58,13 +75,12 @@ protected static void ConfigureSkin(
         skin.ApplyTheme();
     }
 
-protected static void SetAccessibleButton(Button button, Text label, Color color)
+    protected static void SetAccessibleButton(Button button, Text label, Color color)
     {
         if (button == null) return;
         var image = button.GetComponent<Image>();
         if (image != null) image.color = color;
         if (label != null) label.color = Color.white;
-
         var colors = button.colors;
         colors.normalColor = color;
         colors.highlightedColor = Color.Lerp(color, Color.white, 0.18f);
@@ -75,45 +91,30 @@ protected static void SetAccessibleButton(Button button, Text label, Color color
         button.colors = colors;
     }
 
-protected static TutorialSpotlightTarget Target(TutorialStep step, Button button, string hint)
+    protected static TutorialSpotlightTarget Target(TutorialStep step, Button button, string hint)
     {
         var graphic = button == null ? null : (button.targetGraphic != null ? button.targetGraphic : button.GetComponent<Graphic>());
-        return new TutorialSpotlightTarget
-        {
-            step = step,
-            target = graphic,
-            hint = hint
-        };
+        return new TutorialSpotlightTarget { step = step, target = graphic, hint = hint };
     }
 
-protected static List<T> FindInScene<T>(Scene scene) where T : Component
+    protected static List<T> FindInScene<T>(Scene scene) where T : Component
     {
         var found = new List<T>();
         foreach (var root in scene.GetRootGameObjects())
-        {
             found.AddRange(root.GetComponentsInChildren<T>(true));
-        }
         return found;
     }
 
-protected static GameObject EnsureChild(Transform parent, string name)
+    protected static GameObject EnsureChild(Transform parent, string name)
     {
         var existing = parent.Find(name);
         if (existing != null) return existing.gameObject;
-
         var go = new GameObject(name, typeof(RectTransform));
         go.transform.SetParent(parent, false);
         return go;
     }
 
-protected static GameObject EnsurePanel(
-        Transform parent,
-        string name,
-        Color color,
-        Vector2 anchorMin,
-        Vector2 anchorMax,
-        Vector2 anchoredPosition,
-        Vector2 sizeDelta)
+    protected static GameObject EnsurePanel(Transform parent, string name, Color color, Vector2 anchorMin, Vector2 anchorMax, Vector2 anchoredPosition, Vector2 sizeDelta)
     {
         var go = EnsureChild(parent, name);
         var rt = EnsureRectTransform(go);
@@ -124,27 +125,17 @@ protected static GameObject EnsurePanel(
         return go;
     }
 
-protected static Dropdown EnsureDropdown(
-        Transform parent,
-        string name,
-        string label,
-        Vector2 anchoredPosition,
-        Vector2 sizeDelta,
-        Color color,
-        out Text labelText)
+    protected static Dropdown EnsureDropdown(Transform parent, string name, string label, Vector2 anchoredPosition, Vector2 sizeDelta, Color color, out Text labelText)
     {
         var go = EnsureChild(parent, name);
         var rt = EnsureRectTransform(go);
         SetRect(rt, CenterAnchor, CenterAnchor, anchoredPosition, sizeDelta);
-
         var image = EnsureComponent<Image>(go);
         image.color = color;
         image.raycastTarget = true;
-
         var dropdown = EnsureComponent<Dropdown>(go);
         dropdown.targetGraphic = image;
         dropdown.options.Clear();
-
         labelText = EnsureLabel(go.transform, "Label", label, 22, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         StretchToParent(labelText.rectTransform);
         labelText.rectTransform.offsetMin = new Vector2(14f, 0f);
@@ -157,7 +148,6 @@ protected static Dropdown EnsureDropdown(
         templateRt.pivot = new Vector2(.5f, 1f);
         templateRt.anchoredPosition = Vector2.zero;
         templateRt.sizeDelta = new Vector2(0f, 320f);
-
         var templateImage = EnsureComponent<Image>(template);
         templateImage.color = new Color(.07f,.11f,.14f,.98f);
         var scroll = EnsureComponent<ScrollRect>(template);
@@ -205,7 +195,6 @@ protected static Dropdown EnsureDropdown(
         var itemLabel = EnsureLabel(item.transform, "Item Label", "Equipment", 20, FontStyle.Normal, TextAnchor.MiddleLeft, Color.white);
         itemLabel.rectTransform.offsetMin = new Vector2(16f, 0f);
         itemLabel.rectTransform.offsetMax = new Vector2(-16f, 0f);
-
         dropdown.template = templateRt;
         dropdown.captionText = labelText;
         dropdown.itemText = itemLabel;
@@ -213,48 +202,22 @@ protected static Dropdown EnsureDropdown(
         return dropdown;
     }
 
-protected static Button EnsureButton(
-        Transform parent,
-        string name,
-        string label,
-        Vector2 anchoredPosition,
-        Vector2 sizeDelta,
-        Color color,
-        out Text labelText,
-        string labelName = null)
+    protected static Button EnsureButton(Transform parent, string name, string label, Vector2 anchoredPosition, Vector2 sizeDelta, Color color, out Text labelText, string labelName = null)
     {
         var go = EnsureChild(parent, name);
         var rt = EnsureRectTransform(go);
         SetRect(rt, CenterAnchor, CenterAnchor, anchoredPosition, sizeDelta);
-
         var image = EnsureComponent<Image>(go);
         image.color = color;
         image.raycastTarget = true;
-
         var button = EnsureComponent<Button>(go);
         button.targetGraphic = image;
-
-        labelText = EnsureLabel(
-            go.transform,
-            string.IsNullOrWhiteSpace(labelName) ? "Label" : labelName,
-            label,
-            30,
-            FontStyle.Bold,
-            TextAnchor.MiddleCenter,
-            Color.black);
+        labelText = EnsureLabel(go.transform, string.IsNullOrWhiteSpace(labelName) ? "Label" : labelName, label, 30, FontStyle.Bold, TextAnchor.MiddleCenter, Color.black);
         StretchToParent(labelText.rectTransform);
-
         return button;
     }
 
-protected static Text EnsureLabel(
-        Transform parent,
-        string name,
-        string text,
-        int fontSize,
-        FontStyle style,
-        TextAnchor anchor,
-        Color color)
+    protected static Text EnsureLabel(Transform parent, string name, string text, int fontSize, FontStyle style, TextAnchor anchor, Color color)
     {
         var go = EnsureChild(parent, name);
         var label = EnsureComponent<Text>(go);
@@ -271,17 +234,9 @@ protected static Text EnsureLabel(
         return label;
     }
 
-protected static RectTransform EnsureRectTransform(GameObject go)
-    {
-        return EnsureComponent<RectTransform>(go);
-    }
+    protected static RectTransform EnsureRectTransform(GameObject go) => EnsureComponent<RectTransform>(go);
 
-protected static void SetRect(
-        RectTransform rt,
-        Vector2 anchorMin,
-        Vector2 anchorMax,
-        Vector2 anchoredPosition,
-        Vector2 sizeDelta)
+    protected static void SetRect(RectTransform rt, Vector2 anchorMin, Vector2 anchorMax, Vector2 anchoredPosition, Vector2 sizeDelta)
     {
         rt.anchorMin = anchorMin;
         rt.anchorMax = anchorMax;
@@ -290,7 +245,7 @@ protected static void SetRect(
         rt.sizeDelta = sizeDelta;
     }
 
-protected static void StretchToParent(RectTransform rt)
+    protected static void StretchToParent(RectTransform rt)
     {
         rt.anchorMin = Vector2.zero;
         rt.anchorMax = Vector2.one;
@@ -301,31 +256,23 @@ protected static void StretchToParent(RectTransform rt)
         rt.sizeDelta = Vector2.zero;
     }
 
-protected static T EnsureComponent<T>(GameObject go) where T : Component
+    protected static T EnsureComponent<T>(GameObject go) where T : Component
     {
         var existing = go.GetComponent<T>();
         return existing ?? go.AddComponent<T>();
     }
 
-protected static Font ResolveFont()
+    protected static Font ResolveFont()
     {
         if (_cachedFont != null) return (Font)_cachedFont;
-
         _cachedFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        if (_cachedFont == null)
-        {
-            _cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        }
-
+        if (_cachedFont == null) _cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
         return (Font)_cachedFont;
     }
 
-protected static Color WithAlpha(Color color, float alpha)
-    {
-        return new Color(color.r, color.g, color.b, Mathf.Clamp01(alpha));
-    }
+    protected static Color WithAlpha(Color color, float alpha) => new(color.r, color.g, color.b, Mathf.Clamp01(alpha));
 
-protected static void SetPrivateField(object target, string fieldName, object value)
+    protected static void SetPrivateField(object target, string fieldName, object value)
     {
         if (target == null || string.IsNullOrWhiteSpace(fieldName)) return;
         var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic;
