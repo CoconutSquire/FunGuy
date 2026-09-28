@@ -167,9 +167,24 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         StretchToParent(rect);
 
         var canvas = go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true;
         canvas.sortingOrder = 100;
         canvas.enabled = true;
+
+        var scaler = go.GetComponent<CanvasScaler>();
+        if (scaler == null)
+            scaler = go.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1600f, 900f);
+        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+        scaler.matchWidthOrHeight = 1f;
+
+        var raycaster = go.GetComponent<GraphicRaycaster>();
+        if (raycaster == null)
+            raycaster = go.AddComponent<GraphicRaycaster>();
+        raycaster.enabled = true;
+
         go.SetActive(true);
         return canvas;
     }
@@ -243,6 +258,17 @@ public sealed class HomeSceneUiBuilder : RuntimeSceneUiBuilderBase
         var authoredBackground = canvas.Find("Background");
         if (authoredBackground != null)
             authoredBackground.gameObject.SetActive(false);
+
+        // Explicitly restore every generated graphic after hierarchy normalization.
+        // This protects the runtime menu from authored-state/canvas lifecycle changes
+        // that can leave the panel visible while its child graphics remain culled.
+        foreach (var graphic in overlay.GetComponentsInChildren<Graphic>(true))
+        {
+            if (graphic == null) continue;
+            graphic.gameObject.SetActive(true);
+            graphic.enabled = true;
+            graphic.canvasRenderer.cull = false;
+        }
     }
 
     private static bool IsCompleteHomeMenu(Transform root)
